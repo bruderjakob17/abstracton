@@ -39,3 +39,19 @@
 
 # debug information files
 *.dwo
+
+# Vim cached files
+*.swp
+*.swo
+
+# build directories
+build/
+Testing/
+
+# Environment related
+.DS_Store
+.vscode/
+.idea/
+.venv
+.cache
+.ccls-cache
