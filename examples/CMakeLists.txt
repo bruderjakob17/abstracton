@@ -1,0 +1,7 @@
+file(GLOB ABSTRACTON_EXAMPLES "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+foreach(ABSTRACTON_EXAMPLE ${ABSTRACTON_EXAMPLES})
+    get_filename_component(ABSTRACTON_EXAMPLE_NAME ${ABSTRACTON_EXAMPLE} NAME_WE)
+    add_executable(${ABSTRACTON_EXAMPLE_NAME} ${ABSTRACTON_EXAMPLE})
+    target_link_libraries(${ABSTRACTON_EXAMPLE_NAME} PRIVATE abstracton)
+    target_link_libraries(${ABSTRACTON_EXAMPLE_NAME} PRIVATE mata)
+endforeach()
