@@ -7,3 +7,5 @@ add_executable(tests
 target_link_libraries(tests PRIVATE abstracton Catch2::Catch2WithMain)
 
 catch_discover_tests(tests)
+
+list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")

@@ -15,6 +15,7 @@ if (BUILD_TESTING)
     )
     FetchContent_MakeAvailable(Catch2)
     list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/contrib)
+    list(APPEND CMAKE_CTEST_ARGUMENTS "--output-on-failure")
     include(Catch) # Adds Catch2::Catch2WithMain and Catch2::Catch2
     get_target_property(catch2_includes Catch2 INTERFACE_INCLUDE_DIRECTORIES)
     target_include_directories(Catch2 SYSTEM INTERFACE ${catch2_includes})
