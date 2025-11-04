@@ -55,3 +55,19 @@ Testing/
 .venv
 .cache
 .ccls-cache
+
+# CMake stuff
+*.cmake
+_deps/
+*.tcl
+CMakeCache.txt
+CMakeFiles/
+Makefile
+
+# benchmarks
+benchmarks/
+
+# executables
+tests/tests
+examples/playground
+examples/create_nfts
