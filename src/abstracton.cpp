@@ -2,6 +2,7 @@
 #include <mata/nft/nft.hh>
 #include <mata/nft/builder.hh>
 #include <abstracton/mata_extensions.hpp>
+#include <abstracton/abstracton.hpp>
 
 using namespace mata;
 using namespace mata::nfa;
@@ -10,7 +11,7 @@ using namespace mata::nft;
 // input: DETERMINISTIC abstraction framework!
 // TODO convert output to debug output
 // TODO exclude all a where V(a) = emptyset (optional, but nicer...)
-Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, const Alphabet& alphabet) {
+Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, const Alphabet& alphabet, bool exclude_empty_abstractions) {
     // project_1(Id intersect (V delta complement(inverse(V)))), then complement
     std::cout << "1" << std::endl;
     Nft v_delta {compose(abstraction_framework, transition_relation)};
@@ -32,7 +33,16 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
     std::cout << "5" << std::endl;
     std::cout << "preprojection:" << std::endl;
     std::cout << preprojection.print_to_dot(true) << std::endl;
-    return mata::nfa::complement(project(preprojection, 0), alphabet);
+    std::cout << "projection:" << std::endl;
+    Nfa projection{ project(preprojection, 0) };
+    std::cout << projection.print_to_dot(true) << std::endl;
+    Nfa ind{ mata::nfa::complement(projection, alphabet) };
+    if (exclude_empty_abstractions) {
+        // intersect with pi_1(V)
+        return mata::nfa::intersection(ind, project(abstraction_framework, 0));
+    } else {
+        return ind;
+    }
 }
 Nft compute_preach(const Nft& abstraction_framework, const Nft& transition_relation, const Alphabet& alphabet) {
     // inverse(V) id_Ind complement(V), then complement

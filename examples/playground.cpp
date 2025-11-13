@@ -47,7 +47,8 @@ int main() {
 
 
     std::cout << "computing ind" << std::endl;
-    Nfa ind {compute_ind(daf, transition_relation, EnumAlphabet {'0', '1', 'a', 'b', '#'})};
+    Nfa ind {compute_ind(daf, transition_relation, EnumAlphabet {'0', '1', 'a', 'b', '#'}, true)};
+    ind = mata::nfa::minimize(ind);
     std::cout << "done" << std::endl;
     std::cout << ind.print_to_dot(true) << std::endl;
 
