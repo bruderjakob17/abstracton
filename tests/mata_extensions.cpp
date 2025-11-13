@@ -82,8 +82,8 @@ TEST_CASE("Padding closure", "[mata::ext::padding_closure]") {
     aut.delta.add(2, 0, 3);
 
     REQUIRE(!aut.is_in_lang({0, 1}));
-std::cout << aut.print_to_dot() << std::endl;
+    std::cout << aut.print_to_dot() << std::endl;
     mata::ext::padding_closure(aut, 0);
-std::cout << aut.print_to_dot() << std::endl;
+    std::cout << aut.print_to_dot() << std::endl;
     REQUIRE(aut.is_in_lang({0, 1}));
 }
