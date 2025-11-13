@@ -1,4 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
+#include <mata/nft/nft.hh>
 #include <mata/parser/re2parser.hh>
 #include <abstracton/mata_extensions.hpp>
 
@@ -64,7 +65,7 @@ TEST_CASE("Nft determinization", "[mata::ext::determinize]") {
 
     std::cout << daf.print_to_dot(true) << std::endl;
 
-    REQUIRE(false);
+    REQUIRE(mata::nft::are_equivalent(af, daf));
 }
 
 TEST_CASE("Padding closure", "[mata::ext::padding_closure]") {
