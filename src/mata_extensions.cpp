@@ -69,7 +69,7 @@ namespace mata::ext {
 
         const size_t num_of_states{ nft.num_of_states() };
 
-        for (State state{ 0 }; state < num_of_states; state++) {
+        for (State state{ 0 }; state < num_of_states; ++state) {
             mata::utils::OrdVector<Symbol> used_symbols {};
             for (const SymbolPost& symbol_post : nft.delta[state]) {
                 used_symbols.insert(symbol_post.symbol);
@@ -98,7 +98,7 @@ namespace mata::ext {
 
         const size_t num_of_states{ result.num_of_states() };
 
-        for (State state{ 0 }; state < num_of_states; state++) {
+        for (State state{ 0 }; state < num_of_states; ++state) {
             if (result.levels[state] == 0 && !result.final.contains(state)) {
                 std::cout << "state " << state << " has level " << result.levels[state] << " and is not final" << std::endl;
                 new_final_states.insert(state);
