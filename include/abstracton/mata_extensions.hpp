@@ -50,7 +50,7 @@ namespace builder {
 * @param final_state_density Density of final states in the automaton. The value must be in range [0, 1]. The state 0 is always final.
 *  If the density is 1, every state will be final.
 */
-mata::nft::Nft create_random_nft_tabakov_vardi(const size_t num_of_levels, const size_t num_of_states, const std::vector<size_t>& alphabet_sizes, const double states_trans_ratio_per_symbol, const double final_state_density);
+mata::nft::Nft create_random_nft_tabakov_vardi(const size_t num_of_levels, const size_t num_of_states, const std::vector<size_t>& alphabet_sizes, const double states_trans_ratio_per_symbol, const double final_state_density, const std::optional<unsigned int> seed = std::nullopt);
 
 }
 

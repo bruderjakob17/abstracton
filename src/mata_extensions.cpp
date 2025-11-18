@@ -196,9 +196,9 @@ namespace mata::ext {
     }
 
     // code copied and adapted from mata's create_random_nfa_tabakov_vardi
-    Nft builder::create_random_nft_tabakov_vardi(const size_t num_of_levels, const size_t num_of_states, const std::vector<size_t>& alphabet_sizes, const double states_trans_ratio_per_symbol, const double final_state_density) {
+    Nft builder::create_random_nft_tabakov_vardi(const size_t num_of_levels, const size_t num_of_states, const std::vector<size_t>& alphabet_sizes, const double states_trans_ratio_per_symbol, const double final_state_density, const std::optional<unsigned int> seed) {
         if (num_of_states == 0) {
-            return Nft();
+            return Nft::with_levels(num_of_levels);
         }
         if (states_trans_ratio_per_symbol < 0 || static_cast<size_t>(states_trans_ratio_per_symbol) > num_of_states) {
             // Maximum of num_of_states^2 unique transitions for one symbol can be created.
@@ -208,12 +208,16 @@ namespace mata::ext {
             // Maximum of num_of_states final states can be created.
             throw std::runtime_error("Final state density must be in range (0, 1]");
         }
+        if (num_of_levels != alphabet_sizes.size()) {
+            // did not specify alphabet size uniquely for each alphabet
+            throw std::runtime_error("Must give exactly one alphabet size for each level");
+        }
 
-        Nft nft { num_of_states, { 0 }, {}, {}, num_of_levels, new OnTheFlyAlphabet{} };
+        Nft nft { num_of_states, { 0 }, { 0 }, {}, num_of_levels, new OnTheFlyAlphabet{} };
 
         // Initialize the random number generator
-        std::random_device rd;  // Seed for the random number engine
-        std::mt19937 gen(rd()); // Mersenne Twister engine
+        unsigned int seed_val = seed.value_or(std::random_device{}());
+        std::mt19937 gen(seed_val); // Mersenne Twister engine
 
         // Unique final state generator
         std::vector<State> states(num_of_states);
