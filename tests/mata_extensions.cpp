@@ -61,12 +61,33 @@ TEST_CASE("Nft determinization", "[mata::ext::determinize]") {
     af.final.insert(af_e);
 
     std::cout << af.print_to_dot(true) << std::endl;
-
     Nft daf {mata::ext::determinize(af)};
-
     std::cout << daf.print_to_dot(true) << std::endl;
 
     REQUIRE(mata::nft::are_equivalent(af, daf));
+}
+
+TEST_CASE("Nft minimization", "[mata::ext::minimize]") {
+    using namespace mata;
+    using namespace mata::nfa;
+    using namespace mata::nft;
+
+    Nft aut = Nft::with_levels((2), 4, { 0 }, { 3 });
+    aut.add_transition(0, {'0', '0'}, 1);
+    aut.add_transition(0, {'1', '1'}, 2);
+    aut.add_transition(2, {'1', '1'}, 1);
+    aut.add_transition(1, {'1', '1'}, 2);
+    aut.add_transition(1, {'0', '1'}, 1);
+    aut.add_transition(2, {'0', '1'}, 2);
+    aut.add_transition(1, {'0', '0'}, 3);
+    aut.add_transition(2, {'0', '0'}, 3);
+
+    std::cout << aut.print_to_dot(true) << std::endl;
+    Nft maut {mata::ext::minimize(aut)};
+    std::cout << maut.print_to_dot(true) << std::endl;
+
+    REQUIRE(mata::nft::are_equivalent(aut, maut));
+    REQUIRE(maut.num_of_states_with_level(0) == 3);
 }
 
 TEST_CASE("Create Tabakov-Vardi NFT") {

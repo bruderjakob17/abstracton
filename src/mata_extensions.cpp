@@ -43,13 +43,6 @@ namespace mata::ext {
     Nft minimize(const Nft& nft) {
         int levels = nft.levels.num_of_levels;
         Nfa aut {nft.to_nfa_copy()};
-        Nfa aut_min {algorithms::minimize_hopcroft(aut)};
-        return mata::nft::builder::from_nfa_with_levels_advancing(aut_min, levels);
-    }
-
-    Nft det_and_min(const Nft& nft) {
-        int levels = nft.levels.num_of_levels;
-        Nfa aut {nft.to_nfa_copy()};
         // TODO for mindet, brzozowski better?
         Nfa aut_det {determinize(aut)};
         Nfa aut_min {algorithms::minimize_hopcroft(aut_det)};
@@ -88,7 +81,7 @@ namespace mata::ext {
         Nft result;
 
         if (minimize_during_determinization) {
-            result = mata::ext::det_and_min(aut);
+            result = mata::ext::minimize(aut);
         } else {
             result = mata::ext::determinize(aut);
         }

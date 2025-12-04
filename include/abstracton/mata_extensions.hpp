@@ -12,11 +12,8 @@ namespace mata::ext {
 // requires nft to not have epsilon-transitions and be trimmed
 mata::nft::Nft determinize(const mata::nft::Nft& nft);
 
-// uses hopcroft minimization (requires trimmed deterministic automaton without epsilon transitions)
+// uses hopcroft minimization (requires nft to not have epsilon-transitions and be trimmed)
 mata::nft::Nft minimize(const mata::nft::Nft& nft);
-
-// uses hopcroft minimzation (requires nft to not have epsilon-transitions and be trimmed)
-mata::nft::Nft det_and_min(const mata::nft::Nft& nft);
 
 // computes complement of nft
 // contrary to mata's complement, this only complements final states on level 0'
