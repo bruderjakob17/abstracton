@@ -56,8 +56,7 @@ namespace mata::ext {
         std::vector<State> sinks {};
         for (int i = 0; i < levels; i++) {
             sinks.push_back(nft.add_state_with_level(i));
-            std::cout << "adding sink state " << sinks[i] << " at level " << i << std::endl;
-            std::cout << "sink state " << sinks[i] << " has level " << nft.levels[sinks[i]] << std::endl;
+            // std::cout << "adding sink state " << sinks[i] << " at level " << i << std::endl;
         }
 
         const size_t num_of_states{ nft.num_of_states() };
@@ -93,7 +92,7 @@ namespace mata::ext {
 
         for (State state{ 0 }; state < num_of_states; ++state) {
             if (result.levels[state] == 0 && !result.final.contains(state)) {
-                std::cout << "state " << state << " has level " << result.levels[state] << " and is not final" << std::endl;
+                //std::cout << "state " << state << " has level " << result.levels[state] << " and is not final" << std::endl;
                 new_final_states.insert(state);
             }
         }
