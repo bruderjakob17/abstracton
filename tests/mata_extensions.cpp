@@ -87,7 +87,7 @@ TEST_CASE("Create Tabakov-Vardi NFT") {
         final_state_density = 0;
 
         mata::nft::Nft nft = mata::ext::builder::create_random_nft_tabakov_vardi(num_of_levels, num_of_states, alphabet_sizes, states_trans_ratio_per_symbol, final_state_density);
-        CHECK(nft.num_of_levels == 0);
+        CHECK(nft.levels.num_of_levels == 0);
         CHECK(nft.num_of_states_with_level(0) == 0);
         CHECK(nft.initial.size() == 0);
         CHECK(nft.final.size() == 0);
@@ -102,7 +102,7 @@ TEST_CASE("Create Tabakov-Vardi NFT") {
         final_state_density = 0.5;
 
         mata::nft::Nft nft = mata::ext::builder::create_random_nft_tabakov_vardi(num_of_levels, num_of_states, alphabet_sizes, states_trans_ratio_per_symbol, final_state_density);
-        CHECK(nft.num_of_levels == 3);
+        CHECK(nft.levels.num_of_levels == 3);
         CHECK(nft.num_of_states_with_level(0) == num_of_states);
         CHECK(nft.initial.size() == 1);
         CHECK(nft.final.size() == 5);
@@ -118,7 +118,7 @@ TEST_CASE("Create Tabakov-Vardi NFT") {
         final_state_density = 0.0001;
 
         mata::nft::Nft nft = mata::ext::builder::create_random_nft_tabakov_vardi(num_of_levels, num_of_states, alphabet_sizes, states_trans_ratio_per_symbol, final_state_density, seed);
-        CHECK(nft.num_of_levels == 2);
+        CHECK(nft.levels.num_of_levels == 2);
         CHECK(nft.num_of_states_with_level(0) == num_of_states);
         CHECK(nft.initial.size() == 1);
         CHECK(nft.final.size() == 1);
@@ -134,7 +134,7 @@ TEST_CASE("Create Tabakov-Vardi NFT") {
         final_state_density = 1.0;
 
         mata::nft::Nft nft = mata::ext::builder::create_random_nft_tabakov_vardi(num_of_levels, num_of_states, alphabet_sizes, states_trans_ratio_per_symbol, final_state_density);
-        CHECK(nft.num_of_levels == 2);
+        CHECK(nft.levels.num_of_levels == 2);
         CHECK(nft.num_of_states_with_level(0) == num_of_states);
         CHECK(nft.initial.size() == 1);
         CHECK(nft.final.size() == num_of_states);
@@ -150,7 +150,7 @@ TEST_CASE("Create Tabakov-Vardi NFT") {
         final_state_density = 0.5;
 
         mata::nft::Nft nft = mata::ext::builder::create_random_nft_tabakov_vardi(num_of_levels, num_of_states, alphabet_sizes, states_trans_ratio_per_symbol, final_state_density);
-        CHECK(nft.num_of_levels == 2);
+        CHECK(nft.levels.num_of_levels == 2);
         CHECK(nft.num_of_states_with_level(0) == num_of_states);
         CHECK(nft.initial.size() == 1);
         CHECK(nft.final.size() == 5);
@@ -166,7 +166,7 @@ TEST_CASE("Create Tabakov-Vardi NFT") {
         final_state_density = 0.5;
 
         mata::nft::Nft nft = mata::ext::builder::create_random_nft_tabakov_vardi(num_of_levels, num_of_states, alphabet_sizes, states_trans_ratio_per_symbol, final_state_density);
-        CHECK(nft.num_of_levels == 2);
+        CHECK(nft.levels.num_of_levels == 2);
         CHECK(nft.num_of_states_with_level(0) == num_of_states);
         CHECK(nft.initial.size() == 1);
         CHECK(nft.final.size() == 5);

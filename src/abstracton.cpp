@@ -48,13 +48,13 @@ Nft compute_preach(const Nft& abstraction_framework, const Nft& transition_relat
     // inverse(V) id_Ind complement(V), then complement
     Nfa ind {compute_ind(abstraction_framework, transition_relation, alphabet)};
 
-    Nft v_complement {mata::nft::complement(abstraction_framework, alphabet)}; // TODO only calculate once (not in ind and preach)
+    Nft v_complement {mata::ext::complement(abstraction_framework, alphabet)}; // TODO only calculate once (not in ind and preach)
 
     Nft id_ind {create_identity(ind)};
 
     Nft v_id {compose(abstraction_framework, id_ind, 0, 0)};
     Nft product {compose(v_id, v_complement)};
-    return mata::nft::complement(product, alphabet);
+    return mata::ext::complement(product, alphabet);
 }
 
 

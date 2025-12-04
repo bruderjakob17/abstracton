@@ -34,21 +34,21 @@ namespace mata::ext {
     // TODO: implement functions that also move the nft to an nfa to save ressources?
 
     Nft determinize(const Nft& nft) {
-        int levels = nft.num_of_levels;
+        int levels = nft.levels.num_of_levels;
         Nfa aut {nft.to_nfa_copy()};
         Nfa aut_det {determinize(aut)};
         return mata::nft::builder::from_nfa_with_levels_advancing(aut_det, levels);
     }
 
     Nft minimize(const Nft& nft) {
-        int levels = nft.num_of_levels;
+        int levels = nft.levels.num_of_levels;
         Nfa aut {nft.to_nfa_copy()};
         Nfa aut_min {algorithms::minimize_hopcroft(aut)};
         return mata::nft::builder::from_nfa_with_levels_advancing(aut_min, levels);
     }
 
     Nft det_and_min(const Nft& nft) {
-        int levels = nft.num_of_levels;
+        int levels = nft.levels.num_of_levels;
         Nfa aut {nft.to_nfa_copy()};
         // TODO for mindet, brzozowski better?
         Nfa aut_det {determinize(aut)};
@@ -57,7 +57,7 @@ namespace mata::ext {
     }
 
     void make_complete(mata::nft::Nft& nft, const mata::utils::OrdVector<Symbol>& symbols) {
-        int levels = nft.num_of_levels;
+        int levels = nft.levels.num_of_levels;
 
         // insert sink state (with multiple levels)
         std::vector<State> sinks {};
@@ -115,7 +115,7 @@ namespace mata::ext {
         // Nft nft_comp {mata::nft::complement(nft, alphabet)};
         // std::cout << "result as nft:" << std::endl;
         // std::cout << nft_comp.print_to_dot(true) << std::endl;
-        // int levels = nft.num_of_levels;
+        // int levels = nft.levels.num_of_levels;
         // Nfa aut {nft_comp.to_nfa_copy()};
         // std::cout << "result as nfa:" << std::endl;
         // std::cout << aut.print_to_dot(true) << std::endl;
@@ -213,7 +213,7 @@ namespace mata::ext {
             throw std::runtime_error("Must give exactly one alphabet size for each level");
         }
 
-        Nft nft { num_of_states, { 0 }, { 0 }, {}, num_of_levels, new OnTheFlyAlphabet{} };
+        Nft nft = Nft::with_levels(num_of_levels, num_of_states, { 0 }, { 0 }, new OnTheFlyAlphabet{});
 
         // Initialize the random number generator
         unsigned int seed_val = seed.value_or(std::random_device{}());

@@ -6,7 +6,7 @@ Run `cmake .` followed by `make`.
 
 ### Dependencies
 This project depends on:
-- [mata](https://github.com/VeriFIT/mata)
+- [mata](https://github.com/VeriFIT/mata) (version 1.25.0)
 - [jsoncpp](https://github.com/open-source-parsers/jsoncpp) for running the benchmarks
 Please refer to their build instructions first.
 
