@@ -3,6 +3,7 @@
 #include <mata/parser/re2parser.hh>
 #include <abstracton/mata_extensions.hpp>
 #include <algorithm>
+#include <abstracton/utils/utils.hpp>
 
 TEST_CASE( "Identity on Alphabet correct", "[create_identity]" ) {
     using namespace mata;
@@ -89,6 +90,67 @@ TEST_CASE("Nft minimization", "[mata::ext::minimize]") {
 
     REQUIRE(mata::nft::are_equivalent(aut, maut));
     REQUIRE(maut.num_of_states_with_level(0) == 3);
+}
+
+TEST_CASE("Nft complement", "[mata::ext::complement]") {
+    using namespace mata;
+    using namespace mata::nfa;
+    using namespace mata::nft;
+
+    Nft aut = Nft::with_levels(2, 4, { 0 }, { 3 });
+    aut.add_transition(0, {0, 0}, 1);
+    aut.add_transition(1, {0, 0}, 0); // non-deterministic
+    aut.add_transition(0, {1, 1}, 2);
+    aut.add_transition(2, {1, 1}, 1);
+    aut.add_transition(1, {1, 1}, 2);
+    aut.add_transition(1, {0, 1}, 1);
+    aut.add_transition(2, {0, 1}, 2);
+    aut.add_transition(1, {0, 0}, 3);
+    aut.add_transition(2, {0, 0}, 3);
+
+    SECTION("Min during det") {
+        Nft comp {mata::ext::complement(aut, EnumAlphabet {0, 1}, true)};
+
+        for (int k { 0 }; k <= 3; ++k) {
+            // create vector filled with 2k 2s
+            std::vector<unsigned int> tuple_bounds(2 * k, 2);
+            std::cout << "[";
+            for (unsigned int i : tuple_bounds) {
+                std::cout << i << ", ";
+            }
+            std::cout << "]\n";
+            for (auto t : BoundedTuples(tuple_bounds)) {
+                std::cout << "[";
+                for (unsigned int i : t) {
+                    std::cout << i << ", ";
+                }
+                std::cout << "]\n";
+                REQUIRE(aut.is_in_lang(t) != comp.is_in_lang(t));
+            }
+        }
+    }
+
+    SECTION("Only det") {
+        Nft comp {mata::ext::complement(aut, EnumAlphabet {0, 1}, false)};
+
+        for (int k { 0 }; k <= 3; ++k) {
+            // create vector filled with 2k 2s
+            std::vector<unsigned int> tuple_bounds(2 * k, 2);
+            std::cout << "[";
+            for (unsigned int i : tuple_bounds) {
+                std::cout << i << ", ";
+            }
+            std::cout << "]\n";
+            for (auto t : BoundedTuples(tuple_bounds)) {
+                std::cout << "[";
+                for (unsigned int i : t) {
+                    std::cout << i << ", ";
+                }
+                std::cout << "]\n";
+                REQUIRE(aut.is_in_lang(t) != comp.is_in_lang(t));
+            }
+        }
+    }
 }
 
 TEST_CASE("Create Tabakov-Vardi NFT") {
