@@ -65,6 +65,7 @@ TEST_CASE("Nft determinization", "[mata::ext::determinize]") {
     std::cout << daf.print_to_dot(true) << std::endl;
 
     REQUIRE(mata::nft::are_equivalent(af, daf));
+    REQUIRE(daf.is_deterministic());
 }
 
 TEST_CASE("Nft minimization", "[mata::ext::minimize]") {
@@ -72,7 +73,7 @@ TEST_CASE("Nft minimization", "[mata::ext::minimize]") {
     using namespace mata::nfa;
     using namespace mata::nft;
 
-    Nft aut = Nft::with_levels((2), 4, { 0 }, { 3 });
+    Nft aut = Nft::with_levels(2, 4, { 0 }, { 3 });
     aut.add_transition(0, {'0', '0'}, 1);
     aut.add_transition(0, {'1', '1'}, 2);
     aut.add_transition(2, {'1', '1'}, 1);
