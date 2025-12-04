@@ -31,7 +31,7 @@ Nfa project(const Nft& nft, int level) {
 
 namespace mata::ext {
 
-    // TODO: implement functions that also move the nft to an nfa to save ressources?
+    // TODO: implement functions that also move the nft to an nfa to save resources?
 
     Nft determinize(const Nft& nft) {
         int levels = nft.levels.num_of_levels;
