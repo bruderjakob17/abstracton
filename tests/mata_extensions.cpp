@@ -99,13 +99,13 @@ TEST_CASE("Nft complement", "[mata::ext::complement]") {
 
     Nft aut = Nft::with_levels(2, 4, { 0 }, { 3 });
     aut.add_transition(0, {0, 0}, 1);
-    aut.add_transition(1, {0, 0}, 0); // non-deterministic
     aut.add_transition(0, {1, 1}, 2);
     aut.add_transition(2, {1, 1}, 1);
     aut.add_transition(1, {1, 1}, 2);
     aut.add_transition(1, {0, 1}, 1);
     aut.add_transition(2, {0, 1}, 2);
     aut.add_transition(1, {0, 0}, 3);
+    aut.add_transition(1, {0, 0}, 0); // non-deterministic
     aut.add_transition(2, {0, 0}, 3);
 
     SECTION("Min during det") {
