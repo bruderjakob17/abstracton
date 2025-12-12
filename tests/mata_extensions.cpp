@@ -164,14 +164,14 @@ TEST_CASE("Create Tabakov-Vardi NFT") {
     // NOTE all checks for number of transitions are commented out, as the number of counted transitions in the NFA representing the NFT is not determined uniquely by the number of transitions in the NFT
 
     SECTION("EMPTY") {
-        num_of_levels = 0;
+        num_of_levels = 2;
         num_of_states = 0;
         alphabet_sizes = {0, 0};
         states_trans_ratio_per_symbol = 0;
         final_state_density = 0;
 
         mata::nft::Nft nft = mata::ext::builder::create_random_nft_tabakov_vardi(num_of_levels, num_of_states, alphabet_sizes, states_trans_ratio_per_symbol, final_state_density);
-        CHECK(nft.levels.num_of_levels == 0);
+        CHECK(nft.levels.num_of_levels == num_of_levels);
         CHECK(nft.num_of_states_with_level(0) == 0);
         CHECK(nft.initial.size() == 0);
         CHECK(nft.final.size() == 0);
