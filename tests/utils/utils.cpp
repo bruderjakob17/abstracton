@@ -41,5 +41,34 @@ TEST_CASE( "Subset Iterator correct", "[Subsets(std::unordered_set<T>)]" ) {
         Subsets s(test_sets[i]);
         std::unordered_set<std::unordered_set<int>> power_set(s.begin(), s.end());
         REQUIRE((1 << test_sets[i].size()) == power_set.size());
+        results.push_back(power_set);
     }
+}
+
+
+TEST_CASE( "Subsequence Iterator correct", "[SubsequenceVectors(std::vector<T>)]" ) {
+    std::vector<std::vector<int>> test_vecs {};
+    for (int i = 0; i < 3; ++i) {
+        test_vecs.push_back(std::vector<int>{});
+    }
+    test_vecs[1].push_back(3);
+    test_vecs[2].push_back(10);
+    test_vecs[2].push_back(3);
+    test_vecs[2].push_back(7);
+
+    std::vector<std::unordered_set<std::vector<int>>> results {};
+
+    for (int i = 0; i < test_vecs.size(); ++i) {
+        SubsequenceVectors s(test_vecs[i]);
+        std::unordered_set<std::vector<int>> power_set(s.begin(), s.end());
+        REQUIRE((1 << test_vecs[i].size()) == power_set.size());
+        results.push_back(power_set);
+        std::cout << "power set of " << vec_to_string(test_vecs[i]) << ":\n";
+        for (auto x : power_set) {
+            std::cout << "\t" << vec_to_string(x) << "\n";
+        }
+    }
+
+    REQUIRE(std::find(results[2].begin(), results[2].end(), std::vector<int>{10, 3, 7}) != results[2].end());
+    REQUIRE(std::find(results[2].begin(), results[2].end(), std::vector<int>{3, 7, 10}) == results[2].end());
 }

@@ -5,6 +5,24 @@
 #include <iterator>
 #include <vector>
 #include <random> // for PRNG based hashing using mersenne twister
+#include <string>
+
+template<typename T>
+std::string vec_to_string(std::vector<T> v, std::string delimiter = ", ") {
+    if (v.empty()) {
+        return "[]";
+    }
+
+    std::string result {};
+    for (int i = 0; i < v.size(); ++i) {
+        result += std::to_string(v[i]);
+        if (i < v.size() - 1) {
+            result += delimiter;
+        }
+    }
+
+    return "[" + result + "]";
+}
 
 template<>
 struct std::hash<std::unordered_set<int>> {
@@ -110,7 +128,6 @@ private:
     std::vector<unsigned> limits;
 };
 
-// TODO generalize int to template type T
 template<typename T>
 class Subsets {
 public:
@@ -180,6 +197,94 @@ public:
 
     explicit Subsets(std::unordered_set<T> elements)
         : elements(set_to_vec(elements))
+    {}
+
+    Iterator begin() const {
+        return Iterator(&elements);
+    }
+    Iterator end() const {
+        return Iterator();  // done = true
+    }
+
+private:
+    std::vector<T> elements;
+};
+
+/**
+ * like Subsets, but operating on std::vector<T>. I.e. it generates all subsets of indices, and iterates
+ * over the vector containing exactly the elements at the indices:
+ * SubsequenceVectors({"a", "ab"}) iterates over
+ * {}, {"a"}, {"ab"}, {"a", "ab"}
+ */
+template<typename T>
+class SubsequenceVectors {
+public:
+    using subseq_type = std::vector<T>;
+
+    struct Iterator {
+        using iterator_category = std::input_iterator_tag;
+        using value_type        = subseq_type;
+        using difference_type   = std::ptrdiff_t;
+        using pointer           = subseq_type*;
+        using reference         = subseq_type;
+
+        Iterator() : elements_ptr(nullptr), done(true) {}
+
+        Iterator(const std::vector<T>* elements)
+            : elements_ptr(elements),
+              current(elements->size(), false),
+              done(false)
+        {}
+
+        reference operator*() {
+            std::vector<T> result {};
+            for (int i = 0; i < current.size(); ++i) {
+                if (current[i]) {
+                    result.push_back(elements_ptr->operator[](i));
+                }
+            }
+            return result;
+        }
+
+        Iterator& operator++() {
+            // binary increment of bool array (left to right)
+            for (int i = 0; i < current.size(); ++i) {
+                if (current[i]) {
+                    current[i] = false;
+                } else {
+                    current[i] = true;
+                    return *this;
+                }
+            }
+            done = true;
+            return *this;
+        }
+
+        Iterator operator++(int) {
+            Iterator tmp = *this;
+            ++(*this);
+            return tmp;
+        }
+
+        bool operator==(const Iterator& other) const {
+            if (done && other.done) return true;
+            if (done != other.done) return false;
+            return (elements_ptr == other.elements_ptr)
+                   && (current == other.current);
+        }
+
+        bool operator!=(const Iterator& other) const {
+            return !(*this == other);
+        }
+
+    private:
+        const std::vector<T>* elements_ptr;
+        std::vector<bool> current;
+        bool done = false;
+    };
+
+    explicit SubsequenceVectors(std::vector<T> elements)
+        : elements(std::move(elements))
     {}
 
     Iterator begin() const {
