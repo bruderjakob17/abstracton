@@ -43,6 +43,9 @@ TEST_CASE( "Subset Iterator correct", "[Subsets(std::unordered_set<T>)]" ) {
         REQUIRE((1 << test_sets[i].size()) == power_set.size());
         results.push_back(power_set);
     }
+
+    REQUIRE(std::find(results[2].begin(), results[2].end(), std::unordered_set<int>{10, 3, 7}) != results[2].end());
+    REQUIRE(std::find(results[2].begin(), results[2].end(), std::unordered_set<int>{3, 7, 10}) != results[2].end());
 }
 
 
