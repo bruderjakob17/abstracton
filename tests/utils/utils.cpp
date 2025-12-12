@@ -23,3 +23,23 @@ TEST_CASE( "Bounded Tuple Iterator correct", "[BoundedTuples(std::vector<unsigne
         REQUIRE(t_vec == std::vector<std::vector<unsigned int>> {});
     }
 }
+
+
+TEST_CASE( "Subset Iterator correct", "[Subsets(std::unordered_set<T>)]" ) {
+    std::vector<std::unordered_set<int>> test_sets {};
+    for (int i = 0; i < 3; ++i) {
+        test_sets.push_back(std::unordered_set<int>{});
+    }
+    test_sets[1].insert(3);
+    test_sets[2].insert(3);
+    test_sets[2].insert(7);
+    test_sets[2].insert(10);
+
+    std::vector<std::unordered_set<std::unordered_set<int>>> results {};
+
+    for (int i = 0; i < test_sets.size(); ++i) {
+        Subsets s(test_sets[i]);
+        std::unordered_set<std::unordered_set<int>> power_set(s.begin(), s.end());
+        REQUIRE((1 << test_sets[i].size()) == power_set.size());
+    }
+}
