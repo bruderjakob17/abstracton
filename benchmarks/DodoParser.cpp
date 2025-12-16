@@ -258,7 +258,7 @@ DodoParserResult parseDodoJSON(std::string filepath) {
     std::vector<mata::nfa::Nfa> properties;
     for (auto p : obj["properties"].getMemberNames()) {
         properties.push_back(parseDodoNfa(obj["properties"][p], &string_alphabet));
-        std::cout << "property\"" << p << "\":\n" << properties[properties.size() - 1].print_to_dot() << std::endl;
+        std::cout << "property \"" << p << "\":\n" << properties[properties.size() - 1].print_to_dot() << std::endl;
     }
 
     return DodoParserResult {

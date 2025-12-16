@@ -8,7 +8,7 @@
 #include <string>
 
 template<typename T>
-std::string vec_to_string(std::vector<T> v, std::string delimiter = ", ") {
+std::string vec_to_string(const std::vector<T>& v, std::string delimiter = ", ") {
     if (v.empty()) {
         return "[]";
     }
@@ -43,6 +43,35 @@ std::vector<T> set_to_vec(std::unordered_set<T> set) {
     std::vector<T> result {};
     result.insert(result.end(), set.begin(), set.end());
     return result;
+}
+
+/**
+ * Calculates the complement of some set represented by a vector.
+ * v **must** be a subset of univ, otherwise the result will be incorrect.
+ * TODO write a test function
+ */
+template<typename T>
+std::vector<T> vec_complement(const std::vector<T>& v, const std::vector<T>& univ) {
+    int i = 0;
+    int j = 0;
+    std::vector<T> result{};
+    while (true) {
+        if (i >= v.size()) {
+            if (j < univ.size()) {
+                result.insert(result.end(), univ.begin() + j, univ.end());
+            }
+            return result;
+        }
+        if (j >= univ.size()) {
+            return result;
+        }
+        if (v[i] == univ[j]) {
+            ++i;
+            ++j;
+        } else {
+            ++j;
+        }
+    }
 }
 
 // TODO generalize int to template type T
