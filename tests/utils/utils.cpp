@@ -75,3 +75,11 @@ TEST_CASE( "Subsequence Iterator correct", "[SubsequenceVectors(std::vector<T>)]
     REQUIRE(std::find(results[2].begin(), results[2].end(), std::vector<int>{10, 3, 7}) != results[2].end());
     REQUIRE(std::find(results[2].begin(), results[2].end(), std::vector<int>{3, 7, 10}) == results[2].end());
 }
+
+TEST_CASE( "Vector complement correct", "[vec_complement(const std::vector<T>&, const std::vector<T>&)]") {
+    std::vector<std::string> univ {"a", "b"};
+    REQUIRE(vec_complement(std::vector<std::string>{}, univ) == univ);
+    REQUIRE(vec_complement(std::vector<std::string>{"a"}, univ) == std::vector<std::string>{"b"});
+    REQUIRE(vec_complement(std::vector<std::string>{"b"}, univ) == std::vector<std::string>{"a"});
+    REQUIRE(vec_complement(univ, univ) == std::vector<std::string>{});
+}

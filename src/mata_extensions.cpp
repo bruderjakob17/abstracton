@@ -37,7 +37,10 @@ namespace mata::ext {
         int levels = nft.levels.num_of_levels;
         Nfa aut {nft.to_nfa_copy()};
         Nfa aut_det {determinize(aut)};
-        return mata::nft::builder::from_nfa_with_levels_advancing(aut_det, levels);
+        Nft result =  mata::nft::builder::from_nfa_with_levels_advancing(aut_det, levels);
+        result.alphabet = nft.alphabet;
+        result.alphabets = nft.alphabets;
+        return result;
     }
 
     Nft minimize(const Nft& nft) {
@@ -45,8 +48,12 @@ namespace mata::ext {
         Nfa aut {nft.to_nfa_copy()};
         // TODO for mindet, brzozowski better?
         Nfa aut_det {determinize(aut)};
+        aut_det = aut_det.trim();
         Nfa aut_min {algorithms::minimize_hopcroft(aut_det)};
-        return mata::nft::builder::from_nfa_with_levels_advancing(aut_min, levels);
+        Nft result =  mata::nft::builder::from_nfa_with_levels_advancing(aut_min, levels);
+        result.alphabet = nft.alphabet;
+        result.alphabets = nft.alphabets;
+        return result;
     }
 
     void make_complete(mata::nft::Nft& nft, const mata::utils::OrdVector<Symbol>& symbols) {
@@ -98,6 +105,8 @@ namespace mata::ext {
         }
 
         result.final = new_final_states;
+        result.alphabet = aut.alphabet;
+        result.alphabets = aut.alphabets;
         return result;
     }
 

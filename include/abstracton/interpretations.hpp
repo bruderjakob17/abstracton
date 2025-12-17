@@ -23,9 +23,9 @@ enum SetInterpretation {
  * The elements are ordered lexicographically in the string representation, making it unique.
  *
  * @param[in] string_alphabet The alphabet S.
- * @return A transducer for the Trap Interpretation on S.
+ * @return A transducer for the Trap Interpretation on S, and a pointer to the constructed Alphabet for the power set of S (needs to be deconstructed eventually).
  *
  * TODO: also allow other alphabets (e.g. IntAlphabet)
  * TODO: add to documentation siphon/flow capabilities of this function, rename function
  */
-mata::nft::Nft trapInterpretation(mata::OnTheFlyAlphabet* string_alphabet, enum SetInterpretation type);
+std::pair<mata::nft::Nft, mata::OnTheFlyAlphabet*> trapInterpretation(mata::OnTheFlyAlphabet* string_alphabet, enum SetInterpretation type);

@@ -57,9 +57,7 @@ std::vector<T> vec_complement(const std::vector<T>& v, const std::vector<T>& uni
     std::vector<T> result{};
     while (true) {
         if (i >= v.size()) {
-            if (j < univ.size()) {
-                result.insert(result.end(), univ.begin() + j, univ.end());
-            }
+            result.insert(result.end(), univ.begin() + j, univ.end());
             return result;
         }
         if (j >= univ.size()) {
@@ -69,6 +67,7 @@ std::vector<T> vec_complement(const std::vector<T>& v, const std::vector<T>& uni
             ++i;
             ++j;
         } else {
+            result.push_back(univ[j]);
             ++j;
         }
     }

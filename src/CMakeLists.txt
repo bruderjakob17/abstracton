@@ -3,6 +3,7 @@ add_library(mata_extensions STATIC
 )
 add_library(abstracton STATIC
     abstracton.cpp
+    interpretations.cpp
 )
 
 target_compile_features(abstracton PUBLIC cxx_std_20)
