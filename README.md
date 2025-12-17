@@ -7,6 +7,7 @@ Run `cmake .` followed by `make`.
 ### Dependencies
 This project depends on:
 - [mata](https://github.com/VeriFIT/mata) (version 1.25.0)
+    - Currently, on this branch (`dodo-benchmarks`) use [this](https://github.com/bruderjakob17/mata/tree/nft_tape_alphabets) fork on branch `nft_tape_alphabets` instead!
 - [jsoncpp](https://github.com/open-source-parsers/jsoncpp) for running the benchmarks
 Please refer to their build instructions first.
 
