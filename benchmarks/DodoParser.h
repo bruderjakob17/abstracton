@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cassert>
 #include <iostream>
 #include <fstream>
@@ -29,7 +31,7 @@ mata::nft::Nft parseTransducer(Json::Value t);
 
 struct DodoParserResult {
     // alphabet_encoding char_alphabet_triple;
-    mata::OnTheFlyAlphabet string_alphabet;
+    std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet;
     mata::nfa::Nfa initialConfig;
     std::vector<mata::nfa::Nfa> properties;
     mata::nft::Nft transitionRelation;

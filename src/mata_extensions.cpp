@@ -10,12 +10,13 @@ using namespace mata;
 using namespace mata::nfa;
 using namespace mata::nft;
 
-Nft create_identity(const Alphabet& alphabet) {
+Nft create_identity(Alphabet& alphabet) {
     Nft result {};
     State initial {result.add_state()};
     result.initial.insert(initial);
     result.final.insert(initial);
     result.insert_identity(initial, &alphabet);
+    result.alphabet = &alphabet;
     return result;
 }
 
@@ -26,7 +27,14 @@ Nft create_identity(const Nfa& language) {
 Nfa project(const Nft& nft, int level) {
     // TODO add possibility to do padding closure wrt. some padding symbol
     Nft nft_proj {mata::nft::project_to(nft, level)};
+    assert(nft_proj.levels.num_of_levels == 1);
     return nft_proj.to_nfa_move();
+}
+
+mata::nfa::Nfa apply(const mata::nft::Nft& nft, const mata::nfa::Nfa& nfa, int level) {
+    Nft image = nft.apply(nfa, level);
+    assert(image.levels.num_of_levels == 1);
+    return image.to_nfa_move();
 }
 
 namespace mata::ext {
@@ -56,7 +64,27 @@ namespace mata::ext {
         return result;
     }
 
-    void make_complete(mata::nft::Nft& nft, const mata::utils::OrdVector<Symbol>& symbols) {
+    std::vector<mata::utils::OrdVector<Symbol>> get_tape_symbols_to_work_with(const mata::nft::Nft& nft, const Alphabet* alphabet, const std::optional<const std::vector<Alphabet*>> alphabets) {
+        mata::utils::OrdVector<Symbol> default_alphabet;
+        if (alphabet != nullptr) {
+            default_alphabet = alphabet->get_alphabet_symbols();
+        } else if (nft.alphabet != nullptr) {
+            default_alphabet = nft.alphabet->get_alphabet_symbols();
+        } else {
+            default_alphabet = nft.delta.get_used_symbols();
+        }
+        std::vector<mata::utils::OrdVector<Symbol>> result {};
+        for (int i = 0; i < nft.levels.num_of_levels; ++i) {
+            if (alphabets.has_value() && alphabets->operator[](i) != nullptr) {
+                result.push_back(alphabets->operator[](i)->get_alphabet_symbols());
+            } else {
+                result.push_back(default_alphabet);
+            }
+        }
+        return result;
+    }
+
+    void make_complete(mata::nft::Nft& nft, const std::vector<mata::utils::OrdVector<Symbol>>& symbols) {
         int levels = nft.levels.num_of_levels;
 
         // insert sink state (with multiple levels)
@@ -73,7 +101,7 @@ namespace mata::ext {
             for (const SymbolPost& symbol_post : nft.delta[state]) {
                 used_symbols.insert(symbol_post.symbol);
             }
-            const mata::utils::OrdVector<Symbol> unused_symbols{ symbols.difference(used_symbols) };
+            const mata::utils::OrdVector<Symbol> unused_symbols{ symbols[nft.levels[state]].difference(used_symbols) };
             const unsigned int state_level{ nft.levels[state] };
             const unsigned int next_level{ (state_level + 1) % levels };
             for (const Symbol symbol : unused_symbols) {
@@ -83,7 +111,11 @@ namespace mata::ext {
         }
     }
 
-    Nft complement(const Nft& aut, const mata::utils::OrdVector<Symbol>& symbols, bool minimize_during_determinization) {
+    void make_complete(mata::nft::Nft& nft, const Alphabet* alphabet, const std::optional<const std::vector<Alphabet*>> alphabets) {
+        make_complete(nft, get_tape_symbols_to_work_with(nft, alphabet, alphabets));
+    }
+
+    Nft complement(const Nft& aut, const std::vector<mata::utils::OrdVector<Symbol>>& symbols, bool minimize_during_determinization) {
         Nft result;
 
         if (minimize_during_determinization) {
@@ -110,18 +142,8 @@ namespace mata::ext {
         return result;
     }
 
-    Nft complement(const mata::nft::Nft& nft, const mata::Alphabet& alphabet, bool minimize_during_determinization) {
-        // std::cout << "complementing the following nft" << std::endl;
-        // std::cout << nft.print_to_dot(true) << std::endl;
-        // Nft nft_comp {mata::nft::complement(nft, alphabet)};
-        // std::cout << "result as nft:" << std::endl;
-        // std::cout << nft_comp.print_to_dot(true) << std::endl;
-        // int levels = nft.levels.num_of_levels;
-        // Nfa aut {nft_comp.to_nfa_copy()};
-        // std::cout << "result as nfa:" << std::endl;
-        // std::cout << aut.print_to_dot(true) << std::endl;
-        // return mata::nft::builder::from_nfa_with_levels_advancing(aut, levels);
-        return complement(nft, alphabet.get_alphabet_symbols(), minimize_during_determinization);
+    mata::nft::Nft complement(const mata::nft::Nft& nft, const Alphabet* alphabet, const std::optional<const std::vector<Alphabet*>> alphabets, bool minimize_during_determinization) {
+        return complement(nft, get_tape_symbols_to_work_with(nft, alphabet, alphabets), minimize_during_determinization);
     }
 
     void padding_closure(Nfa& nfa, Symbol padding_symbol) {
@@ -214,7 +236,7 @@ namespace mata::ext {
             throw std::runtime_error("Must give exactly one alphabet size for each level");
         }
 
-        Nft nft = Nft::with_levels(num_of_levels, num_of_states, { 0 }, { 0 }, new OnTheFlyAlphabet{});
+        Nft nft = Nft::with_levels(num_of_levels, num_of_states, { 0 }, { 0 }, nullptr);
 
         // Initialize the random number generator
         unsigned int seed_val = seed.value_or(std::random_device{}());

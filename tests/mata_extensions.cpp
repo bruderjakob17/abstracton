@@ -10,7 +10,9 @@ TEST_CASE( "Identity on Alphabet correct", "[create_identity]" ) {
     using namespace mata::nfa;
     using namespace mata::nft;
 
-    Nft id {create_identity(EnumAlphabet {'0', '1'})};
+    EnumAlphabet alphabet{'0', '1'};
+
+    Nft id {create_identity(alphabet)};
 
     REQUIRE(id.get_words(4) == std::set<Word> {
         {},
@@ -109,7 +111,7 @@ TEST_CASE("Nft complement", "[mata::ext::complement]") {
     aut.add_transition(2, {0, 0}, 3);
 
     SECTION("Min during det") {
-        Nft comp {mata::ext::complement(aut, EnumAlphabet {0, 1}, true)};
+        Nft comp {mata::ext::complement(aut, nullptr, std::nullopt, true)};
 
         for (int k { 0 }; k <= 3; ++k) {
             // create vector filled with 2k 2s
@@ -131,7 +133,7 @@ TEST_CASE("Nft complement", "[mata::ext::complement]") {
     }
 
     SECTION("Only det") {
-        Nft comp {mata::ext::complement(aut, EnumAlphabet {0, 1}, false)};
+        Nft comp {mata::ext::complement(aut, nullptr, std::nullopt, false)};
 
         for (int k { 0 }; k <= 3; ++k) {
             // create vector filled with 2k 2s

@@ -1,11 +1,53 @@
-#ifndef ABSTRACTON_UTILS_HPP_
-#define ABSTRACTON_UTILS_HPP_
+#pragma once
 
 #include <cstddef>
 #include <iterator>
 #include <vector>
 #include <random> // for PRNG based hashing using mersenne twister
 #include <string>
+
+namespace Logging {
+    enum VerbosityLevel {
+        QUIET = 0,
+        NORMAL = 1,
+        VERBOSE = 2,
+        DEBUG = 3
+    };
+
+    static const VerbosityLevel DEFAULT_VERBOSITY_LEVEL = VerbosityLevel::NORMAL;
+
+    inline void log(int message_verbosity, const std::string& message, int verbosity_level = DEFAULT_VERBOSITY_LEVEL, bool flush = true, bool newline = true) {
+        if (verbosity_level >= message_verbosity) {
+            std::cout << message;
+            if (newline) {
+                if (flush) {
+                    std::cout << std::endl;
+                } else {
+                    std::cout << "\n";
+                }
+            } else if (flush) {
+                std::cout << std::flush;
+            }
+        }
+    }
+
+    // log function for potentially expensive evaluations
+    template<typename Func>
+    inline void logexp(int message_verbosity, Func message, int verbosity_level = DEFAULT_VERBOSITY_LEVEL, bool flush = true, bool newline = true) {
+        if (verbosity_level >= message_verbosity) {
+            std::cout << message();
+            if (newline) {
+                if (flush) {
+                    std::cout << std::endl;
+                } else {
+                    std::cout << "\n";
+                }
+            } else if (flush) {
+                std::cout << std::flush;
+            }
+        }
+    }
+}
 
 template<typename T>
 std::string vec_to_string(const std::vector<T>& v, std::string delimiter = ", ") {
@@ -325,5 +367,3 @@ public:
 private:
     std::vector<T> elements;
 };
-
-#endif

@@ -1,5 +1,6 @@
 #include "DodoParser.h"
 #include <unordered_map>
+#include <abstracton/utils/utils.hpp>
 
 void dfs_explore(std::vector<std::vector<int>> const& adjacency_list, std::vector<int> &order, std::vector<bool> &visited, int node) {
     visited[node] = true;
@@ -242,27 +243,36 @@ DodoParserResult parseDodoJSON(std::string filepath) {
         string_alphabet_vec.push_back(x.asString());
     }
     mata::OnTheFlyAlphabet string_alphabet(string_alphabet_vec);
+    std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet_ptr = std::make_shared<mata::OnTheFlyAlphabet>(string_alphabet);
+
     // // convert to char alphabet
     // alphabet_encoding alphabet_enc = alphabetToCharAlphabet(string_alphabet);
     // std::vector<char> alphabet = alphabet_enc.alphabet;
+    std::cout << "parser: alphabet vec " << vec_to_string(string_alphabet_vec) << std::endl;
+    std::cout << "parser: alphabet " << string_alphabet_ptr->get_alphabet_symbols() << " initialized!" << std::endl;
 
     // Parse transducer
-    mata::nft::Nft t = parseTransducer(obj["transducer"], &string_alphabet);
+    mata::nft::Nft t = parseTransducer(obj["transducer"], string_alphabet_ptr.get());
     std::cout << "transducer:\n" << t.print_to_dot() << std::endl;
 
     // Parse initial nfa
-    mata::nfa::Nfa initialConfig = parseDodoNfa(obj["initial"], &string_alphabet);
+    mata::nfa::Nfa initialConfig = parseDodoNfa(obj["initial"], string_alphabet_ptr.get());
     std::cout << "initial:\n" << initialConfig.print_to_dot() << std::endl;
 
     // Parse properties
     std::vector<mata::nfa::Nfa> properties;
     for (auto p : obj["properties"].getMemberNames()) {
-        properties.push_back(parseDodoNfa(obj["properties"][p], &string_alphabet));
+        properties.push_back(parseDodoNfa(obj["properties"][p], string_alphabet_ptr.get()));
         std::cout << "property \"" << p << "\":\n" << properties[properties.size() - 1].print_to_dot() << std::endl;
     }
 
+    std::cout << "parser: alphabet " << string_alphabet_ptr->get_alphabet_symbols() << " still intact!" << std::endl;
+    std::cout << "parser: transition relation:" << std::endl;
+    std::cout << t.print_to_dot() << std::endl;
+    assert(string_alphabet_ptr->is_equal(t.alphabet));
+
     return DodoParserResult {
-        string_alphabet,
+        string_alphabet_ptr,
         initialConfig,
         properties,
         t

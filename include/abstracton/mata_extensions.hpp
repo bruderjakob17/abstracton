@@ -1,11 +1,18 @@
+#pragma once
+
 #include <mata/nfa/nfa.hh>
 #include <mata/nft/nft.hh>
 
-mata::nft::Nft create_identity(const mata::Alphabet& alphabet);
+mata::nft::Nft create_identity(mata::Alphabet& alphabet);
 
 mata::nft::Nft create_identity(const mata::nfa::Nfa& language);
 
 mata::nfa::Nfa project(const mata::nft::Nft& nft, int level);
+
+// applies the given nft to the given nfa on the specified level of the nft (0 or 1).
+// level = 0: apply = postimage, level = 1: apply = preimage
+// nft must have exactly two levels.
+mata::nfa::Nfa apply(const mata::nft::Nft& nft, const mata::nfa::Nfa& nfa, int level = 0);
 
 namespace mata::ext {
 
@@ -17,7 +24,8 @@ mata::nft::Nft minimize(const mata::nft::Nft& nft);
 
 // computes complement of nft
 // contrary to mata's complement, this only complements final states on level 0'
-mata::nft::Nft complement(const mata::nft::Nft& nft, const mata::Alphabet& alphabet, bool minimize_during_determinization = false);
+mata::nft::Nft complement(const mata::nft::Nft& nft, const std::vector<mata::utils::OrdVector<Symbol>>& symbols, bool minimize_during_determinization = false);
+mata::nft::Nft complement(const mata::nft::Nft& nft, const Alphabet* alphabet = nullptr, const std::optional<const std::vector<Alphabet*>> alphabets = std::nullopt, bool minimize_during_determinization = false);
 
 // completes the given nfa in-place wrt. the padding closure as in Algorithm 24 of Esparza et Blondin's "Automata Theory: An Algorithmic Approach"
 void padding_closure(mata::nfa::Nfa& nfa, Symbol padding_symbol);
@@ -25,7 +33,10 @@ void padding_closure(mata::nfa::Nfa& nfa, Symbol padding_symbol);
 // completes the given nft in-place wrt. the transition function: adds missing transitions to each state at each level
 // does not reuse any sink state, contrary to mata's make_complete. Instead, it just adds an aray of states leading
 // to a sink state, where each level is contained in the array.
-void make_complete(mata::nft::Nft& nft, const mata::utils::OrdVector<Symbol>& symbols);
+void make_complete(mata::nft::Nft& nft, const std::vector<mata::utils::OrdVector<Symbol>>& symbols);
+void make_complete(mata::nft::Nft& nft, const Alphabet* alphabet = nullptr, const std::optional<const std::vector<Alphabet*>> alphabets = std::nullopt);
+
+std::vector<mata::utils::OrdVector<Symbol>> get_tape_symbols_to_work_with(const mata::nft::Nft& nft, const Alphabet* alphabet = nullptr, const std::optional<const std::vector<Alphabet*>> alphabets = std::nullopt);
 
 namespace builder {
 
