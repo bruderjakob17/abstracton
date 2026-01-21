@@ -6,15 +6,23 @@
 #include <random> // for PRNG based hashing using mersenne twister
 #include <string>
 
-namespace Logging {
-    enum VerbosityLevel {
-        QUIET = 0,
-        NORMAL = 1,
-        VERBOSE = 2,
-        DEBUG = 3
+template <typename T>
+std::string stream_to_string(const T& value)
+{
+    std::ostringstream oss;
+    oss << value;
+    return oss.str();
+}
+
+namespace logging {
+    namespace VerbosityLevel {
+        const int QUIET = 0;
+        const int NORMAL = 1;
+        const int VERBOSE = 2;
+        const int DEBUG = 3;
     };
 
-    static const VerbosityLevel DEFAULT_VERBOSITY_LEVEL = VerbosityLevel::NORMAL;
+    static const int DEFAULT_VERBOSITY_LEVEL = VerbosityLevel::NORMAL;
 
     inline void log(int message_verbosity, const std::string& message, int verbosity_level = DEFAULT_VERBOSITY_LEVEL, bool flush = true, bool newline = true) {
         if (verbosity_level >= message_verbosity) {

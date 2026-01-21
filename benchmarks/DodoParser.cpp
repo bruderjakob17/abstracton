@@ -24,7 +24,7 @@ std::vector<int> topo_sort(std::vector<std::vector<int>> const& adjacency_list) 
 }
 
 // mata::nfa::Nfa parseDodoNfa(Json::Value dfa, alphabet_encoding alphabet_enc);
-mata::nfa::Nfa parseDodoNfa(Json::Value nfa, mata::OnTheFlyAlphabet* string_alphabet) {
+mata::nfa::Nfa parseDodoNfa(Json::Value nfa, mata::OnTheFlyAlphabet* string_alphabet, int verbosityLevel) {
     // std::vector<char> alphabet = alphabet_enc.alphabet;
     // std::unordered_map<char, std::string> decode_alphabet = alphabet_enc.decoding;
     // std::unordered_map<std::string, char> encode_alphabet = alphabet_enc.encoding;
@@ -93,14 +93,14 @@ mata::nfa::Nfa parseDodoNfa(Json::Value nfa, mata::OnTheFlyAlphabet* string_alph
     return result;
 }
 
-std::pair<std::string, std::string> parsePair(std::string p) {
+std::pair<std::string, std::string> parsePair(std::string p, int verbosityLevel) {
     assert(p[0] == '[' && p[p.size() - 1] == ']');
     p = p.substr(1, p.size() - 2);
     size_t sep_index = p.find(",");
     return std::make_pair(p.substr(0, sep_index), p.substr(sep_index + 1, p.size() - sep_index - 1));
 }
 
-mata::nft::Nft parseTransducer(Json::Value t, mata::OnTheFlyAlphabet* string_alphabet) {
+mata::nft::Nft parseTransducer(Json::Value t, mata::OnTheFlyAlphabet* string_alphabet, int verbosityLevel) {
     /*std::vector<char> alphabet = alphabet_enc.alphabet;
     std::unordered_map<char, std::string> decode_alphabet = alphabet_enc.decoding;
     std::unordered_map<std::string, char> encode_alphabet = alphabet_enc.encoding;
@@ -228,7 +228,7 @@ mata::nft::Nft parseTransducer(Json::Value t, mata::OnTheFlyAlphabet* string_alp
 //     };
 // }
 
-DodoParserResult parseDodoJSON(std::string filepath) {
+DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel) {
     std::ifstream ifs(filepath);
     if (!ifs.good()) {
         throw std::runtime_error("file " + filepath + " does not exist");
@@ -248,33 +248,40 @@ DodoParserResult parseDodoJSON(std::string filepath) {
     // // convert to char alphabet
     // alphabet_encoding alphabet_enc = alphabetToCharAlphabet(string_alphabet);
     // std::vector<char> alphabet = alphabet_enc.alphabet;
-    std::cout << "parser: alphabet vec " << vec_to_string(string_alphabet_vec) << std::endl;
-    std::cout << "parser: alphabet " << string_alphabet_ptr->get_alphabet_symbols() << " initialized!" << std::endl;
+    logging::log(logging::VerbosityLevel::DEBUG, "parser: alphabet vec " + vec_to_string(string_alphabet_vec), verbosityLevel);
+    logging::log(logging::VerbosityLevel::DEBUG, "parser: alphabet " + stream_to_string(string_alphabet_ptr->get_alphabet_symbols()) + " initialized!", verbosityLevel);
 
     // Parse transducer
-    mata::nft::Nft t = parseTransducer(obj["transducer"], string_alphabet_ptr.get());
-    std::cout << "transducer:\n" << t.print_to_dot() << std::endl;
+    mata::nft::Nft t = parseTransducer(obj["transducer"], string_alphabet_ptr.get(), verbosityLevel);
+    logging::log(logging::VerbosityLevel::DEBUG, "transducer:", verbosityLevel);
+    logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return t.print_to_dot(); }, verbosityLevel);
 
     // Parse initial nfa
     mata::nfa::Nfa initialConfig = parseDodoNfa(obj["initial"], string_alphabet_ptr.get());
-    std::cout << "initial:\n" << initialConfig.print_to_dot() << std::endl;
+    logging::log(logging::VerbosityLevel::DEBUG, "initial:", verbosityLevel);
+    logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return initialConfig.print_to_dot(); }, verbosityLevel);
 
     // Parse properties
-    std::vector<mata::nfa::Nfa> properties;
+    std::vector<mata::nfa::Nfa> properties {};
+    std::vector<std::string> propertyNames {};
     for (auto p : obj["properties"].getMemberNames()) {
         properties.push_back(parseDodoNfa(obj["properties"][p], string_alphabet_ptr.get()));
-        std::cout << "property \"" << p << "\":\n" << properties[properties.size() - 1].print_to_dot() << std::endl;
+        propertyNames.push_back(p);
+        logging::log(logging::VerbosityLevel::DEBUG, "property \"" + p + "\":", verbosityLevel);
+        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return properties[properties.size() - 1].print_to_dot(); }, verbosityLevel);
     }
 
-    std::cout << "parser: alphabet " << string_alphabet_ptr->get_alphabet_symbols() << " still intact!" << std::endl;
-    std::cout << "parser: transition relation:" << std::endl;
-    std::cout << t.print_to_dot() << std::endl;
+
+    logging::log(logging::VerbosityLevel::DEBUG, "parser: alphabet " + stream_to_string(string_alphabet_ptr->get_alphabet_symbols()) + " still intact!", verbosityLevel);
+    logging::log(logging::VerbosityLevel::DEBUG, "parser: transition relation:", verbosityLevel);
+    logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return t.print_to_dot(); }, verbosityLevel);
     assert(string_alphabet_ptr->is_equal(t.alphabet));
 
     return DodoParserResult {
         string_alphabet_ptr,
         initialConfig,
         properties,
+        propertyNames,
         t
     };
 } 

@@ -12,6 +12,15 @@ enum SetInterpretation {
     Flow
 };
 
+inline std::string to_string(SetInterpretation i) {
+    switch (i) {
+        case Trap: return "Trap";
+        case Siphon: return "Siphon";
+        case Flow: return "Flow";
+        default: return "INVALID";
+    }
+}
+
 /**
  * @brief Creates a Transducer for the Trap Interpretation.
  *

@@ -6,6 +6,7 @@ add_library(parsers STATIC
 
 target_include_directories(parsers PUBLIC mata)
 target_include_directories(parsers PUBLIC ${PROJECT_SOURCE_DIR}/benchmarks)
+target_include_directories(parsers PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(parsers abstracton)
 target_link_libraries(parsers jsoncpp)
 

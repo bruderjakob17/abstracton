@@ -2,12 +2,21 @@
 
 #include <mata/nfa/nfa.hh>
 #include <mata/nft/nft.hh>
+#include <mata/nfa/algorithms.hh>
 
 mata::nft::Nft create_identity(mata::Alphabet& alphabet);
 
 mata::nft::Nft create_identity(const mata::nfa::Nfa& language);
 
 mata::nfa::Nfa project(const mata::nft::Nft& nft, int level);
+
+// minimizes a given nfa using hopcroft minimization. Wrapper for mata minimization, but don't have to worry about trimming/determinizing
+inline mata::nfa::Nfa minimize_nfa(const mata::nfa::Nfa& aut) {
+    mata::nfa::Nfa aut_det {mata::nfa::determinize(aut)};
+    aut_det = aut_det.trim();
+    mata::nfa::Nfa aut_min {mata::nfa::algorithms::minimize_hopcroft(aut_det)};
+    return aut_min;
+}
 
 // applies the given nft to the given nfa on the specified level of the nft (0 or 1).
 // level = 0: apply = postimage, level = 1: apply = preimage
