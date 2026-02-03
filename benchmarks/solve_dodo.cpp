@@ -31,24 +31,25 @@ int main(int argc, char** argv) {
         std::cout << "\t\t\talso minimize input (automata for initial configurations, transition relation and unsafe configurations)\n";
         return 0;
     }
-    std::vector<enum SetInterpretation> interpretations{Trap, Siphon, Flow};
+    std::vector<enum SetInterpretation> interpretations{};
     int verbosityLevel = VerbosityLevel::NORMAL;
     std::optional<std::string> property = std::nullopt;
     std::vector<std::string> propertyNames{};
     bool minimize_input = false;
+    std::string filename{};
     // no switch for strings in c++...so if else branches:
-    for (int i{ 2 }; i < argc; ++i) {
+    for (int i{ 1 }; i < argc; ++i) {
         std::string arg(argv[i]);
-        if (arg == "i" || arg == "--interpretation") {
+        if (arg == "-i" || arg == "--interpretation") {
             if (i + 1 < argc) {
                 std::string itype(argv[i + 1]);
                 ++i;
                 if (itype == "t" || itype == "trap") {
-                    interpretations = {Trap};
+                    interpretations.push_back(Trap);
                 } else if (itype == "s" || itype == "siphon") {
-                    interpretations = {Siphon};
+                    interpretations.push_back(Siphon);
                 } else if (itype == "f" || itype == "flow") {
-                    interpretations = {Flow};
+                    interpretations.push_back(Flow);
                 } else {
                     std::cout << "ITYPE must be any of the following: t, s, f\n";
                 }
@@ -56,13 +57,6 @@ int main(int argc, char** argv) {
                 std::cout << "need to specify ITYPE after " << argv[i] << " option";
                 std::cout << ", which must be any of the following: t, s, f\n";
             }
-        }
-        if (arg == "t") {
-            interpretations.push_back(Trap);
-        } else if (arg == "s") {
-            interpretations.push_back(Siphon);
-        } else if (arg == "f") {
-            interpretations.push_back(Flow);
         } else if (arg == "-v" || arg == "--verbosity") {
             if (i + 1 < argc && atoi(argv[i + 1]) >= 0 && atoi(argv[i + 1]) <= 3) {
                 verbosityLevel = atoi(argv[i + 1]);
@@ -81,12 +75,17 @@ int main(int argc, char** argv) {
             }
         } else if (arg == "--minimize-input") { // TODO change to --no-minimize-input instead?
             minimize_input = true;
+        } else if (arg.find(".json") != std::string::npos) {
+            filename = arg;
         } else {
             std::cout << "unknown argument \"" << argv[i] << "\"\n";
             return 0;
         }
     }
-    std::string filename{argv[1]};
+    if (interpretations.empty()) {
+        log(VerbosityLevel::VERBOSE, "did not receive particular interpretation, defaulting to checking all three of t, s, f", verbosityLevel);
+        interpretations = {Trap, Siphon, Flow};
+    }
     // DodoParserResult dpr = parseDodoJSON("dodo/token-passing.json");
     DodoParserResult dpr = parseDodoJSON(filename, verbosityLevel);
 
