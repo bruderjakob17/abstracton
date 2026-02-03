@@ -1,0 +1,1834 @@
+{
+  "transducer": {
+    "initialStates": [0],
+    "transitions": [
+      {
+        "letter": "[ef,ef]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[ef,el]",
+        "source": 0,
+        "target": [5]
+      },
+      {
+        "letter": "[tf,tf]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[tf,tl]",
+        "source": 0,
+        "target": [5]
+      },
+      {
+        "letter": "[tf,hf]",
+        "source": 0,
+        "target": [8]
+      },
+      {
+        "letter": "[hl,hl]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[hl,hf]",
+        "source": 0,
+        "target": [6]
+      },
+      {
+        "letter": "[el,ef]",
+        "source": 0,
+        "target": [6]
+      },
+      {
+        "letter": "[el,el]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[tl,tf]",
+        "source": 0,
+        "target": [6]
+      },
+      {
+        "letter": "[tl,hl]",
+        "source": 0,
+        "target": [8]
+      },
+      {
+        "letter": "[tl,tl]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[hr,hr]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[er,tf]",
+        "source": 0,
+        "target": [10]
+      },
+      {
+        "letter": "[er,er]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[hf,hl]",
+        "source": 0,
+        "target": [5]
+      },
+      {
+        "letter": "[hf,er]",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "[hf,hf]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[tr,hr]",
+        "source": 0,
+        "target": [8]
+      },
+      {
+        "letter": "[tr,tr]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[ef,ef]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[tf,tf]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[tf,hr]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[hl,hl]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[el,el]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[tl,tl]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[hr,hr]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[hr,er]",
+        "source": 1,
+        "target": [3]
+      },
+      {
+        "letter": "[er,tf]",
+        "source": 1,
+        "target": [4]
+      },
+      {
+        "letter": "[er,er]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[hf,hf]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[tr,tr]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[ef,ef]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[tf,tf]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[hl,hl]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[el,el]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[tl,tl]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[hr,hr]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[er,er]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[hf,hf]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[tr,tr]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[ef,el]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[tf,tl]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[hf,hl]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[hl,hf]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[el,ef]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[tl,tf]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[ef,ef]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[tf,tf]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[hl,hl]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[hl,el]",
+        "source": 5,
+        "target": [7]
+      },
+      {
+        "letter": "[el,el]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[tl,tl]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[hr,hr]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[hr,er]",
+        "source": 5,
+        "target": [7]
+      },
+      {
+        "letter": "[er,er]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[hf,ef]",
+        "source": 5,
+        "target": [7]
+      },
+      {
+        "letter": "[hf,hf]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[tr,tr]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[ef,ef]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[tf,tf]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[hl,hl]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[el,el]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[tl,tl]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[hr,hr]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[er,tf]",
+        "source": 6,
+        "target": [7]
+      },
+      {
+        "letter": "[er,er]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[hf,hf]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[tr,tr]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[ef,el]",
+        "source": 8,
+        "target": [2]
+      },
+      {
+        "letter": "[tf,tl]",
+        "source": 8,
+        "target": [2]
+      },
+      {
+        "letter": "[hf,hl]",
+        "source": 8,
+        "target": [2]
+      },
+      {
+        "letter": "[hl,hf]",
+        "source": 10,
+        "target": [2]
+      },
+      {
+        "letter": "[el,ef]",
+        "source": 10,
+        "target": [2]
+      },
+      {
+        "letter": "[tl,tf]",
+        "source": 10,
+        "target": [2]
+      }
+    ],
+    "states": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "accepting": [
+      2,
+      7
+    ]
+  },
+  "initial": {
+    "initialStates": [0],
+    "alphabet": [
+      "tf",
+      "hf",
+      "ef",
+      "tr",
+      "hr",
+      "er",
+      "tl",
+      "hl",
+      "el"
+    ],
+    "transitions": [
+      {
+        "letter": "tf",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "hf",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "ef",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "tr",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "hr",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "er",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "tl",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "hl",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "el",
+        "source": 0,
+        "target": []
+      }
+    ],
+    "states": [0],
+    "accepting": [0]
+  },
+  "alphabet": [
+    "ef",
+    "tf",
+    "hl",
+    "el",
+    "tl",
+    "hr",
+    "er",
+    "hf",
+    "tr"
+  ],
+  "properties": {"deadlock": {
+    "initialStates": [0],
+    "alphabet": [
+      "tf",
+      "hf",
+      "ef",
+      "tr",
+      "hr",
+      "er",
+      "tl",
+      "hl",
+      "el"
+    ],
+    "transitions": [
+      {
+        "letter": "tf",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "hf",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "ef",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "tr",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "hr",
+        "source": 0,
+        "target": [5]
+      },
+      {
+        "letter": "er",
+        "source": 0,
+        "target": [6]
+      },
+      {
+        "letter": "tl",
+        "source": 0,
+        "target": [7]
+      },
+      {
+        "letter": "hl",
+        "source": 0,
+        "target": [8]
+      },
+      {
+        "letter": "el",
+        "source": 0,
+        "target": [8]
+      },
+      {
+        "letter": "tf",
+        "source": 1,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 1,
+        "target": [10]
+      },
+      {
+        "letter": "ef",
+        "source": 1,
+        "target": [9]
+      },
+      {
+        "letter": "tr",
+        "source": 1,
+        "target": [11]
+      },
+      {
+        "letter": "hr",
+        "source": 1,
+        "target": [12]
+      },
+      {
+        "letter": "er",
+        "source": 1,
+        "target": [13]
+      },
+      {
+        "letter": "tl",
+        "source": 1,
+        "target": [11]
+      },
+      {
+        "letter": "hl",
+        "source": 1,
+        "target": [14]
+      },
+      {
+        "letter": "el",
+        "source": 1,
+        "target": [11]
+      },
+      {
+        "letter": "tf",
+        "source": 2,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 2,
+        "target": [10]
+      },
+      {
+        "letter": "ef",
+        "source": 2,
+        "target": [9]
+      },
+      {
+        "letter": "tr",
+        "source": 2,
+        "target": [9]
+      },
+      {
+        "letter": "hr",
+        "source": 2,
+        "target": [15]
+      },
+      {
+        "letter": "er",
+        "source": 2,
+        "target": [16]
+      },
+      {
+        "letter": "tl",
+        "source": 2,
+        "target": [9]
+      },
+      {
+        "letter": "hl",
+        "source": 2,
+        "target": [10]
+      },
+      {
+        "letter": "el",
+        "source": 2,
+        "target": [9]
+      },
+      {
+        "letter": "tf",
+        "source": 3,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 3,
+        "target": [14]
+      },
+      {
+        "letter": "ef",
+        "source": 3,
+        "target": [11]
+      },
+      {
+        "letter": "tr",
+        "source": 3,
+        "target": [11]
+      },
+      {
+        "letter": "hr",
+        "source": 3,
+        "target": [12]
+      },
+      {
+        "letter": "er",
+        "source": 3,
+        "target": [13]
+      },
+      {
+        "letter": "tl",
+        "source": 3,
+        "target": [11]
+      },
+      {
+        "letter": "hl",
+        "source": 3,
+        "target": [14]
+      },
+      {
+        "letter": "el",
+        "source": 3,
+        "target": [11]
+      },
+      {
+        "letter": "tf",
+        "source": 4,
+        "target": [17]
+      },
+      {
+        "letter": "hf",
+        "source": 4,
+        "target": [17]
+      },
+      {
+        "letter": "ef",
+        "source": 4,
+        "target": [17]
+      },
+      {
+        "letter": "tr",
+        "source": 4,
+        "target": [18]
+      },
+      {
+        "letter": "hr",
+        "source": 4,
+        "target": [19]
+      },
+      {
+        "letter": "er",
+        "source": 4,
+        "target": [20]
+      },
+      {
+        "letter": "tl",
+        "source": 4,
+        "target": [18]
+      },
+      {
+        "letter": "hl",
+        "source": 4,
+        "target": [18]
+      },
+      {
+        "letter": "el",
+        "source": 4,
+        "target": [18]
+      },
+      {
+        "letter": "tf",
+        "source": 5,
+        "target": [17]
+      },
+      {
+        "letter": "hf",
+        "source": 5,
+        "target": [18]
+      },
+      {
+        "letter": "ef",
+        "source": 5,
+        "target": [18]
+      },
+      {
+        "letter": "tr",
+        "source": 5,
+        "target": [18]
+      },
+      {
+        "letter": "hr",
+        "source": 5,
+        "target": [19]
+      },
+      {
+        "letter": "er",
+        "source": 5,
+        "target": [20]
+      },
+      {
+        "letter": "tl",
+        "source": 5,
+        "target": [18]
+      },
+      {
+        "letter": "hl",
+        "source": 5,
+        "target": [18]
+      },
+      {
+        "letter": "el",
+        "source": 5,
+        "target": [18]
+      },
+      {
+        "letter": "tf",
+        "source": 6,
+        "target": [17]
+      },
+      {
+        "letter": "hf",
+        "source": 6,
+        "target": [18]
+      },
+      {
+        "letter": "ef",
+        "source": 6,
+        "target": [18]
+      },
+      {
+        "letter": "tr",
+        "source": 6,
+        "target": [18]
+      },
+      {
+        "letter": "hr",
+        "source": 6,
+        "target": [19]
+      },
+      {
+        "letter": "er",
+        "source": 6,
+        "target": [20]
+      },
+      {
+        "letter": "tl",
+        "source": 6,
+        "target": [17]
+      },
+      {
+        "letter": "hl",
+        "source": 6,
+        "target": [17]
+      },
+      {
+        "letter": "el",
+        "source": 6,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 7,
+        "target": [21]
+      },
+      {
+        "letter": "hf",
+        "source": 7,
+        "target": [21]
+      },
+      {
+        "letter": "ef",
+        "source": 7,
+        "target": [21]
+      },
+      {
+        "letter": "tr",
+        "source": 7,
+        "target": [22]
+      },
+      {
+        "letter": "hr",
+        "source": 7,
+        "target": [23]
+      },
+      {
+        "letter": "er",
+        "source": 7,
+        "target": [24]
+      },
+      {
+        "letter": "tl",
+        "source": 7,
+        "target": [22]
+      },
+      {
+        "letter": "hl",
+        "source": 7,
+        "target": [22]
+      },
+      {
+        "letter": "el",
+        "source": 7,
+        "target": [22]
+      },
+      {
+        "letter": "tf",
+        "source": 8,
+        "target": [21]
+      },
+      {
+        "letter": "hf",
+        "source": 8,
+        "target": [22]
+      },
+      {
+        "letter": "ef",
+        "source": 8,
+        "target": [22]
+      },
+      {
+        "letter": "tr",
+        "source": 8,
+        "target": [22]
+      },
+      {
+        "letter": "hr",
+        "source": 8,
+        "target": [23]
+      },
+      {
+        "letter": "er",
+        "source": 8,
+        "target": [24]
+      },
+      {
+        "letter": "tl",
+        "source": 8,
+        "target": [22]
+      },
+      {
+        "letter": "hl",
+        "source": 8,
+        "target": [22]
+      },
+      {
+        "letter": "el",
+        "source": 8,
+        "target": [22]
+      },
+      {
+        "letter": "tf",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 9,
+        "target": [10]
+      },
+      {
+        "letter": "ef",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "tr",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "hr",
+        "source": 9,
+        "target": [15]
+      },
+      {
+        "letter": "er",
+        "source": 9,
+        "target": [16]
+      },
+      {
+        "letter": "tl",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "hl",
+        "source": 9,
+        "target": [10]
+      },
+      {
+        "letter": "el",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "tf",
+        "source": 10,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 10,
+        "target": [10]
+      },
+      {
+        "letter": "ef",
+        "source": 10,
+        "target": [9]
+      },
+      {
+        "letter": "tr",
+        "source": 10,
+        "target": [9]
+      },
+      {
+        "letter": "hr",
+        "source": 10,
+        "target": [15]
+      },
+      {
+        "letter": "er",
+        "source": 10,
+        "target": [16]
+      },
+      {
+        "letter": "tl",
+        "source": 10,
+        "target": [9]
+      },
+      {
+        "letter": "hl",
+        "source": 10,
+        "target": [10]
+      },
+      {
+        "letter": "el",
+        "source": 10,
+        "target": [9]
+      },
+      {
+        "letter": "tf",
+        "source": 11,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 11,
+        "target": [14]
+      },
+      {
+        "letter": "ef",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "tr",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "hr",
+        "source": 11,
+        "target": [12]
+      },
+      {
+        "letter": "er",
+        "source": 11,
+        "target": [13]
+      },
+      {
+        "letter": "tl",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "hl",
+        "source": 11,
+        "target": [14]
+      },
+      {
+        "letter": "el",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "tf",
+        "source": 12,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 12,
+        "target": [10]
+      },
+      {
+        "letter": "ef",
+        "source": 12,
+        "target": [9]
+      },
+      {
+        "letter": "tr",
+        "source": 12,
+        "target": [11]
+      },
+      {
+        "letter": "hr",
+        "source": 12,
+        "target": [12]
+      },
+      {
+        "letter": "er",
+        "source": 12,
+        "target": [13]
+      },
+      {
+        "letter": "tl",
+        "source": 12,
+        "target": [11]
+      },
+      {
+        "letter": "hl",
+        "source": 12,
+        "target": [14]
+      },
+      {
+        "letter": "el",
+        "source": 12,
+        "target": [11]
+      },
+      {
+        "letter": "tf",
+        "source": 13,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 13,
+        "target": [14]
+      },
+      {
+        "letter": "ef",
+        "source": 13,
+        "target": [11]
+      },
+      {
+        "letter": "tr",
+        "source": 13,
+        "target": [11]
+      },
+      {
+        "letter": "hr",
+        "source": 13,
+        "target": [12]
+      },
+      {
+        "letter": "er",
+        "source": 13,
+        "target": [13]
+      },
+      {
+        "letter": "tl",
+        "source": 13,
+        "target": [9]
+      },
+      {
+        "letter": "hl",
+        "source": 13,
+        "target": [10]
+      },
+      {
+        "letter": "el",
+        "source": 13,
+        "target": [9]
+      },
+      {
+        "letter": "tf",
+        "source": 14,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "ef",
+        "source": 14,
+        "target": [11]
+      },
+      {
+        "letter": "tr",
+        "source": 14,
+        "target": [11]
+      },
+      {
+        "letter": "hr",
+        "source": 14,
+        "target": [12]
+      },
+      {
+        "letter": "er",
+        "source": 14,
+        "target": [13]
+      },
+      {
+        "letter": "tl",
+        "source": 14,
+        "target": [11]
+      },
+      {
+        "letter": "hl",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "el",
+        "source": 14,
+        "target": [11]
+      },
+      {
+        "letter": "tf",
+        "source": 15,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 15,
+        "target": [10]
+      },
+      {
+        "letter": "ef",
+        "source": 15,
+        "target": [9]
+      },
+      {
+        "letter": "tr",
+        "source": 15,
+        "target": [9]
+      },
+      {
+        "letter": "hr",
+        "source": 15,
+        "target": [15]
+      },
+      {
+        "letter": "er",
+        "source": 15,
+        "target": [16]
+      },
+      {
+        "letter": "tl",
+        "source": 15,
+        "target": [9]
+      },
+      {
+        "letter": "hl",
+        "source": 15,
+        "target": [10]
+      },
+      {
+        "letter": "el",
+        "source": 15,
+        "target": [9]
+      },
+      {
+        "letter": "tf",
+        "source": 16,
+        "target": [9]
+      },
+      {
+        "letter": "hf",
+        "source": 16,
+        "target": [10]
+      },
+      {
+        "letter": "ef",
+        "source": 16,
+        "target": [9]
+      },
+      {
+        "letter": "tr",
+        "source": 16,
+        "target": [9]
+      },
+      {
+        "letter": "hr",
+        "source": 16,
+        "target": [15]
+      },
+      {
+        "letter": "er",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "tl",
+        "source": 16,
+        "target": [9]
+      },
+      {
+        "letter": "hl",
+        "source": 16,
+        "target": [10]
+      },
+      {
+        "letter": "el",
+        "source": 16,
+        "target": [9]
+      },
+      {
+        "letter": "tf",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "hf",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "ef",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "tr",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "hr",
+        "source": 17,
+        "target": [25]
+      },
+      {
+        "letter": "er",
+        "source": 17,
+        "target": [26]
+      },
+      {
+        "letter": "tl",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "hl",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "el",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 18,
+        "target": [17]
+      },
+      {
+        "letter": "hf",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "ef",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "tr",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "hr",
+        "source": 18,
+        "target": [19]
+      },
+      {
+        "letter": "er",
+        "source": 18,
+        "target": [20]
+      },
+      {
+        "letter": "tl",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "hl",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "el",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "tf",
+        "source": 19,
+        "target": [17]
+      },
+      {
+        "letter": "hf",
+        "source": 19,
+        "target": [17]
+      },
+      {
+        "letter": "ef",
+        "source": 19,
+        "target": [17]
+      },
+      {
+        "letter": "tr",
+        "source": 19,
+        "target": [18]
+      },
+      {
+        "letter": "hr",
+        "source": 19,
+        "target": [19]
+      },
+      {
+        "letter": "er",
+        "source": 19,
+        "target": [20]
+      },
+      {
+        "letter": "tl",
+        "source": 19,
+        "target": [18]
+      },
+      {
+        "letter": "hl",
+        "source": 19,
+        "target": [18]
+      },
+      {
+        "letter": "el",
+        "source": 19,
+        "target": [18]
+      },
+      {
+        "letter": "tf",
+        "source": 20,
+        "target": [17]
+      },
+      {
+        "letter": "hf",
+        "source": 20,
+        "target": [18]
+      },
+      {
+        "letter": "ef",
+        "source": 20,
+        "target": [18]
+      },
+      {
+        "letter": "tr",
+        "source": 20,
+        "target": [18]
+      },
+      {
+        "letter": "hr",
+        "source": 20,
+        "target": [19]
+      },
+      {
+        "letter": "er",
+        "source": 20,
+        "target": [20]
+      },
+      {
+        "letter": "tl",
+        "source": 20,
+        "target": [17]
+      },
+      {
+        "letter": "hl",
+        "source": 20,
+        "target": [17]
+      },
+      {
+        "letter": "el",
+        "source": 20,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "hf",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "ef",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "tr",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "hr",
+        "source": 21,
+        "target": [27]
+      },
+      {
+        "letter": "er",
+        "source": 21,
+        "target": [28]
+      },
+      {
+        "letter": "tl",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "hl",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "el",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "tf",
+        "source": 22,
+        "target": [21]
+      },
+      {
+        "letter": "hf",
+        "source": 22,
+        "target": [22]
+      },
+      {
+        "letter": "ef",
+        "source": 22,
+        "target": [22]
+      },
+      {
+        "letter": "tr",
+        "source": 22,
+        "target": [22]
+      },
+      {
+        "letter": "hr",
+        "source": 22,
+        "target": [23]
+      },
+      {
+        "letter": "er",
+        "source": 22,
+        "target": [24]
+      },
+      {
+        "letter": "tl",
+        "source": 22,
+        "target": [22]
+      },
+      {
+        "letter": "hl",
+        "source": 22,
+        "target": [22]
+      },
+      {
+        "letter": "el",
+        "source": 22,
+        "target": [22]
+      },
+      {
+        "letter": "tf",
+        "source": 23,
+        "target": [21]
+      },
+      {
+        "letter": "hf",
+        "source": 23,
+        "target": [21]
+      },
+      {
+        "letter": "ef",
+        "source": 23,
+        "target": [21]
+      },
+      {
+        "letter": "tr",
+        "source": 23,
+        "target": [22]
+      },
+      {
+        "letter": "hr",
+        "source": 23,
+        "target": [23]
+      },
+      {
+        "letter": "er",
+        "source": 23,
+        "target": [24]
+      },
+      {
+        "letter": "tl",
+        "source": 23,
+        "target": [22]
+      },
+      {
+        "letter": "hl",
+        "source": 23,
+        "target": [22]
+      },
+      {
+        "letter": "el",
+        "source": 23,
+        "target": [22]
+      },
+      {
+        "letter": "tf",
+        "source": 24,
+        "target": [21]
+      },
+      {
+        "letter": "hf",
+        "source": 24,
+        "target": [22]
+      },
+      {
+        "letter": "ef",
+        "source": 24,
+        "target": [22]
+      },
+      {
+        "letter": "tr",
+        "source": 24,
+        "target": [22]
+      },
+      {
+        "letter": "hr",
+        "source": 24,
+        "target": [23]
+      },
+      {
+        "letter": "er",
+        "source": 24,
+        "target": [24]
+      },
+      {
+        "letter": "tl",
+        "source": 24,
+        "target": [21]
+      },
+      {
+        "letter": "hl",
+        "source": 24,
+        "target": [21]
+      },
+      {
+        "letter": "el",
+        "source": 24,
+        "target": [21]
+      },
+      {
+        "letter": "tf",
+        "source": 25,
+        "target": [17]
+      },
+      {
+        "letter": "hf",
+        "source": 25,
+        "target": [17]
+      },
+      {
+        "letter": "ef",
+        "source": 25,
+        "target": [17]
+      },
+      {
+        "letter": "tr",
+        "source": 25,
+        "target": [17]
+      },
+      {
+        "letter": "hr",
+        "source": 25,
+        "target": [25]
+      },
+      {
+        "letter": "er",
+        "source": 25,
+        "target": [26]
+      },
+      {
+        "letter": "tl",
+        "source": 25,
+        "target": [17]
+      },
+      {
+        "letter": "hl",
+        "source": 25,
+        "target": [17]
+      },
+      {
+        "letter": "el",
+        "source": 25,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 26,
+        "target": [17]
+      },
+      {
+        "letter": "hf",
+        "source": 26,
+        "target": [17]
+      },
+      {
+        "letter": "ef",
+        "source": 26,
+        "target": [17]
+      },
+      {
+        "letter": "tr",
+        "source": 26,
+        "target": [17]
+      },
+      {
+        "letter": "hr",
+        "source": 26,
+        "target": [25]
+      },
+      {
+        "letter": "er",
+        "source": 26,
+        "target": [26]
+      },
+      {
+        "letter": "tl",
+        "source": 26,
+        "target": [17]
+      },
+      {
+        "letter": "hl",
+        "source": 26,
+        "target": [17]
+      },
+      {
+        "letter": "el",
+        "source": 26,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 27,
+        "target": [21]
+      },
+      {
+        "letter": "hf",
+        "source": 27,
+        "target": [21]
+      },
+      {
+        "letter": "ef",
+        "source": 27,
+        "target": [21]
+      },
+      {
+        "letter": "tr",
+        "source": 27,
+        "target": [21]
+      },
+      {
+        "letter": "hr",
+        "source": 27,
+        "target": [27]
+      },
+      {
+        "letter": "er",
+        "source": 27,
+        "target": [28]
+      },
+      {
+        "letter": "tl",
+        "source": 27,
+        "target": [21]
+      },
+      {
+        "letter": "hl",
+        "source": 27,
+        "target": [21]
+      },
+      {
+        "letter": "el",
+        "source": 27,
+        "target": [21]
+      },
+      {
+        "letter": "tf",
+        "source": 28,
+        "target": [21]
+      },
+      {
+        "letter": "hf",
+        "source": 28,
+        "target": [21]
+      },
+      {
+        "letter": "ef",
+        "source": 28,
+        "target": [21]
+      },
+      {
+        "letter": "tr",
+        "source": 28,
+        "target": [21]
+      },
+      {
+        "letter": "hr",
+        "source": 28,
+        "target": [27]
+      },
+      {
+        "letter": "er",
+        "source": 28,
+        "target": [28]
+      },
+      {
+        "letter": "tl",
+        "source": 28,
+        "target": [21]
+      },
+      {
+        "letter": "hl",
+        "source": 28,
+        "target": [21]
+      },
+      {
+        "letter": "el",
+        "source": 28,
+        "target": [21]
+      }
+    ],
+    "states": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28
+    ],
+    "accepting": [
+      11,
+      13,
+      18,
+      19,
+      20,
+      22,
+      23
+    ]
+  }}
+}

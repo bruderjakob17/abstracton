@@ -1,0 +1,287 @@
+{
+  "transducer": {
+    "initialStates": [0],
+    "transitions": [
+      {
+        "letter": "[a,a]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[a,c]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[c,a]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[c,c]",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "[w,c]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[a,a]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[c,a]",
+        "source": 1,
+        "target": [3]
+      },
+      {
+        "letter": "[c,c]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[w,c]",
+        "source": 1,
+        "target": [3]
+      },
+      {
+        "letter": "[a,w]",
+        "source": 2,
+        "target": [4]
+      },
+      {
+        "letter": "[w,w]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[a,a]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[c,c]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[w,w]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[a,a]",
+        "source": 4,
+        "target": [4]
+      }
+    ],
+    "states": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "accepting": [
+      3,
+      4
+    ]
+  },
+  "initial": {
+    "initialStates": [0],
+    "alphabet": [
+      "a",
+      "w",
+      "c"
+    ],
+    "transitions": [
+      {
+        "letter": "a",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "w",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "c",
+        "source": 0,
+        "target": []
+      }
+    ],
+    "states": [0],
+    "accepting": [0]
+  },
+  "alphabet": [
+    "a",
+    "c",
+    "w"
+  ],
+  "properties": {
+    "nomutex": {
+      "initialStates": [0],
+      "alphabet": [
+        "a",
+        "w",
+        "c"
+      ],
+      "transitions": [
+        {
+          "letter": "a",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "w",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "c",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "a",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "w",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "c",
+          "source": 1,
+          "target": [
+            1,
+            2
+          ]
+        },
+        {
+          "letter": "a",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "w",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "c",
+          "source": 2,
+          "target": [2]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2
+      ],
+      "accepting": [2]
+    },
+    "deadlock": {
+      "initialStates": [0],
+      "alphabet": [
+        "a",
+        "w",
+        "c"
+      ],
+      "transitions": [
+        {
+          "letter": "a",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "w",
+          "source": 0,
+          "target": [2]
+        },
+        {
+          "letter": "c",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "a",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "w",
+          "source": 1,
+          "target": [2]
+        },
+        {
+          "letter": "c",
+          "source": 1,
+          "target": [3]
+        },
+        {
+          "letter": "a",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "w",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "c",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "a",
+          "source": 3,
+          "target": [4]
+        },
+        {
+          "letter": "w",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "c",
+          "source": 3,
+          "target": [2]
+        },
+        {
+          "letter": "a",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "w",
+          "source": 4,
+          "target": [2]
+        },
+        {
+          "letter": "c",
+          "source": 4,
+          "target": [2]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "accepting": []
+    }
+  }
+}

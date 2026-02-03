@@ -1,0 +1,187 @@
+{
+  "transducer": {
+    "initialStates": [0],
+    "transitions": [
+      {
+        "letter": "[t,t]",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "[n,t]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[n,n]",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "[t,t]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[n,t]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[n,n]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[t,t]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[n,n]",
+        "source": 2,
+        "target": [2]
+      }
+    ],
+    "states": [
+      0,
+      1,
+      2
+    ],
+    "accepting": [2]
+  },
+  "initial": {
+    "initialStates": [0],
+    "alphabet": [
+      "t",
+      "n"
+    ],
+    "transitions": [
+      {
+        "letter": "t",
+        "source": 0,
+        "target": [
+          0,
+          1
+        ]
+      },
+      {
+        "letter": "n",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "t",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "n",
+        "source": 1,
+        "target": [1]
+      }
+    ],
+    "states": [
+      0,
+      1
+    ],
+    "accepting": [1]
+  },
+  "alphabet": [
+    "t",
+    "n"
+  ],
+  "properties": {
+    "notoken": {
+      "initialStates": [0],
+      "alphabet": [
+        "t",
+        "n"
+      ],
+      "transitions": [
+        {
+          "letter": "t",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "n",
+          "source": 0,
+          "target": [0]
+        }
+      ],
+      "states": [0],
+      "accepting": [0]
+    },
+    "deadlock": {
+      "initialStates": [0],
+      "alphabet": [
+        "t",
+        "n"
+      ],
+      "transitions": [
+        {
+          "letter": "t",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "n",
+          "source": 0,
+          "target": [2]
+        },
+        {
+          "letter": "t",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "n",
+          "source": 1,
+          "target": [2]
+        },
+        {
+          "letter": "t",
+          "source": 2,
+          "target": [3]
+        },
+        {
+          "letter": "n",
+          "source": 2,
+          "target": [4]
+        },
+        {
+          "letter": "t",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "n",
+          "source": 3,
+          "target": [4]
+        },
+        {
+          "letter": "t",
+          "source": 4,
+          "target": [3]
+        },
+        {
+          "letter": "n",
+          "source": 4,
+          "target": [4]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "accepting": [
+        1,
+        2
+      ]
+    }
+  }
+}

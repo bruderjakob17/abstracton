@@ -1,0 +1,924 @@
+{
+  "transducer": {
+    "initialStates": [0],
+    "transitions": [
+      {
+        "letter": "[ef,ef]",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "[ef,eb]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[tf,tf]",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "[tf,hb]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[tf,tb]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[hb,tf]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[hb,hb]",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "[hb,eb]",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "[hb,hf]",
+        "source": 0,
+        "target": [5]
+      },
+      {
+        "letter": "[eb,ef]",
+        "source": 0,
+        "target": [5]
+      },
+      {
+        "letter": "[eb,tf]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[eb,eb]",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "[hf,hb]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[hf,hf]",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "[tb,tf]",
+        "source": 0,
+        "target": [5]
+      },
+      {
+        "letter": "[tb,tb]",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "[ef,ef]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[tf,tf]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[hb,hb]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[eb,eb]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[hf,hf]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[tb,tb]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[ef,eb]",
+        "source": 2,
+        "target": [1]
+      },
+      {
+        "letter": "[tf,tb]",
+        "source": 2,
+        "target": [1]
+      },
+      {
+        "letter": "[hf,hb]",
+        "source": 2,
+        "target": [1]
+      },
+      {
+        "letter": "[hb,hf]",
+        "source": 3,
+        "target": [1]
+      },
+      {
+        "letter": "[eb,ef]",
+        "source": 3,
+        "target": [1]
+      },
+      {
+        "letter": "[tb,tf]",
+        "source": 3,
+        "target": [1]
+      },
+      {
+        "letter": "[ef,ef]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[tf,tf]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[hb,hb]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[hb,eb]",
+        "source": 4,
+        "target": [6]
+      },
+      {
+        "letter": "[eb,eb]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[hf,hf]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[tb,tb]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[ef,ef]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[tf,tf]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[hb,hb]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[eb,tf]",
+        "source": 5,
+        "target": [6]
+      },
+      {
+        "letter": "[eb,eb]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[hf,hf]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[tb,tb]",
+        "source": 5,
+        "target": [5]
+      }
+    ],
+    "states": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "accepting": [
+      1,
+      6
+    ]
+  },
+  "initial": {
+    "initialStates": [0],
+    "alphabet": [
+      "tf",
+      "hf",
+      "ef",
+      "tb",
+      "hb",
+      "eb"
+    ],
+    "transitions": [
+      {
+        "letter": "tf",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "hf",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "ef",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "tb",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "hb",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "eb",
+        "source": 0,
+        "target": []
+      }
+    ],
+    "states": [0],
+    "accepting": [0]
+  },
+  "alphabet": [
+    "ef",
+    "tf",
+    "hb",
+    "eb",
+    "hf",
+    "tb"
+  ],
+  "properties": {"deadlock": {
+    "initialStates": [0],
+    "alphabet": [
+      "tf",
+      "hf",
+      "ef",
+      "tb",
+      "hb",
+      "eb"
+    ],
+    "transitions": [
+      {
+        "letter": "tf",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "hf",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "ef",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "tb",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "hb",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "eb",
+        "source": 0,
+        "target": [5]
+      },
+      {
+        "letter": "tf",
+        "source": 1,
+        "target": [6]
+      },
+      {
+        "letter": "hf",
+        "source": 1,
+        "target": [6]
+      },
+      {
+        "letter": "ef",
+        "source": 1,
+        "target": [6]
+      },
+      {
+        "letter": "tb",
+        "source": 1,
+        "target": [7]
+      },
+      {
+        "letter": "hb",
+        "source": 1,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 1,
+        "target": [9]
+      },
+      {
+        "letter": "tf",
+        "source": 2,
+        "target": [6]
+      },
+      {
+        "letter": "hf",
+        "source": 2,
+        "target": [10]
+      },
+      {
+        "letter": "ef",
+        "source": 2,
+        "target": [10]
+      },
+      {
+        "letter": "tb",
+        "source": 2,
+        "target": [11]
+      },
+      {
+        "letter": "hb",
+        "source": 2,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 2,
+        "target": [12]
+      },
+      {
+        "letter": "tf",
+        "source": 3,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 3,
+        "target": [11]
+      },
+      {
+        "letter": "ef",
+        "source": 3,
+        "target": [11]
+      },
+      {
+        "letter": "tb",
+        "source": 3,
+        "target": [13]
+      },
+      {
+        "letter": "hb",
+        "source": 3,
+        "target": [14]
+      },
+      {
+        "letter": "eb",
+        "source": 3,
+        "target": [15]
+      },
+      {
+        "letter": "tf",
+        "source": 4,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 4,
+        "target": [7]
+      },
+      {
+        "letter": "ef",
+        "source": 4,
+        "target": [7]
+      },
+      {
+        "letter": "tb",
+        "source": 4,
+        "target": [16]
+      },
+      {
+        "letter": "hb",
+        "source": 4,
+        "target": [14]
+      },
+      {
+        "letter": "eb",
+        "source": 4,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 5,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 5,
+        "target": [11]
+      },
+      {
+        "letter": "ef",
+        "source": 5,
+        "target": [11]
+      },
+      {
+        "letter": "tb",
+        "source": 5,
+        "target": [16]
+      },
+      {
+        "letter": "hb",
+        "source": 5,
+        "target": [14]
+      },
+      {
+        "letter": "eb",
+        "source": 5,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "hf",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "ef",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "tb",
+        "source": 6,
+        "target": [7]
+      },
+      {
+        "letter": "hb",
+        "source": 6,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 6,
+        "target": [9]
+      },
+      {
+        "letter": "tf",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "ef",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "tb",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "hb",
+        "source": 7,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 7,
+        "target": [18]
+      },
+      {
+        "letter": "tf",
+        "source": 8,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 8,
+        "target": [7]
+      },
+      {
+        "letter": "ef",
+        "source": 8,
+        "target": [7]
+      },
+      {
+        "letter": "tb",
+        "source": 8,
+        "target": [7]
+      },
+      {
+        "letter": "hb",
+        "source": 8,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 8,
+        "target": [18]
+      },
+      {
+        "letter": "tf",
+        "source": 9,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 9,
+        "target": [7]
+      },
+      {
+        "letter": "ef",
+        "source": 9,
+        "target": [7]
+      },
+      {
+        "letter": "tb",
+        "source": 9,
+        "target": [7]
+      },
+      {
+        "letter": "hb",
+        "source": 9,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 9,
+        "target": [18]
+      },
+      {
+        "letter": "tf",
+        "source": 10,
+        "target": [6]
+      },
+      {
+        "letter": "hf",
+        "source": 10,
+        "target": [10]
+      },
+      {
+        "letter": "ef",
+        "source": 10,
+        "target": [10]
+      },
+      {
+        "letter": "tb",
+        "source": 10,
+        "target": [11]
+      },
+      {
+        "letter": "hb",
+        "source": 10,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 10,
+        "target": [12]
+      },
+      {
+        "letter": "tf",
+        "source": 11,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "ef",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "tb",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "hb",
+        "source": 11,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 11,
+        "target": [19]
+      },
+      {
+        "letter": "tf",
+        "source": 12,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 12,
+        "target": [11]
+      },
+      {
+        "letter": "ef",
+        "source": 12,
+        "target": [11]
+      },
+      {
+        "letter": "tb",
+        "source": 12,
+        "target": [7]
+      },
+      {
+        "letter": "hb",
+        "source": 12,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 12,
+        "target": [18]
+      },
+      {
+        "letter": "tf",
+        "source": 13,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 13,
+        "target": [11]
+      },
+      {
+        "letter": "ef",
+        "source": 13,
+        "target": [11]
+      },
+      {
+        "letter": "tb",
+        "source": 13,
+        "target": [13]
+      },
+      {
+        "letter": "hb",
+        "source": 13,
+        "target": [14]
+      },
+      {
+        "letter": "eb",
+        "source": 13,
+        "target": [15]
+      },
+      {
+        "letter": "tf",
+        "source": 14,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 14,
+        "target": [7]
+      },
+      {
+        "letter": "ef",
+        "source": 14,
+        "target": [7]
+      },
+      {
+        "letter": "tb",
+        "source": 14,
+        "target": [16]
+      },
+      {
+        "letter": "hb",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "eb",
+        "source": 14,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 15,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 15,
+        "target": [11]
+      },
+      {
+        "letter": "ef",
+        "source": 15,
+        "target": [11]
+      },
+      {
+        "letter": "tb",
+        "source": 15,
+        "target": [16]
+      },
+      {
+        "letter": "hb",
+        "source": 15,
+        "target": [14]
+      },
+      {
+        "letter": "eb",
+        "source": 15,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 16,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 16,
+        "target": [7]
+      },
+      {
+        "letter": "ef",
+        "source": 16,
+        "target": [7]
+      },
+      {
+        "letter": "tb",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "hb",
+        "source": 16,
+        "target": [14]
+      },
+      {
+        "letter": "eb",
+        "source": 16,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 17,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 17,
+        "target": [7]
+      },
+      {
+        "letter": "ef",
+        "source": 17,
+        "target": [7]
+      },
+      {
+        "letter": "tb",
+        "source": 17,
+        "target": [16]
+      },
+      {
+        "letter": "hb",
+        "source": 17,
+        "target": [14]
+      },
+      {
+        "letter": "eb",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "tf",
+        "source": 18,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 18,
+        "target": [7]
+      },
+      {
+        "letter": "ef",
+        "source": 18,
+        "target": [7]
+      },
+      {
+        "letter": "tb",
+        "source": 18,
+        "target": [7]
+      },
+      {
+        "letter": "hb",
+        "source": 18,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "tf",
+        "source": 19,
+        "target": [7]
+      },
+      {
+        "letter": "hf",
+        "source": 19,
+        "target": [11]
+      },
+      {
+        "letter": "ef",
+        "source": 19,
+        "target": [11]
+      },
+      {
+        "letter": "tb",
+        "source": 19,
+        "target": [7]
+      },
+      {
+        "letter": "hb",
+        "source": 19,
+        "target": [8]
+      },
+      {
+        "letter": "eb",
+        "source": 19,
+        "target": [18]
+      }
+    ],
+    "states": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "accepting": [
+      10,
+      11,
+      12,
+      13
+    ]
+  }}
+}

@@ -1,0 +1,7066 @@
+{
+  "transducer": {
+    "initialStates": [0],
+    "transitions": [
+      {
+        "letter": "[eu,eu]",
+        "source": 0,
+        "target": [
+          16,
+          1,
+          2,
+          18,
+          20,
+          5,
+          7,
+          9,
+          12
+        ]
+      },
+      {
+        "letter": "[eu,psu]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[eu,em]",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "[eu,i]",
+        "source": 0,
+        "target": [14]
+      },
+      {
+        "letter": "[pr,eu]",
+        "source": 0,
+        "target": [13]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 0,
+        "target": [
+          16,
+          1,
+          18,
+          3,
+          20
+        ]
+      },
+      {
+        "letter": "[pr,s]",
+        "source": 0,
+        "target": [
+          5,
+          7,
+          9,
+          10
+        ]
+      },
+      {
+        "letter": "[pr,i]",
+        "source": 0,
+        "target": [14]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 0,
+        "target": [
+          16,
+          1,
+          2,
+          18,
+          5,
+          7,
+          9,
+          12
+        ]
+      },
+      {
+        "letter": "[s,psu]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[s,em]",
+        "source": 0,
+        "target": [21]
+      },
+      {
+        "letter": "[s,i]",
+        "source": 0,
+        "target": [
+          20,
+          14
+        ]
+      },
+      {
+        "letter": "[psu,s]",
+        "source": 0,
+        "target": [
+          7,
+          8
+        ]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 0,
+        "target": [
+          16,
+          1,
+          18,
+          3,
+          20,
+          5
+        ]
+      },
+      {
+        "letter": "[psu,i]",
+        "source": 0,
+        "target": [14]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 0,
+        "target": [
+          1,
+          20,
+          5,
+          7,
+          9,
+          12
+        ]
+      },
+      {
+        "letter": "[pw,em]",
+        "source": 0,
+        "target": [
+          16,
+          18,
+          19
+        ]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 0,
+        "target": [
+          16,
+          1,
+          2,
+          18,
+          20,
+          5,
+          7,
+          9,
+          12
+        ]
+      },
+      {
+        "letter": "[em,pemw]",
+        "source": 0,
+        "target": [14]
+      },
+      {
+        "letter": "[em,pemr]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[i,pr]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[i,pw]",
+        "source": 0,
+        "target": [15]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 0,
+        "target": [
+          16,
+          1,
+          18,
+          3,
+          20,
+          5,
+          7,
+          9,
+          12,
+          14
+        ]
+      },
+      {
+        "letter": "[pemw,i]",
+        "source": 0,
+        "target": [
+          17,
+          14
+        ]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 0,
+        "target": [
+          16,
+          1,
+          3,
+          20,
+          5,
+          7,
+          9,
+          12
+        ]
+      },
+      {
+        "letter": "[pemr,s]",
+        "source": 0,
+        "target": [6]
+      },
+      {
+        "letter": "[pemr,i]",
+        "source": 0,
+        "target": [14]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 0,
+        "target": [
+          16,
+          1,
+          18,
+          3,
+          20,
+          5,
+          7
+        ]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 1,
+        "target": [
+          1,
+          2
+        ]
+      },
+      {
+        "letter": "[eu,em]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 1,
+        "target": [
+          1,
+          2
+        ]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 1,
+        "target": [
+          1,
+          2
+        ]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[eu,psu]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[s,psu]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[em,pemr]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[i,pr]",
+        "source": 3,
+        "target": [4]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[eu,psu]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[s,psu]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[em,pemr]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[pr,s]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[pemr,s]",
+        "source": 5,
+        "target": [6]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[pr,s]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[pr,s]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[psu,s]",
+        "source": 7,
+        "target": [
+          7,
+          8
+        ]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 8,
+        "target": [8]
+      },
+      {
+        "letter": "[pr,s]",
+        "source": 8,
+        "target": [8]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 8,
+        "target": [8]
+      },
+      {
+        "letter": "[psu,s]",
+        "source": 8,
+        "target": [8]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 8,
+        "target": [8]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 8,
+        "target": [8]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 8,
+        "target": [8]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 8,
+        "target": [8]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 8,
+        "target": [8]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "[pr,s]",
+        "source": 9,
+        "target": [
+          9,
+          10
+        ]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 9,
+        "target": [9]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 10,
+        "target": [10]
+      },
+      {
+        "letter": "[pr,s]",
+        "source": 10,
+        "target": [
+          10,
+          11
+        ]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 10,
+        "target": [10]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 10,
+        "target": [10]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 10,
+        "target": [10]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 10,
+        "target": [10]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 10,
+        "target": [10]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "[pr,s]",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 11,
+        "target": [11]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 12,
+        "target": [12]
+      },
+      {
+        "letter": "[pr,eu]",
+        "source": 12,
+        "target": [13]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 12,
+        "target": [12]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 12,
+        "target": [12]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 12,
+        "target": [12]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 12,
+        "target": [12]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 12,
+        "target": [12]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 13,
+        "target": [13]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 13,
+        "target": [13]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 13,
+        "target": [13]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 13,
+        "target": [13]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 13,
+        "target": [13]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 13,
+        "target": [13]
+      },
+      {
+        "letter": "[eu,i]",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "[pr,i]",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "[s,i]",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "[psu,i]",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "[em,pemw]",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "[i,pw]",
+        "source": 14,
+        "target": [15]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "[pemw,i]",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "[pemr,i]",
+        "source": 14,
+        "target": [14]
+      },
+      {
+        "letter": "[eu,i]",
+        "source": 15,
+        "target": [15]
+      },
+      {
+        "letter": "[pr,i]",
+        "source": 15,
+        "target": [15]
+      },
+      {
+        "letter": "[s,i]",
+        "source": 15,
+        "target": [15]
+      },
+      {
+        "letter": "[psu,i]",
+        "source": 15,
+        "target": [15]
+      },
+      {
+        "letter": "[em,pemw]",
+        "source": 15,
+        "target": [15]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 15,
+        "target": [15]
+      },
+      {
+        "letter": "[pemw,i]",
+        "source": 15,
+        "target": [15]
+      },
+      {
+        "letter": "[pemr,i]",
+        "source": 15,
+        "target": [15]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "[pw,em]",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "[pemw,i]",
+        "source": 16,
+        "target": [17]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 16,
+        "target": [16]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "[pw,em]",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 17,
+        "target": [17]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "[pw,em]",
+        "source": 18,
+        "target": [
+          18,
+          19
+        ]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 18,
+        "target": [18]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 19,
+        "target": [19]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 19,
+        "target": [19]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 19,
+        "target": [19]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 19,
+        "target": [19]
+      },
+      {
+        "letter": "[pw,em]",
+        "source": 19,
+        "target": [19]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 19,
+        "target": [19]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 19,
+        "target": [19]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 19,
+        "target": [19]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 20,
+        "target": [20]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 20,
+        "target": [20]
+      },
+      {
+        "letter": "[s,em]",
+        "source": 20,
+        "target": [21]
+      },
+      {
+        "letter": "[s,i]",
+        "source": 20,
+        "target": [20]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 20,
+        "target": [20]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 20,
+        "target": [20]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 20,
+        "target": [20]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 20,
+        "target": [20]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 20,
+        "target": [20]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 20,
+        "target": [20]
+      },
+      {
+        "letter": "[eu,eu]",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "[pr,pr]",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "[s,i]",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "[psu,psu]",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "[pw,pw]",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "[em,em]",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "[pemw,pemw]",
+        "source": 21,
+        "target": [21]
+      },
+      {
+        "letter": "[pemr,pemr]",
+        "source": 21,
+        "target": [21]
+      }
+    ],
+    "states": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "accepting": [
+      2,
+      4,
+      6,
+      8,
+      11,
+      13,
+      15,
+      17,
+      19,
+      21
+    ]
+  },
+  "initial": {
+    "initialStates": [0],
+    "alphabet": [
+      "i",
+      "s",
+      "eu",
+      "em",
+      "pr",
+      "pw",
+      "pemr",
+      "pemw",
+      "psu"
+    ],
+    "transitions": [
+      {
+        "letter": "i",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "s",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "eu",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "em",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "pr",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "pw",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "pemr",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "pemw",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "psu",
+        "source": 0,
+        "target": []
+      }
+    ],
+    "states": [0],
+    "accepting": [0]
+  },
+  "alphabet": [
+    "eu",
+    "pr",
+    "s",
+    "psu",
+    "pw",
+    "em",
+    "i",
+    "pemw",
+    "pemr"
+  ],
+  "properties": {
+    "sharedexclusive": {
+      "initialStates": [0],
+      "alphabet": [
+        "i",
+        "s",
+        "eu",
+        "em",
+        "pr",
+        "pw",
+        "pemr",
+        "pemw",
+        "psu"
+      ],
+      "transitions": [
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "eu",
+          "source": 0,
+          "target": [
+            0,
+            2
+          ]
+        },
+        {
+          "letter": "em",
+          "source": 0,
+          "target": [
+            0,
+            2
+          ]
+        },
+        {
+          "letter": "pr",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pw",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pemr",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pemw",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "psu",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "eu",
+          "source": 1,
+          "target": [
+            1,
+            3
+          ]
+        },
+        {
+          "letter": "em",
+          "source": 1,
+          "target": [
+            1,
+            3
+          ]
+        },
+        {
+          "letter": "pr",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pw",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pemr",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pemw",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "psu",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [
+            2,
+            3
+          ]
+        },
+        {
+          "letter": "eu",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "em",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pr",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pw",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pemr",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pemw",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "psu",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "s",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "eu",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "em",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pr",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pw",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pemr",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pemw",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "psu",
+          "source": 3,
+          "target": [3]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "accepting": [3]
+    },
+    "pendingrightsecond": {
+      "initialStates": [0],
+      "alphabet": [
+        "i",
+        "s",
+        "eu",
+        "em",
+        "pr",
+        "pw",
+        "pemr",
+        "pemw",
+        "psu"
+      ],
+      "transitions": [
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "eu",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "em",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pr",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pw",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "pemr",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pemw",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "psu",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "eu",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "em",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pr",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pw",
+          "source": 1,
+          "target": [
+            1,
+            2
+          ]
+        },
+        {
+          "letter": "pemr",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pemw",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "psu",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "eu",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "em",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pr",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pw",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pemr",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pemw",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "psu",
+          "source": 2,
+          "target": [2]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2
+      ],
+      "accepting": [2]
+    },
+    "exclusiveexclusive": {
+      "initialStates": [0],
+      "alphabet": [
+        "i",
+        "s",
+        "eu",
+        "em",
+        "pr",
+        "pw",
+        "pemr",
+        "pemw",
+        "psu"
+      ],
+      "transitions": [
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "eu",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "em",
+          "source": 0,
+          "target": [
+            0,
+            2
+          ]
+        },
+        {
+          "letter": "pr",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pw",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pemr",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pemw",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "psu",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "eu",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "em",
+          "source": 1,
+          "target": [
+            1,
+            3
+          ]
+        },
+        {
+          "letter": "pr",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pw",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pemr",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pemw",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "psu",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "eu",
+          "source": 2,
+          "target": [
+            2,
+            3
+          ]
+        },
+        {
+          "letter": "em",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pr",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pw",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pemr",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pemw",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "psu",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "s",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "eu",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "em",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pr",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pw",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pemr",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pemw",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "psu",
+          "source": 3,
+          "target": [3]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "accepting": [3]
+    },
+    "secondpending": {
+      "initialStates": [0],
+      "alphabet": [
+        "i",
+        "s",
+        "eu",
+        "em",
+        "pr",
+        "pw",
+        "pemr",
+        "pemw",
+        "psu"
+      ],
+      "transitions": [
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "eu",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "em",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pr",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "pw",
+          "source": 0,
+          "target": [
+            0,
+            2
+          ]
+        },
+        {
+          "letter": "pemr",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pemw",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "psu",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "eu",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "em",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pr",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pw",
+          "source": 1,
+          "target": [
+            1,
+            3
+          ]
+        },
+        {
+          "letter": "pemr",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pemw",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "psu",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "eu",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "em",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pr",
+          "source": 2,
+          "target": [
+            2,
+            3
+          ]
+        },
+        {
+          "letter": "pw",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pemr",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pemw",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "psu",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "s",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "eu",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "em",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pr",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pw",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pemr",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pemw",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "psu",
+          "source": 3,
+          "target": [3]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "accepting": [3]
+    },
+    "deadlock": {
+      "initialStates": [0],
+      "alphabet": [
+        "i",
+        "s",
+        "eu",
+        "em",
+        "pr",
+        "pw",
+        "pemr",
+        "pemw",
+        "psu"
+      ],
+      "transitions": [
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [2]
+        },
+        {
+          "letter": "eu",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "em",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "pr",
+          "source": 0,
+          "target": [4]
+        },
+        {
+          "letter": "pw",
+          "source": 0,
+          "target": [5]
+        },
+        {
+          "letter": "pemr",
+          "source": 0,
+          "target": [6]
+        },
+        {
+          "letter": "pemw",
+          "source": 0,
+          "target": [7]
+        },
+        {
+          "letter": "psu",
+          "source": 0,
+          "target": [8]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [9]
+        },
+        {
+          "letter": "eu",
+          "source": 1,
+          "target": [10]
+        },
+        {
+          "letter": "em",
+          "source": 1,
+          "target": [10]
+        },
+        {
+          "letter": "pr",
+          "source": 1,
+          "target": [11]
+        },
+        {
+          "letter": "pw",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "pemr",
+          "source": 1,
+          "target": [12]
+        },
+        {
+          "letter": "pemw",
+          "source": 1,
+          "target": [13]
+        },
+        {
+          "letter": "psu",
+          "source": 1,
+          "target": [14]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [9]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "eu",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "em",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pr",
+          "source": 2,
+          "target": [15]
+        },
+        {
+          "letter": "pw",
+          "source": 2,
+          "target": [16]
+        },
+        {
+          "letter": "pemr",
+          "source": 2,
+          "target": [17]
+        },
+        {
+          "letter": "pemw",
+          "source": 2,
+          "target": [18]
+        },
+        {
+          "letter": "psu",
+          "source": 2,
+          "target": [19]
+        },
+        {
+          "letter": "i",
+          "source": 3,
+          "target": [10]
+        },
+        {
+          "letter": "s",
+          "source": 3,
+          "target": [2]
+        },
+        {
+          "letter": "eu",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "em",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pr",
+          "source": 3,
+          "target": [20]
+        },
+        {
+          "letter": "pw",
+          "source": 3,
+          "target": [21]
+        },
+        {
+          "letter": "pemr",
+          "source": 3,
+          "target": [22]
+        },
+        {
+          "letter": "pemw",
+          "source": 3,
+          "target": [23]
+        },
+        {
+          "letter": "psu",
+          "source": 3,
+          "target": [24]
+        },
+        {
+          "letter": "i",
+          "source": 4,
+          "target": [11]
+        },
+        {
+          "letter": "s",
+          "source": 4,
+          "target": [15]
+        },
+        {
+          "letter": "eu",
+          "source": 4,
+          "target": [20]
+        },
+        {
+          "letter": "em",
+          "source": 4,
+          "target": [20]
+        },
+        {
+          "letter": "pr",
+          "source": 4,
+          "target": [25]
+        },
+        {
+          "letter": "pw",
+          "source": 4,
+          "target": [26]
+        },
+        {
+          "letter": "pemr",
+          "source": 4,
+          "target": [6]
+        },
+        {
+          "letter": "pemw",
+          "source": 4,
+          "target": [27]
+        },
+        {
+          "letter": "psu",
+          "source": 4,
+          "target": [8]
+        },
+        {
+          "letter": "i",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "s",
+          "source": 5,
+          "target": [16]
+        },
+        {
+          "letter": "eu",
+          "source": 5,
+          "target": [21]
+        },
+        {
+          "letter": "em",
+          "source": 5,
+          "target": [21]
+        },
+        {
+          "letter": "pr",
+          "source": 5,
+          "target": [26]
+        },
+        {
+          "letter": "pw",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "pemr",
+          "source": 5,
+          "target": [28]
+        },
+        {
+          "letter": "pemw",
+          "source": 5,
+          "target": [29]
+        },
+        {
+          "letter": "psu",
+          "source": 5,
+          "target": [30]
+        },
+        {
+          "letter": "i",
+          "source": 6,
+          "target": [12]
+        },
+        {
+          "letter": "s",
+          "source": 6,
+          "target": [17]
+        },
+        {
+          "letter": "eu",
+          "source": 6,
+          "target": [22]
+        },
+        {
+          "letter": "em",
+          "source": 6,
+          "target": [22]
+        },
+        {
+          "letter": "pr",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "pw",
+          "source": 6,
+          "target": [28]
+        },
+        {
+          "letter": "pemr",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "pemw",
+          "source": 6,
+          "target": [31]
+        },
+        {
+          "letter": "psu",
+          "source": 6,
+          "target": [32]
+        },
+        {
+          "letter": "i",
+          "source": 7,
+          "target": [13]
+        },
+        {
+          "letter": "s",
+          "source": 7,
+          "target": [18]
+        },
+        {
+          "letter": "eu",
+          "source": 7,
+          "target": [23]
+        },
+        {
+          "letter": "em",
+          "source": 7,
+          "target": [23]
+        },
+        {
+          "letter": "pr",
+          "source": 7,
+          "target": [27]
+        },
+        {
+          "letter": "pw",
+          "source": 7,
+          "target": [29]
+        },
+        {
+          "letter": "pemr",
+          "source": 7,
+          "target": [31]
+        },
+        {
+          "letter": "pemw",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "psu",
+          "source": 7,
+          "target": [33]
+        },
+        {
+          "letter": "i",
+          "source": 8,
+          "target": [14]
+        },
+        {
+          "letter": "s",
+          "source": 8,
+          "target": [19]
+        },
+        {
+          "letter": "eu",
+          "source": 8,
+          "target": [24]
+        },
+        {
+          "letter": "em",
+          "source": 8,
+          "target": [24]
+        },
+        {
+          "letter": "pr",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "pw",
+          "source": 8,
+          "target": [30]
+        },
+        {
+          "letter": "pemr",
+          "source": 8,
+          "target": [32]
+        },
+        {
+          "letter": "pemw",
+          "source": 8,
+          "target": [33]
+        },
+        {
+          "letter": "psu",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "i",
+          "source": 9,
+          "target": [9]
+        },
+        {
+          "letter": "s",
+          "source": 9,
+          "target": [9]
+        },
+        {
+          "letter": "eu",
+          "source": 9,
+          "target": [9]
+        },
+        {
+          "letter": "em",
+          "source": 9,
+          "target": [9]
+        },
+        {
+          "letter": "pr",
+          "source": 9,
+          "target": [34]
+        },
+        {
+          "letter": "pw",
+          "source": 9,
+          "target": [16]
+        },
+        {
+          "letter": "pemr",
+          "source": 9,
+          "target": [35]
+        },
+        {
+          "letter": "pemw",
+          "source": 9,
+          "target": [36]
+        },
+        {
+          "letter": "psu",
+          "source": 9,
+          "target": [37]
+        },
+        {
+          "letter": "i",
+          "source": 10,
+          "target": [10]
+        },
+        {
+          "letter": "s",
+          "source": 10,
+          "target": [9]
+        },
+        {
+          "letter": "eu",
+          "source": 10,
+          "target": [10]
+        },
+        {
+          "letter": "em",
+          "source": 10,
+          "target": [10]
+        },
+        {
+          "letter": "pr",
+          "source": 10,
+          "target": [38]
+        },
+        {
+          "letter": "pw",
+          "source": 10,
+          "target": [21]
+        },
+        {
+          "letter": "pemr",
+          "source": 10,
+          "target": [39]
+        },
+        {
+          "letter": "pemw",
+          "source": 10,
+          "target": [40]
+        },
+        {
+          "letter": "psu",
+          "source": 10,
+          "target": [41]
+        },
+        {
+          "letter": "i",
+          "source": 11,
+          "target": [11]
+        },
+        {
+          "letter": "s",
+          "source": 11,
+          "target": [34]
+        },
+        {
+          "letter": "eu",
+          "source": 11,
+          "target": [38]
+        },
+        {
+          "letter": "em",
+          "source": 11,
+          "target": [38]
+        },
+        {
+          "letter": "pr",
+          "source": 11,
+          "target": [42]
+        },
+        {
+          "letter": "pw",
+          "source": 11,
+          "target": [26]
+        },
+        {
+          "letter": "pemr",
+          "source": 11,
+          "target": [12]
+        },
+        {
+          "letter": "pemw",
+          "source": 11,
+          "target": [43]
+        },
+        {
+          "letter": "psu",
+          "source": 11,
+          "target": [14]
+        },
+        {
+          "letter": "i",
+          "source": 12,
+          "target": [12]
+        },
+        {
+          "letter": "s",
+          "source": 12,
+          "target": [35]
+        },
+        {
+          "letter": "eu",
+          "source": 12,
+          "target": [39]
+        },
+        {
+          "letter": "em",
+          "source": 12,
+          "target": [39]
+        },
+        {
+          "letter": "pr",
+          "source": 12,
+          "target": [12]
+        },
+        {
+          "letter": "pw",
+          "source": 12,
+          "target": [28]
+        },
+        {
+          "letter": "pemr",
+          "source": 12,
+          "target": [12]
+        },
+        {
+          "letter": "pemw",
+          "source": 12,
+          "target": [44]
+        },
+        {
+          "letter": "psu",
+          "source": 12,
+          "target": [45]
+        },
+        {
+          "letter": "i",
+          "source": 13,
+          "target": [13]
+        },
+        {
+          "letter": "s",
+          "source": 13,
+          "target": [36]
+        },
+        {
+          "letter": "eu",
+          "source": 13,
+          "target": [40]
+        },
+        {
+          "letter": "em",
+          "source": 13,
+          "target": [40]
+        },
+        {
+          "letter": "pr",
+          "source": 13,
+          "target": [43]
+        },
+        {
+          "letter": "pw",
+          "source": 13,
+          "target": [29]
+        },
+        {
+          "letter": "pemr",
+          "source": 13,
+          "target": [44]
+        },
+        {
+          "letter": "pemw",
+          "source": 13,
+          "target": [13]
+        },
+        {
+          "letter": "psu",
+          "source": 13,
+          "target": [46]
+        },
+        {
+          "letter": "i",
+          "source": 14,
+          "target": [14]
+        },
+        {
+          "letter": "s",
+          "source": 14,
+          "target": [37]
+        },
+        {
+          "letter": "eu",
+          "source": 14,
+          "target": [41]
+        },
+        {
+          "letter": "em",
+          "source": 14,
+          "target": [41]
+        },
+        {
+          "letter": "pr",
+          "source": 14,
+          "target": [14]
+        },
+        {
+          "letter": "pw",
+          "source": 14,
+          "target": [30]
+        },
+        {
+          "letter": "pemr",
+          "source": 14,
+          "target": [45]
+        },
+        {
+          "letter": "pemw",
+          "source": 14,
+          "target": [46]
+        },
+        {
+          "letter": "psu",
+          "source": 14,
+          "target": [14]
+        },
+        {
+          "letter": "i",
+          "source": 15,
+          "target": [34]
+        },
+        {
+          "letter": "s",
+          "source": 15,
+          "target": [15]
+        },
+        {
+          "letter": "eu",
+          "source": 15,
+          "target": [15]
+        },
+        {
+          "letter": "em",
+          "source": 15,
+          "target": [15]
+        },
+        {
+          "letter": "pr",
+          "source": 15,
+          "target": [47]
+        },
+        {
+          "letter": "pw",
+          "source": 15,
+          "target": [48]
+        },
+        {
+          "letter": "pemr",
+          "source": 15,
+          "target": [17]
+        },
+        {
+          "letter": "pemw",
+          "source": 15,
+          "target": [49]
+        },
+        {
+          "letter": "psu",
+          "source": 15,
+          "target": [19]
+        },
+        {
+          "letter": "i",
+          "source": 16,
+          "target": [16]
+        },
+        {
+          "letter": "s",
+          "source": 16,
+          "target": [16]
+        },
+        {
+          "letter": "eu",
+          "source": 16,
+          "target": [16]
+        },
+        {
+          "letter": "em",
+          "source": 16,
+          "target": [16]
+        },
+        {
+          "letter": "pr",
+          "source": 16,
+          "target": [48]
+        },
+        {
+          "letter": "pw",
+          "source": 16,
+          "target": [16]
+        },
+        {
+          "letter": "pemr",
+          "source": 16,
+          "target": [50]
+        },
+        {
+          "letter": "pemw",
+          "source": 16,
+          "target": [51]
+        },
+        {
+          "letter": "psu",
+          "source": 16,
+          "target": [52]
+        },
+        {
+          "letter": "i",
+          "source": 17,
+          "target": [35]
+        },
+        {
+          "letter": "s",
+          "source": 17,
+          "target": [17]
+        },
+        {
+          "letter": "eu",
+          "source": 17,
+          "target": [17]
+        },
+        {
+          "letter": "em",
+          "source": 17,
+          "target": [17]
+        },
+        {
+          "letter": "pr",
+          "source": 17,
+          "target": [17]
+        },
+        {
+          "letter": "pw",
+          "source": 17,
+          "target": [50]
+        },
+        {
+          "letter": "pemr",
+          "source": 17,
+          "target": [17]
+        },
+        {
+          "letter": "pemw",
+          "source": 17,
+          "target": [53]
+        },
+        {
+          "letter": "psu",
+          "source": 17,
+          "target": [54]
+        },
+        {
+          "letter": "i",
+          "source": 18,
+          "target": [36]
+        },
+        {
+          "letter": "s",
+          "source": 18,
+          "target": [18]
+        },
+        {
+          "letter": "eu",
+          "source": 18,
+          "target": [18]
+        },
+        {
+          "letter": "em",
+          "source": 18,
+          "target": [18]
+        },
+        {
+          "letter": "pr",
+          "source": 18,
+          "target": [49]
+        },
+        {
+          "letter": "pw",
+          "source": 18,
+          "target": [51]
+        },
+        {
+          "letter": "pemr",
+          "source": 18,
+          "target": [53]
+        },
+        {
+          "letter": "pemw",
+          "source": 18,
+          "target": [18]
+        },
+        {
+          "letter": "psu",
+          "source": 18,
+          "target": [55]
+        },
+        {
+          "letter": "i",
+          "source": 19,
+          "target": [37]
+        },
+        {
+          "letter": "s",
+          "source": 19,
+          "target": [19]
+        },
+        {
+          "letter": "eu",
+          "source": 19,
+          "target": [19]
+        },
+        {
+          "letter": "em",
+          "source": 19,
+          "target": [19]
+        },
+        {
+          "letter": "pr",
+          "source": 19,
+          "target": [19]
+        },
+        {
+          "letter": "pw",
+          "source": 19,
+          "target": [52]
+        },
+        {
+          "letter": "pemr",
+          "source": 19,
+          "target": [54]
+        },
+        {
+          "letter": "pemw",
+          "source": 19,
+          "target": [55]
+        },
+        {
+          "letter": "psu",
+          "source": 19,
+          "target": [19]
+        },
+        {
+          "letter": "i",
+          "source": 20,
+          "target": [38]
+        },
+        {
+          "letter": "s",
+          "source": 20,
+          "target": [15]
+        },
+        {
+          "letter": "eu",
+          "source": 20,
+          "target": [20]
+        },
+        {
+          "letter": "em",
+          "source": 20,
+          "target": [20]
+        },
+        {
+          "letter": "pr",
+          "source": 20,
+          "target": [56]
+        },
+        {
+          "letter": "pw",
+          "source": 20,
+          "target": [57]
+        },
+        {
+          "letter": "pemr",
+          "source": 20,
+          "target": [22]
+        },
+        {
+          "letter": "pemw",
+          "source": 20,
+          "target": [58]
+        },
+        {
+          "letter": "psu",
+          "source": 20,
+          "target": [24]
+        },
+        {
+          "letter": "i",
+          "source": 21,
+          "target": [21]
+        },
+        {
+          "letter": "s",
+          "source": 21,
+          "target": [16]
+        },
+        {
+          "letter": "eu",
+          "source": 21,
+          "target": [21]
+        },
+        {
+          "letter": "em",
+          "source": 21,
+          "target": [21]
+        },
+        {
+          "letter": "pr",
+          "source": 21,
+          "target": [57]
+        },
+        {
+          "letter": "pw",
+          "source": 21,
+          "target": [21]
+        },
+        {
+          "letter": "pemr",
+          "source": 21,
+          "target": [59]
+        },
+        {
+          "letter": "pemw",
+          "source": 21,
+          "target": [60]
+        },
+        {
+          "letter": "psu",
+          "source": 21,
+          "target": [61]
+        },
+        {
+          "letter": "i",
+          "source": 22,
+          "target": [39]
+        },
+        {
+          "letter": "s",
+          "source": 22,
+          "target": [17]
+        },
+        {
+          "letter": "eu",
+          "source": 22,
+          "target": [22]
+        },
+        {
+          "letter": "em",
+          "source": 22,
+          "target": [22]
+        },
+        {
+          "letter": "pr",
+          "source": 22,
+          "target": [22]
+        },
+        {
+          "letter": "pw",
+          "source": 22,
+          "target": [59]
+        },
+        {
+          "letter": "pemr",
+          "source": 22,
+          "target": [22]
+        },
+        {
+          "letter": "pemw",
+          "source": 22,
+          "target": [62]
+        },
+        {
+          "letter": "psu",
+          "source": 22,
+          "target": [63]
+        },
+        {
+          "letter": "i",
+          "source": 23,
+          "target": [40]
+        },
+        {
+          "letter": "s",
+          "source": 23,
+          "target": [18]
+        },
+        {
+          "letter": "eu",
+          "source": 23,
+          "target": [23]
+        },
+        {
+          "letter": "em",
+          "source": 23,
+          "target": [23]
+        },
+        {
+          "letter": "pr",
+          "source": 23,
+          "target": [58]
+        },
+        {
+          "letter": "pw",
+          "source": 23,
+          "target": [60]
+        },
+        {
+          "letter": "pemr",
+          "source": 23,
+          "target": [62]
+        },
+        {
+          "letter": "pemw",
+          "source": 23,
+          "target": [23]
+        },
+        {
+          "letter": "psu",
+          "source": 23,
+          "target": [64]
+        },
+        {
+          "letter": "i",
+          "source": 24,
+          "target": [41]
+        },
+        {
+          "letter": "s",
+          "source": 24,
+          "target": [19]
+        },
+        {
+          "letter": "eu",
+          "source": 24,
+          "target": [24]
+        },
+        {
+          "letter": "em",
+          "source": 24,
+          "target": [24]
+        },
+        {
+          "letter": "pr",
+          "source": 24,
+          "target": [24]
+        },
+        {
+          "letter": "pw",
+          "source": 24,
+          "target": [61]
+        },
+        {
+          "letter": "pemr",
+          "source": 24,
+          "target": [63]
+        },
+        {
+          "letter": "pemw",
+          "source": 24,
+          "target": [64]
+        },
+        {
+          "letter": "psu",
+          "source": 24,
+          "target": [24]
+        },
+        {
+          "letter": "i",
+          "source": 25,
+          "target": [42]
+        },
+        {
+          "letter": "s",
+          "source": 25,
+          "target": [47]
+        },
+        {
+          "letter": "eu",
+          "source": 25,
+          "target": [56]
+        },
+        {
+          "letter": "em",
+          "source": 25,
+          "target": [56]
+        },
+        {
+          "letter": "pr",
+          "source": 25,
+          "target": [25]
+        },
+        {
+          "letter": "pw",
+          "source": 25,
+          "target": [65]
+        },
+        {
+          "letter": "pemr",
+          "source": 25,
+          "target": [6]
+        },
+        {
+          "letter": "pemw",
+          "source": 25,
+          "target": [66]
+        },
+        {
+          "letter": "psu",
+          "source": 25,
+          "target": [8]
+        },
+        {
+          "letter": "i",
+          "source": 26,
+          "target": [26]
+        },
+        {
+          "letter": "s",
+          "source": 26,
+          "target": [48]
+        },
+        {
+          "letter": "eu",
+          "source": 26,
+          "target": [57]
+        },
+        {
+          "letter": "em",
+          "source": 26,
+          "target": [57]
+        },
+        {
+          "letter": "pr",
+          "source": 26,
+          "target": [65]
+        },
+        {
+          "letter": "pw",
+          "source": 26,
+          "target": [26]
+        },
+        {
+          "letter": "pemr",
+          "source": 26,
+          "target": [28]
+        },
+        {
+          "letter": "pemw",
+          "source": 26,
+          "target": [67]
+        },
+        {
+          "letter": "psu",
+          "source": 26,
+          "target": [30]
+        },
+        {
+          "letter": "i",
+          "source": 27,
+          "target": [43]
+        },
+        {
+          "letter": "s",
+          "source": 27,
+          "target": [49]
+        },
+        {
+          "letter": "eu",
+          "source": 27,
+          "target": [58]
+        },
+        {
+          "letter": "em",
+          "source": 27,
+          "target": [58]
+        },
+        {
+          "letter": "pr",
+          "source": 27,
+          "target": [66]
+        },
+        {
+          "letter": "pw",
+          "source": 27,
+          "target": [67]
+        },
+        {
+          "letter": "pemr",
+          "source": 27,
+          "target": [31]
+        },
+        {
+          "letter": "pemw",
+          "source": 27,
+          "target": [27]
+        },
+        {
+          "letter": "psu",
+          "source": 27,
+          "target": [33]
+        },
+        {
+          "letter": "i",
+          "source": 28,
+          "target": [28]
+        },
+        {
+          "letter": "s",
+          "source": 28,
+          "target": [50]
+        },
+        {
+          "letter": "eu",
+          "source": 28,
+          "target": [59]
+        },
+        {
+          "letter": "em",
+          "source": 28,
+          "target": [59]
+        },
+        {
+          "letter": "pr",
+          "source": 28,
+          "target": [28]
+        },
+        {
+          "letter": "pw",
+          "source": 28,
+          "target": [28]
+        },
+        {
+          "letter": "pemr",
+          "source": 28,
+          "target": [28]
+        },
+        {
+          "letter": "pemw",
+          "source": 28,
+          "target": [68]
+        },
+        {
+          "letter": "psu",
+          "source": 28,
+          "target": [69]
+        },
+        {
+          "letter": "i",
+          "source": 29,
+          "target": [29]
+        },
+        {
+          "letter": "s",
+          "source": 29,
+          "target": [51]
+        },
+        {
+          "letter": "eu",
+          "source": 29,
+          "target": [60]
+        },
+        {
+          "letter": "em",
+          "source": 29,
+          "target": [60]
+        },
+        {
+          "letter": "pr",
+          "source": 29,
+          "target": [67]
+        },
+        {
+          "letter": "pw",
+          "source": 29,
+          "target": [29]
+        },
+        {
+          "letter": "pemr",
+          "source": 29,
+          "target": [68]
+        },
+        {
+          "letter": "pemw",
+          "source": 29,
+          "target": [29]
+        },
+        {
+          "letter": "psu",
+          "source": 29,
+          "target": [70]
+        },
+        {
+          "letter": "i",
+          "source": 30,
+          "target": [30]
+        },
+        {
+          "letter": "s",
+          "source": 30,
+          "target": [52]
+        },
+        {
+          "letter": "eu",
+          "source": 30,
+          "target": [61]
+        },
+        {
+          "letter": "em",
+          "source": 30,
+          "target": [61]
+        },
+        {
+          "letter": "pr",
+          "source": 30,
+          "target": [30]
+        },
+        {
+          "letter": "pw",
+          "source": 30,
+          "target": [30]
+        },
+        {
+          "letter": "pemr",
+          "source": 30,
+          "target": [69]
+        },
+        {
+          "letter": "pemw",
+          "source": 30,
+          "target": [70]
+        },
+        {
+          "letter": "psu",
+          "source": 30,
+          "target": [30]
+        },
+        {
+          "letter": "i",
+          "source": 31,
+          "target": [44]
+        },
+        {
+          "letter": "s",
+          "source": 31,
+          "target": [53]
+        },
+        {
+          "letter": "eu",
+          "source": 31,
+          "target": [62]
+        },
+        {
+          "letter": "em",
+          "source": 31,
+          "target": [62]
+        },
+        {
+          "letter": "pr",
+          "source": 31,
+          "target": [31]
+        },
+        {
+          "letter": "pw",
+          "source": 31,
+          "target": [68]
+        },
+        {
+          "letter": "pemr",
+          "source": 31,
+          "target": [31]
+        },
+        {
+          "letter": "pemw",
+          "source": 31,
+          "target": [31]
+        },
+        {
+          "letter": "psu",
+          "source": 31,
+          "target": [71]
+        },
+        {
+          "letter": "i",
+          "source": 32,
+          "target": [45]
+        },
+        {
+          "letter": "s",
+          "source": 32,
+          "target": [54]
+        },
+        {
+          "letter": "eu",
+          "source": 32,
+          "target": [63]
+        },
+        {
+          "letter": "em",
+          "source": 32,
+          "target": [63]
+        },
+        {
+          "letter": "pr",
+          "source": 32,
+          "target": [32]
+        },
+        {
+          "letter": "pw",
+          "source": 32,
+          "target": [69]
+        },
+        {
+          "letter": "pemr",
+          "source": 32,
+          "target": [32]
+        },
+        {
+          "letter": "pemw",
+          "source": 32,
+          "target": [71]
+        },
+        {
+          "letter": "psu",
+          "source": 32,
+          "target": [32]
+        },
+        {
+          "letter": "i",
+          "source": 33,
+          "target": [46]
+        },
+        {
+          "letter": "s",
+          "source": 33,
+          "target": [55]
+        },
+        {
+          "letter": "eu",
+          "source": 33,
+          "target": [64]
+        },
+        {
+          "letter": "em",
+          "source": 33,
+          "target": [64]
+        },
+        {
+          "letter": "pr",
+          "source": 33,
+          "target": [33]
+        },
+        {
+          "letter": "pw",
+          "source": 33,
+          "target": [70]
+        },
+        {
+          "letter": "pemr",
+          "source": 33,
+          "target": [71]
+        },
+        {
+          "letter": "pemw",
+          "source": 33,
+          "target": [33]
+        },
+        {
+          "letter": "psu",
+          "source": 33,
+          "target": [33]
+        },
+        {
+          "letter": "i",
+          "source": 34,
+          "target": [34]
+        },
+        {
+          "letter": "s",
+          "source": 34,
+          "target": [34]
+        },
+        {
+          "letter": "eu",
+          "source": 34,
+          "target": [34]
+        },
+        {
+          "letter": "em",
+          "source": 34,
+          "target": [34]
+        },
+        {
+          "letter": "pr",
+          "source": 34,
+          "target": [72]
+        },
+        {
+          "letter": "pw",
+          "source": 34,
+          "target": [48]
+        },
+        {
+          "letter": "pemr",
+          "source": 34,
+          "target": [35]
+        },
+        {
+          "letter": "pemw",
+          "source": 34,
+          "target": [73]
+        },
+        {
+          "letter": "psu",
+          "source": 34,
+          "target": [37]
+        },
+        {
+          "letter": "i",
+          "source": 35,
+          "target": [35]
+        },
+        {
+          "letter": "s",
+          "source": 35,
+          "target": [35]
+        },
+        {
+          "letter": "eu",
+          "source": 35,
+          "target": [35]
+        },
+        {
+          "letter": "em",
+          "source": 35,
+          "target": [35]
+        },
+        {
+          "letter": "pr",
+          "source": 35,
+          "target": [35]
+        },
+        {
+          "letter": "pw",
+          "source": 35,
+          "target": [50]
+        },
+        {
+          "letter": "pemr",
+          "source": 35,
+          "target": [35]
+        },
+        {
+          "letter": "pemw",
+          "source": 35,
+          "target": [74]
+        },
+        {
+          "letter": "psu",
+          "source": 35,
+          "target": [75]
+        },
+        {
+          "letter": "i",
+          "source": 36,
+          "target": [36]
+        },
+        {
+          "letter": "s",
+          "source": 36,
+          "target": [36]
+        },
+        {
+          "letter": "eu",
+          "source": 36,
+          "target": [36]
+        },
+        {
+          "letter": "em",
+          "source": 36,
+          "target": [36]
+        },
+        {
+          "letter": "pr",
+          "source": 36,
+          "target": [73]
+        },
+        {
+          "letter": "pw",
+          "source": 36,
+          "target": [51]
+        },
+        {
+          "letter": "pemr",
+          "source": 36,
+          "target": [74]
+        },
+        {
+          "letter": "pemw",
+          "source": 36,
+          "target": [36]
+        },
+        {
+          "letter": "psu",
+          "source": 36,
+          "target": [76]
+        },
+        {
+          "letter": "i",
+          "source": 37,
+          "target": [37]
+        },
+        {
+          "letter": "s",
+          "source": 37,
+          "target": [37]
+        },
+        {
+          "letter": "eu",
+          "source": 37,
+          "target": [37]
+        },
+        {
+          "letter": "em",
+          "source": 37,
+          "target": [37]
+        },
+        {
+          "letter": "pr",
+          "source": 37,
+          "target": [37]
+        },
+        {
+          "letter": "pw",
+          "source": 37,
+          "target": [52]
+        },
+        {
+          "letter": "pemr",
+          "source": 37,
+          "target": [75]
+        },
+        {
+          "letter": "pemw",
+          "source": 37,
+          "target": [76]
+        },
+        {
+          "letter": "psu",
+          "source": 37,
+          "target": [37]
+        },
+        {
+          "letter": "i",
+          "source": 38,
+          "target": [38]
+        },
+        {
+          "letter": "s",
+          "source": 38,
+          "target": [34]
+        },
+        {
+          "letter": "eu",
+          "source": 38,
+          "target": [38]
+        },
+        {
+          "letter": "em",
+          "source": 38,
+          "target": [38]
+        },
+        {
+          "letter": "pr",
+          "source": 38,
+          "target": [77]
+        },
+        {
+          "letter": "pw",
+          "source": 38,
+          "target": [57]
+        },
+        {
+          "letter": "pemr",
+          "source": 38,
+          "target": [39]
+        },
+        {
+          "letter": "pemw",
+          "source": 38,
+          "target": [78]
+        },
+        {
+          "letter": "psu",
+          "source": 38,
+          "target": [41]
+        },
+        {
+          "letter": "i",
+          "source": 39,
+          "target": [39]
+        },
+        {
+          "letter": "s",
+          "source": 39,
+          "target": [35]
+        },
+        {
+          "letter": "eu",
+          "source": 39,
+          "target": [39]
+        },
+        {
+          "letter": "em",
+          "source": 39,
+          "target": [39]
+        },
+        {
+          "letter": "pr",
+          "source": 39,
+          "target": [39]
+        },
+        {
+          "letter": "pw",
+          "source": 39,
+          "target": [59]
+        },
+        {
+          "letter": "pemr",
+          "source": 39,
+          "target": [39]
+        },
+        {
+          "letter": "pemw",
+          "source": 39,
+          "target": [79]
+        },
+        {
+          "letter": "psu",
+          "source": 39,
+          "target": [80]
+        },
+        {
+          "letter": "i",
+          "source": 40,
+          "target": [40]
+        },
+        {
+          "letter": "s",
+          "source": 40,
+          "target": [36]
+        },
+        {
+          "letter": "eu",
+          "source": 40,
+          "target": [40]
+        },
+        {
+          "letter": "em",
+          "source": 40,
+          "target": [40]
+        },
+        {
+          "letter": "pr",
+          "source": 40,
+          "target": [78]
+        },
+        {
+          "letter": "pw",
+          "source": 40,
+          "target": [60]
+        },
+        {
+          "letter": "pemr",
+          "source": 40,
+          "target": [79]
+        },
+        {
+          "letter": "pemw",
+          "source": 40,
+          "target": [40]
+        },
+        {
+          "letter": "psu",
+          "source": 40,
+          "target": [81]
+        },
+        {
+          "letter": "i",
+          "source": 41,
+          "target": [41]
+        },
+        {
+          "letter": "s",
+          "source": 41,
+          "target": [37]
+        },
+        {
+          "letter": "eu",
+          "source": 41,
+          "target": [41]
+        },
+        {
+          "letter": "em",
+          "source": 41,
+          "target": [41]
+        },
+        {
+          "letter": "pr",
+          "source": 41,
+          "target": [41]
+        },
+        {
+          "letter": "pw",
+          "source": 41,
+          "target": [61]
+        },
+        {
+          "letter": "pemr",
+          "source": 41,
+          "target": [80]
+        },
+        {
+          "letter": "pemw",
+          "source": 41,
+          "target": [81]
+        },
+        {
+          "letter": "psu",
+          "source": 41,
+          "target": [41]
+        },
+        {
+          "letter": "i",
+          "source": 42,
+          "target": [42]
+        },
+        {
+          "letter": "s",
+          "source": 42,
+          "target": [72]
+        },
+        {
+          "letter": "eu",
+          "source": 42,
+          "target": [77]
+        },
+        {
+          "letter": "em",
+          "source": 42,
+          "target": [77]
+        },
+        {
+          "letter": "pr",
+          "source": 42,
+          "target": [42]
+        },
+        {
+          "letter": "pw",
+          "source": 42,
+          "target": [65]
+        },
+        {
+          "letter": "pemr",
+          "source": 42,
+          "target": [12]
+        },
+        {
+          "letter": "pemw",
+          "source": 42,
+          "target": [82]
+        },
+        {
+          "letter": "psu",
+          "source": 42,
+          "target": [14]
+        },
+        {
+          "letter": "i",
+          "source": 43,
+          "target": [43]
+        },
+        {
+          "letter": "s",
+          "source": 43,
+          "target": [73]
+        },
+        {
+          "letter": "eu",
+          "source": 43,
+          "target": [78]
+        },
+        {
+          "letter": "em",
+          "source": 43,
+          "target": [78]
+        },
+        {
+          "letter": "pr",
+          "source": 43,
+          "target": [82]
+        },
+        {
+          "letter": "pw",
+          "source": 43,
+          "target": [67]
+        },
+        {
+          "letter": "pemr",
+          "source": 43,
+          "target": [44]
+        },
+        {
+          "letter": "pemw",
+          "source": 43,
+          "target": [43]
+        },
+        {
+          "letter": "psu",
+          "source": 43,
+          "target": [46]
+        },
+        {
+          "letter": "i",
+          "source": 44,
+          "target": [44]
+        },
+        {
+          "letter": "s",
+          "source": 44,
+          "target": [74]
+        },
+        {
+          "letter": "eu",
+          "source": 44,
+          "target": [79]
+        },
+        {
+          "letter": "em",
+          "source": 44,
+          "target": [79]
+        },
+        {
+          "letter": "pr",
+          "source": 44,
+          "target": [44]
+        },
+        {
+          "letter": "pw",
+          "source": 44,
+          "target": [68]
+        },
+        {
+          "letter": "pemr",
+          "source": 44,
+          "target": [44]
+        },
+        {
+          "letter": "pemw",
+          "source": 44,
+          "target": [44]
+        },
+        {
+          "letter": "psu",
+          "source": 44,
+          "target": [83]
+        },
+        {
+          "letter": "i",
+          "source": 45,
+          "target": [45]
+        },
+        {
+          "letter": "s",
+          "source": 45,
+          "target": [75]
+        },
+        {
+          "letter": "eu",
+          "source": 45,
+          "target": [80]
+        },
+        {
+          "letter": "em",
+          "source": 45,
+          "target": [80]
+        },
+        {
+          "letter": "pr",
+          "source": 45,
+          "target": [45]
+        },
+        {
+          "letter": "pw",
+          "source": 45,
+          "target": [69]
+        },
+        {
+          "letter": "pemr",
+          "source": 45,
+          "target": [45]
+        },
+        {
+          "letter": "pemw",
+          "source": 45,
+          "target": [83]
+        },
+        {
+          "letter": "psu",
+          "source": 45,
+          "target": [45]
+        },
+        {
+          "letter": "i",
+          "source": 46,
+          "target": [46]
+        },
+        {
+          "letter": "s",
+          "source": 46,
+          "target": [76]
+        },
+        {
+          "letter": "eu",
+          "source": 46,
+          "target": [81]
+        },
+        {
+          "letter": "em",
+          "source": 46,
+          "target": [81]
+        },
+        {
+          "letter": "pr",
+          "source": 46,
+          "target": [46]
+        },
+        {
+          "letter": "pw",
+          "source": 46,
+          "target": [70]
+        },
+        {
+          "letter": "pemr",
+          "source": 46,
+          "target": [83]
+        },
+        {
+          "letter": "pemw",
+          "source": 46,
+          "target": [46]
+        },
+        {
+          "letter": "psu",
+          "source": 46,
+          "target": [46]
+        },
+        {
+          "letter": "i",
+          "source": 47,
+          "target": [72]
+        },
+        {
+          "letter": "s",
+          "source": 47,
+          "target": [47]
+        },
+        {
+          "letter": "eu",
+          "source": 47,
+          "target": [47]
+        },
+        {
+          "letter": "em",
+          "source": 47,
+          "target": [47]
+        },
+        {
+          "letter": "pr",
+          "source": 47,
+          "target": [47]
+        },
+        {
+          "letter": "pw",
+          "source": 47,
+          "target": [84]
+        },
+        {
+          "letter": "pemr",
+          "source": 47,
+          "target": [17]
+        },
+        {
+          "letter": "pemw",
+          "source": 47,
+          "target": [85]
+        },
+        {
+          "letter": "psu",
+          "source": 47,
+          "target": [19]
+        },
+        {
+          "letter": "i",
+          "source": 48,
+          "target": [48]
+        },
+        {
+          "letter": "s",
+          "source": 48,
+          "target": [48]
+        },
+        {
+          "letter": "eu",
+          "source": 48,
+          "target": [48]
+        },
+        {
+          "letter": "em",
+          "source": 48,
+          "target": [48]
+        },
+        {
+          "letter": "pr",
+          "source": 48,
+          "target": [84]
+        },
+        {
+          "letter": "pw",
+          "source": 48,
+          "target": [48]
+        },
+        {
+          "letter": "pemr",
+          "source": 48,
+          "target": [50]
+        },
+        {
+          "letter": "pemw",
+          "source": 48,
+          "target": [86]
+        },
+        {
+          "letter": "psu",
+          "source": 48,
+          "target": [52]
+        },
+        {
+          "letter": "i",
+          "source": 49,
+          "target": [73]
+        },
+        {
+          "letter": "s",
+          "source": 49,
+          "target": [49]
+        },
+        {
+          "letter": "eu",
+          "source": 49,
+          "target": [49]
+        },
+        {
+          "letter": "em",
+          "source": 49,
+          "target": [49]
+        },
+        {
+          "letter": "pr",
+          "source": 49,
+          "target": [85]
+        },
+        {
+          "letter": "pw",
+          "source": 49,
+          "target": [86]
+        },
+        {
+          "letter": "pemr",
+          "source": 49,
+          "target": [53]
+        },
+        {
+          "letter": "pemw",
+          "source": 49,
+          "target": [49]
+        },
+        {
+          "letter": "psu",
+          "source": 49,
+          "target": [55]
+        },
+        {
+          "letter": "i",
+          "source": 50,
+          "target": [50]
+        },
+        {
+          "letter": "s",
+          "source": 50,
+          "target": [50]
+        },
+        {
+          "letter": "eu",
+          "source": 50,
+          "target": [50]
+        },
+        {
+          "letter": "em",
+          "source": 50,
+          "target": [50]
+        },
+        {
+          "letter": "pr",
+          "source": 50,
+          "target": [50]
+        },
+        {
+          "letter": "pw",
+          "source": 50,
+          "target": [50]
+        },
+        {
+          "letter": "pemr",
+          "source": 50,
+          "target": [50]
+        },
+        {
+          "letter": "pemw",
+          "source": 50,
+          "target": [87]
+        },
+        {
+          "letter": "psu",
+          "source": 50,
+          "target": [88]
+        },
+        {
+          "letter": "i",
+          "source": 51,
+          "target": [51]
+        },
+        {
+          "letter": "s",
+          "source": 51,
+          "target": [51]
+        },
+        {
+          "letter": "eu",
+          "source": 51,
+          "target": [51]
+        },
+        {
+          "letter": "em",
+          "source": 51,
+          "target": [51]
+        },
+        {
+          "letter": "pr",
+          "source": 51,
+          "target": [86]
+        },
+        {
+          "letter": "pw",
+          "source": 51,
+          "target": [51]
+        },
+        {
+          "letter": "pemr",
+          "source": 51,
+          "target": [87]
+        },
+        {
+          "letter": "pemw",
+          "source": 51,
+          "target": [51]
+        },
+        {
+          "letter": "psu",
+          "source": 51,
+          "target": [89]
+        },
+        {
+          "letter": "i",
+          "source": 52,
+          "target": [52]
+        },
+        {
+          "letter": "s",
+          "source": 52,
+          "target": [52]
+        },
+        {
+          "letter": "eu",
+          "source": 52,
+          "target": [52]
+        },
+        {
+          "letter": "em",
+          "source": 52,
+          "target": [52]
+        },
+        {
+          "letter": "pr",
+          "source": 52,
+          "target": [52]
+        },
+        {
+          "letter": "pw",
+          "source": 52,
+          "target": [52]
+        },
+        {
+          "letter": "pemr",
+          "source": 52,
+          "target": [88]
+        },
+        {
+          "letter": "pemw",
+          "source": 52,
+          "target": [89]
+        },
+        {
+          "letter": "psu",
+          "source": 52,
+          "target": [52]
+        },
+        {
+          "letter": "i",
+          "source": 53,
+          "target": [74]
+        },
+        {
+          "letter": "s",
+          "source": 53,
+          "target": [53]
+        },
+        {
+          "letter": "eu",
+          "source": 53,
+          "target": [53]
+        },
+        {
+          "letter": "em",
+          "source": 53,
+          "target": [53]
+        },
+        {
+          "letter": "pr",
+          "source": 53,
+          "target": [53]
+        },
+        {
+          "letter": "pw",
+          "source": 53,
+          "target": [87]
+        },
+        {
+          "letter": "pemr",
+          "source": 53,
+          "target": [53]
+        },
+        {
+          "letter": "pemw",
+          "source": 53,
+          "target": [53]
+        },
+        {
+          "letter": "psu",
+          "source": 53,
+          "target": [90]
+        },
+        {
+          "letter": "i",
+          "source": 54,
+          "target": [75]
+        },
+        {
+          "letter": "s",
+          "source": 54,
+          "target": [54]
+        },
+        {
+          "letter": "eu",
+          "source": 54,
+          "target": [54]
+        },
+        {
+          "letter": "em",
+          "source": 54,
+          "target": [54]
+        },
+        {
+          "letter": "pr",
+          "source": 54,
+          "target": [54]
+        },
+        {
+          "letter": "pw",
+          "source": 54,
+          "target": [88]
+        },
+        {
+          "letter": "pemr",
+          "source": 54,
+          "target": [54]
+        },
+        {
+          "letter": "pemw",
+          "source": 54,
+          "target": [90]
+        },
+        {
+          "letter": "psu",
+          "source": 54,
+          "target": [54]
+        },
+        {
+          "letter": "i",
+          "source": 55,
+          "target": [76]
+        },
+        {
+          "letter": "s",
+          "source": 55,
+          "target": [55]
+        },
+        {
+          "letter": "eu",
+          "source": 55,
+          "target": [55]
+        },
+        {
+          "letter": "em",
+          "source": 55,
+          "target": [55]
+        },
+        {
+          "letter": "pr",
+          "source": 55,
+          "target": [55]
+        },
+        {
+          "letter": "pw",
+          "source": 55,
+          "target": [89]
+        },
+        {
+          "letter": "pemr",
+          "source": 55,
+          "target": [90]
+        },
+        {
+          "letter": "pemw",
+          "source": 55,
+          "target": [55]
+        },
+        {
+          "letter": "psu",
+          "source": 55,
+          "target": [55]
+        },
+        {
+          "letter": "i",
+          "source": 56,
+          "target": [77]
+        },
+        {
+          "letter": "s",
+          "source": 56,
+          "target": [47]
+        },
+        {
+          "letter": "eu",
+          "source": 56,
+          "target": [56]
+        },
+        {
+          "letter": "em",
+          "source": 56,
+          "target": [56]
+        },
+        {
+          "letter": "pr",
+          "source": 56,
+          "target": [56]
+        },
+        {
+          "letter": "pw",
+          "source": 56,
+          "target": [91]
+        },
+        {
+          "letter": "pemr",
+          "source": 56,
+          "target": [22]
+        },
+        {
+          "letter": "pemw",
+          "source": 56,
+          "target": [92]
+        },
+        {
+          "letter": "psu",
+          "source": 56,
+          "target": [24]
+        },
+        {
+          "letter": "i",
+          "source": 57,
+          "target": [57]
+        },
+        {
+          "letter": "s",
+          "source": 57,
+          "target": [48]
+        },
+        {
+          "letter": "eu",
+          "source": 57,
+          "target": [57]
+        },
+        {
+          "letter": "em",
+          "source": 57,
+          "target": [57]
+        },
+        {
+          "letter": "pr",
+          "source": 57,
+          "target": [91]
+        },
+        {
+          "letter": "pw",
+          "source": 57,
+          "target": [57]
+        },
+        {
+          "letter": "pemr",
+          "source": 57,
+          "target": [59]
+        },
+        {
+          "letter": "pemw",
+          "source": 57,
+          "target": [93]
+        },
+        {
+          "letter": "psu",
+          "source": 57,
+          "target": [61]
+        },
+        {
+          "letter": "i",
+          "source": 58,
+          "target": [78]
+        },
+        {
+          "letter": "s",
+          "source": 58,
+          "target": [49]
+        },
+        {
+          "letter": "eu",
+          "source": 58,
+          "target": [58]
+        },
+        {
+          "letter": "em",
+          "source": 58,
+          "target": [58]
+        },
+        {
+          "letter": "pr",
+          "source": 58,
+          "target": [92]
+        },
+        {
+          "letter": "pw",
+          "source": 58,
+          "target": [93]
+        },
+        {
+          "letter": "pemr",
+          "source": 58,
+          "target": [62]
+        },
+        {
+          "letter": "pemw",
+          "source": 58,
+          "target": [58]
+        },
+        {
+          "letter": "psu",
+          "source": 58,
+          "target": [64]
+        },
+        {
+          "letter": "i",
+          "source": 59,
+          "target": [59]
+        },
+        {
+          "letter": "s",
+          "source": 59,
+          "target": [50]
+        },
+        {
+          "letter": "eu",
+          "source": 59,
+          "target": [59]
+        },
+        {
+          "letter": "em",
+          "source": 59,
+          "target": [59]
+        },
+        {
+          "letter": "pr",
+          "source": 59,
+          "target": [59]
+        },
+        {
+          "letter": "pw",
+          "source": 59,
+          "target": [59]
+        },
+        {
+          "letter": "pemr",
+          "source": 59,
+          "target": [59]
+        },
+        {
+          "letter": "pemw",
+          "source": 59,
+          "target": [94]
+        },
+        {
+          "letter": "psu",
+          "source": 59,
+          "target": [95]
+        },
+        {
+          "letter": "i",
+          "source": 60,
+          "target": [60]
+        },
+        {
+          "letter": "s",
+          "source": 60,
+          "target": [51]
+        },
+        {
+          "letter": "eu",
+          "source": 60,
+          "target": [60]
+        },
+        {
+          "letter": "em",
+          "source": 60,
+          "target": [60]
+        },
+        {
+          "letter": "pr",
+          "source": 60,
+          "target": [93]
+        },
+        {
+          "letter": "pw",
+          "source": 60,
+          "target": [60]
+        },
+        {
+          "letter": "pemr",
+          "source": 60,
+          "target": [94]
+        },
+        {
+          "letter": "pemw",
+          "source": 60,
+          "target": [60]
+        },
+        {
+          "letter": "psu",
+          "source": 60,
+          "target": [96]
+        },
+        {
+          "letter": "i",
+          "source": 61,
+          "target": [61]
+        },
+        {
+          "letter": "s",
+          "source": 61,
+          "target": [52]
+        },
+        {
+          "letter": "eu",
+          "source": 61,
+          "target": [61]
+        },
+        {
+          "letter": "em",
+          "source": 61,
+          "target": [61]
+        },
+        {
+          "letter": "pr",
+          "source": 61,
+          "target": [61]
+        },
+        {
+          "letter": "pw",
+          "source": 61,
+          "target": [61]
+        },
+        {
+          "letter": "pemr",
+          "source": 61,
+          "target": [95]
+        },
+        {
+          "letter": "pemw",
+          "source": 61,
+          "target": [96]
+        },
+        {
+          "letter": "psu",
+          "source": 61,
+          "target": [61]
+        },
+        {
+          "letter": "i",
+          "source": 62,
+          "target": [79]
+        },
+        {
+          "letter": "s",
+          "source": 62,
+          "target": [53]
+        },
+        {
+          "letter": "eu",
+          "source": 62,
+          "target": [62]
+        },
+        {
+          "letter": "em",
+          "source": 62,
+          "target": [62]
+        },
+        {
+          "letter": "pr",
+          "source": 62,
+          "target": [62]
+        },
+        {
+          "letter": "pw",
+          "source": 62,
+          "target": [94]
+        },
+        {
+          "letter": "pemr",
+          "source": 62,
+          "target": [62]
+        },
+        {
+          "letter": "pemw",
+          "source": 62,
+          "target": [62]
+        },
+        {
+          "letter": "psu",
+          "source": 62,
+          "target": [97]
+        },
+        {
+          "letter": "i",
+          "source": 63,
+          "target": [80]
+        },
+        {
+          "letter": "s",
+          "source": 63,
+          "target": [54]
+        },
+        {
+          "letter": "eu",
+          "source": 63,
+          "target": [63]
+        },
+        {
+          "letter": "em",
+          "source": 63,
+          "target": [63]
+        },
+        {
+          "letter": "pr",
+          "source": 63,
+          "target": [63]
+        },
+        {
+          "letter": "pw",
+          "source": 63,
+          "target": [95]
+        },
+        {
+          "letter": "pemr",
+          "source": 63,
+          "target": [63]
+        },
+        {
+          "letter": "pemw",
+          "source": 63,
+          "target": [97]
+        },
+        {
+          "letter": "psu",
+          "source": 63,
+          "target": [63]
+        },
+        {
+          "letter": "i",
+          "source": 64,
+          "target": [81]
+        },
+        {
+          "letter": "s",
+          "source": 64,
+          "target": [55]
+        },
+        {
+          "letter": "eu",
+          "source": 64,
+          "target": [64]
+        },
+        {
+          "letter": "em",
+          "source": 64,
+          "target": [64]
+        },
+        {
+          "letter": "pr",
+          "source": 64,
+          "target": [64]
+        },
+        {
+          "letter": "pw",
+          "source": 64,
+          "target": [96]
+        },
+        {
+          "letter": "pemr",
+          "source": 64,
+          "target": [97]
+        },
+        {
+          "letter": "pemw",
+          "source": 64,
+          "target": [64]
+        },
+        {
+          "letter": "psu",
+          "source": 64,
+          "target": [64]
+        },
+        {
+          "letter": "i",
+          "source": 65,
+          "target": [65]
+        },
+        {
+          "letter": "s",
+          "source": 65,
+          "target": [84]
+        },
+        {
+          "letter": "eu",
+          "source": 65,
+          "target": [91]
+        },
+        {
+          "letter": "em",
+          "source": 65,
+          "target": [91]
+        },
+        {
+          "letter": "pr",
+          "source": 65,
+          "target": [65]
+        },
+        {
+          "letter": "pw",
+          "source": 65,
+          "target": [65]
+        },
+        {
+          "letter": "pemr",
+          "source": 65,
+          "target": [28]
+        },
+        {
+          "letter": "pemw",
+          "source": 65,
+          "target": [98]
+        },
+        {
+          "letter": "psu",
+          "source": 65,
+          "target": [30]
+        },
+        {
+          "letter": "i",
+          "source": 66,
+          "target": [82]
+        },
+        {
+          "letter": "s",
+          "source": 66,
+          "target": [85]
+        },
+        {
+          "letter": "eu",
+          "source": 66,
+          "target": [92]
+        },
+        {
+          "letter": "em",
+          "source": 66,
+          "target": [92]
+        },
+        {
+          "letter": "pr",
+          "source": 66,
+          "target": [66]
+        },
+        {
+          "letter": "pw",
+          "source": 66,
+          "target": [98]
+        },
+        {
+          "letter": "pemr",
+          "source": 66,
+          "target": [31]
+        },
+        {
+          "letter": "pemw",
+          "source": 66,
+          "target": [66]
+        },
+        {
+          "letter": "psu",
+          "source": 66,
+          "target": [33]
+        },
+        {
+          "letter": "i",
+          "source": 67,
+          "target": [67]
+        },
+        {
+          "letter": "s",
+          "source": 67,
+          "target": [86]
+        },
+        {
+          "letter": "eu",
+          "source": 67,
+          "target": [93]
+        },
+        {
+          "letter": "em",
+          "source": 67,
+          "target": [93]
+        },
+        {
+          "letter": "pr",
+          "source": 67,
+          "target": [98]
+        },
+        {
+          "letter": "pw",
+          "source": 67,
+          "target": [67]
+        },
+        {
+          "letter": "pemr",
+          "source": 67,
+          "target": [68]
+        },
+        {
+          "letter": "pemw",
+          "source": 67,
+          "target": [67]
+        },
+        {
+          "letter": "psu",
+          "source": 67,
+          "target": [70]
+        },
+        {
+          "letter": "i",
+          "source": 68,
+          "target": [68]
+        },
+        {
+          "letter": "s",
+          "source": 68,
+          "target": [87]
+        },
+        {
+          "letter": "eu",
+          "source": 68,
+          "target": [94]
+        },
+        {
+          "letter": "em",
+          "source": 68,
+          "target": [94]
+        },
+        {
+          "letter": "pr",
+          "source": 68,
+          "target": [68]
+        },
+        {
+          "letter": "pw",
+          "source": 68,
+          "target": [68]
+        },
+        {
+          "letter": "pemr",
+          "source": 68,
+          "target": [68]
+        },
+        {
+          "letter": "pemw",
+          "source": 68,
+          "target": [68]
+        },
+        {
+          "letter": "psu",
+          "source": 68,
+          "target": [99]
+        },
+        {
+          "letter": "i",
+          "source": 69,
+          "target": [69]
+        },
+        {
+          "letter": "s",
+          "source": 69,
+          "target": [88]
+        },
+        {
+          "letter": "eu",
+          "source": 69,
+          "target": [95]
+        },
+        {
+          "letter": "em",
+          "source": 69,
+          "target": [95]
+        },
+        {
+          "letter": "pr",
+          "source": 69,
+          "target": [69]
+        },
+        {
+          "letter": "pw",
+          "source": 69,
+          "target": [69]
+        },
+        {
+          "letter": "pemr",
+          "source": 69,
+          "target": [69]
+        },
+        {
+          "letter": "pemw",
+          "source": 69,
+          "target": [99]
+        },
+        {
+          "letter": "psu",
+          "source": 69,
+          "target": [69]
+        },
+        {
+          "letter": "i",
+          "source": 70,
+          "target": [70]
+        },
+        {
+          "letter": "s",
+          "source": 70,
+          "target": [89]
+        },
+        {
+          "letter": "eu",
+          "source": 70,
+          "target": [96]
+        },
+        {
+          "letter": "em",
+          "source": 70,
+          "target": [96]
+        },
+        {
+          "letter": "pr",
+          "source": 70,
+          "target": [70]
+        },
+        {
+          "letter": "pw",
+          "source": 70,
+          "target": [70]
+        },
+        {
+          "letter": "pemr",
+          "source": 70,
+          "target": [99]
+        },
+        {
+          "letter": "pemw",
+          "source": 70,
+          "target": [70]
+        },
+        {
+          "letter": "psu",
+          "source": 70,
+          "target": [70]
+        },
+        {
+          "letter": "i",
+          "source": 71,
+          "target": [83]
+        },
+        {
+          "letter": "s",
+          "source": 71,
+          "target": [90]
+        },
+        {
+          "letter": "eu",
+          "source": 71,
+          "target": [97]
+        },
+        {
+          "letter": "em",
+          "source": 71,
+          "target": [97]
+        },
+        {
+          "letter": "pr",
+          "source": 71,
+          "target": [71]
+        },
+        {
+          "letter": "pw",
+          "source": 71,
+          "target": [99]
+        },
+        {
+          "letter": "pemr",
+          "source": 71,
+          "target": [71]
+        },
+        {
+          "letter": "pemw",
+          "source": 71,
+          "target": [71]
+        },
+        {
+          "letter": "psu",
+          "source": 71,
+          "target": [71]
+        },
+        {
+          "letter": "i",
+          "source": 72,
+          "target": [72]
+        },
+        {
+          "letter": "s",
+          "source": 72,
+          "target": [72]
+        },
+        {
+          "letter": "eu",
+          "source": 72,
+          "target": [72]
+        },
+        {
+          "letter": "em",
+          "source": 72,
+          "target": [72]
+        },
+        {
+          "letter": "pr",
+          "source": 72,
+          "target": [72]
+        },
+        {
+          "letter": "pw",
+          "source": 72,
+          "target": [84]
+        },
+        {
+          "letter": "pemr",
+          "source": 72,
+          "target": [35]
+        },
+        {
+          "letter": "pemw",
+          "source": 72,
+          "target": [100]
+        },
+        {
+          "letter": "psu",
+          "source": 72,
+          "target": [37]
+        },
+        {
+          "letter": "i",
+          "source": 73,
+          "target": [73]
+        },
+        {
+          "letter": "s",
+          "source": 73,
+          "target": [73]
+        },
+        {
+          "letter": "eu",
+          "source": 73,
+          "target": [73]
+        },
+        {
+          "letter": "em",
+          "source": 73,
+          "target": [73]
+        },
+        {
+          "letter": "pr",
+          "source": 73,
+          "target": [100]
+        },
+        {
+          "letter": "pw",
+          "source": 73,
+          "target": [86]
+        },
+        {
+          "letter": "pemr",
+          "source": 73,
+          "target": [74]
+        },
+        {
+          "letter": "pemw",
+          "source": 73,
+          "target": [73]
+        },
+        {
+          "letter": "psu",
+          "source": 73,
+          "target": [76]
+        },
+        {
+          "letter": "i",
+          "source": 74,
+          "target": [74]
+        },
+        {
+          "letter": "s",
+          "source": 74,
+          "target": [74]
+        },
+        {
+          "letter": "eu",
+          "source": 74,
+          "target": [74]
+        },
+        {
+          "letter": "em",
+          "source": 74,
+          "target": [74]
+        },
+        {
+          "letter": "pr",
+          "source": 74,
+          "target": [74]
+        },
+        {
+          "letter": "pw",
+          "source": 74,
+          "target": [87]
+        },
+        {
+          "letter": "pemr",
+          "source": 74,
+          "target": [74]
+        },
+        {
+          "letter": "pemw",
+          "source": 74,
+          "target": [74]
+        },
+        {
+          "letter": "psu",
+          "source": 74,
+          "target": [101]
+        },
+        {
+          "letter": "i",
+          "source": 75,
+          "target": [75]
+        },
+        {
+          "letter": "s",
+          "source": 75,
+          "target": [75]
+        },
+        {
+          "letter": "eu",
+          "source": 75,
+          "target": [75]
+        },
+        {
+          "letter": "em",
+          "source": 75,
+          "target": [75]
+        },
+        {
+          "letter": "pr",
+          "source": 75,
+          "target": [75]
+        },
+        {
+          "letter": "pw",
+          "source": 75,
+          "target": [88]
+        },
+        {
+          "letter": "pemr",
+          "source": 75,
+          "target": [75]
+        },
+        {
+          "letter": "pemw",
+          "source": 75,
+          "target": [101]
+        },
+        {
+          "letter": "psu",
+          "source": 75,
+          "target": [75]
+        },
+        {
+          "letter": "i",
+          "source": 76,
+          "target": [76]
+        },
+        {
+          "letter": "s",
+          "source": 76,
+          "target": [76]
+        },
+        {
+          "letter": "eu",
+          "source": 76,
+          "target": [76]
+        },
+        {
+          "letter": "em",
+          "source": 76,
+          "target": [76]
+        },
+        {
+          "letter": "pr",
+          "source": 76,
+          "target": [76]
+        },
+        {
+          "letter": "pw",
+          "source": 76,
+          "target": [89]
+        },
+        {
+          "letter": "pemr",
+          "source": 76,
+          "target": [101]
+        },
+        {
+          "letter": "pemw",
+          "source": 76,
+          "target": [76]
+        },
+        {
+          "letter": "psu",
+          "source": 76,
+          "target": [76]
+        },
+        {
+          "letter": "i",
+          "source": 77,
+          "target": [77]
+        },
+        {
+          "letter": "s",
+          "source": 77,
+          "target": [72]
+        },
+        {
+          "letter": "eu",
+          "source": 77,
+          "target": [77]
+        },
+        {
+          "letter": "em",
+          "source": 77,
+          "target": [77]
+        },
+        {
+          "letter": "pr",
+          "source": 77,
+          "target": [77]
+        },
+        {
+          "letter": "pw",
+          "source": 77,
+          "target": [91]
+        },
+        {
+          "letter": "pemr",
+          "source": 77,
+          "target": [39]
+        },
+        {
+          "letter": "pemw",
+          "source": 77,
+          "target": [102]
+        },
+        {
+          "letter": "psu",
+          "source": 77,
+          "target": [41]
+        },
+        {
+          "letter": "i",
+          "source": 78,
+          "target": [78]
+        },
+        {
+          "letter": "s",
+          "source": 78,
+          "target": [73]
+        },
+        {
+          "letter": "eu",
+          "source": 78,
+          "target": [78]
+        },
+        {
+          "letter": "em",
+          "source": 78,
+          "target": [78]
+        },
+        {
+          "letter": "pr",
+          "source": 78,
+          "target": [102]
+        },
+        {
+          "letter": "pw",
+          "source": 78,
+          "target": [93]
+        },
+        {
+          "letter": "pemr",
+          "source": 78,
+          "target": [79]
+        },
+        {
+          "letter": "pemw",
+          "source": 78,
+          "target": [78]
+        },
+        {
+          "letter": "psu",
+          "source": 78,
+          "target": [81]
+        },
+        {
+          "letter": "i",
+          "source": 79,
+          "target": [79]
+        },
+        {
+          "letter": "s",
+          "source": 79,
+          "target": [74]
+        },
+        {
+          "letter": "eu",
+          "source": 79,
+          "target": [79]
+        },
+        {
+          "letter": "em",
+          "source": 79,
+          "target": [79]
+        },
+        {
+          "letter": "pr",
+          "source": 79,
+          "target": [79]
+        },
+        {
+          "letter": "pw",
+          "source": 79,
+          "target": [94]
+        },
+        {
+          "letter": "pemr",
+          "source": 79,
+          "target": [79]
+        },
+        {
+          "letter": "pemw",
+          "source": 79,
+          "target": [79]
+        },
+        {
+          "letter": "psu",
+          "source": 79,
+          "target": [103]
+        },
+        {
+          "letter": "i",
+          "source": 80,
+          "target": [80]
+        },
+        {
+          "letter": "s",
+          "source": 80,
+          "target": [75]
+        },
+        {
+          "letter": "eu",
+          "source": 80,
+          "target": [80]
+        },
+        {
+          "letter": "em",
+          "source": 80,
+          "target": [80]
+        },
+        {
+          "letter": "pr",
+          "source": 80,
+          "target": [80]
+        },
+        {
+          "letter": "pw",
+          "source": 80,
+          "target": [95]
+        },
+        {
+          "letter": "pemr",
+          "source": 80,
+          "target": [80]
+        },
+        {
+          "letter": "pemw",
+          "source": 80,
+          "target": [103]
+        },
+        {
+          "letter": "psu",
+          "source": 80,
+          "target": [80]
+        },
+        {
+          "letter": "i",
+          "source": 81,
+          "target": [81]
+        },
+        {
+          "letter": "s",
+          "source": 81,
+          "target": [76]
+        },
+        {
+          "letter": "eu",
+          "source": 81,
+          "target": [81]
+        },
+        {
+          "letter": "em",
+          "source": 81,
+          "target": [81]
+        },
+        {
+          "letter": "pr",
+          "source": 81,
+          "target": [81]
+        },
+        {
+          "letter": "pw",
+          "source": 81,
+          "target": [96]
+        },
+        {
+          "letter": "pemr",
+          "source": 81,
+          "target": [103]
+        },
+        {
+          "letter": "pemw",
+          "source": 81,
+          "target": [81]
+        },
+        {
+          "letter": "psu",
+          "source": 81,
+          "target": [81]
+        },
+        {
+          "letter": "i",
+          "source": 82,
+          "target": [82]
+        },
+        {
+          "letter": "s",
+          "source": 82,
+          "target": [100]
+        },
+        {
+          "letter": "eu",
+          "source": 82,
+          "target": [102]
+        },
+        {
+          "letter": "em",
+          "source": 82,
+          "target": [102]
+        },
+        {
+          "letter": "pr",
+          "source": 82,
+          "target": [82]
+        },
+        {
+          "letter": "pw",
+          "source": 82,
+          "target": [98]
+        },
+        {
+          "letter": "pemr",
+          "source": 82,
+          "target": [44]
+        },
+        {
+          "letter": "pemw",
+          "source": 82,
+          "target": [82]
+        },
+        {
+          "letter": "psu",
+          "source": 82,
+          "target": [46]
+        },
+        {
+          "letter": "i",
+          "source": 83,
+          "target": [83]
+        },
+        {
+          "letter": "s",
+          "source": 83,
+          "target": [101]
+        },
+        {
+          "letter": "eu",
+          "source": 83,
+          "target": [103]
+        },
+        {
+          "letter": "em",
+          "source": 83,
+          "target": [103]
+        },
+        {
+          "letter": "pr",
+          "source": 83,
+          "target": [83]
+        },
+        {
+          "letter": "pw",
+          "source": 83,
+          "target": [99]
+        },
+        {
+          "letter": "pemr",
+          "source": 83,
+          "target": [83]
+        },
+        {
+          "letter": "pemw",
+          "source": 83,
+          "target": [83]
+        },
+        {
+          "letter": "psu",
+          "source": 83,
+          "target": [83]
+        },
+        {
+          "letter": "i",
+          "source": 84,
+          "target": [84]
+        },
+        {
+          "letter": "s",
+          "source": 84,
+          "target": [84]
+        },
+        {
+          "letter": "eu",
+          "source": 84,
+          "target": [84]
+        },
+        {
+          "letter": "em",
+          "source": 84,
+          "target": [84]
+        },
+        {
+          "letter": "pr",
+          "source": 84,
+          "target": [84]
+        },
+        {
+          "letter": "pw",
+          "source": 84,
+          "target": [84]
+        },
+        {
+          "letter": "pemr",
+          "source": 84,
+          "target": [50]
+        },
+        {
+          "letter": "pemw",
+          "source": 84,
+          "target": [104]
+        },
+        {
+          "letter": "psu",
+          "source": 84,
+          "target": [52]
+        },
+        {
+          "letter": "i",
+          "source": 85,
+          "target": [100]
+        },
+        {
+          "letter": "s",
+          "source": 85,
+          "target": [85]
+        },
+        {
+          "letter": "eu",
+          "source": 85,
+          "target": [85]
+        },
+        {
+          "letter": "em",
+          "source": 85,
+          "target": [85]
+        },
+        {
+          "letter": "pr",
+          "source": 85,
+          "target": [85]
+        },
+        {
+          "letter": "pw",
+          "source": 85,
+          "target": [104]
+        },
+        {
+          "letter": "pemr",
+          "source": 85,
+          "target": [53]
+        },
+        {
+          "letter": "pemw",
+          "source": 85,
+          "target": [85]
+        },
+        {
+          "letter": "psu",
+          "source": 85,
+          "target": [55]
+        },
+        {
+          "letter": "i",
+          "source": 86,
+          "target": [86]
+        },
+        {
+          "letter": "s",
+          "source": 86,
+          "target": [86]
+        },
+        {
+          "letter": "eu",
+          "source": 86,
+          "target": [86]
+        },
+        {
+          "letter": "em",
+          "source": 86,
+          "target": [86]
+        },
+        {
+          "letter": "pr",
+          "source": 86,
+          "target": [104]
+        },
+        {
+          "letter": "pw",
+          "source": 86,
+          "target": [86]
+        },
+        {
+          "letter": "pemr",
+          "source": 86,
+          "target": [87]
+        },
+        {
+          "letter": "pemw",
+          "source": 86,
+          "target": [86]
+        },
+        {
+          "letter": "psu",
+          "source": 86,
+          "target": [89]
+        },
+        {
+          "letter": "i",
+          "source": 87,
+          "target": [87]
+        },
+        {
+          "letter": "s",
+          "source": 87,
+          "target": [87]
+        },
+        {
+          "letter": "eu",
+          "source": 87,
+          "target": [87]
+        },
+        {
+          "letter": "em",
+          "source": 87,
+          "target": [87]
+        },
+        {
+          "letter": "pr",
+          "source": 87,
+          "target": [87]
+        },
+        {
+          "letter": "pw",
+          "source": 87,
+          "target": [87]
+        },
+        {
+          "letter": "pemr",
+          "source": 87,
+          "target": [87]
+        },
+        {
+          "letter": "pemw",
+          "source": 87,
+          "target": [87]
+        },
+        {
+          "letter": "psu",
+          "source": 87,
+          "target": [105]
+        },
+        {
+          "letter": "i",
+          "source": 88,
+          "target": [88]
+        },
+        {
+          "letter": "s",
+          "source": 88,
+          "target": [88]
+        },
+        {
+          "letter": "eu",
+          "source": 88,
+          "target": [88]
+        },
+        {
+          "letter": "em",
+          "source": 88,
+          "target": [88]
+        },
+        {
+          "letter": "pr",
+          "source": 88,
+          "target": [88]
+        },
+        {
+          "letter": "pw",
+          "source": 88,
+          "target": [88]
+        },
+        {
+          "letter": "pemr",
+          "source": 88,
+          "target": [88]
+        },
+        {
+          "letter": "pemw",
+          "source": 88,
+          "target": [105]
+        },
+        {
+          "letter": "psu",
+          "source": 88,
+          "target": [88]
+        },
+        {
+          "letter": "i",
+          "source": 89,
+          "target": [89]
+        },
+        {
+          "letter": "s",
+          "source": 89,
+          "target": [89]
+        },
+        {
+          "letter": "eu",
+          "source": 89,
+          "target": [89]
+        },
+        {
+          "letter": "em",
+          "source": 89,
+          "target": [89]
+        },
+        {
+          "letter": "pr",
+          "source": 89,
+          "target": [89]
+        },
+        {
+          "letter": "pw",
+          "source": 89,
+          "target": [89]
+        },
+        {
+          "letter": "pemr",
+          "source": 89,
+          "target": [105]
+        },
+        {
+          "letter": "pemw",
+          "source": 89,
+          "target": [89]
+        },
+        {
+          "letter": "psu",
+          "source": 89,
+          "target": [89]
+        },
+        {
+          "letter": "i",
+          "source": 90,
+          "target": [101]
+        },
+        {
+          "letter": "s",
+          "source": 90,
+          "target": [90]
+        },
+        {
+          "letter": "eu",
+          "source": 90,
+          "target": [90]
+        },
+        {
+          "letter": "em",
+          "source": 90,
+          "target": [90]
+        },
+        {
+          "letter": "pr",
+          "source": 90,
+          "target": [90]
+        },
+        {
+          "letter": "pw",
+          "source": 90,
+          "target": [105]
+        },
+        {
+          "letter": "pemr",
+          "source": 90,
+          "target": [90]
+        },
+        {
+          "letter": "pemw",
+          "source": 90,
+          "target": [90]
+        },
+        {
+          "letter": "psu",
+          "source": 90,
+          "target": [90]
+        },
+        {
+          "letter": "i",
+          "source": 91,
+          "target": [91]
+        },
+        {
+          "letter": "s",
+          "source": 91,
+          "target": [84]
+        },
+        {
+          "letter": "eu",
+          "source": 91,
+          "target": [91]
+        },
+        {
+          "letter": "em",
+          "source": 91,
+          "target": [91]
+        },
+        {
+          "letter": "pr",
+          "source": 91,
+          "target": [91]
+        },
+        {
+          "letter": "pw",
+          "source": 91,
+          "target": [91]
+        },
+        {
+          "letter": "pemr",
+          "source": 91,
+          "target": [59]
+        },
+        {
+          "letter": "pemw",
+          "source": 91,
+          "target": [106]
+        },
+        {
+          "letter": "psu",
+          "source": 91,
+          "target": [61]
+        },
+        {
+          "letter": "i",
+          "source": 92,
+          "target": [102]
+        },
+        {
+          "letter": "s",
+          "source": 92,
+          "target": [85]
+        },
+        {
+          "letter": "eu",
+          "source": 92,
+          "target": [92]
+        },
+        {
+          "letter": "em",
+          "source": 92,
+          "target": [92]
+        },
+        {
+          "letter": "pr",
+          "source": 92,
+          "target": [92]
+        },
+        {
+          "letter": "pw",
+          "source": 92,
+          "target": [106]
+        },
+        {
+          "letter": "pemr",
+          "source": 92,
+          "target": [62]
+        },
+        {
+          "letter": "pemw",
+          "source": 92,
+          "target": [92]
+        },
+        {
+          "letter": "psu",
+          "source": 92,
+          "target": [64]
+        },
+        {
+          "letter": "i",
+          "source": 93,
+          "target": [93]
+        },
+        {
+          "letter": "s",
+          "source": 93,
+          "target": [86]
+        },
+        {
+          "letter": "eu",
+          "source": 93,
+          "target": [93]
+        },
+        {
+          "letter": "em",
+          "source": 93,
+          "target": [93]
+        },
+        {
+          "letter": "pr",
+          "source": 93,
+          "target": [106]
+        },
+        {
+          "letter": "pw",
+          "source": 93,
+          "target": [93]
+        },
+        {
+          "letter": "pemr",
+          "source": 93,
+          "target": [94]
+        },
+        {
+          "letter": "pemw",
+          "source": 93,
+          "target": [93]
+        },
+        {
+          "letter": "psu",
+          "source": 93,
+          "target": [96]
+        },
+        {
+          "letter": "i",
+          "source": 94,
+          "target": [94]
+        },
+        {
+          "letter": "s",
+          "source": 94,
+          "target": [87]
+        },
+        {
+          "letter": "eu",
+          "source": 94,
+          "target": [94]
+        },
+        {
+          "letter": "em",
+          "source": 94,
+          "target": [94]
+        },
+        {
+          "letter": "pr",
+          "source": 94,
+          "target": [94]
+        },
+        {
+          "letter": "pw",
+          "source": 94,
+          "target": [94]
+        },
+        {
+          "letter": "pemr",
+          "source": 94,
+          "target": [94]
+        },
+        {
+          "letter": "pemw",
+          "source": 94,
+          "target": [94]
+        },
+        {
+          "letter": "psu",
+          "source": 94,
+          "target": [107]
+        },
+        {
+          "letter": "i",
+          "source": 95,
+          "target": [95]
+        },
+        {
+          "letter": "s",
+          "source": 95,
+          "target": [88]
+        },
+        {
+          "letter": "eu",
+          "source": 95,
+          "target": [95]
+        },
+        {
+          "letter": "em",
+          "source": 95,
+          "target": [95]
+        },
+        {
+          "letter": "pr",
+          "source": 95,
+          "target": [95]
+        },
+        {
+          "letter": "pw",
+          "source": 95,
+          "target": [95]
+        },
+        {
+          "letter": "pemr",
+          "source": 95,
+          "target": [95]
+        },
+        {
+          "letter": "pemw",
+          "source": 95,
+          "target": [107]
+        },
+        {
+          "letter": "psu",
+          "source": 95,
+          "target": [95]
+        },
+        {
+          "letter": "i",
+          "source": 96,
+          "target": [96]
+        },
+        {
+          "letter": "s",
+          "source": 96,
+          "target": [89]
+        },
+        {
+          "letter": "eu",
+          "source": 96,
+          "target": [96]
+        },
+        {
+          "letter": "em",
+          "source": 96,
+          "target": [96]
+        },
+        {
+          "letter": "pr",
+          "source": 96,
+          "target": [96]
+        },
+        {
+          "letter": "pw",
+          "source": 96,
+          "target": [96]
+        },
+        {
+          "letter": "pemr",
+          "source": 96,
+          "target": [107]
+        },
+        {
+          "letter": "pemw",
+          "source": 96,
+          "target": [96]
+        },
+        {
+          "letter": "psu",
+          "source": 96,
+          "target": [96]
+        },
+        {
+          "letter": "i",
+          "source": 97,
+          "target": [103]
+        },
+        {
+          "letter": "s",
+          "source": 97,
+          "target": [90]
+        },
+        {
+          "letter": "eu",
+          "source": 97,
+          "target": [97]
+        },
+        {
+          "letter": "em",
+          "source": 97,
+          "target": [97]
+        },
+        {
+          "letter": "pr",
+          "source": 97,
+          "target": [97]
+        },
+        {
+          "letter": "pw",
+          "source": 97,
+          "target": [107]
+        },
+        {
+          "letter": "pemr",
+          "source": 97,
+          "target": [97]
+        },
+        {
+          "letter": "pemw",
+          "source": 97,
+          "target": [97]
+        },
+        {
+          "letter": "psu",
+          "source": 97,
+          "target": [97]
+        },
+        {
+          "letter": "i",
+          "source": 98,
+          "target": [98]
+        },
+        {
+          "letter": "s",
+          "source": 98,
+          "target": [104]
+        },
+        {
+          "letter": "eu",
+          "source": 98,
+          "target": [106]
+        },
+        {
+          "letter": "em",
+          "source": 98,
+          "target": [106]
+        },
+        {
+          "letter": "pr",
+          "source": 98,
+          "target": [98]
+        },
+        {
+          "letter": "pw",
+          "source": 98,
+          "target": [98]
+        },
+        {
+          "letter": "pemr",
+          "source": 98,
+          "target": [68]
+        },
+        {
+          "letter": "pemw",
+          "source": 98,
+          "target": [98]
+        },
+        {
+          "letter": "psu",
+          "source": 98,
+          "target": [70]
+        },
+        {
+          "letter": "i",
+          "source": 99,
+          "target": [99]
+        },
+        {
+          "letter": "s",
+          "source": 99,
+          "target": [105]
+        },
+        {
+          "letter": "eu",
+          "source": 99,
+          "target": [107]
+        },
+        {
+          "letter": "em",
+          "source": 99,
+          "target": [107]
+        },
+        {
+          "letter": "pr",
+          "source": 99,
+          "target": [99]
+        },
+        {
+          "letter": "pw",
+          "source": 99,
+          "target": [99]
+        },
+        {
+          "letter": "pemr",
+          "source": 99,
+          "target": [99]
+        },
+        {
+          "letter": "pemw",
+          "source": 99,
+          "target": [99]
+        },
+        {
+          "letter": "psu",
+          "source": 99,
+          "target": [99]
+        },
+        {
+          "letter": "i",
+          "source": 100,
+          "target": [100]
+        },
+        {
+          "letter": "s",
+          "source": 100,
+          "target": [100]
+        },
+        {
+          "letter": "eu",
+          "source": 100,
+          "target": [100]
+        },
+        {
+          "letter": "em",
+          "source": 100,
+          "target": [100]
+        },
+        {
+          "letter": "pr",
+          "source": 100,
+          "target": [100]
+        },
+        {
+          "letter": "pw",
+          "source": 100,
+          "target": [104]
+        },
+        {
+          "letter": "pemr",
+          "source": 100,
+          "target": [74]
+        },
+        {
+          "letter": "pemw",
+          "source": 100,
+          "target": [100]
+        },
+        {
+          "letter": "psu",
+          "source": 100,
+          "target": [76]
+        },
+        {
+          "letter": "i",
+          "source": 101,
+          "target": [101]
+        },
+        {
+          "letter": "s",
+          "source": 101,
+          "target": [101]
+        },
+        {
+          "letter": "eu",
+          "source": 101,
+          "target": [101]
+        },
+        {
+          "letter": "em",
+          "source": 101,
+          "target": [101]
+        },
+        {
+          "letter": "pr",
+          "source": 101,
+          "target": [101]
+        },
+        {
+          "letter": "pw",
+          "source": 101,
+          "target": [105]
+        },
+        {
+          "letter": "pemr",
+          "source": 101,
+          "target": [101]
+        },
+        {
+          "letter": "pemw",
+          "source": 101,
+          "target": [101]
+        },
+        {
+          "letter": "psu",
+          "source": 101,
+          "target": [101]
+        },
+        {
+          "letter": "i",
+          "source": 102,
+          "target": [102]
+        },
+        {
+          "letter": "s",
+          "source": 102,
+          "target": [100]
+        },
+        {
+          "letter": "eu",
+          "source": 102,
+          "target": [102]
+        },
+        {
+          "letter": "em",
+          "source": 102,
+          "target": [102]
+        },
+        {
+          "letter": "pr",
+          "source": 102,
+          "target": [102]
+        },
+        {
+          "letter": "pw",
+          "source": 102,
+          "target": [106]
+        },
+        {
+          "letter": "pemr",
+          "source": 102,
+          "target": [79]
+        },
+        {
+          "letter": "pemw",
+          "source": 102,
+          "target": [102]
+        },
+        {
+          "letter": "psu",
+          "source": 102,
+          "target": [81]
+        },
+        {
+          "letter": "i",
+          "source": 103,
+          "target": [103]
+        },
+        {
+          "letter": "s",
+          "source": 103,
+          "target": [101]
+        },
+        {
+          "letter": "eu",
+          "source": 103,
+          "target": [103]
+        },
+        {
+          "letter": "em",
+          "source": 103,
+          "target": [103]
+        },
+        {
+          "letter": "pr",
+          "source": 103,
+          "target": [103]
+        },
+        {
+          "letter": "pw",
+          "source": 103,
+          "target": [107]
+        },
+        {
+          "letter": "pemr",
+          "source": 103,
+          "target": [103]
+        },
+        {
+          "letter": "pemw",
+          "source": 103,
+          "target": [103]
+        },
+        {
+          "letter": "psu",
+          "source": 103,
+          "target": [103]
+        },
+        {
+          "letter": "i",
+          "source": 104,
+          "target": [104]
+        },
+        {
+          "letter": "s",
+          "source": 104,
+          "target": [104]
+        },
+        {
+          "letter": "eu",
+          "source": 104,
+          "target": [104]
+        },
+        {
+          "letter": "em",
+          "source": 104,
+          "target": [104]
+        },
+        {
+          "letter": "pr",
+          "source": 104,
+          "target": [104]
+        },
+        {
+          "letter": "pw",
+          "source": 104,
+          "target": [104]
+        },
+        {
+          "letter": "pemr",
+          "source": 104,
+          "target": [87]
+        },
+        {
+          "letter": "pemw",
+          "source": 104,
+          "target": [104]
+        },
+        {
+          "letter": "psu",
+          "source": 104,
+          "target": [89]
+        },
+        {
+          "letter": "i",
+          "source": 105,
+          "target": [105]
+        },
+        {
+          "letter": "s",
+          "source": 105,
+          "target": [105]
+        },
+        {
+          "letter": "eu",
+          "source": 105,
+          "target": [105]
+        },
+        {
+          "letter": "em",
+          "source": 105,
+          "target": [105]
+        },
+        {
+          "letter": "pr",
+          "source": 105,
+          "target": [105]
+        },
+        {
+          "letter": "pw",
+          "source": 105,
+          "target": [105]
+        },
+        {
+          "letter": "pemr",
+          "source": 105,
+          "target": [105]
+        },
+        {
+          "letter": "pemw",
+          "source": 105,
+          "target": [105]
+        },
+        {
+          "letter": "psu",
+          "source": 105,
+          "target": [105]
+        },
+        {
+          "letter": "i",
+          "source": 106,
+          "target": [106]
+        },
+        {
+          "letter": "s",
+          "source": 106,
+          "target": [104]
+        },
+        {
+          "letter": "eu",
+          "source": 106,
+          "target": [106]
+        },
+        {
+          "letter": "em",
+          "source": 106,
+          "target": [106]
+        },
+        {
+          "letter": "pr",
+          "source": 106,
+          "target": [106]
+        },
+        {
+          "letter": "pw",
+          "source": 106,
+          "target": [106]
+        },
+        {
+          "letter": "pemr",
+          "source": 106,
+          "target": [94]
+        },
+        {
+          "letter": "pemw",
+          "source": 106,
+          "target": [106]
+        },
+        {
+          "letter": "psu",
+          "source": 106,
+          "target": [96]
+        },
+        {
+          "letter": "i",
+          "source": 107,
+          "target": [107]
+        },
+        {
+          "letter": "s",
+          "source": 107,
+          "target": [105]
+        },
+        {
+          "letter": "eu",
+          "source": 107,
+          "target": [107]
+        },
+        {
+          "letter": "em",
+          "source": 107,
+          "target": [107]
+        },
+        {
+          "letter": "pr",
+          "source": 107,
+          "target": [107]
+        },
+        {
+          "letter": "pw",
+          "source": 107,
+          "target": [107]
+        },
+        {
+          "letter": "pemr",
+          "source": 107,
+          "target": [107]
+        },
+        {
+          "letter": "pemw",
+          "source": 107,
+          "target": [107]
+        },
+        {
+          "letter": "psu",
+          "source": 107,
+          "target": [107]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107
+      ],
+      "accepting": []
+    }
+  }
+}

@@ -1,0 +1,719 @@
+{
+  "transducer": {
+    "initialStates": [0],
+    "transitions": [
+      {
+        "letter": "[ct,ct]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[ct,in]",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "[ct,cn]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[in,in]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[in,wn]",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "[in,it]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[wn,ct]",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "[wn,wn]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[wn,wt]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[cn,ct]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[cn,cn]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[it,in]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[it,it]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[it,wt]",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "[wt,wn]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[wt,wt]",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "[ct,ct]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[in,in]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[in,wn]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[wn,wn]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[cn,cn]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[it,it]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[it,wt]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[wt,wt]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[ct,ct]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[in,in]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[wn,wn]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[cn,cn]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[it,it]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[wt,wt]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[ct,ct]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[in,in]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[wn,wn]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[wn,cn]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[cn,cn]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[it,it]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[wt,ct]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[wt,wt]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[ct,ct]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[ct,it]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[in,in]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[wn,wn]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[cn,in]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[cn,cn]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[it,it]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[wt,wt]",
+        "source": 4,
+        "target": [4]
+      }
+    ],
+    "states": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "accepting": [2]
+  },
+  "initial": {
+    "initialStates": [0],
+    "alphabet": [
+      "in",
+      "wn",
+      "cn",
+      "it",
+      "wt",
+      "ct"
+    ],
+    "transitions": [
+      {
+        "letter": "in",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "wn",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "cn",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "it",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "wt",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "ct",
+        "source": 0,
+        "target": []
+      }
+    ],
+    "states": [0],
+    "accepting": [0]
+  },
+  "alphabet": [
+    "ct",
+    "in",
+    "wn",
+    "cn",
+    "it",
+    "wt"
+  ],
+  "properties": {
+    "nomutex": {
+      "initialStates": [0],
+      "alphabet": [
+        "in",
+        "wn",
+        "cn",
+        "it",
+        "wt",
+        "ct"
+      ],
+      "transitions": [
+        {
+          "letter": "in",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "wn",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "cn",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "it",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "wt",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "ct",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "in",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "wn",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "cn",
+          "source": 1,
+          "target": [
+            1,
+            2
+          ]
+        },
+        {
+          "letter": "it",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "wt",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "ct",
+          "source": 1,
+          "target": [
+            1,
+            2
+          ]
+        },
+        {
+          "letter": "in",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "wn",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "cn",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "it",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "wt",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "ct",
+          "source": 2,
+          "target": [2]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2
+      ],
+      "accepting": [2]
+    },
+    "deadlock": {
+      "initialStates": [0],
+      "alphabet": [
+        "in",
+        "wn",
+        "cn",
+        "it",
+        "wt",
+        "ct"
+      ],
+      "transitions": [
+        {
+          "letter": "in",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "wn",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "cn",
+          "source": 0,
+          "target": [2]
+        },
+        {
+          "letter": "it",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "wt",
+          "source": 0,
+          "target": [4]
+        },
+        {
+          "letter": "ct",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "in",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "wn",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "cn",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "it",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "wt",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "ct",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "in",
+          "source": 2,
+          "target": [5]
+        },
+        {
+          "letter": "wn",
+          "source": 2,
+          "target": [5]
+        },
+        {
+          "letter": "cn",
+          "source": 2,
+          "target": [6]
+        },
+        {
+          "letter": "it",
+          "source": 2,
+          "target": [5]
+        },
+        {
+          "letter": "wt",
+          "source": 2,
+          "target": [5]
+        },
+        {
+          "letter": "ct",
+          "source": 2,
+          "target": [6]
+        },
+        {
+          "letter": "in",
+          "source": 3,
+          "target": [7]
+        },
+        {
+          "letter": "wn",
+          "source": 3,
+          "target": [7]
+        },
+        {
+          "letter": "cn",
+          "source": 3,
+          "target": [7]
+        },
+        {
+          "letter": "it",
+          "source": 3,
+          "target": [7]
+        },
+        {
+          "letter": "wt",
+          "source": 3,
+          "target": [7]
+        },
+        {
+          "letter": "ct",
+          "source": 3,
+          "target": [7]
+        },
+        {
+          "letter": "in",
+          "source": 4,
+          "target": [7]
+        },
+        {
+          "letter": "wn",
+          "source": 4,
+          "target": [8]
+        },
+        {
+          "letter": "cn",
+          "source": 4,
+          "target": [7]
+        },
+        {
+          "letter": "it",
+          "source": 4,
+          "target": [7]
+        },
+        {
+          "letter": "wt",
+          "source": 4,
+          "target": [8]
+        },
+        {
+          "letter": "ct",
+          "source": 4,
+          "target": [7]
+        },
+        {
+          "letter": "in",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "wn",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "cn",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "it",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "wt",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "ct",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "in",
+          "source": 6,
+          "target": [5]
+        },
+        {
+          "letter": "wn",
+          "source": 6,
+          "target": [5]
+        },
+        {
+          "letter": "cn",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "it",
+          "source": 6,
+          "target": [5]
+        },
+        {
+          "letter": "wt",
+          "source": 6,
+          "target": [5]
+        },
+        {
+          "letter": "ct",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "in",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "wn",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "cn",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "it",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "wt",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "ct",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "in",
+          "source": 8,
+          "target": [7]
+        },
+        {
+          "letter": "wn",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "cn",
+          "source": 8,
+          "target": [7]
+        },
+        {
+          "letter": "it",
+          "source": 8,
+          "target": [7]
+        },
+        {
+          "letter": "wt",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "ct",
+          "source": 8,
+          "target": [7]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "accepting": [
+        6,
+        8
+      ]
+    }
+  }
+}

@@ -1,0 +1,1808 @@
+{
+  "transducer": {
+    "initialStates": [0],
+    "transitions": [
+      {
+        "letter": "[ptu,ptu]",
+        "source": 0,
+        "target": [
+          1,
+          7
+        ]
+      },
+      {
+        "letter": "[ptu,ptd]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[ptu,pta]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[ptd,ptd]",
+        "source": 0,
+        "target": [
+          1,
+          7
+        ]
+      },
+      {
+        "letter": "[fhu,fhu]",
+        "source": 0,
+        "target": [
+          1,
+          6
+        ]
+      },
+      {
+        "letter": "[fhu,fhd]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[fhu,fha]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[fta,fta]",
+        "source": 0,
+        "target": [
+          1,
+          7
+        ]
+      },
+      {
+        "letter": "[fhd,fhd]",
+        "source": 0,
+        "target": [
+          1,
+          6
+        ]
+      },
+      {
+        "letter": "[ftu,fta]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[ftu,ftu]",
+        "source": 0,
+        "target": [
+          1,
+          7
+        ]
+      },
+      {
+        "letter": "[ftu,ftd]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[ftd,ftd]",
+        "source": 0,
+        "target": [
+          1,
+          7
+        ]
+      },
+      {
+        "letter": "[pha,pha]",
+        "source": 0,
+        "target": [
+          1,
+          6
+        ]
+      },
+      {
+        "letter": "[phu,pha]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[phu,phu]",
+        "source": 0,
+        "target": [
+          1,
+          6
+        ]
+      },
+      {
+        "letter": "[phu,phd]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[pta,pta]",
+        "source": 0,
+        "target": [
+          1,
+          7
+        ]
+      },
+      {
+        "letter": "[phd,phd]",
+        "source": 0,
+        "target": [
+          1,
+          6
+        ]
+      },
+      {
+        "letter": "[fha,fha]",
+        "source": 0,
+        "target": [
+          1,
+          6
+        ]
+      },
+      {
+        "letter": "[ptu,ptu]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[ptu,ptd]",
+        "source": 1,
+        "target": [4]
+      },
+      {
+        "letter": "[ptu,pta]",
+        "source": 1,
+        "target": [3]
+      },
+      {
+        "letter": "[ptd,ptd]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[fhu,fhu]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[fhu,fhd]",
+        "source": 1,
+        "target": [4]
+      },
+      {
+        "letter": "[fhu,fha]",
+        "source": 1,
+        "target": [3]
+      },
+      {
+        "letter": "[fta,fta]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[fhd,fhd]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[ftu,fta]",
+        "source": 1,
+        "target": [4]
+      },
+      {
+        "letter": "[ftu,ftu]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[ftu,ftd]",
+        "source": 1,
+        "target": [3]
+      },
+      {
+        "letter": "[ftd,ftd]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[pha,pha]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[phu,pha]",
+        "source": 1,
+        "target": [4]
+      },
+      {
+        "letter": "[phu,phu]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[phu,phd]",
+        "source": 1,
+        "target": [3]
+      },
+      {
+        "letter": "[pta,pta]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[phd,phd]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[fha,fha]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[ptu,ptu]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[ptd,ptd]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[fhu,fhu]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[fta,fta]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[fhd,fhd]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[ftu,ftu]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[ftd,ftd]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[pha,pha]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[phu,phu]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[pta,pta]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[phd,phd]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[fha,fha]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[fhu,fhu]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[fhd,fhd]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[pha,pha]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[phu,phu]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[phd,phd]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[fha,fha]",
+        "source": 3,
+        "target": [2]
+      },
+      {
+        "letter": "[ptu,ptu]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[ptd,ptd]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[fta,fta]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[ftu,ftu]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[ftd,ftd]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[pta,pta]",
+        "source": 4,
+        "target": [2]
+      },
+      {
+        "letter": "[ptu,ptu]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[ptu,pta]",
+        "source": 6,
+        "target": [5]
+      },
+      {
+        "letter": "[ptd,ptd]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[fhu,fhu]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[fhu,fha]",
+        "source": 6,
+        "target": [5]
+      },
+      {
+        "letter": "[fta,fta]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[fhd,fhd]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[ftu,ftu]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[ftu,ftd]",
+        "source": 6,
+        "target": [5]
+      },
+      {
+        "letter": "[ftd,ftd]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[pha,pha]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[phu,phu]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[phu,phd]",
+        "source": 6,
+        "target": [5]
+      },
+      {
+        "letter": "[pta,pta]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[phd,phd]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[fha,fha]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[ptu,ptu]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[ptu,ptd]",
+        "source": 7,
+        "target": [5]
+      },
+      {
+        "letter": "[ptd,ptd]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[fhu,fhu]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[fhu,fhd]",
+        "source": 7,
+        "target": [5]
+      },
+      {
+        "letter": "[fta,fta]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[fhd,fhd]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[ftu,fta]",
+        "source": 7,
+        "target": [5]
+      },
+      {
+        "letter": "[ftu,ftu]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[ftd,ftd]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[pha,pha]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[phu,pha]",
+        "source": 7,
+        "target": [5]
+      },
+      {
+        "letter": "[phu,phu]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[pta,pta]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[phd,phd]",
+        "source": 7,
+        "target": [7]
+      },
+      {
+        "letter": "[fha,fha]",
+        "source": 7,
+        "target": [7]
+      }
+    ],
+    "states": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "accepting": [
+      2,
+      5
+    ]
+  },
+  "initial": {
+    "initialStates": [0],
+    "alphabet": [
+      "fhu",
+      "phu",
+      "ftu",
+      "ptu",
+      "fha",
+      "pha",
+      "fta",
+      "pta",
+      "fhd",
+      "phd",
+      "ftd",
+      "ptd"
+    ],
+    "transitions": [
+      {
+        "letter": "fhu",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "phu",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "ftu",
+        "source": 0,
+        "target": [0]
+      },
+      {
+        "letter": "ptu",
+        "source": 0,
+        "target": [1]
+      },
+      {
+        "letter": "fha",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "pha",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "fta",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "pta",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "fhd",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "phd",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "ftd",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "ptd",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "fhu",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "phu",
+        "source": 1,
+        "target": []
+      },
+      {
+        "letter": "ftu",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "ptu",
+        "source": 1,
+        "target": []
+      },
+      {
+        "letter": "fha",
+        "source": 1,
+        "target": []
+      },
+      {
+        "letter": "pha",
+        "source": 1,
+        "target": []
+      },
+      {
+        "letter": "fta",
+        "source": 1,
+        "target": []
+      },
+      {
+        "letter": "pta",
+        "source": 1,
+        "target": []
+      },
+      {
+        "letter": "fhd",
+        "source": 1,
+        "target": []
+      },
+      {
+        "letter": "phd",
+        "source": 1,
+        "target": []
+      },
+      {
+        "letter": "ftd",
+        "source": 1,
+        "target": []
+      },
+      {
+        "letter": "ptd",
+        "source": 1,
+        "target": []
+      }
+    ],
+    "states": [
+      0,
+      1
+    ],
+    "accepting": [
+      0,
+      1
+    ]
+  },
+  "alphabet": [
+    "ptu",
+    "ptd",
+    "fhu",
+    "fta",
+    "fhd",
+    "ftu",
+    "ftd",
+    "pha",
+    "phu",
+    "pta",
+    "phd",
+    "fha"
+  ],
+  "properties": {
+    "internal": {
+      "initialStates": [0],
+      "alphabet": [
+        "fhu",
+        "phu",
+        "ftu",
+        "ptu",
+        "fha",
+        "pha",
+        "fta",
+        "pta",
+        "fhd",
+        "phd",
+        "ftd",
+        "ptd"
+      ],
+      "transitions": [
+        {
+          "letter": "fhu",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "phu",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "ftu",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "ptu",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "fha",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pha",
+          "source": 0,
+          "target": [2]
+        },
+        {
+          "letter": "fta",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pta",
+          "source": 0,
+          "target": [2]
+        },
+        {
+          "letter": "fhd",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "phd",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "ftd",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "ptd",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "fhu",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "phu",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "ftu",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "ptu",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "fha",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pha",
+          "source": 1,
+          "target": [3]
+        },
+        {
+          "letter": "fta",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pta",
+          "source": 1,
+          "target": [3]
+        },
+        {
+          "letter": "fhd",
+          "source": 1,
+          "target": [0]
+        },
+        {
+          "letter": "phd",
+          "source": 1,
+          "target": [2]
+        },
+        {
+          "letter": "ftd",
+          "source": 1,
+          "target": [0]
+        },
+        {
+          "letter": "ptd",
+          "source": 1,
+          "target": [2]
+        },
+        {
+          "letter": "fhu",
+          "source": 2,
+          "target": []
+        },
+        {
+          "letter": "phu",
+          "source": 2,
+          "target": []
+        },
+        {
+          "letter": "ftu",
+          "source": 2,
+          "target": []
+        },
+        {
+          "letter": "ptu",
+          "source": 2,
+          "target": []
+        },
+        {
+          "letter": "fha",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pha",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "fta",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "pta",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "fhd",
+          "source": 2,
+          "target": [3]
+        },
+        {
+          "letter": "phd",
+          "source": 2,
+          "target": [3]
+        },
+        {
+          "letter": "ftd",
+          "source": 2,
+          "target": [3]
+        },
+        {
+          "letter": "ptd",
+          "source": 2,
+          "target": [3]
+        },
+        {
+          "letter": "fhu",
+          "source": 3,
+          "target": []
+        },
+        {
+          "letter": "phu",
+          "source": 3,
+          "target": []
+        },
+        {
+          "letter": "ftu",
+          "source": 3,
+          "target": []
+        },
+        {
+          "letter": "ptu",
+          "source": 3,
+          "target": []
+        },
+        {
+          "letter": "fha",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pha",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "fta",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pta",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "fhd",
+          "source": 3,
+          "target": [2]
+        },
+        {
+          "letter": "phd",
+          "source": 3,
+          "target": [2]
+        },
+        {
+          "letter": "ftd",
+          "source": 3,
+          "target": [2]
+        },
+        {
+          "letter": "ptd",
+          "source": 3,
+          "target": [2]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "accepting": [2]
+    },
+    "external": {
+      "initialStates": [0],
+      "alphabet": [
+        "fhu",
+        "phu",
+        "ftu",
+        "ptu",
+        "fha",
+        "pha",
+        "fta",
+        "pta",
+        "fhd",
+        "phd",
+        "ftd",
+        "ptd"
+      ],
+      "transitions": [
+        {
+          "letter": "fhu",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "phu",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "ftu",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "ptu",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "fha",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pha",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "fta",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "pta",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "fhd",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "phd",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "ftd",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "ptd",
+          "source": 0,
+          "target": []
+        },
+        {
+          "letter": "fhu",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "phu",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "ftu",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "ptu",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "fha",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pha",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "fta",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "pta",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "fhd",
+          "source": 1,
+          "target": [0]
+        },
+        {
+          "letter": "phd",
+          "source": 1,
+          "target": []
+        },
+        {
+          "letter": "ftd",
+          "source": 1,
+          "target": [0]
+        },
+        {
+          "letter": "ptd",
+          "source": 1,
+          "target": []
+        }
+      ],
+      "states": [
+        0,
+        1
+      ],
+      "accepting": [1]
+    },
+    "deadlock": {
+      "initialStates": [0],
+      "alphabet": [
+        "fhu",
+        "phu",
+        "ftu",
+        "ptu",
+        "fha",
+        "pha",
+        "fta",
+        "pta",
+        "fhd",
+        "phd",
+        "ftd",
+        "ptd"
+      ],
+      "transitions": [
+        {
+          "letter": "fhu",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "phu",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "ftu",
+          "source": 0,
+          "target": [2]
+        },
+        {
+          "letter": "ptu",
+          "source": 0,
+          "target": [2]
+        },
+        {
+          "letter": "fha",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "pha",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "fta",
+          "source": 0,
+          "target": [4]
+        },
+        {
+          "letter": "pta",
+          "source": 0,
+          "target": [4]
+        },
+        {
+          "letter": "fhd",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "phd",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "ftd",
+          "source": 0,
+          "target": [4]
+        },
+        {
+          "letter": "ptd",
+          "source": 0,
+          "target": [4]
+        },
+        {
+          "letter": "fhu",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "phu",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "ftu",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "ptu",
+          "source": 1,
+          "target": [5]
+        },
+        {
+          "letter": "fha",
+          "source": 1,
+          "target": [6]
+        },
+        {
+          "letter": "pha",
+          "source": 1,
+          "target": [6]
+        },
+        {
+          "letter": "fta",
+          "source": 1,
+          "target": [6]
+        },
+        {
+          "letter": "pta",
+          "source": 1,
+          "target": [6]
+        },
+        {
+          "letter": "fhd",
+          "source": 1,
+          "target": [6]
+        },
+        {
+          "letter": "phd",
+          "source": 1,
+          "target": [6]
+        },
+        {
+          "letter": "ftd",
+          "source": 1,
+          "target": [6]
+        },
+        {
+          "letter": "ptd",
+          "source": 1,
+          "target": [6]
+        },
+        {
+          "letter": "fhu",
+          "source": 2,
+          "target": [7]
+        },
+        {
+          "letter": "phu",
+          "source": 2,
+          "target": [7]
+        },
+        {
+          "letter": "ftu",
+          "source": 2,
+          "target": [7]
+        },
+        {
+          "letter": "ptu",
+          "source": 2,
+          "target": [7]
+        },
+        {
+          "letter": "fha",
+          "source": 2,
+          "target": [8]
+        },
+        {
+          "letter": "pha",
+          "source": 2,
+          "target": [8]
+        },
+        {
+          "letter": "fta",
+          "source": 2,
+          "target": [8]
+        },
+        {
+          "letter": "pta",
+          "source": 2,
+          "target": [8]
+        },
+        {
+          "letter": "fhd",
+          "source": 2,
+          "target": [8]
+        },
+        {
+          "letter": "phd",
+          "source": 2,
+          "target": [8]
+        },
+        {
+          "letter": "ftd",
+          "source": 2,
+          "target": [8]
+        },
+        {
+          "letter": "ptd",
+          "source": 2,
+          "target": [8]
+        },
+        {
+          "letter": "fhu",
+          "source": 3,
+          "target": [9]
+        },
+        {
+          "letter": "phu",
+          "source": 3,
+          "target": [9]
+        },
+        {
+          "letter": "ftu",
+          "source": 3,
+          "target": [9]
+        },
+        {
+          "letter": "ptu",
+          "source": 3,
+          "target": [9]
+        },
+        {
+          "letter": "fha",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pha",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "fta",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "pta",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "fhd",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "phd",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "ftd",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "ptd",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "fhu",
+          "source": 4,
+          "target": [10]
+        },
+        {
+          "letter": "phu",
+          "source": 4,
+          "target": [10]
+        },
+        {
+          "letter": "ftu",
+          "source": 4,
+          "target": [10]
+        },
+        {
+          "letter": "ptu",
+          "source": 4,
+          "target": [10]
+        },
+        {
+          "letter": "fha",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "pha",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "fta",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "pta",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "fhd",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "phd",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "ftd",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "ptd",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "fhu",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "phu",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "ftu",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "ptu",
+          "source": 5,
+          "target": [5]
+        },
+        {
+          "letter": "fha",
+          "source": 5,
+          "target": [6]
+        },
+        {
+          "letter": "pha",
+          "source": 5,
+          "target": [6]
+        },
+        {
+          "letter": "fta",
+          "source": 5,
+          "target": [6]
+        },
+        {
+          "letter": "pta",
+          "source": 5,
+          "target": [6]
+        },
+        {
+          "letter": "fhd",
+          "source": 5,
+          "target": [6]
+        },
+        {
+          "letter": "phd",
+          "source": 5,
+          "target": [6]
+        },
+        {
+          "letter": "ftd",
+          "source": 5,
+          "target": [6]
+        },
+        {
+          "letter": "ptd",
+          "source": 5,
+          "target": [6]
+        },
+        {
+          "letter": "fhu",
+          "source": 6,
+          "target": [5]
+        },
+        {
+          "letter": "phu",
+          "source": 6,
+          "target": [5]
+        },
+        {
+          "letter": "ftu",
+          "source": 6,
+          "target": [5]
+        },
+        {
+          "letter": "ptu",
+          "source": 6,
+          "target": [5]
+        },
+        {
+          "letter": "fha",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "pha",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "fta",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "pta",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "fhd",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "phd",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "ftd",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "ptd",
+          "source": 6,
+          "target": [6]
+        },
+        {
+          "letter": "fhu",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "phu",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "ftu",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "ptu",
+          "source": 7,
+          "target": [7]
+        },
+        {
+          "letter": "fha",
+          "source": 7,
+          "target": [8]
+        },
+        {
+          "letter": "pha",
+          "source": 7,
+          "target": [8]
+        },
+        {
+          "letter": "fta",
+          "source": 7,
+          "target": [8]
+        },
+        {
+          "letter": "pta",
+          "source": 7,
+          "target": [8]
+        },
+        {
+          "letter": "fhd",
+          "source": 7,
+          "target": [8]
+        },
+        {
+          "letter": "phd",
+          "source": 7,
+          "target": [8]
+        },
+        {
+          "letter": "ftd",
+          "source": 7,
+          "target": [8]
+        },
+        {
+          "letter": "ptd",
+          "source": 7,
+          "target": [8]
+        },
+        {
+          "letter": "fhu",
+          "source": 8,
+          "target": [7]
+        },
+        {
+          "letter": "phu",
+          "source": 8,
+          "target": [7]
+        },
+        {
+          "letter": "ftu",
+          "source": 8,
+          "target": [7]
+        },
+        {
+          "letter": "ptu",
+          "source": 8,
+          "target": [7]
+        },
+        {
+          "letter": "fha",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "pha",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "fta",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "pta",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "fhd",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "phd",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "ftd",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "ptd",
+          "source": 8,
+          "target": [8]
+        },
+        {
+          "letter": "fhu",
+          "source": 9,
+          "target": [5]
+        },
+        {
+          "letter": "phu",
+          "source": 9,
+          "target": [5]
+        },
+        {
+          "letter": "ftu",
+          "source": 9,
+          "target": [5]
+        },
+        {
+          "letter": "ptu",
+          "source": 9,
+          "target": [5]
+        },
+        {
+          "letter": "fha",
+          "source": 9,
+          "target": [6]
+        },
+        {
+          "letter": "pha",
+          "source": 9,
+          "target": [6]
+        },
+        {
+          "letter": "fta",
+          "source": 9,
+          "target": [6]
+        },
+        {
+          "letter": "pta",
+          "source": 9,
+          "target": [6]
+        },
+        {
+          "letter": "fhd",
+          "source": 9,
+          "target": [6]
+        },
+        {
+          "letter": "phd",
+          "source": 9,
+          "target": [6]
+        },
+        {
+          "letter": "ftd",
+          "source": 9,
+          "target": [6]
+        },
+        {
+          "letter": "ptd",
+          "source": 9,
+          "target": [6]
+        },
+        {
+          "letter": "fhu",
+          "source": 10,
+          "target": [7]
+        },
+        {
+          "letter": "phu",
+          "source": 10,
+          "target": [7]
+        },
+        {
+          "letter": "ftu",
+          "source": 10,
+          "target": [7]
+        },
+        {
+          "letter": "ptu",
+          "source": 10,
+          "target": [7]
+        },
+        {
+          "letter": "fha",
+          "source": 10,
+          "target": [8]
+        },
+        {
+          "letter": "pha",
+          "source": 10,
+          "target": [8]
+        },
+        {
+          "letter": "fta",
+          "source": 10,
+          "target": [8]
+        },
+        {
+          "letter": "pta",
+          "source": 10,
+          "target": [8]
+        },
+        {
+          "letter": "fhd",
+          "source": 10,
+          "target": [8]
+        },
+        {
+          "letter": "phd",
+          "source": 10,
+          "target": [8]
+        },
+        {
+          "letter": "ftd",
+          "source": 10,
+          "target": [8]
+        },
+        {
+          "letter": "ptd",
+          "source": 10,
+          "target": [8]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "accepting": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  }
+}

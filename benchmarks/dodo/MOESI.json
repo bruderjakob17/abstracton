@@ -1,0 +1,1374 @@
+{
+  "transducer": {
+    "initialStates": [0],
+    "transitions": [
+      {
+        "letter": "[s,s]",
+        "source": 0,
+        "target": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "letter": "[s,e]",
+        "source": 0,
+        "target": [6]
+      },
+      {
+        "letter": "[s,i]",
+        "source": 0,
+        "target": [
+          2,
+          5
+        ]
+      },
+      {
+        "letter": "[e,s]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[e,e]",
+        "source": 0,
+        "target": [
+          1,
+          2
+        ]
+      },
+      {
+        "letter": "[e,i]",
+        "source": 0,
+        "target": [
+          2,
+          5
+        ]
+      },
+      {
+        "letter": "[e,m]",
+        "source": 0,
+        "target": [2]
+      },
+      {
+        "letter": "[i,s]",
+        "source": 0,
+        "target": [4]
+      },
+      {
+        "letter": "[i,e]",
+        "source": 0,
+        "target": [6]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 0,
+        "target": [
+          1,
+          3,
+          5
+        ]
+      },
+      {
+        "letter": "[m,i]",
+        "source": 0,
+        "target": [
+          2,
+          5
+        ]
+      },
+      {
+        "letter": "[m,m]",
+        "source": 0,
+        "target": [
+          1,
+          2
+        ]
+      },
+      {
+        "letter": "[m,o]",
+        "source": 0,
+        "target": [3]
+      },
+      {
+        "letter": "[o,i]",
+        "source": 0,
+        "target": [
+          2,
+          5
+        ]
+      },
+      {
+        "letter": "[o,o]",
+        "source": 0,
+        "target": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 1,
+        "target": [
+          1,
+          2
+        ]
+      },
+      {
+        "letter": "[s,i]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[e,e]",
+        "source": 1,
+        "target": [
+          1,
+          2
+        ]
+      },
+      {
+        "letter": "[e,i]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[e,m]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 1,
+        "target": [1]
+      },
+      {
+        "letter": "[m,i]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[m,m]",
+        "source": 1,
+        "target": [
+          1,
+          2
+        ]
+      },
+      {
+        "letter": "[o,i]",
+        "source": 1,
+        "target": [2]
+      },
+      {
+        "letter": "[o,o]",
+        "source": 1,
+        "target": [
+          1,
+          2
+        ]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[e,e]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[m,m]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[o,o]",
+        "source": 2,
+        "target": [2]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[e,s]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[i,s]",
+        "source": 3,
+        "target": [4]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[m,o]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[o,o]",
+        "source": 3,
+        "target": [3]
+      },
+      {
+        "letter": "[s,s]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[e,s]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[m,o]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[o,o]",
+        "source": 4,
+        "target": [4]
+      },
+      {
+        "letter": "[s,e]",
+        "source": 5,
+        "target": [6]
+      },
+      {
+        "letter": "[s,i]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[e,i]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[i,e]",
+        "source": 5,
+        "target": [6]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[m,i]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[o,i]",
+        "source": 5,
+        "target": [5]
+      },
+      {
+        "letter": "[s,i]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[e,i]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[i,i]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[m,i]",
+        "source": 6,
+        "target": [6]
+      },
+      {
+        "letter": "[o,i]",
+        "source": 6,
+        "target": [6]
+      }
+    ],
+    "states": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "accepting": [
+      2,
+      4,
+      6
+    ]
+  },
+  "initial": {
+    "initialStates": [0],
+    "alphabet": [
+      "m",
+      "o",
+      "e",
+      "s",
+      "i"
+    ],
+    "transitions": [
+      {
+        "letter": "m",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "o",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "e",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "s",
+        "source": 0,
+        "target": []
+      },
+      {
+        "letter": "i",
+        "source": 0,
+        "target": [0]
+      }
+    ],
+    "states": [0],
+    "accepting": [0]
+  },
+  "alphabet": [
+    "s",
+    "e",
+    "i",
+    "m",
+    "o"
+  ],
+  "properties": {
+    "ownedexclusive": {
+      "initialStates": [0],
+      "alphabet": [
+        "m",
+        "o",
+        "e",
+        "s",
+        "i"
+      ],
+      "transitions": [
+        {
+          "letter": "m",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "o",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "e",
+          "source": 0,
+          "target": [
+            0,
+            2
+          ]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "m",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "o",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "e",
+          "source": 1,
+          "target": [
+            1,
+            3
+          ]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "m",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "o",
+          "source": 2,
+          "target": [
+            2,
+            3
+          ]
+        },
+        {
+          "letter": "e",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "m",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "o",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "e",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "s",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "i",
+          "source": 3,
+          "target": [3]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "accepting": [3]
+    },
+    "exclusivemodified": {
+      "initialStates": [0],
+      "alphabet": [
+        "m",
+        "o",
+        "e",
+        "s",
+        "i"
+      ],
+      "transitions": [
+        {
+          "letter": "m",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "o",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "e",
+          "source": 0,
+          "target": [
+            0,
+            2
+          ]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "m",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "o",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "e",
+          "source": 1,
+          "target": [
+            1,
+            3
+          ]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "m",
+          "source": 2,
+          "target": [
+            2,
+            3
+          ]
+        },
+        {
+          "letter": "o",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "e",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "m",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "o",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "e",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "s",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "i",
+          "source": 3,
+          "target": [3]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "accepting": [3]
+    },
+    "ownedmodified": {
+      "initialStates": [0],
+      "alphabet": [
+        "m",
+        "o",
+        "e",
+        "s",
+        "i"
+      ],
+      "transitions": [
+        {
+          "letter": "m",
+          "source": 0,
+          "target": [
+            0,
+            2
+          ]
+        },
+        {
+          "letter": "o",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "e",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "m",
+          "source": 1,
+          "target": [
+            1,
+            3
+          ]
+        },
+        {
+          "letter": "o",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "e",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "m",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "o",
+          "source": 2,
+          "target": [
+            2,
+            3
+          ]
+        },
+        {
+          "letter": "e",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "m",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "o",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "e",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "s",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "i",
+          "source": 3,
+          "target": [3]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "accepting": [3]
+    },
+    "sharedmodified": {
+      "initialStates": [0],
+      "alphabet": [
+        "m",
+        "o",
+        "e",
+        "s",
+        "i"
+      ],
+      "transitions": [
+        {
+          "letter": "m",
+          "source": 0,
+          "target": [
+            0,
+            2
+          ]
+        },
+        {
+          "letter": "o",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "e",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "m",
+          "source": 1,
+          "target": [
+            1,
+            3
+          ]
+        },
+        {
+          "letter": "o",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "e",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "m",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "o",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "e",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [
+            2,
+            3
+          ]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "m",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "o",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "e",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "s",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "i",
+          "source": 3,
+          "target": [3]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "accepting": [3]
+    },
+    "sharedexclusive": {
+      "initialStates": [0],
+      "alphabet": [
+        "m",
+        "o",
+        "e",
+        "s",
+        "i"
+      ],
+      "transitions": [
+        {
+          "letter": "m",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "o",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "e",
+          "source": 0,
+          "target": [
+            0,
+            2
+          ]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "m",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "o",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "e",
+          "source": 1,
+          "target": [
+            1,
+            3
+          ]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "m",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "o",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "e",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [
+            2,
+            3
+          ]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "m",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "o",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "e",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "s",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "i",
+          "source": 3,
+          "target": [3]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "accepting": [3]
+    },
+    "exclusiveexclusive": {
+      "initialStates": [0],
+      "alphabet": [
+        "m",
+        "o",
+        "e",
+        "s",
+        "i"
+      ],
+      "transitions": [
+        {
+          "letter": "m",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "o",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "e",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "m",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "o",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "e",
+          "source": 1,
+          "target": [
+            1,
+            2
+          ]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "m",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "o",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "e",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2
+      ],
+      "accepting": [2]
+    },
+    "modifiedmodified": {
+      "initialStates": [0],
+      "alphabet": [
+        "m",
+        "o",
+        "e",
+        "s",
+        "i"
+      ],
+      "transitions": [
+        {
+          "letter": "m",
+          "source": 0,
+          "target": [
+            0,
+            1
+          ]
+        },
+        {
+          "letter": "o",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "e",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [0]
+        },
+        {
+          "letter": "m",
+          "source": 1,
+          "target": [
+            1,
+            2
+          ]
+        },
+        {
+          "letter": "o",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "e",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "m",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "o",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "e",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [2]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2
+      ],
+      "accepting": [2]
+    },
+    "deadlock": {
+      "initialStates": [0],
+      "alphabet": [
+        "m",
+        "o",
+        "e",
+        "s",
+        "i"
+      ],
+      "transitions": [
+        {
+          "letter": "m",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "o",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "e",
+          "source": 0,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 0,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 0,
+          "target": [3]
+        },
+        {
+          "letter": "m",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "o",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "e",
+          "source": 1,
+          "target": [1]
+        },
+        {
+          "letter": "s",
+          "source": 1,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 1,
+          "target": [4]
+        },
+        {
+          "letter": "m",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "o",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "e",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "s",
+          "source": 2,
+          "target": [2]
+        },
+        {
+          "letter": "i",
+          "source": 2,
+          "target": [4]
+        },
+        {
+          "letter": "m",
+          "source": 3,
+          "target": [4]
+        },
+        {
+          "letter": "o",
+          "source": 3,
+          "target": [4]
+        },
+        {
+          "letter": "e",
+          "source": 3,
+          "target": [4]
+        },
+        {
+          "letter": "s",
+          "source": 3,
+          "target": [4]
+        },
+        {
+          "letter": "i",
+          "source": 3,
+          "target": [3]
+        },
+        {
+          "letter": "m",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "o",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "e",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "s",
+          "source": 4,
+          "target": [4]
+        },
+        {
+          "letter": "i",
+          "source": 4,
+          "target": [4]
+        }
+      ],
+      "states": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "accepting": []
+    }
+  }
+}
