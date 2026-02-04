@@ -11,13 +11,6 @@ using namespace mata::nft;
 
 int main() {
 
-    for (auto t : BoundedTuples(std::vector<unsigned int> {1, 2, 3})) {
-        for (auto i : t) {
-            std::cout << i;
-        }
-        std::cout << std::endl;
-    }
-
     // transition relation: swap 1s / 0s
     Nft transition_relation {Nft::with_levels(2)};
     State initial {transition_relation.add_state()};
@@ -47,7 +40,8 @@ int main() {
 
 
     std::cout << "computing ind" << std::endl;
-    Nfa ind {compute_ind(daf, transition_relation, EnumAlphabet {'0', '1', 'a', 'b', '#'}, true)};
+    EnumAlphabet alphabet{'0', '1', 'a', 'b', '#'};
+    Nfa ind {compute_ind(daf, transition_relation, alphabet, alphabet, true)};
     ind = mata::nfa::minimize(ind);
     std::cout << "done" << std::endl;
     std::cout << ind.print_to_dot(true) << std::endl;
@@ -65,6 +59,14 @@ int main() {
     // aut.delta.add(s1, '0', s2);
     // Nft ida {mata::nft::builder::from_nfa_with_levels_zero(aut)};
 
+    std::unordered_set s{1, 4, 6};
+    for (auto t : Subsets(s)) {
+        std::cout << "{";
+        for (auto i : t) {
+            std::cout << i << ", ";
+        }
+        std::cout << "}\n";
+    }
 
     return 0;
 }
