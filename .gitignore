@@ -65,9 +65,12 @@ CMakeFiles/
 Makefile
 
 # benchmarks
-benchmarks/
+benchmarks/non-incremental/
 
 # executables
 tests/tests
 examples/playground
 examples/create_nfts
+examples/tabakov_vardi
+benchmarks/solve_dodo
+.Rproj.user
