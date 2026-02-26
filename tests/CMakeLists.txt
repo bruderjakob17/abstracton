@@ -3,6 +3,7 @@ add_executable(tests
     preach.cpp
     mata_extensions.cpp
     utils/utils.cpp
+    bddlike_nft.cpp
 )
 
 target_link_libraries(tests PRIVATE abstracton Catch2::Catch2WithMain)
