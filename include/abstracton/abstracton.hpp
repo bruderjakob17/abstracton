@@ -5,7 +5,10 @@
 #include <mata/alphabet.hh>
 #include <abstracton/utils/utils.hpp>
 
-// input: DETERMINISTIC abstraction framework!
+/**
+ * input: DETERMINISTIC abstraction framework!
+ * the order of tapes in the abstraction framework must be (abstract, concrete).
+ */
 mata::nfa::Nfa compute_ind(const mata::nft::Nft& abstraction_framework, const mata::nft::Nft& transition_relation, mata::Alphabet& concrete_alphabet, mata::Alphabet& abstract_alphabet, bool exclude_empty_abstractions = false, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL);
 
 // input: DETERMINISTIC abstraction framework!
