@@ -154,6 +154,7 @@ namespace mata::ext {
         Nft result = mata::nft::Nft::with_levels(number_of_levels, number_of_levels, {0}, {0}, alphabet, alphabets);
 
         for (int i = 0; i < number_of_levels; ++i) {
+            result.levels[i] = i;
             mata::utils::OrdVector<Symbol> s = {DONT_CARE};
             if (alphabets.has_value() && alphabets->operator[](i) != nullptr) {
                 s = alphabets->operator[](i)->get_alphabet_symbols();

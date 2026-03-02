@@ -259,6 +259,22 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
         REQUIRE(!nft.is_in_lang({'a', 'b', 'a', 'c'}));
         REQUIRE(nft.is_in_lang({'a', 'a', 'b', 'c'}));
     }
+    SECTION("3 tapes, generic and specific alphabets, compare with complement of EMPTYSET") {
+        EnumAlphabet alphabet1 = {'a', 'b'};
+        EnumAlphabet alphabet2 = {'a', 'c'};
+
+        Nft nft = mata::ext::create_sigma_star_nft(3, &alphabet1, std::make_optional(std::vector<Alphabet*>{nullptr, &alphabet2, nullptr}));
+
+        Nft empty = Nft::with_levels(3);
+        Nft univ = mata::ext::complement(empty, &alphabet1, std::make_optional(std::vector<Alphabet*>{nullptr, &alphabet2, nullptr}));
+
+        std::cout << "create_sigma_star_nft output:\n";
+        std::cout << nft.print_to_dot(true) << std::endl;
+        std::cout << "complementing empty nft:\n";
+        std::cout << univ.print_to_dot(true) << std::endl;
+
+        REQUIRE(mata::nft::are_equivalent(nft, univ));
+    }
 }
 
 TEST_CASE("Create Tabakov-Vardi NFT") {
