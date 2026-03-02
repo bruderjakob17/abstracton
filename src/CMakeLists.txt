@@ -1,6 +1,6 @@
 add_library(mata_extensions STATIC
     mata_extensions.cpp
-    bddlike_nft.cpp
+    bddlike/bddlike_nft.cpp
 )
 add_library(abstracton STATIC
     abstracton.cpp

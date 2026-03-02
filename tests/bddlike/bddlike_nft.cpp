@@ -1,7 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <mata/nft/nft.hh>
 #include <mata/parser/re2parser.hh>
-#include <abstracton/bddlike_nft.hpp>
+#include <abstracton/bddlike/bddlike_nft.hpp>
 #include <abstracton/mata_extensions.hpp>
 #include <abstracton/utils/utils.hpp>
 
