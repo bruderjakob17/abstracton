@@ -155,6 +155,112 @@ TEST_CASE("Nft complement", "[mata::ext::complement]") {
     }
 }
 
+TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
+    using namespace mata;
+    using namespace mata::nft;
+
+    // TODO: mata is buggy with 0 tapes...
+    // SECTION("0 tapes") {
+    //     Nft nft0 = mata::ext::create_sigma_star_nft(0);
+    //
+    //     REQUIRE(nft0.is_in_lang({}));
+    //     REQUIRE(!nft0.is_in_lang({'a'}));
+    // }
+    // TODO: mata does not seem to handle DONT_CARE symbols in is_in_lang...
+    // SECTION("1 tape, no alphabet") {
+    //     Nft nft = mata::ext::create_sigma_star_nft(1);
+    //     REQUIRE(nft.is_in_lang({}));
+    //     REQUIRE(nft.is_in_lang({'a'}));
+    //     REQUIRE(nft.is_in_lang({'b'}));
+    //     REQUIRE(nft.is_in_lang({'a', 'b'}));
+    // }
+    SECTION("1 tape, generic alphabet") {
+        EnumAlphabet alphabet = {'a', 'b'};
+        Nft nft = mata::ext::create_sigma_star_nft(1, &alphabet, std::nullopt);
+        REQUIRE(nft.is_in_lang({}));
+        REQUIRE(nft.is_in_lang({'a'}));
+        REQUIRE(nft.is_in_lang({'b'}));
+        REQUIRE(!nft.is_in_lang({'c'}));
+        REQUIRE(nft.is_in_lang({'a', 'b'}));
+        REQUIRE(!nft.is_in_lang({'a', 'c'}));
+    }
+    SECTION("1 tape, specific alphabet") {
+        EnumAlphabet alphabet = {'a', 'b'};
+        Nft nft = mata::ext::create_sigma_star_nft(1, nullptr, std::make_optional(std::vector<Alphabet*>{&alphabet}));
+        REQUIRE(nft.is_in_lang({}));
+        REQUIRE(nft.is_in_lang({'a'}));
+        REQUIRE(nft.is_in_lang({'b'}));
+        REQUIRE(!nft.is_in_lang({'c'}));
+        REQUIRE(nft.is_in_lang({'a', 'b'}));
+        REQUIRE(!nft.is_in_lang({'a', 'c'}));
+    }
+    SECTION("1 tape, generic and specific alphabet") {
+        EnumAlphabet generic_alphabet = {'a', 'b', 'c'};
+        EnumAlphabet specific_alphabet = {'a', 'b'};
+        Nft nft = mata::ext::create_sigma_star_nft(1, &generic_alphabet, std::make_optional(std::vector<Alphabet*>{&specific_alphabet}));
+        REQUIRE(nft.is_in_lang({}));
+        REQUIRE(nft.is_in_lang({'a'}));
+        REQUIRE(nft.is_in_lang({'b'}));
+        REQUIRE(!nft.is_in_lang({'c'}));
+        REQUIRE(nft.is_in_lang({'a', 'b'}));
+        REQUIRE(!nft.is_in_lang({'a', 'c'}));
+    }
+    SECTION("2 tapes, generic alphabet") {
+        EnumAlphabet alphabet = {'a', 'b'};
+        Nft nft = mata::ext::create_sigma_star_nft(2, &alphabet, std::nullopt);
+        REQUIRE(nft.is_in_lang({}));
+        REQUIRE(!nft.is_in_lang({'a'}));
+        REQUIRE(!nft.is_in_lang({'b'}));
+        REQUIRE(!nft.is_in_lang({'c'}));
+        REQUIRE(nft.is_in_lang({'a', 'b'}));
+        REQUIRE(!nft.is_in_lang({'a', 'c'}));
+        REQUIRE(!nft.is_in_lang({'a', 'b', 'b'}));
+        REQUIRE(nft.is_in_lang({'a', 'b', 'b', 'b'}));
+    }
+    SECTION("2 tapes, specific alphabets") {
+        EnumAlphabet alphabet1 = {'a', 'b'};
+        EnumAlphabet alphabet2 = {'a', 'c'};
+
+        Nft nft = mata::ext::create_sigma_star_nft(2, nullptr, std::make_optional(std::vector<Alphabet*>{&alphabet1, &alphabet2}));
+
+        REQUIRE(nft.is_in_lang({}));
+        REQUIRE(!nft.is_in_lang({'a'}));
+
+        REQUIRE(nft.is_in_lang({'a', 'a'}));
+        REQUIRE(nft.is_in_lang({'b', 'a'}));
+        REQUIRE(nft.is_in_lang({'a', 'c'}));
+        REQUIRE(nft.is_in_lang({'b', 'c'}));
+
+        REQUIRE(!nft.is_in_lang({'c', 'a'}));
+        REQUIRE(!nft.is_in_lang({'a', 'b'}));
+        REQUIRE(!nft.is_in_lang({'c', 'b'}));
+
+        REQUIRE(!nft.is_in_lang({'a', 'b', 'a', 'c'}));
+        REQUIRE(nft.is_in_lang({'a', 'a', 'b', 'c'}));
+    }
+    SECTION("2 tapes, generic and specific alphabet") {
+        EnumAlphabet alphabet1 = {'a', 'b'};
+        EnumAlphabet alphabet2 = {'a', 'c'};
+
+        Nft nft = mata::ext::create_sigma_star_nft(2, &alphabet1, std::make_optional(std::vector<Alphabet*>{nullptr, &alphabet2}));
+
+        REQUIRE(nft.is_in_lang({}));
+        REQUIRE(!nft.is_in_lang({'a'}));
+
+        REQUIRE(nft.is_in_lang({'a', 'a'}));
+        REQUIRE(nft.is_in_lang({'b', 'a'}));
+        REQUIRE(nft.is_in_lang({'a', 'c'}));
+        REQUIRE(nft.is_in_lang({'b', 'c'}));
+
+        REQUIRE(!nft.is_in_lang({'c', 'a'}));
+        REQUIRE(!nft.is_in_lang({'a', 'b'}));
+        REQUIRE(!nft.is_in_lang({'c', 'b'}));
+
+        REQUIRE(!nft.is_in_lang({'a', 'b', 'a', 'c'}));
+        REQUIRE(nft.is_in_lang({'a', 'a', 'b', 'c'}));
+    }
+}
+
 TEST_CASE("Create Tabakov-Vardi NFT") {
     size_t num_of_levels;
     size_t num_of_states;

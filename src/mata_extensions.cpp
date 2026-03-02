@@ -146,6 +146,28 @@ namespace mata::ext {
         return complement(nft, get_tape_symbols_to_work_with(nft, alphabet, alphabets), minimize_during_determinization);
     }
 
+    mata::nft::Nft create_sigma_star_nft(int number_of_levels, Alphabet* alphabet, const std::optional<const std::vector<Alphabet*>> alphabets) {
+        if (number_of_levels == 0) {
+            return mata::nft::Nft::with_levels(0, 1, {0}, {0}, alphabet, alphabets);
+        }
+
+        Nft result = mata::nft::Nft::with_levels(number_of_levels, number_of_levels, {0}, {0}, alphabet, alphabets);
+
+        for (int i = 0; i < number_of_levels; ++i) {
+            mata::utils::OrdVector<Symbol> s = {DONT_CARE};
+            if (alphabets.has_value() && alphabets->operator[](i) != nullptr) {
+                s = alphabets->operator[](i)->get_alphabet_symbols();
+            } else if (alphabet != nullptr) {
+                s = alphabet->get_alphabet_symbols();
+            }
+            for (const Symbol& sym : s) {
+                result.delta.add(i, sym, (i + 1) % number_of_levels);
+            }
+        }
+
+        return result;
+    }
+
     void padding_closure(Nfa& nfa, Symbol padding_symbol) {
         // compute predecessors wrt. delta (restricted to padding_symbol)
         // -> construct graph with edges (i, j) meaning that (j, padding_symbol, i) is in delta

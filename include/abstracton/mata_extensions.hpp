@@ -36,6 +36,12 @@ mata::nft::Nft minimize(const mata::nft::Nft& nft);
 mata::nft::Nft complement(const mata::nft::Nft& nft, const std::vector<mata::utils::OrdVector<Symbol>>& symbols, bool minimize_during_determinization = false);
 mata::nft::Nft complement(const mata::nft::Nft& nft, const Alphabet* alphabet = nullptr, const std::optional<const std::vector<Alphabet*>> alphabets = std::nullopt, bool minimize_during_determinization = false);
 
+// some constructions for same-length nfts
+/**
+ * Constructs a *length-preserving* NFT accepting all words over the given alphabet(s). For examples, see the tests.
+ */
+mata::nft::Nft create_sigma_star_nft(int number_of_levels, Alphabet* alphabet = nullptr, const std::optional<const std::vector<Alphabet*>> alphabets = std::nullopt);
+
 // completes the given nfa in-place wrt. the padding closure as in Algorithm 24 of Esparza et Blondin's "Automata Theory: An Algorithmic Approach"
 void padding_closure(mata::nfa::Nfa& nfa, Symbol padding_symbol);
 
