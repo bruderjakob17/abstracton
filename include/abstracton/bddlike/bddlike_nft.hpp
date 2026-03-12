@@ -8,18 +8,23 @@
 
 namespace mata::ext {
 
-struct VecAlphabetPrinter {
+class VecAlphabetPrinter {
+public:
+    size_t alphabet_size; // number of tapes this alphabet needs
+    VecAlphabetPrinter(size_t alphabet_size) : alphabet_size(alphabet_size) {};
     virtual std::string print(const std::vector<Symbol>& bits) = 0;
     virtual ~VecAlphabetPrinter() = default;
 };
 
 /**
  * T is the type used to represent a "Big Symbol", that then gets decomposed into a vec of "small symbols".
- * E.g. T might be an integer (Big Symbol), that gets decombosed into its binary digits (small symbols).
+ * E.g. T might be an integer (Big Symbol), that gets decomposed into its binary digits (small symbols).
  */
 template<typename T>
 class VecAlphabet : public VecAlphabetPrinter {
 public:
+    VecAlphabet(size_t alphabet_size) : VecAlphabetPrinter(alphabet_size) {}
+
     virtual std::vector<Symbol> translate_symbol(const T& symbol) = 0;
     // virtual std::vector<Symbol> translate_word(const std::vector<T>& word);
 
@@ -30,8 +35,41 @@ public:
     virtual ~VecAlphabet() = default;
 };
 
+/**
+ * SimpleAlphabet is a VecAlphabet where Big Symbol = small symbol, i.e. symbols do not get decomposed.
+ *
+ * Because of the general framework, one still needs to wrap the small symbol into a vec, e.g. 5 gets represented as [5].
+ *
+ * TODO: code is a bit inconsistent: in SupersetVecAlphabet, one translates the symbols w.r.t. the alphabet, but here, no translation is done...
+ * THIS SHOULD BE FIXED HERE!!!
+ */
+class SimpleAlphabet : public VecAlphabet<Symbol> {
+private:
+    Alphabet* base_alphabet;
+public:
+    explicit SimpleAlphabet(Alphabet* base_alphabet) : VecAlphabet(1), base_alphabet(std::move(base_alphabet)) {}
+
+    std::vector<Symbol> translate_symbol(const Symbol& symbol) override {
+        return {symbol};
+    }
+    Symbol reverse_translate_symbol(std::vector<Symbol> symbol) override {
+        assert(symbol.size() == 1);
+        return symbol[0];
+    }
+    std::string print(const std::vector<Symbol>& bits) override {
+        assert(bits.size() == 1);
+        return base_alphabet->reverse_translate_symbol(bits[0]);
+    }
+};
+
+/**
+ * In DefaultVecAlphabet(alphabet_size), a big symbol is just a vector of the small symbols it represents,
+ * e.g. {'0', '1', '1'} represents the sequence {'0', '1', '1'}.
+ */
 class DefaultVecAlphabet : public VecAlphabet<std::vector<Symbol>> {
 public:
+    explicit DefaultVecAlphabet(size_t alphabet_size) : VecAlphabet(alphabet_size) {}
+
     std::vector<Symbol> translate_symbol(const std::vector<Symbol>& symbol) override {
         return symbol;
     }
@@ -43,12 +81,17 @@ public:
     }
 };
 
+/**
+ * A SupersetVecAlphabet uses the characteristic sequence to represent a set.
+ *
+ * E.g. in the (ordered) alphabet {"ab", "c", "d"}, the set {"ab", "c"} would be represented as {1, 1, 0}.
+ */
 class SupersetVecAlphabet : public VecAlphabet<std::vector<std::string>> {
 private:
     Alphabet* base_alphabet;
     size_t base_alphabet_size;
 public:
-    explicit SupersetVecAlphabet(Alphabet* base_alphabet) : base_alphabet(std::move(base_alphabet)) {
+    explicit SupersetVecAlphabet(Alphabet* base_alphabet) : VecAlphabet(base_alphabet->get_alphabet_symbols().size()), base_alphabet(std::move(base_alphabet)) {
         base_alphabet_size = base_alphabet->get_alphabet_symbols().size();
     }
 
@@ -110,9 +153,13 @@ public:
         result.alphabet_sizes = alphabet_sizes;
 
         if (alphabets.has_value()) {
+            assert(result.alphabet_sizes.size() == alphabets.value().size()); // TODO also assert that each alphabet has the correct number of tapes
             result.alphabets = alphabets.value();
         } else {
-            result.alphabets = std::vector<std::shared_ptr<VecAlphabetPrinter>>(alphabet_sizes.size(), std::make_shared<DefaultVecAlphabet>(DefaultVecAlphabet{}));
+            result.alphabets = std::vector<std::shared_ptr<VecAlphabetPrinter>>{};
+            for (int i{ 0 }; i < alphabet_sizes.size(); ++i) {
+                result.alphabets.push_back(std::make_shared<DefaultVecAlphabet>(DefaultVecAlphabet{alphabet_sizes[i]}));
+            }
         }
 
         result.levels = mata::nft::Levels{ total_number_of_tapes, num_of_states, mata::nft::DEFAULT_LEVEL };

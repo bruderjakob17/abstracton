@@ -277,6 +277,71 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
     }
 }
 
+TEST_CASE("Universality for length-preserving NFTs using antichains") {
+    auto print_run = [](mata::nft::Run cex) -> void {
+        std::cout << "Run:\n";
+        std::cout << '\t' << vec_to_string(cex.word) << std::endl;
+        std::cout << "Trace in NFT:\n";
+        std::cout << '\t' << vec_to_string(cex.path) << std::endl;
+    };
+
+    // define a few sample nfts
+    mata::EnumAlphabet ab_alph {'a', 'b'};
+    std::vector<mata::Alphabet*> ab_alphs = {&ab_alph, &ab_alph};
+    mata::nft::Nft univ = mata::nft::Nft::with_levels(2, 2, {0}, {0});
+    //univ.final.insert(0); //TODO why does mata not automatically add 0 as final state in with_levels()?
+    univ.delta.add(0, 'a', 1);
+    univ.delta.add(0, 'b', 1);
+    univ.delta.add(1, 'a', 0);
+    univ.delta.add(1, 'b', 0);
+    univ.levels[0] = 0;
+    univ.levels[1] = 1;
+
+    mata::EnumAlphabet bc_alph {'b', 'c'};
+    std::vector<mata::Alphabet*> ab_bc_alphs = {&ab_alph, &bc_alph};
+    mata::nft::Nft univ2 = mata::ext::create_sigma_star_nft(2, nullptr, std::make_optional(ab_bc_alphs));
+
+    std::cout << univ.print_to_dot(true) << std::endl;
+
+    SECTION("modification of mata::nft::algorithms::is_universal_antichains: [mata::ext::is_universal_antichains]") {
+        bool is_univ;
+        mata::nft::Run cex;
+
+        is_univ = mata::ext::is_universal_antichains(univ, ab_alphs, &cex);
+        print_run(cex);
+        REQUIRE(is_univ);
+
+        is_univ = mata::ext::is_universal_antichains(univ2, ab_bc_alphs, &cex);
+        print_run(cex);
+        REQUIRE(is_univ);
+
+        is_univ = mata::ext::is_universal_antichains(univ2, ab_alphs, &cex);
+        print_run(cex);
+        REQUIRE(!is_univ);
+    }
+
+    SECTION("using mata::nft::algorithms::is_included_antichains in combination with create_sigma_star_nft: [mata::ext::is_universal_antichains_by_inclusion]") {
+        bool is_univ;
+        mata::nft::Run cex;
+
+        is_univ = mata::ext::is_universal_antichains_by_inclusion(univ, ab_alphs, &cex);
+        print_run(cex);
+        REQUIRE(is_univ);
+
+        is_univ = mata::ext::is_universal_antichains_by_inclusion(univ2, ab_bc_alphs, &cex);
+        print_run(cex);
+        REQUIRE(is_univ);
+
+        is_univ = mata::ext::is_universal_antichains_by_inclusion(univ2, ab_alphs, &cex);
+        print_run(cex);
+        REQUIRE(!is_univ);
+    }
+}
+
+TEST_CASE("Universality for length-preserving NFTs by inclusion") {
+
+}
+
 TEST_CASE("Create Tabakov-Vardi NFT") {
     size_t num_of_levels;
     size_t num_of_states;
@@ -397,7 +462,7 @@ TEST_CASE("Create Tabakov-Vardi NFT") {
         // CHECK(nft.delta.num_of_transitions() == 100000);
     }
 
-    SECTION("Same seed results in same NFA.") {
+    SECTION("Same seed results in same NFT.") {
         num_of_levels = 2;
         num_of_states = 10;
         alphabet_sizes = {3, 4};

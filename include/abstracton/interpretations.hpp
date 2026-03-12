@@ -22,7 +22,7 @@ inline std::string to_string(SetInterpretation i) {
 }
 
 /**
- * @brief Creates a Transducer for the Trap Interpretation.
+ * @brief Creates a Transducer for the Trap/Flow/Siphon Interpretation.
  *
  * Give some alphabet S, let G be the powerset of S.
  * Then, the trap interpretation accepts some (v, w) in S* x G* iff there exists some i s.t. v_i in w_i.

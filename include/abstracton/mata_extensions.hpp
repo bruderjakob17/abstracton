@@ -3,6 +3,9 @@
 #include <mata/nfa/nfa.hh>
 #include <mata/nft/nft.hh>
 #include <mata/nfa/algorithms.hh>
+#include <mata/nft/algorithms.hh>
+#include <mata/nfa/types.hh>
+#include <mata/nft/types.hh>
 
 mata::nft::Nft create_identity(mata::Alphabet& alphabet);
 
@@ -41,6 +44,19 @@ mata::nft::Nft complement(const mata::nft::Nft& nft, const Alphabet* alphabet = 
  * Constructs a *length-preserving* NFT accepting all words over the given alphabet(s). For examples, see the tests.
  */
 mata::nft::Nft create_sigma_star_nft(int number_of_levels, Alphabet* alphabet = nullptr, const std::optional<const std::vector<Alphabet*>> alphabets = std::nullopt);
+
+/**
+ * Universality checking based on subset construction with antichain.
+ * @param[in] aut Automaton which universality is checked
+ * @param[in] alphabets Alphabets of the automaton
+ * @param[out] cex Counterexample word which eventually breaks the universality
+ * @return True if the automaton is universal, otherwise false. IMPORTANT: in contrast to mata's mata::nft::algorithms::is_universal_antichains, this algorithm checks only universality w.r.t. words which have the same length on each tape
+ */
+bool is_universal_antichains(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex);
+
+/// similar to is_universal_antichains, but solves the problem by just calling inclusion algorithm to check if sigma star (length-preserving version) is included
+/// Note: this check seems to be a LOT slower than is_universal_antichains, see examples/compare_inclusion_checks.cpp. The reason might be that @param alphabets is only used to create sigma star, and for the inclusion, mata's is_included_antichains is called, which does not support tape-specific alphabets, meaning it constructs an alphabet valid for all tapes by iterating over the whole automaton
+bool is_universal_antichains_by_inclusion(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex);
 
 // completes the given nfa in-place wrt. the padding closure as in Algorithm 24 of Esparza et Blondin's "Automata Theory: An Algorithmic Approach"
 void padding_closure(mata::nfa::Nfa& nfa, Symbol padding_symbol);

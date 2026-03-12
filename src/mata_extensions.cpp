@@ -57,7 +57,7 @@ namespace mata::ext {
         // TODO for mindet, brzozowski better?
         Nfa aut_det {determinize(aut)};
         aut_det = aut_det.trim();
-        Nfa aut_min {algorithms::minimize_hopcroft(aut_det)};
+        Nfa aut_min {mata::nfa::algorithms::minimize_hopcroft(aut_det)};
         Nft result =  mata::nft::builder::from_nfa_with_levels_advancing(aut_min, levels);
         result.alphabet = nft.alphabet;
         result.alphabets = nft.alphabets;
@@ -167,6 +167,139 @@ namespace mata::ext {
         }
 
         return result;
+    }
+
+    /// universality check using Antichains
+    bool is_universal_antichains (
+        const Nft&                      aut,
+        const std::vector<Alphabet*>    alphabets,
+        Run*                            cex)
+    {
+
+        using WorklistType = std::list<StateSet>;
+        using ProcessedType = std::list<StateSet>;
+
+        auto subsumes = [](const StateSet& lhs, const StateSet& rhs) {
+            if (lhs.size() > rhs.size()) { // bigger set cannot be subset
+                return false;
+            }
+
+            return std::ranges::includes(rhs, lhs);
+        };
+
+        // check initial states
+        if (are_disjoint(aut.initial, aut.final)) {
+            if (nullptr != cex) { cex->word.clear(); }
+            return false;
+        }
+
+        // initialize
+        WorklistType worklist = { StateSet(aut.initial) };
+        ProcessedType processed = { StateSet(aut.initial) };
+        std::vector<mata::utils::OrdVector<Symbol>> alph_symbols{};
+        for (int i{ 0 }; i < alphabets.size(); ++i) {
+            alph_symbols.push_back(alphabets[i]->get_alphabet_symbols());
+        }
+
+        // 'paths[s] == t' denotes that state 's' was accessed from state 't',
+        // 'paths[s] == s' means that 's' is an initial state
+        std::map<StateSet, std::pair<StateSet, Symbol>> paths =
+            { {StateSet(aut.initial), {StateSet(aut.initial), 0}} };
+
+        while (!worklist.empty()) {
+            // get a next state
+            StateSet state;
+
+            // process parameters
+            // TODO: set correctly!!!!
+            constexpr bool is_dfs = true;
+            if (is_dfs) {
+                state = *worklist.rbegin();
+                worklist.pop_back();
+            } else { // BFS
+                state = *worklist.begin();
+                worklist.pop_front();
+            }
+
+            // a symbol x is called possible in stateset S iff for every s in S, x is in the alphabet at the level of s.
+            // this can be calculated as intersection of all alphabets for which there exists some s in S which is at the level of the alphabet.
+            std::vector<State> state_as_vector = state.to_vector();
+            // state is guaranteed to have at least one state (empty sets have empty intersection with final states and are never added to worklist)
+            mata::utils::OrdVector<Symbol> possible_symbols{alph_symbols[aut.levels[state_as_vector[0]]]};
+            for (int i{ 1 }; i < state_as_vector.size(); ++i) {
+                // if level is the same, alphabet is also the same and intersection can be skipped
+                if (aut.levels[state_as_vector[0]] != aut.levels[state_as_vector[i]]) {
+                    possible_symbols = possible_symbols.intersection(alph_symbols[aut.levels[state_as_vector[i]]]);
+                }
+            }
+
+            // process it
+            for (Symbol symb : possible_symbols) {
+                StateSet succ = aut.post(state, symb);
+                bool all_are_at_level_0 = true;
+                for (State s : succ) {
+                    if (aut.levels[s] != 0) {
+                        all_are_at_level_0 = false;
+                        break;
+                    }
+                }
+                if (all_are_at_level_0 && !aut.final.intersects_with(succ)) {
+                    if (nullptr != cex) {
+                        cex->word.clear();
+                        cex->word.push_back(symb);
+                        StateSet trav = state;
+                        while (paths[trav].first != trav)
+                        { // go back until initial state
+                            cex->word.push_back(paths[trav].second);
+                            trav = paths[trav].first;
+                        }
+
+                        std::ranges::reverse(cex->word);
+                    }
+
+                    return false;
+                }
+
+                bool is_subsumed = false;
+                for (const auto& anti_state : processed) {
+                    // trying to find a smaller state in processed
+                    if (subsumes(anti_state, succ)) {
+                        is_subsumed = true;
+                        break;
+                    }
+                }
+
+                if (is_subsumed) { continue; }
+
+                // prune data structures and insert succ inside
+                for (std::list<StateSet>* ds : {&processed, &worklist}) {
+                    auto it = ds->begin();
+                    while (it != ds->end()) {
+                        if (subsumes(succ, *it)) {
+                            auto to_remove = it;
+                            ++it;
+                            ds->erase(to_remove);
+                        } else {
+                            ++it;
+                        }
+                    }
+
+                    // TODO: set pushing strategy
+                    ds->push_back(succ);
+                }
+
+                // also set that succ was accessed from state
+                paths[succ] = {state, symb};
+            }
+        }
+
+        return true;
+    }
+
+    bool is_universal_antichains_by_inclusion(const Nft& aut, const std::vector<Alphabet*> alphabets, Run* cex) {
+        Nft univ = create_sigma_star_nft(aut.levels.num_of_levels, nullptr, std::make_optional(alphabets));
+
+        return mata::nft::algorithms::is_included_antichains(univ, aut, nullptr, cex);
     }
 
     void padding_closure(Nfa& nfa, Symbol padding_symbol) {
