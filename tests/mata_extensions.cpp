@@ -177,7 +177,7 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
     SECTION("1 tape, generic alphabet") {
         EnumAlphabet alphabet = {'a', 'b'};
         Nft nft = mata::ext::create_sigma_star_nft(1, &alphabet, std::nullopt);
-        REQUIRE(nft.is_in_lang({}));
+        REQUIRE(nft.is_in_lang(Word {}));
         REQUIRE(nft.is_in_lang({'a'}));
         REQUIRE(nft.is_in_lang({'b'}));
         REQUIRE(!nft.is_in_lang({'c'}));
@@ -187,7 +187,7 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
     SECTION("1 tape, specific alphabet") {
         EnumAlphabet alphabet = {'a', 'b'};
         Nft nft = mata::ext::create_sigma_star_nft(1, nullptr, std::make_optional(std::vector<Alphabet*>{&alphabet}));
-        REQUIRE(nft.is_in_lang({}));
+        REQUIRE(nft.is_in_lang(Word {}));
         REQUIRE(nft.is_in_lang({'a'}));
         REQUIRE(nft.is_in_lang({'b'}));
         REQUIRE(!nft.is_in_lang({'c'}));
@@ -198,7 +198,7 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
         EnumAlphabet generic_alphabet = {'a', 'b', 'c'};
         EnumAlphabet specific_alphabet = {'a', 'b'};
         Nft nft = mata::ext::create_sigma_star_nft(1, &generic_alphabet, std::make_optional(std::vector<Alphabet*>{&specific_alphabet}));
-        REQUIRE(nft.is_in_lang({}));
+        REQUIRE(nft.is_in_lang(Word {}));
         REQUIRE(nft.is_in_lang({'a'}));
         REQUIRE(nft.is_in_lang({'b'}));
         REQUIRE(!nft.is_in_lang({'c'}));
@@ -208,13 +208,13 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
     SECTION("2 tapes, generic alphabet") {
         EnumAlphabet alphabet = {'a', 'b'};
         Nft nft = mata::ext::create_sigma_star_nft(2, &alphabet, std::nullopt);
-        REQUIRE(nft.is_in_lang({}));
-        REQUIRE(!nft.is_in_lang({'a'}));
-        REQUIRE(!nft.is_in_lang({'b'}));
-        REQUIRE(!nft.is_in_lang({'c'}));
+        REQUIRE(nft.is_in_lang(Word {}));
+        // REQUIRE(!nft.is_in_lang({'a'}));
+        // REQUIRE(!nft.is_in_lang({'b'}));
+        // REQUIRE(!nft.is_in_lang({'c'}));
         REQUIRE(nft.is_in_lang({'a', 'b'}));
         REQUIRE(!nft.is_in_lang({'a', 'c'}));
-        REQUIRE(!nft.is_in_lang({'a', 'b', 'b'}));
+        // REQUIRE(!nft.is_in_lang({'a', 'b', 'b'}));
         REQUIRE(nft.is_in_lang({'a', 'b', 'b', 'b'}));
     }
     SECTION("2 tapes, specific alphabets") {
@@ -223,8 +223,8 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
 
         Nft nft = mata::ext::create_sigma_star_nft(2, nullptr, std::make_optional(std::vector<Alphabet*>{&alphabet1, &alphabet2}));
 
-        REQUIRE(nft.is_in_lang({}));
-        REQUIRE(!nft.is_in_lang({'a'}));
+        REQUIRE(nft.is_in_lang(Word {}));
+        // REQUIRE(!nft.is_in_lang({'a'}));
 
         REQUIRE(nft.is_in_lang({'a', 'a'}));
         REQUIRE(nft.is_in_lang({'b', 'a'}));
@@ -244,8 +244,8 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
 
         Nft nft = mata::ext::create_sigma_star_nft(2, &alphabet1, std::make_optional(std::vector<Alphabet*>{nullptr, &alphabet2}));
 
-        REQUIRE(nft.is_in_lang({}));
-        REQUIRE(!nft.is_in_lang({'a'}));
+        REQUIRE(nft.is_in_lang(Word {}));
+        // REQUIRE(!nft.is_in_lang({'a'})); // recent mata version throws error when words are checked that have a length which is not a multiple of the number of levels of the nft
 
         REQUIRE(nft.is_in_lang({'a', 'a'}));
         REQUIRE(nft.is_in_lang({'b', 'a'}));
