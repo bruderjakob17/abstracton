@@ -338,8 +338,118 @@ TEST_CASE("Universality for length-preserving NFTs using antichains") {
     }
 }
 
-TEST_CASE("Universality for length-preserving NFTs by inclusion") {
+TEST_CASE("Insert tapes", "[mata::ext::insert_tapes]") {
+    using namespace mata;
+    using namespace mata::nft;
 
+    EnumAlphabet ab_alph {'a', 'b'};
+    EnumAlphabet bc_alph {'b', 'c'};
+    EnumAlphabet cd_alph {'c', 'd'};
+    EnumAlphabet ef_alph {'e', 'f'};
+    EnumAlphabet x_alph {'x'};
+    EnumAlphabet yz_alph {'y', 'z'};
+
+    SECTION("Simple example") {
+        std::vector<Alphabet*> x_yz_alphs = {&x_alph, &yz_alph};
+        Nft aut = Nft::with_levels(2, 4, {0}, {2, 3}, nullptr, std::make_optional(x_yz_alphs));
+        aut.levels[0] = 0;
+        aut.levels[1] = 1;
+        aut.levels[2] = 0;
+        aut.levels[3] = 0;
+        aut.delta.add(0, 'x', 1);
+        aut.delta.add(1, 'y', {0, 2});
+        aut.delta.add(1, 'z', 3);
+        std::cout << aut.print_to_dot(true) << std::endl;
+
+        assert((aut.get_words(4) == std::set<std::vector<Symbol>>{{'x', 'y'}, {'x', 'z'}, {'x', 'y', 'x', 'y'}, {'x', 'y', 'x', 'z'}}));
+
+        Nft aut_inserted = mata::ext::insert_tapes(aut, {0, 2, 4}, {&ab_alph, &cd_alph, &ef_alph});
+        std::cout << aut_inserted.print_to_dot(true) << std::endl;
+
+        REQUIRE(aut_inserted.get_words(5) == std::set<std::vector<Symbol>>{
+            {'a', 'x', 'c', 'y', 'e'},
+            {'a', 'x', 'c', 'y', 'f'},
+            {'a', 'x', 'd', 'y', 'e'},
+            {'a', 'x', 'd', 'y', 'f'},
+            {'b', 'x', 'c', 'y', 'e'},
+            {'b', 'x', 'c', 'y', 'f'},
+            {'b', 'x', 'd', 'y', 'e'},
+            {'b', 'x', 'd', 'y', 'f'},
+            {'a', 'x', 'c', 'z', 'e'},
+            {'a', 'x', 'c', 'z', 'f'},
+            {'a', 'x', 'd', 'z', 'e'},
+            {'a', 'x', 'd', 'z', 'f'},
+            {'b', 'x', 'c', 'z', 'e'},
+            {'b', 'x', 'c', 'z', 'f'},
+            {'b', 'x', 'd', 'z', 'e'},
+            {'b', 'x', 'd', 'z', 'f'}
+        });
+
+        // project back; result must accept same language as the nft we started with
+
+        Nft aut_back_projection = mata::nft::project_out(aut_inserted, {0, 2, 4});
+        std::cout << aut_back_projection.print_to_dot(true) << std::endl;
+
+        REQUIRE(mata::nft::are_equivalent(aut, aut_back_projection));
+    }
+
+    // TODO: multiple initial states, final initial states, ...
+    // TODO later, for relational product, test that sigma star products are equivalent to sigma star nft
+
+    SECTION("Sigma Star") {
+        std::vector<Alphabet*> ab_bc_alphs = {&ab_alph, &bc_alph};
+        std::vector<Alphabet*> x_yz_alphs = {&x_alph, &yz_alph};
+        Nft ab_bc_aut = mata::ext::create_sigma_star_nft(2, nullptr, std::make_optional(ab_bc_alphs));
+        Nft x_yz_aut = mata::ext::create_sigma_star_nft(2, nullptr, std::make_optional(x_yz_alphs));
+
+        std::cout << "{a, b} x {b, c}:\n" << ab_bc_aut.print_to_dot(true) << std::endl;
+        std::cout << "{x} x {y, z}:\n" << x_yz_aut.print_to_dot(true) << std::endl;
+
+        Nft ab_x_bc_yz_aut1 = mata::ext::insert_tapes(ab_bc_aut, {1, 3}, {&x_alph, &yz_alph});
+        std::cout << "inserting tapes {x}, {y, z} in first automaton:\n" <<ab_x_bc_yz_aut1.print_to_dot(true) << std::endl;
+        Nft ab_x_bc_yz_aut2 = mata::ext::insert_tapes(x_yz_aut, {0, 2}, {&ab_alph, &bc_alph});
+        std::cout << "inserting tapes {a, b}, {b, c} in second automaton:\n" <<ab_x_bc_yz_aut2.print_to_dot(true) << std::endl;
+
+        REQUIRE(mata::nft::are_equivalent(ab_x_bc_yz_aut1, ab_x_bc_yz_aut2));
+    }
+}
+
+TEST_CASE("Relational (length-preserving) product", "[mata::ext::relational_product_length_preserving]") {
+    using namespace mata;
+    using namespace mata::nft;
+
+    // SECTION("Empty Product") {
+    //     Nft e = mata::ext::relational_product_length_preserving({});
+    //     REQUIRE(e.get_words() == std::set<std::vector<Symbol>>{{}});
+    // }
+    SECTION("Product of one NFT") {
+        Nft aut = mata::ext::builder::create_random_nft_tabakov_vardi(2, 6, {3, 3}, 5.0, 0.5, std::make_optional(5));
+        Nft prod = mata::ext::relational_product_length_preserving({aut});
+        REQUIRE(mata::nft::are_equivalent(aut, prod));
+    }
+    SECTION("Product of two NFTs") {
+        // {(ab, aa), (ab, bb)} x {(d, c), (cc, dd)} = {(ab, aa, cc, dd), (ab, bb, cc, dd)}
+
+        Nft aut1 = Nft::with_levels(2, 1, {0});
+        aut1.final.insert(aut1.insert_word_by_levels(0, std::vector<Word>{{'a', 'b'}, {'a', 'a'}}));
+        aut1.final.insert(aut1.insert_word_by_levels(0, std::vector<Word>{{'a', 'b'}, {'b', 'b'}}));
+        std::cout << aut1.print_to_dot(true) << std::endl;
+
+        Nft aut2 = Nft::with_levels(2, 1, {0});
+        aut2.final.insert(aut2.insert_word_by_levels(0, std::vector<Word>{{'d'}, {'c'}}));
+        aut2.final.insert(aut2.insert_word_by_levels(0, std::vector<Word>{{'c', 'c'}, {'d', 'd'}}));
+        std::cout << aut2.print_to_dot(true) << std::endl;
+
+        Nft prod = mata::ext::relational_product_length_preserving({aut1, aut2});
+        std::cout << prod.print_to_dot(true) << std::endl;
+
+        Nft expected = Nft::with_levels(4, 1, {0});
+        expected.final.insert(expected.insert_word_by_levels(0, std::vector<Word>{{'a', 'b'}, {'a', 'a'}, {'c', 'c'}, {'d', 'd'}}));
+        expected.final.insert(expected.insert_word_by_levels(0, std::vector<Word>{{'a', 'b'}, {'b', 'b'}, {'c', 'c'}, {'d', 'd'}}));
+        std::cout << expected.print_to_dot(true) << std::endl;
+
+        REQUIRE(are_equivalent(prod, expected));
+    }
 }
 
 TEST_CASE("Create Tabakov-Vardi NFT") {

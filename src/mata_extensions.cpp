@@ -4,6 +4,7 @@
 #include <abstracton/mata_extensions.hpp>
 #include <mata/nfa/algorithms.hh>
 #include <abstracton/utils/utils.hpp>
+#include <mata/utils/utils.hh>
 #include <random>
 
 using namespace mata;
@@ -300,6 +301,197 @@ namespace mata::ext {
         Nft univ = create_sigma_star_nft(aut.levels.num_of_levels, nullptr, std::make_optional(alphabets));
 
         return mata::nft::algorithms::is_included_antichains(univ, aut, nullptr, cex);
+    }
+
+    Nft insert_tapes(const Nft& aut, const std::vector<int> inserted_tape_indices, const std::vector<Alphabet*> inserted_tape_alphabets) {
+        assert(inserted_tape_indices.size() == inserted_tape_alphabets.size());
+        for (int i{ 0 }; i < inserted_tape_indices.size(); ++i) {
+            assert(inserted_tape_indices[i] < aut.levels.num_of_levels + inserted_tape_indices.size());
+            if (i + 1 < inserted_tape_indices.size()) {
+                assert(inserted_tape_indices[i] < inserted_tape_indices[i + 1]);
+            }
+        }
+
+        Nft result = Nft::with_levels(aut.levels.num_of_levels + inserted_tape_indices.size(), aut.num_of_states(), {}, {});
+        result.alphabet = aut.alphabet;
+        std::vector<Alphabet*> new_alphabets(result.levels.num_of_levels, nullptr);
+
+        std::vector<int> old_to_new_levels{};
+        {
+            int i = 0;
+            int j = 0;
+            while (i + j < result.levels.num_of_levels) {
+                if (i + j == inserted_tape_indices[j]) {
+                    // i + j is an inserted level
+                    new_alphabets[i + j] = inserted_tape_alphabets[j];
+                    j++;
+                } else {
+                    // i + j is the next old level
+                    old_to_new_levels.push_back(i + j);
+                    if (aut.alphabets.has_value()) {
+                        new_alphabets[i + j] = aut.alphabets.value()[i];
+                    }
+                    i++;
+                }
+            }
+        }
+
+        // insert old states, keeping their indices (e.g. State 0 will remain State 0), updating their level
+        for (State s : aut.get_reachable_states()) {
+            result.add_state_with_level(s, old_to_new_levels[aut.levels[s]]);
+        }
+
+        // iterate over old delta, and insert it while also inserting new tapes in between as necessary
+        for (const State& s : aut.get_reachable_states()) {
+            int source_level = aut.levels[s];
+            int num_of_inserted_levels_in_between = (source_level + 1 == aut.levels.num_of_levels) ?
+                    (result.levels.num_of_levels - 1 - old_to_new_levels[source_level]) + old_to_new_levels[0] :
+                    old_to_new_levels[source_level + 1] - old_to_new_levels[source_level] - 1;
+            if (old_to_new_levels[source_level] == 0 && aut.final.contains(s)) {
+                result.final.insert(s);
+            }
+            if (num_of_inserted_levels_in_between == 0) {
+                // would like to just set result.delta[s] = aut.delta[s]...
+                for (const SymbolPost& sp : aut.delta[s]) {
+                    result.delta.add(s, sp.symbol, sp.targets);
+                }
+                continue;
+            }
+            // insert levels in between
+            for (const SymbolPost& sp : aut.delta[s]) {
+                std::vector<State> in_between_states{};
+                std::vector<int> in_between_levels{};
+                for (int i{ 0 }; i < num_of_inserted_levels_in_between; ++i) {
+                    int in_between_level = (old_to_new_levels[source_level] + 1 + i) % result.levels.num_of_levels;
+                    in_between_states.push_back(result.add_state_with_level(in_between_level));
+                    in_between_levels.push_back(in_between_level);
+
+                    // any intermediate state on level 0 on a path to some final state becomes a new final state
+                    if (in_between_level == 0 && aut.final.intersects_with(sp.targets)) {
+                        result.final.insert(in_between_states[in_between_states.size() - 1]);
+                    }
+                }
+                // add transitions with complete alphabets between in-between-states
+                for (int i{ 0 }; i < num_of_inserted_levels_in_between - 1; ++i) {
+                    if (new_alphabets[in_between_levels[i]] == nullptr) {
+                        result.delta.add(in_between_states[i], DONT_CARE, in_between_states[i + 1]);
+                    } else {
+                        for (const Symbol x : new_alphabets[in_between_levels[i]]->get_alphabet_symbols()) {
+                            result.delta.add(in_between_states[i], x, in_between_states[i + 1]);
+                        }
+                    }
+                }
+                // go from original source to first in-between-state with old symbol
+                result.delta.add(s, sp.symbol, in_between_states[0]);
+                // go from last in-between-state with any symbol to old target state
+                if (new_alphabets[in_between_levels[in_between_levels.size() - 1]] == nullptr) {
+                    result.delta.add(in_between_states[in_between_states.size() - 1], DONT_CARE, sp.targets);
+                } else {
+                    for (const Symbol x : new_alphabets[in_between_levels[in_between_levels.size() - 1]]->get_alphabet_symbols()) {
+                        result.delta.add(in_between_states[in_between_states.size() - 1], x, sp.targets);
+                    }
+                }
+            }
+        }
+
+        // determine initial states
+        if (old_to_new_levels[0] == 0) {
+            result.initial = aut.initial;
+        } else {
+            for (const State& s : aut.initial) {
+                int num_of_intermediate_states = old_to_new_levels[0];
+                std::vector<State> intermediate_states{};
+                for (int i{ 0 }; i < num_of_intermediate_states; ++i) {
+                    intermediate_states.push_back(result.add_state_with_level(i));
+                }
+                // add transitions between new intermediate states
+                for (int i{ 0 }; i < num_of_intermediate_states - 1; ++i) {
+                    if (new_alphabets[i] == nullptr) {
+                        result.delta.add(intermediate_states[i], DONT_CARE, intermediate_states[i + 1]);
+                    } else {
+                        for (const Symbol& x : new_alphabets[i]->get_alphabet_symbols()) {
+                            result.delta.add(intermediate_states[i], x, intermediate_states[i + 1]);
+                        }
+                    }
+                }
+                // add transitions to old initial states
+                if (new_alphabets[num_of_intermediate_states - 1] == nullptr) {
+                    result.delta.add(intermediate_states[num_of_intermediate_states - 1], DONT_CARE, s);
+                } else {
+                    for (const Symbol& x : new_alphabets[num_of_intermediate_states - 1]->get_alphabet_symbols()) {
+                        result.delta.add(intermediate_states[num_of_intermediate_states - 1], x, s);
+                    }
+                }
+                result.initial.insert(intermediate_states[0]);
+                if (aut.final.contains(s)) {
+                    result.final.insert(intermediate_states[0]);
+                }
+            }
+        }
+
+        // update alphabets
+        result.alphabets = std::make_optional(new_alphabets);
+
+        return result;
+    }
+
+    Nft relational_product_length_preserving(const std::vector<mata::nft::Nft> nfts) {
+        if (nfts.size() == 0) {
+            // return nft accepting only epsilon
+            //return Nft::with_levels(0, 1, {0}, {0});
+            throw std::runtime_error("mata currently does not support creating nfts with 0 levels");
+        }
+        if (nfts.size() == 1) {
+            // theoretically not necessary, but reduces brain power needed in later loop
+            return nfts[0];
+        }
+        size_t total_number_of_tapes = 0;
+        std::vector<size_t> start_indices(nfts.size(), 0);
+        for (int i = 0; i < nfts.size(); ++i) {
+            start_indices[i] = total_number_of_tapes;
+            total_number_of_tapes += nfts[i].levels.num_of_levels;
+        }
+        start_indices.push_back(total_number_of_tapes); // so that start_indices[i], start_indices[i + 1] can be used as range for all tapes i
+
+        // create alphabets (TODO: replace with DONT_CARE?)
+        std::vector<Alphabet*> alphabets(total_number_of_tapes, nullptr);
+        for (int i = 0; i < nfts.size(); ++i) {
+            for (int j = 0; j < nfts[i].levels.num_of_levels; ++j) {
+                if (nfts[i].alphabets.has_value()) {
+                    alphabets[start_indices[i] + j] = nfts[i].alphabets.value()[j];
+                } else if (nfts[i].alphabet != nullptr) {
+                    alphabets[start_indices[i] + j] = nfts[i].alphabet;
+                } else {
+                    // alphabets[start_indices[i] + j] = new Alphabet{nfts[i].delta.get_used_symbols()};
+                }
+            }
+        }
+
+        Nft result;
+        for (int i = 0; i < nfts.size(); ++i) {
+            // set nft levels to false (do not insert new tapes here)
+            std::vector<int> inserted_tape_indices{};
+            std::vector<Alphabet*> inserted_tape_alphabets{};
+            for (int j = 0; j < total_number_of_tapes; ++j) {
+                if (!(j >= start_indices[i] && j < start_indices[i + 1])) {
+                    inserted_tape_indices.push_back(j);
+                    inserted_tape_alphabets.push_back(alphabets[j]);
+                }
+            }
+
+            Nft padded_nft = mata::ext::insert_tapes(nfts[i], inserted_tape_indices, inserted_tape_alphabets);
+            std::cout << "nft " << i << ": \n";
+            std::cout << nfts[i].print_to_dot(true) << std::endl;
+            std::cout << "padded:\n";
+            std::cout << padded_nft.print_to_dot(true) << std::endl;
+            if (i == 0) {
+                result = padded_nft;
+            } else {
+                result = mata::nft::intersection(result, padded_nft);
+            }
+        }
+
+        return result;
     }
 
     void padding_closure(Nfa& nfa, Symbol padding_symbol) {

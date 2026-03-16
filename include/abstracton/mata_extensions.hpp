@@ -58,6 +58,27 @@ bool is_universal_antichains(const mata::nft::Nft& aut, const std::vector<Alphab
 /// Note: this check seems to be a LOT slower than is_universal_antichains, see examples/compare_inclusion_checks.cpp. The reason might be that @param alphabets is only used to create sigma star, and for the inclusion, mata's is_included_antichains is called, which does not support tape-specific alphabets, meaning it constructs an alphabet valid for all tapes by iterating over the whole automaton
 bool is_universal_antichains_by_inclusion(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex);
 
+/**
+ * Inserts tapes to construct a new NFT. Assumes @param aut is length-preserving.
+ * It is equivalent to the "relational length-preserving product" of @param aut with sigma stars specified by @param inserted_tape_alphabets, at positions @param inserted_tape_indices.
+ * E.g. if aut accepts {(a, b), (aa, bb)}, inserted_tape_indices is {1, 3} and new_tape_alphabets {{c, d}, {e}}, the resulting nft will accept
+ * {(a, c, b, e), (a, d, b, e), (aa, cc, bb, ee), (aa, cd, bb, ee), (aa, dc, bb, ee), (aa, dd, bb, ee)}
+ *
+ * Restrictions:
+ * - @param inserted_tape_indices must be strictly increasing
+ * - all states in @param aut must be reachable
+ *
+ * TODO compare with mata::nft::insert_tapes (which inserts DONT_CARE symbols); i.e. construct that and replace DONT_CAREs with corresp. alphabets
+ */
+mata::nft::Nft insert_tapes(const mata::nft::Nft& aut, const std::vector<int> inserted_tape_indices, const std::vector<Alphabet*> inserted_tape_alphabets);
+
+/**
+ * Constructs an NFT accepting the relational product of @param nfts, restricted to same-length-tuples.
+ *
+ * E.g.: {(ab, aa), (ab, bb)} x {(c, d), (cc, dd)} = {(ab, aa, cc, dd), (ab, bb, cc, dd)}
+ */
+mata::nft::Nft relational_product_length_preserving(const std::vector<mata::nft::Nft> nfts);
+
 // completes the given nfa in-place wrt. the padding closure as in Algorithm 24 of Esparza et Blondin's "Automata Theory: An Algorithmic Approach"
 void padding_closure(mata::nfa::Nfa& nfa, Symbol padding_symbol);
 
