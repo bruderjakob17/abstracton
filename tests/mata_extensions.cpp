@@ -449,6 +449,10 @@ TEST_CASE("Relational (length-preserving) product", "[mata::ext::relational_prod
         std::cout << expected.print_to_dot(true) << std::endl;
 
         REQUIRE(are_equivalent(prod, expected));
+
+        // also test version with dont_care
+        Nft prod_dont_care = mata::ext::relational_product_length_preserving_dont_care({aut1, aut2});
+        REQUIRE(are_equivalent(prod, prod_dont_care));
     }
 }
 

@@ -79,6 +79,11 @@ mata::nft::Nft insert_tapes(const mata::nft::Nft& aut, const std::vector<int> in
  */
 mata::nft::Nft relational_product_length_preserving(const std::vector<mata::nft::Nft> nfts);
 
+/**
+ * same as relational_product_length_preserving, but does not need to exctract any alphabets
+ */
+mata::nft::Nft relational_product_length_preserving_dont_care(const std::vector<mata::nft::Nft> nfts);
+
 // completes the given nfa in-place wrt. the padding closure as in Algorithm 24 of Esparza et Blondin's "Automata Theory: An Algorithmic Approach"
 void padding_closure(mata::nfa::Nfa& nfa, Symbol padding_symbol);
 

@@ -480,14 +480,52 @@ namespace mata::ext {
             }
 
             Nft padded_nft = mata::ext::insert_tapes(nfts[i], inserted_tape_indices, inserted_tape_alphabets);
-            std::cout << "nft " << i << ": \n";
-            std::cout << nfts[i].print_to_dot(true) << std::endl;
-            std::cout << "padded:\n";
-            std::cout << padded_nft.print_to_dot(true) << std::endl;
             if (i == 0) {
                 result = padded_nft;
             } else {
                 result = mata::nft::intersection(result, padded_nft);
+            }
+        }
+
+        return result;
+    }
+
+    Nft relational_product_length_preserving_dont_care(const std::vector<mata::nft::Nft> nfts) {
+        if (nfts.size() == 0) {
+            // return nft accepting only epsilon
+            //return Nft::with_levels(0, 1, {0}, {0});
+            throw std::runtime_error("mata currently does not support creating nfts with 0 levels");
+        }
+        if (nfts.size() == 1) {
+            // theoretically not necessary, but reduces brain power needed in later loop
+            return nfts[0];
+        }
+        size_t total_number_of_tapes = 0;
+        std::vector<size_t> start_indices(nfts.size(), 0);
+        for (int i = 0; i < nfts.size(); ++i) {
+            start_indices[i] = total_number_of_tapes;
+            total_number_of_tapes += nfts[i].levels.num_of_levels;
+        }
+        start_indices.push_back(total_number_of_tapes); // so that start_indices[i], start_indices[i + 1] can be used as range for all tapes i
+
+        BoolVector bv(total_number_of_tapes, true);
+        Nft result;
+        for (int i = 0; i < nfts.size(); ++i) {
+            // set nft levels to false (do not insert new tapes here)
+            for (int j = start_indices[i]; j < start_indices[i + 1]; ++j) {
+                bv[j] = false;
+            }
+
+            Nft padded_nft = mata::nft::insert_levels(nfts[i], bv);
+            if (i == 0) {
+                result = padded_nft;
+            } else {
+                result = mata::nft::intersection(result, padded_nft);
+            }
+
+            // unset nft levels, so the BoolVector can be used in-place
+            for (int j = start_indices[i]; j < start_indices[i + 1]; ++j) {
+                bv[j] = true;
             }
         }
 
