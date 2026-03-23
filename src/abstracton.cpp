@@ -100,3 +100,27 @@ std::vector<bool> check_abstract_safety(const mata::nfa::Nfa& initial_configurat
     }
     return result;
 }
+
+std::vector<bool> check_abstract_safety_antichains(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach_complement, std::vector<mata::nfa::Nfa> unsafe_properties, Alphabet& concrete_alphabet, int verbosityLevel) {
+    mata::nft::Nft initial_nft = mata::nft::builder::from_nfa_with_levels_advancing(initial_configurations, 1);
+    std::vector<bool> result{};
+    for (const mata::nfa::Nfa& unsafe_property : unsafe_properties) {
+        mata::nft::Nft unsafe_property_nft = mata::nft::builder::from_nfa_with_levels_advancing(unsafe_property, 1);
+        logging::log(logging::VerbosityLevel::DEBUG, "transducer for unsafe property:", verbosityLevel);
+        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return unsafe_property_nft.print_to_dot(); }, verbosityLevel);
+        mata::nft::Nft initial_unsafe_pairs = mata::ext::relational_product_length_preserving_dont_care({initial_nft, unsafe_property_nft});
+        logging::log(logging::VerbosityLevel::DEBUG, "transducer for (initial, unsafe)-pairs:", verbosityLevel);
+        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return initial_unsafe_pairs.print_to_dot(); }, verbosityLevel);
+
+        mata::nft::Nft initial_unsafe_complement = mata::ext::complement(initial_unsafe_pairs, &concrete_alphabet, std::nullopt, true);
+        logging::log(logging::VerbosityLevel::DEBUG, "transducer for complement of (initial, unsafe)-pairs:", verbosityLevel);
+        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return initial_unsafe_complement.print_to_dot(); }, verbosityLevel);
+
+        mata::nft::Nft union2 = mata::nft::union_nondet(preach_complement, initial_unsafe_complement);
+        Run cex; // possible counterexample, could e.g. be printed or returned... TODO
+        result.push_back(mata::ext::is_universal_antichains(union2, {&concrete_alphabet, &concrete_alphabet}, &cex));
+
+        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return vec_to_string(cex.word); }, verbosityLevel);
+    }
+    return result;
+}

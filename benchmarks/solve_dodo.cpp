@@ -29,6 +29,8 @@ int main(int argc, char** argv) {
         std::cout << "\t\t\tonly checks abstract safety for property PROPERTY\n";
         std::cout << "\t\t--minimize-input\n";
         std::cout << "\t\t\talso minimize input (automata for initial configurations, transition relation and unsafe configurations)\n";
+        std::cout << "\t\t--no-antichains\n";
+        std::cout << "\t\t\tExplicitly construct intersection PReach(initial) with final\n";
         return 0;
     }
     std::vector<enum SetInterpretation> interpretations{};
@@ -36,6 +38,7 @@ int main(int argc, char** argv) {
     std::optional<std::string> property = std::nullopt;
     std::vector<std::string> propertyNames{};
     bool minimize_input = false;
+    bool use_antichains = true;
     std::string filename{};
     // no switch for strings in c++...so if else branches:
     for (int i{ 1 }; i < argc; ++i) {
@@ -75,6 +78,8 @@ int main(int argc, char** argv) {
             }
         } else if (arg == "--minimize-input") { // TODO change to --no-minimize-input instead?
             minimize_input = true;
+        } else if (arg == "--no-antichains") {
+            use_antichains = false;
         } else if (arg.find(".json") != std::string::npos) {
             filename = arg;
         } else {
@@ -147,23 +152,7 @@ int main(int argc, char** argv) {
         log(VerbosityLevel::VERBOSE, "automaton for ind:", verbosityLevel);
         logexp(VerbosityLevel::VERBOSE, [&]() { return ind.print_to_dot(); }, verbosityLevel);
 
-        // compute preach
-        log(VerbosityLevel::NORMAL, "computing preach...", verbosityLevel);
-
-        mata::nft::Nft preach {compute_preach(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind))};
-
-        log(VerbosityLevel::NORMAL, std::format("automaton for preach has {} states.", preach.num_of_states()), verbosityLevel);
-
-        preach = preach.trim();
-        preach = mata::ext::minimize(preach);
-
-        log(VerbosityLevel::NORMAL, std::format("minimized automaton for preach has {} states.", preach.num_of_states()), verbosityLevel);
-        log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
-        log(VerbosityLevel::VERBOSE, "automaton for preach:", verbosityLevel);
-        logexp(VerbosityLevel::VERBOSE, [&]() { return preach.print_to_dot(); }, verbosityLevel);
-
-        // check whether safety can be proven, i.e. whether abstract safety holds
-        log(VerbosityLevel::NORMAL, "trying to prove abstract safety...", verbosityLevel);
+        // already construct properties that need to be checked (needed in both branches of if)
         std::vector<mata::nfa::Nfa> properties_to_check{};
         if (property.has_value()) {
             for (int i{ 0 }; i < dpr.propertyNames.size(); ++i) {
@@ -176,7 +165,48 @@ int main(int argc, char** argv) {
             properties_to_check = dpr.properties;
             propertyNames = dpr.propertyNames;
         }
-        std::vector<bool> result = check_abstract_safety(dpr.initialConfig, preach, properties_to_check);
+
+        std::vector<bool> result;
+        if (use_antichains) {
+            // lazily check intersection of preach using complement of preach
+            log(VerbosityLevel::NORMAL, "computing complement of preach...", verbosityLevel);
+
+            mata::nft::Nft preach_comp {compute_preach_complement(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind))};
+
+            log(VerbosityLevel::NORMAL, std::format("automaton for complement of preach has {} states.", preach_comp.num_of_states()), verbosityLevel);
+
+            preach_comp = preach_comp.trim();
+            preach_comp = mata::ext::minimize(preach_comp);
+
+            log(VerbosityLevel::NORMAL, std::format("minimized automaton for complement of preach has {} states.", preach_comp.num_of_states()), verbosityLevel);
+            log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
+            log(VerbosityLevel::VERBOSE, "automaton for complement of preach:", verbosityLevel);
+            logexp(VerbosityLevel::VERBOSE, [&]() { return preach_comp.print_to_dot(); }, verbosityLevel);
+
+            // check whether safety can be proven, i.e. whether abstract safety holds
+            log(VerbosityLevel::NORMAL, "trying to prove abstract safety...", verbosityLevel);
+            result = check_abstract_safety_antichains(dpr.initialConfig, preach_comp, properties_to_check, *dpr.string_alphabet, verbosityLevel);
+        } else {
+            // compute preach
+            log(VerbosityLevel::NORMAL, "computing preach...", verbosityLevel);
+
+            mata::nft::Nft preach {compute_preach(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind))};
+
+            log(VerbosityLevel::NORMAL, std::format("automaton for preach has {} states.", preach.num_of_states()), verbosityLevel);
+
+            preach = preach.trim();
+            preach = mata::ext::minimize(preach);
+
+            log(VerbosityLevel::NORMAL, std::format("minimized automaton for preach has {} states.", preach.num_of_states()), verbosityLevel);
+            log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
+            log(VerbosityLevel::VERBOSE, "automaton for preach:", verbosityLevel);
+            logexp(VerbosityLevel::VERBOSE, [&]() { return preach.print_to_dot(); }, verbosityLevel);
+
+            // check whether safety can be proven, i.e. whether abstract safety holds
+            log(VerbosityLevel::NORMAL, "trying to prove abstract safety...", verbosityLevel);
+            result = check_abstract_safety(dpr.initialConfig, preach, properties_to_check, verbosityLevel);
+        }
+
         log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
         log(VerbosityLevel::QUIET, "Result: " + vec_to_string(result), verbosityLevel);
         logexp(VerbosityLevel::QUIET, [&]() {
