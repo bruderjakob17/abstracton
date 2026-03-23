@@ -153,6 +153,51 @@ TEST_CASE("Nft complement", "[mata::ext::complement]") {
             }
         }
     }
+
+    SECTION("empty nft") {
+        Nft empty = mata::nft::Nft::with_levels(2, 0, {}, {});
+
+        std::cout << "complementing empty nft:" << std::endl;
+        std::cout << empty.print_to_dot() << std::endl;
+
+        EnumAlphabet alph {0, 1};
+
+        Nft univ1 {mata::ext::complement(empty, &alph, std::nullopt, true)};
+        Nft univ2 {mata::ext::complement(empty, &alph, std::nullopt, false)};
+
+        std::cout << "result (with minimization):" << std::endl;
+        std::cout << univ1.print_to_dot() << std::endl;
+        std::cout << "result (without minimization):" << std::endl;
+        std::cout << univ2.print_to_dot() << std::endl;
+
+        // check univ1
+        REQUIRE(univ1.is_in_lang(Word {}));
+
+        REQUIRE(univ1.is_in_lang({0, 0}));
+        REQUIRE(univ1.is_in_lang({0, 1}));
+        REQUIRE(univ1.is_in_lang({1, 0}));
+        REQUIRE(univ1.is_in_lang({1, 1}));
+        REQUIRE(!univ1.is_in_lang({0, 2}));
+        REQUIRE(!univ1.is_in_lang({2, 0}));
+        REQUIRE(!univ1.is_in_lang({2, 2}));
+
+        REQUIRE(!univ1.is_in_lang({0, 1, 0, 2}));
+        REQUIRE(univ1.is_in_lang({0, 1, 0, 1}));
+
+        // check univ2
+        REQUIRE(univ2.is_in_lang(Word {}));
+
+        REQUIRE(univ2.is_in_lang({0, 0}));
+        REQUIRE(univ2.is_in_lang({0, 1}));
+        REQUIRE(univ2.is_in_lang({1, 0}));
+        REQUIRE(univ2.is_in_lang({1, 1}));
+        REQUIRE(!univ2.is_in_lang({0, 2}));
+        REQUIRE(!univ2.is_in_lang({2, 0}));
+        REQUIRE(!univ2.is_in_lang({2, 2}));
+
+        REQUIRE(!univ2.is_in_lang({0, 1, 0, 2}));
+        REQUIRE(univ2.is_in_lang({0, 1, 0, 1}));
+    }
 }
 
 TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
@@ -274,6 +319,34 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
         std::cout << univ.print_to_dot(true) << std::endl;
 
         REQUIRE(mata::nft::are_equivalent(nft, univ));
+    }
+}
+
+TEST_CASE("Complement of empty NFT is Sigma Star") {
+    using namespace mata;
+    using namespace mata::nft;
+
+    SECTION("2 tapes, 2 symbols") {
+        Nft empty = mata::nft::Nft::with_levels(2, 0, {}, {});
+
+        std::cout << "complementing empty nft:" << std::endl;
+        std::cout << empty.print_to_dot() << std::endl;
+
+        EnumAlphabet alph {0, 1};
+
+        Nft univ1 {mata::ext::complement(empty, &alph, std::nullopt, true)};
+        Nft univ2 {mata::ext::complement(empty, &alph, std::nullopt, false)};
+
+        std::cout << "result (with minimization):" << std::endl;
+        std::cout << univ1.print_to_dot() << std::endl;
+        std::cout << "result (without minimization):" << std::endl;
+        std::cout << univ2.print_to_dot() << std::endl;
+
+        // check univ1
+        REQUIRE(mata::nft::are_equivalent(univ1, mata::ext::create_sigma_star_nft(2, &alph)));
+
+        // check univ2
+        REQUIRE(mata::nft::are_equivalent(univ2, mata::ext::create_sigma_star_nft(2, &alph)));
     }
 }
 

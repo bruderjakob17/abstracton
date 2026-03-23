@@ -119,7 +119,9 @@ namespace mata::ext {
     Nft complement(const Nft& aut, const std::vector<mata::utils::OrdVector<Symbol>>& symbols, bool minimize_during_determinization) {
         Nft result;
 
-        if (minimize_during_determinization) {
+        if (aut.initial.empty()) {
+            result = Nft::with_levels(aut.levels.num_of_levels, 1, {0}, {});
+        } else if (minimize_during_determinization) {
             result = mata::ext::minimize(aut);
         } else {
             result = mata::ext::determinize(aut);
