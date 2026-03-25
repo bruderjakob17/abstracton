@@ -7,4 +7,3 @@ int main() {
             std::cout << "0 not initial" << std::endl;
     }
 }
-//
