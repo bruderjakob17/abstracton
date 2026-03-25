@@ -65,12 +65,29 @@ CMakeFiles/
 Makefile
 
 # benchmarks
-benchmarks/non-incremental/
+benchmarks/*
+!benchmarks/*.cpp
+!benchmarks/*.h
+!benchmarks/CMakeLists.txt
+!benchmarks/README.md
+!benchmarks/dodo/
+!benchmarks/scripts/
+benchmarks/scripts/*
+!benchmarks/scripts/*.py
+!benchmarks/scripts/*.R
+!benchmarks/scripts/results/
+benchmarks/scripts/results/*
+!benchmarks/scripts/results/raw/
 
 # executables
 tests/tests
-examples/playground
-examples/create_nfts
-examples/tabakov_vardi
-benchmarks/solve_dodo
+examples/*
+!examples/*.cpp
+!examples/CMakeLists.txt
+!examples/*.md
+comparisons/*
+!comparisons/*.cpp
+!comparisons/CMakeLists.txt
+!comparisons/*.md
+
 .Rproj.user
