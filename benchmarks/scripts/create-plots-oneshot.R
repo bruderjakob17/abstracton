@@ -28,9 +28,10 @@ ggsave("cumulative.png")
 
 results %>%
   ggplot() +
-  geom_point(mapping = aes(x = time_mata, y = time_dodo)) +
+  geom_point(mapping = aes(x = time_mata, y = time_dodo, color = interpretation)) +
   scale_x_log10() +
   scale_y_log10() +
   geom_function(fun = function(x) x) +
   geom_function(fun = function(x) 10 * x, color = "green") +
   geom_function(fun = function(x) 0.1 * x, color = "red")
+ggsave("comparison.png")
