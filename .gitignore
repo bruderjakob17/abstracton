@@ -90,4 +90,8 @@ comparisons/*
 !comparisons/CMakeLists.txt
 !comparisons/*.md
 
+# R project file
 .Rproj.user
+
+# Debug build
+Debug/
