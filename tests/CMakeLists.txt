@@ -2,6 +2,7 @@ add_executable(tests
     inductive_sets.cpp
     preach.cpp
     mata_extensions.cpp
+    interpretations.cpp
     utils/utils.cpp
     bddlike/bddlike_nft.cpp
 )
