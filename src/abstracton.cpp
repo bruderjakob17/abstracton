@@ -5,6 +5,10 @@
 #include <abstracton/abstracton.hpp>
 #include <abstracton/utils/utils.hpp>
 
+#define INIT_CLOCKS() std::chrono::steady_clock::time_point begin, end;
+#define TICK() if (measure_time) { begin = std::chrono::steady_clock::now(); }
+#define TOCK(message) if (measure_time) { end = std::chrono::steady_clock::now(); std::cout << "Time needed for " << message << ": " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl; }
+
 using namespace mata;
 using namespace mata::nfa;
 using namespace mata::nft;
@@ -92,35 +96,70 @@ Nft compute_preach(const Nft& abstraction_framework, const Nft& transition_relat
     return mata::ext::complement(compute_preach_complement(abstraction_framework, transition_relation, concrete_alphabet, abstract_alphabet, ind, verbosityLevel), &concrete_alphabet);
 }
 
-std::vector<bool> check_abstract_safety(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach, std::vector<mata::nfa::Nfa> unsafe_properties, int verbosityLevel) {
+std::vector<bool> check_abstract_safety_explicit(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach, std::vector<mata::nfa::Nfa> unsafe_properties, int verbosityLevel, bool measure_time) {
+    INIT_CLOCKS();
+    TICK();
     Nfa preach_image = apply(preach, initial_configurations);
+    TOCK("calculating image of initial configs under preach");
     std::vector<bool> result{};
     for (const mata::nfa::Nfa& unsafe_property : unsafe_properties) {
+        TICK();
         result.push_back(intersection(preach_image, unsafe_property).is_lang_empty());
+        TOCK("calculating intersection of preach image with unsafe configs");
     }
     return result;
 }
 
-std::vector<bool> check_abstract_safety_antichains(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach_complement, std::vector<mata::nfa::Nfa> unsafe_properties, Alphabet& concrete_alphabet, int verbosityLevel) {
+std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach_complement, std::vector<mata::nfa::Nfa> unsafe_properties, Alphabet& concrete_alphabet, std::string universality_alg, int verbosityLevel, bool measure_time) {
+    INIT_CLOCKS();
+
     mata::nft::Nft initial_nft = mata::nft::builder::from_nfa_with_levels_advancing(initial_configurations, 1);
     std::vector<bool> result{};
     for (const mata::nfa::Nfa& unsafe_property : unsafe_properties) {
+        TICK();
         mata::nft::Nft unsafe_property_nft = mata::nft::builder::from_nfa_with_levels_advancing(unsafe_property, 1);
+        TOCK("constructing transducer for unsafe property");
         logging::log(logging::VerbosityLevel::DEBUG, "transducer for unsafe property:", verbosityLevel);
         logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return unsafe_property_nft.print_to_dot(); }, verbosityLevel);
+
+        TICK();
         mata::nft::Nft initial_unsafe_pairs = mata::ext::relational_product_length_preserving_dont_care({initial_nft, unsafe_property_nft});
+        TOCK("constructing transducer for (initial, unsafe) pairs");
         logging::log(logging::VerbosityLevel::DEBUG, "transducer for (initial, unsafe)-pairs:", verbosityLevel);
         logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return initial_unsafe_pairs.print_to_dot(); }, verbosityLevel);
 
+        TICK();
         mata::nft::Nft initial_unsafe_complement = mata::ext::complement(initial_unsafe_pairs, &concrete_alphabet, std::nullopt, true);
+        TOCK("constructing transducer for complement of (initial, unsafe) pairs");
         logging::log(logging::VerbosityLevel::DEBUG, "transducer for complement of (initial, unsafe)-pairs:", verbosityLevel);
         logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return initial_unsafe_complement.print_to_dot(); }, verbosityLevel);
 
+        TICK();
         mata::nft::Nft union2 = mata::nft::union_nondet(preach_complement, initial_unsafe_complement);
+        TOCK("building union of complements of preach and (initial, unsafe)-transducer");
         Run cex; // possible counterexample, could e.g. be printed or returned... TODO
-        result.push_back(mata::ext::is_universal_antichains(union2, {&concrete_alphabet, &concrete_alphabet}, &cex));
+        // TODO select best algorithm here...
+        if (universality_alg == "lazy") {
+            TICK();
+            result.push_back(mata::ext::is_universal_lazy(union2, {&concrete_alphabet, &concrete_alphabet}, &cex));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else if (universality_alg == "antichains-inclusion") {
+            TICK();
+            result.push_back(mata::ext::is_universal_antichains_by_inclusion(union2, {&concrete_alphabet, &concrete_alphabet}, &cex));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else {
+            if (universality_alg != "antichains") {
+                logging::log(logging::VerbosityLevel::VERBOSE, "WARNING: unknown universality algorithm \"" + universality_alg + "\", defaulting to antichains.", verbosityLevel);
+            }
+            TICK();
+            result.push_back(mata::ext::is_universal_antichains(union2, {&concrete_alphabet, &concrete_alphabet}, &cex));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        }
 
-        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return vec_to_string(cex.word); }, verbosityLevel);
+        if (!result[result.size() - 1]) {
+            logging::log(logging::VerbosityLevel::VERBOSE, "counterexample (abstractly reachable):", verbosityLevel);
+            logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return vec_to_string(cex.word); }, verbosityLevel);
+        }
     }
     return result;
 }

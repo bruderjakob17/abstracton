@@ -1,0 +1,50 @@
+Seed: 3327883282
+Default:
+Measured time: 2607764[µs]
+Result: 0
+Using inclusion:
+Measured time: 313383[µs]
+Result: 0
+Lazy (without subsumption):
+Measured time: 86506763[µs]
+Result: 0
+Seed: 4163311443
+Default:
+Measured time: 5385195[µs]
+Result: 1
+Using inclusion:
+Measured time: 521572[µs]
+Result: 1
+Lazy (without subsumption):
+Measured time: 144089464[µs]
+Result: 1
+Seed: 126305250
+Default:
+Measured time: 234[µs]
+Result: 0
+Using inclusion:
+Measured time: 70206[µs]
+Result: 0
+Lazy (without subsumption):
+Measured time: 247[µs]
+Result: 0
+Seed: 2150736875
+Default:
+Measured time: 224[µs]
+Result: 0
+Using inclusion:
+Measured time: 72454[µs]
+Result: 0
+Lazy (without subsumption):
+Measured time: 251[µs]
+Result: 0
+Seed: 3812645436
+Default:
+Measured time: 153[µs]
+Result: 0
+Using inclusion:
+Measured time: 69839[µs]
+Result: 0
+Lazy (without subsumption):
+Measured time: 186[µs]
+Result: 0

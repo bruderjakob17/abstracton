@@ -58,6 +58,9 @@ bool is_universal_antichains(const mata::nft::Nft& aut, const std::vector<Alphab
 /// Note: this check seems to be a LOT slower than is_universal_antichains, see examples/compare_inclusion_checks.cpp. The reason might be that @param alphabets is only used to create sigma star, and for the inclusion, mata's is_included_antichains is called, which does not support tape-specific alphabets, meaning it constructs an alphabet valid for all tapes by iterating over the whole automaton
 bool is_universal_antichains_by_inclusion(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex);
 
+/// similar to is_universal_antichains, but do not do subsumption checks
+bool is_universal_lazy(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex);
+
 /**
  * Inserts tapes to construct a new NFT. Assumes @param aut is length-preserving.
  * It is equivalent to the "relational length-preserving product" of @param aut with sigma stars specified by @param inserted_tape_alphabets, at positions @param inserted_tape_indices.
