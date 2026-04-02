@@ -4,6 +4,7 @@
 #include <abstracton/mata_extensions.hpp>
 #include <abstracton/abstracton.hpp>
 #include <abstracton/utils/utils.hpp>
+#include <format>
 
 #define INIT_CLOCKS() std::chrono::steady_clock::time_point begin, end;
 #define TICK() if (measure_time) { begin = std::chrono::steady_clock::now(); }
@@ -16,9 +17,14 @@ using namespace mata::nft;
 // input: DETERMINISTIC abstraction framework!
 // TODO convert output to debug output
 // TODO exclude all a where V(a) = emptyset (optional, but nicer...)
-Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel) {
+Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time) {
     // project_1(Id intersect (V delta complement(inverse(V)))), then complement
+    INIT_CLOCKS();
+    TICK();
     Nft v_delta {compose(abstraction_framework, transition_relation)};
+    TOCK("computing composition v_delta of abstraction framework and transition relation");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("v_delta has {} states (0-level: {})", v_delta.num_of_states(), v_delta.num_of_states_with_level(0)), verbosityLevel);
+
     if (v_delta.levels.num_of_levels != 2) {
         std::cout << "compose function of nfts with ";
         std::cout << abstraction_framework.levels.num_of_levels;
@@ -45,25 +51,56 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
             throw 2;
         }
     }
+
     std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
+    TICK();
     Nft v_complement {mata::ext::complement(abstraction_framework, nullptr, std::make_optional<std::vector<Alphabet*>>(alphabets), true)};
+    TOCK("computing complement v_complement of abstraction framework");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("v_complement has {} states (0-level: {})", v_complement.num_of_states(), v_complement.num_of_states_with_level(0)), verbosityLevel);
     logging::log(logging::VerbosityLevel::DEBUG, "complement of abstraction framework:", verbosityLevel);
     logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return v_complement.print_to_dot(); }, verbosityLevel);
 
+    TICK();
     Nft product1 {compose(v_delta, v_complement, 1, 1)};
+    TOCK("computing product product1 of v_delta with v_complement");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("product1 has {} states (0-level: {})", product1.num_of_states(), product1.num_of_states_with_level(0)), verbosityLevel);
     if (product1.levels.num_of_levels != 2) {
         std::cout << "nft result of composition does not have 2 levels, need to handle.";
         throw 2;
     }
+
     product1.alphabet = &abstract_alphabet;
+    TICK();
     Nft preprojection {mata::nft::intersection(create_identity(abstract_alphabet), product1)};
+    TOCK("computing identity on complement of ind (preprojection)");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("preprojection has {} states (0-level: {})", preprojection.num_of_states(), preprojection.num_of_states_with_level(0)), verbosityLevel);
+
+    TICK();
     Nfa projection{ project(preprojection, 0) };
+    TOCK("computing complement of ind (i.e. projecting preprojection onto one tape)");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("complement of ind has {} states", projection.num_of_states()), verbosityLevel);
+
+    TICK();
     Nfa ind{ mata::nfa::complement(projection, abstract_alphabet) };
+    TOCK("computing ind");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("ind has {} states", ind.num_of_states()), verbosityLevel);
+    TICK();
+    ind = minimize_nfa(ind);
+    TOCK("minimizing ind");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized ind has {} states", ind.num_of_states()), verbosityLevel);
     if (exclude_empty_abstractions) {
         // intersect with pi_1(V)
         logging::log(logging::VerbosityLevel::DEBUG, "ind with empty abstractions:", verbosityLevel);
         logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return ind.print_to_dot(); }, verbosityLevel);
-        return mata::nfa::intersection(ind, project(abstraction_framework, 0));
+        TICK();
+        auto result = mata::nfa::intersection(ind, project(abstraction_framework, 0));
+        TOCK("excluding empty abstractions");
+        logging::log(logging::VerbosityLevel::VERBOSE, std::format("ind without empty abstractions has {} states", result.num_of_states()), verbosityLevel);
+        TICK();
+        result = minimize_nfa(result);
+        TOCK("minimizing ind without empty abstractions");
+        logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized ind without empty abstractions has {} states", result.num_of_states()), verbosityLevel);
+        return result;
     } else {
         return ind;
     }

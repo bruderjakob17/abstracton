@@ -9,40 +9,43 @@
 #define TICK() if (measure_time) { begin = std::chrono::steady_clock::now(); }
 #define TOCK(message) if (measure_time) { end = std::chrono::steady_clock::now(); std::cout << "Time needed for " << message << ": " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl; }
 
+void print_help() {
+    std::cout << "SYNOPSIS\n";
+    std::cout << "\tsolve_dodo FILENAME [OPTIONS]\n";
+    std::cout << "ARGUMENTS\n";
+    std::cout << "\tFILENAME: path to filename of dodo problem instance\n";
+    std::cout << "\tOPTIONS\n";
+    std::cout << "\t\t-i ITYPE: which interpretation to use:\n";
+    std::cout << "\t\t\tt: trap\n";
+    std::cout << "\t\t\ts: siphon\n";
+    std::cout << "\t\t\tf: flow\n";
+    std::cout << "\t\t...if no ITYPE is given, the algorithm is run for all of the above.\n";
+    std::cout << "\t\t-v NUM\n";
+    std::cout << "\t\t\tsets verbosity to NUM, which may be any of the following four:\n";
+    std::cout << "\t\t\t  0: QUIET\n";
+    std::cout << "\t\t\t  1: NORMAL\n";
+    std::cout << "\t\t\t  2: VERBOSE\n";
+    std::cout << "\t\t\t  3: DEBUG\n";
+    std::cout << "\t\t-p PROPERTY\n";
+    std::cout << "\t\t\tonly checks abstract safety for property PROPERTY\n";
+    std::cout << "\t\t--minimize-input\n";
+    std::cout << "\t\t\talso minimize input (automata for initial configurations, transition relation and unsafe configurations)\n";
+    std::cout << "\t\t--universality-alg ALG\n";
+    std::cout << "\t\t\tChoose algorithm to be used for checking abstract safety. ALG can be one of:\n";
+    std::cout << "\t\t\t - antichains:           use lazy construction with subsumption checking (DEFAULT)\n";
+    std::cout << "\t\t\t - antichains-inclusion: first reduce to inclusion problem and then use antichains\n";
+    std::cout << "\t\t\t - lazy:                 use lazy construction without subsumption checking\n";
+    std::cout << "\t\t\t - explicit:             explicitly construct PReach\n";
+    std::cout << "\t\t\tExample: solve_dodo input.json --universality-alg antichains-inclusion\n";
+    std::cout << "\t\t--measure-time\n";
+    std::cout << "\t\t\tUse system time to measure performance of some steps\n";
+}
+
 int main(int argc, char** argv) {
     using namespace logging;
 
     if (argc < 2) {
-        std::cout << "SYNOPSIS\n";
-        std::cout << "\tsolve_dodo FILENAME [OPTIONS]\n";
-        std::cout << "ARGUMENTS\n";
-        std::cout << "\tFILENAME: path to filename of dodo problem instance\n";
-        std::cout << "\tOPTIONS\n";
-        std::cout << "\t\t-i ITYPE: which interpretation to use:\n";
-        std::cout << "\t\t\tt: trap\n";
-        std::cout << "\t\t\ts: siphon\n";
-        std::cout << "\t\t\tf: flow\n";
-        std::cout << "\t\t...if no ITYPE is given, the algorithm is run for all of the above.\n";
-        std::cout << "\t\t-v NUM\n";
-        std::cout << "\t\t\tsets verbosity to NUM, which may be any of the following four:\n";
-        std::cout << "\t\t\t  0: QUIET\n";
-        std::cout << "\t\t\t  1: NORMAL\n";
-        std::cout << "\t\t\t  2: VERBOSE\n";
-        std::cout << "\t\t\t  3: DEBUG\n";
-        std::cout << "\t\t-p PROPERTY\n";
-        std::cout << "\t\t\tonly checks abstract safety for property PROPERTY\n";
-        std::cout << "\t\t--minimize-input\n";
-        std::cout << "\t\t\talso minimize input (automata for initial configurations, transition relation and unsafe configurations)\n";
-        std::cout << "\t\t--universality-alg ALG\n";
-        std::cout << "\t\t\tChoose algorithm to be used for checking abstract safety. ALG can be one of:\n";
-        std::cout << "\t\t\t - antichains (default): use lazy construction with subsumption checking\n";
-        std::cout << "\t\t\t - antichains-inclusion: first reduce to inclusion problem and then use antichains\n";
-        std::cout << "\t\t\t - lazy:                 use lazy construction without subsumption checking\n";
-        std::cout << "\t\t\t - explicit:             explicitly construct PReach\n";
-        std::cout << "\t\t\tExample: solve_dodo input.json --universality-alg antichains-inclusion\n";
-        std::cout << "\t\t\tExplicitly construct intersection PReach(initial) with final\n";
-        std::cout << "\t\t--measure-time\n";
-        std::cout << "\t\t\tUse system time to measure performance of some steps\n";
+        print_help();
         return 0;
     }
     std::vector<enum SetInterpretation> interpretations{};
@@ -56,7 +59,10 @@ int main(int argc, char** argv) {
     // no switch for strings in c++...so if else branches:
     for (int i{ 1 }; i < argc; ++i) {
         std::string arg(argv[i]);
-        if (arg == "-i" || arg == "--interpretation") {
+        if (arg == "-h" || arg == "--help") {
+            print_help();
+            return 0;
+        } else if (arg == "-i" || arg == "--interpretation") {
             if (i + 1 < argc) {
                 std::string itype(argv[i + 1]);
                 ++i;
@@ -127,6 +133,7 @@ int main(int argc, char** argv) {
 
     log(VerbosityLevel::VERBOSE, "parsed file " + filename + ".", verbosityLevel);
     log(VerbosityLevel::DEBUG, "alphabet: " + stream_to_string(dpr.string_alphabet->get_alphabet_symbols()), verbosityLevel);
+    log(VerbosityLevel::VERBOSE, std::format("alphabet size: {}", dpr.string_alphabet->get_alphabet_symbols().size()), verbosityLevel);
     assert(dpr.string_alphabet->is_equal(dpr.transitionRelation.alphabet));
     log(VerbosityLevel::DEBUG, "initial configurations:", verbosityLevel);
     logexp(VerbosityLevel::DEBUG, [&]() { return dpr.initialConfig.print_to_dot(); }, verbosityLevel);
@@ -149,11 +156,11 @@ int main(int argc, char** argv) {
         TOCK("minimizing initial configs");
         log(VerbosityLevel::VERBOSE, std::format("minimized automaton for initialConfig has {} states.", dpr.initialConfig.num_of_states()), verbosityLevel);
 
-        log(VerbosityLevel::VERBOSE, std::format("automaton for transitionRelation has {} states.", dpr.transitionRelation.num_of_states()), verbosityLevel);
+        log(VerbosityLevel::VERBOSE, std::format("automaton for transitionRelation has {} states (0-level: {}).", dpr.transitionRelation.num_of_states(), dpr.transitionRelation.num_of_states_with_level(0)), verbosityLevel);
         TICK();
         dpr.transitionRelation = mata::ext::minimize(dpr.transitionRelation);
         TOCK("minimizing transition relation");
-        log(VerbosityLevel::VERBOSE, std::format("minimized automaton for transitionRelation has {} states.", dpr.transitionRelation.num_of_states()), verbosityLevel);
+        log(VerbosityLevel::VERBOSE, std::format("minimized automaton for transitionRelation has {} states (0-level: {}).", dpr.transitionRelation.num_of_states(), dpr.transitionRelation.num_of_states_with_level(0)), verbosityLevel);
 
         for (int i{ 0 }; i < dpr.properties.size(); ++i) {
             if (!property.has_value() || property.value() == dpr.propertyNames[i]) {
@@ -180,14 +187,15 @@ int main(int argc, char** argv) {
         log(VerbosityLevel::NORMAL, "computing ind...", verbosityLevel);
 
         TICK();
-        mata::nfa::Nfa ind {compute_ind(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, false)};
-        TOCK("computing ind");
+        mata::nfa::Nfa ind {compute_ind(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, false, verbosityLevel, measure_time)}; // TODO change exclude-empty-abstractions to true or introduce parameter
+        TOCK("computing ind (total)");
 
         log(VerbosityLevel::NORMAL, std::format("automaton for ind has {} states.", ind.num_of_states()), verbosityLevel);
 
-        TICK();
-        ind = mata::nfa::minimize(ind);
-        TOCK("minimizing ind");
+        // now done in abstracton.cpp
+        // TICK();
+        // ind = mata::nfa::minimize(ind);
+        // TOCK("minimizing ind");
 
         log(VerbosityLevel::NORMAL, std::format("minimized automaton for ind has {} states.", ind.num_of_states()), verbosityLevel);
         log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
