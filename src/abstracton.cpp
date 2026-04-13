@@ -24,6 +24,10 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
     Nft v_delta {compose(abstraction_framework, transition_relation)};
     TOCK("computing composition v_delta of abstraction framework and transition relation");
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("v_delta has {} states (0-level: {})", v_delta.num_of_states(), v_delta.num_of_states_with_level(0)), verbosityLevel);
+    TICK();
+    v_delta = mata::nft::reduce(v_delta);
+    TOCK("reducing v_delta");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("reduced v_delta has {} states (0-level: {})", v_delta.num_of_states(), v_delta.num_of_states_with_level(0)), verbosityLevel);
 
     if (v_delta.levels.num_of_levels != 2) {
         std::cout << "compose function of nfts with ";
@@ -59,11 +63,19 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("v_complement has {} states (0-level: {})", v_complement.num_of_states(), v_complement.num_of_states_with_level(0)), verbosityLevel);
     logging::log(logging::VerbosityLevel::DEBUG, "complement of abstraction framework:", verbosityLevel);
     logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return v_complement.print_to_dot(); }, verbosityLevel);
+    // TICK();
+    // v_complement = mata::ext::minimize(v_complement);
+    // TOCK("minimizing v_complement");
+    // logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized v_complement has {} states (0-level: {})", v_complement.num_of_states(), v_complement.num_of_states_with_level(0)), verbosityLevel);
 
     TICK();
     Nft product1 {compose(v_delta, v_complement, 1, 1)};
     TOCK("computing product product1 of v_delta with v_complement");
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("product1 has {} states (0-level: {})", product1.num_of_states(), product1.num_of_states_with_level(0)), verbosityLevel);
+    TICK();
+    product1 = mata::nft::reduce(product1);
+    TOCK("reducing product1");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("reduced product1 has {} states (0-level: {})", product1.num_of_states(), product1.num_of_states_with_level(0)), verbosityLevel);
     if (product1.levels.num_of_levels != 2) {
         std::cout << "nft result of composition does not have 2 levels, need to handle.";
         throw 2;
@@ -74,11 +86,19 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
     Nft preprojection {mata::nft::intersection(create_identity(abstract_alphabet), product1)};
     TOCK("computing identity on complement of ind (preprojection)");
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("preprojection has {} states (0-level: {})", preprojection.num_of_states(), preprojection.num_of_states_with_level(0)), verbosityLevel);
+    TICK();
+    preprojection = mata::nft::reduce(preprojection);
+    TOCK("reducing preprojection");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("reduced preprojection has {} states (0-level: {})", preprojection.num_of_states(), preprojection.num_of_states_with_level(0)), verbosityLevel);
 
     TICK();
     Nfa projection{ project(preprojection, 0) };
     TOCK("computing complement of ind (i.e. projecting preprojection onto one tape)");
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("complement of ind has {} states", projection.num_of_states()), verbosityLevel);
+    // TICK();
+    // projection = minimize_nfa(projection);
+    // TOCK("minimizing projection");
+    // logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized complement of ind has {} states", projection.num_of_states()), verbosityLevel);
 
     TICK();
     Nfa ind{ mata::nfa::complement(projection, abstract_alphabet) };

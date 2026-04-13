@@ -375,6 +375,7 @@ TEST_CASE("Universality for length-preserving NFTs using antichains") {
     mata::nft::Nft univ2 = mata::ext::create_sigma_star_nft(2, nullptr, std::make_optional(ab_bc_alphs));
 
     std::cout << univ.print_to_dot(true) << std::endl;
+    std::cout << univ2.print_to_dot(true) << std::endl;
 
     SECTION("modification of mata::nft::algorithms::is_universal_antichains: [mata::ext::is_universal_antichains]") {
         bool is_univ;
@@ -406,6 +407,23 @@ TEST_CASE("Universality for length-preserving NFTs using antichains") {
         REQUIRE(is_univ);
 
         is_univ = mata::ext::is_universal_antichains_by_inclusion(univ2, ab_alphs, &cex);
+        print_run(cex);
+        REQUIRE(!is_univ);
+    }
+
+    SECTION("using lazy exploration") {
+        bool is_univ;
+        mata::nft::Run cex;
+
+        is_univ = mata::ext::is_universal_lazy(univ, ab_alphs, &cex);
+        print_run(cex);
+        REQUIRE(is_univ);
+
+        is_univ = mata::ext::is_universal_lazy(univ2, ab_bc_alphs, &cex);
+        print_run(cex);
+        REQUIRE(is_univ);
+
+        is_univ = mata::ext::is_universal_lazy(univ2, ab_alphs, &cex);
         print_run(cex);
         REQUIRE(!is_univ);
     }
