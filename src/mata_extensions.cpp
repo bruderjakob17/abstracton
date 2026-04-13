@@ -40,6 +40,26 @@ mata::nfa::Nfa apply(const mata::nft::Nft& nft, const mata::nfa::Nfa& nfa, int l
 
 namespace mata::ext {
 
+mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::nft::StateSet initial, const std::vector<mata::Symbol> symbols) {
+    if (symbols.size() != aut.levels.num_of_levels) {
+        throw std::invalid_argument("Invalid number of tracks. Expected " + std::to_string(aut.levels.num_of_levels) + ".");
+    }
+    mata::nft::StateSet current = initial;
+
+    for (int level{ 0 }; level < symbols.size(); ++level) {
+        Symbol symb = symbols[level];
+        mata::nft::StateSet next{};
+        for (const State& i : current) {
+            assert(aut.levels[i] == level);
+            for (const State& succ : aut.delta.get_successors(i, symb)) {
+                next.insert(succ);
+            }
+        }
+        current = next;
+    }
+    return current;
+}
+
     // TODO: implement functions that also move the nft to an nfa to save resources?
 
     Nft determinize(const Nft& nft) {

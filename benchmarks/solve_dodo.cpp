@@ -249,7 +249,7 @@ int main(int argc, char** argv) {
             log(VerbosityLevel::NORMAL, "computing complement of preach...", verbosityLevel);
 
             TICK();
-            mata::nft::Nft preach_comp {compute_preach_complement(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind))};
+            mata::nft::Nft preach_comp {compute_preach_complement(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind), verbosityLevel, measure_time)};
             TOCK("computing complement of preach");
 
             log(VerbosityLevel::NORMAL, std::format("automaton for complement of preach has {} states.", preach_comp.num_of_states()), verbosityLevel);

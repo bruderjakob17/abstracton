@@ -5,6 +5,7 @@
 #include <abstracton/abstracton.hpp>
 #include <abstracton/utils/utils.hpp>
 #include <format>
+#include <queue>
 
 #define INIT_CLOCKS() std::chrono::steady_clock::time_point begin, end;
 #define TICK() if (measure_time) { begin = std::chrono::steady_clock::now(); }
@@ -14,10 +15,139 @@ using namespace mata;
 using namespace mata::nfa;
 using namespace mata::nft;
 
+/// previous function: compute_ind_old
+/// this function improves upon the old implementation by explicitly constructing the product, instead of constructing a sequence of products
+Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time) {
+    INIT_CLOCKS();
+
+    using namespace std;
+    using namespace mata::utils;
+
+    TICK();
+    Nfa result{};
+    result.alphabet = &abstract_alphabet;
+
+    unordered_map<vector<State>, State> product_state_to_state{};
+    queue<vector<State>> worklist{};
+    // initialize worklist by initial states of abstraction framework and transition relation
+    for (const State& state0 : abstraction_framework.initial) {
+        for (const State& state1 : transition_relation.initial) {
+            for (const State& state2 : abstraction_framework.initial) {
+                vector<State> init_state = {state0, state1, state2};
+                worklist.push(init_state);
+                State init_state_idx = result.add_state();
+                result.initial.insert(init_state_idx);
+                product_state_to_state[init_state] = init_state_idx;
+            }
+        }
+    }
+
+    optional<State> v_complement_trap_state = nullopt;
+
+    while (!worklist.empty()) {
+        vector<State> current_state = worklist.front();
+        worklist.pop();
+        State current_state_idx = product_state_to_state[current_state];
+
+        State current_state_v_before = current_state[0];
+        State current_state_transition = current_state[1];
+        State current_state_v_after = current_state[2];
+
+        for (const Symbol& abstract_symb : abstract_alphabet.get_alphabet_symbols()) {
+            for (const SymbolPost& sp_0 : transition_relation.delta[current_state_transition]) {
+                Symbol transition_letter_before = sp_0.symbol;
+                for (const State& intermediate_state_transition : sp_0.targets) {
+                    for (const SymbolPost& sp_1 : transition_relation.delta[intermediate_state_transition]) {
+                        Symbol transition_letter_after = sp_1.symbol;
+                        for (const State& next_state_transition : sp_1.targets) {
+                            std::vector<Symbol> before_letter = {abstract_symb, transition_letter_before};
+                            std::vector<Symbol> after_letter = {abstract_symb, transition_letter_after};
+
+                            StateSet next_state_v_before_set = ext::traverse_symbol_by_levels(abstraction_framework, {current_state_v_before}, before_letter);
+                            assert(next_state_v_before_set.size() <= 1);
+                            if (next_state_v_before_set.size() == 0) {
+                                continue;
+                            }
+                            State next_state_v_before = next_state_v_before_set.front();
+
+                            State next_state_v_after;
+                            bool next_state_v_after_is_final;
+                            if (v_complement_trap_state.has_value() && current_state_v_after == v_complement_trap_state.value()) {
+                                next_state_v_after = v_complement_trap_state.value();
+                                next_state_v_after_is_final = true; // trap state in abstraction framework -> accepting in complement
+                            } else {
+                                StateSet next_state_v_after_set = ext::traverse_symbol_by_levels(abstraction_framework, {current_state_v_after}, after_letter);
+                                assert(next_state_v_after_set.size() <= 1);
+                                if (next_state_v_after_set.size() == 0) {
+                                    if (!v_complement_trap_state.has_value()) {
+                                        State new_trap_state = abstraction_framework.num_of_states();
+                                        v_complement_trap_state = optional(new_trap_state);
+                                    }
+                                    next_state_v_after = v_complement_trap_state.value();
+                                    next_state_v_after_is_final = true;
+                                } else {
+                                    next_state_v_after = next_state_v_after_set.front();
+                                    next_state_v_after_is_final = !abstraction_framework.final.contains(next_state_v_after);
+                                }
+                            }
+
+                            vector<State> next = {
+                                next_state_v_before,
+                                next_state_transition,
+                                next_state_v_after
+                            };
+                            if (product_state_to_state.find(next) == product_state_to_state.end()) {
+                                State next_state = result.add_state();
+                                product_state_to_state[next] = next_state;
+                                if (abstraction_framework.final.contains(next_state_v_before) &&
+                                        transition_relation.final.contains(next_state_transition) &&
+                                        next_state_v_after_is_final) {
+                                    result.final.insert(next_state);
+                                }
+                                worklist.push(next);
+                            }
+                            result.delta.add(current_state_idx, abstract_symb, product_state_to_state[next]);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    TOCK("constructing complement of ind");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("complement of ind has {} states", result.num_of_states()), verbosityLevel);
+
+    TICK();
+    Nfa ind{ mata::nfa::complement(result, abstract_alphabet) };
+    TOCK("computing ind");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("ind has {} states", ind.num_of_states()), verbosityLevel);
+    TICK();
+    ind = minimize_nfa(ind);
+    TOCK("minimizing ind");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized ind has {} states", ind.num_of_states()), verbosityLevel);
+    if (exclude_empty_abstractions) {
+        // intersect with pi_1(V)
+        logging::log(logging::VerbosityLevel::DEBUG, "ind with empty abstractions:", verbosityLevel);
+        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return ind.print_to_dot(); }, verbosityLevel);
+        TICK();
+        auto result = mata::nfa::intersection(ind, project(abstraction_framework, 0));
+        TOCK("excluding empty abstractions");
+        logging::log(logging::VerbosityLevel::VERBOSE, std::format("ind without empty abstractions has {} states", result.num_of_states()), verbosityLevel);
+        TICK();
+        result = minimize_nfa(result);
+        TOCK("minimizing ind without empty abstractions");
+        logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized ind without empty abstractions has {} states", result.num_of_states()), verbosityLevel);
+        return result;
+    } else {
+        return ind;
+    }
+
+    return ind;
+}
+
 // input: DETERMINISTIC abstraction framework!
 // TODO convert output to debug output
 // TODO exclude all a where V(a) = emptyset (optional, but nicer...)
-Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time) {
+Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time) {
     // project_1(Id intersect (V delta complement(inverse(V)))), then complement
     INIT_CLOCKS();
     TICK();
@@ -125,21 +255,32 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
         return ind;
     }
 }
-Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, std::optional<const Nfa> ind, int verbosityLevel) {
+Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, std::optional<const Nfa> ind, int verbosityLevel, bool measure_time) {
+    INIT_CLOCKS();
+
     // inverse(V) id_Ind complement(V), then complement
     Nfa ind_result = ind.value_or(compute_ind(abstraction_framework, transition_relation, concrete_alphabet, abstract_alphabet, false, verbosityLevel));
 
     std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
     Nft v_complement {mata::ext::complement(abstraction_framework, nullptr, std::make_optional<std::vector<Alphabet*>>(alphabets), true)}; // TODO only calculate once (not in ind and preach)
 
+    TICK();
     Nft id_ind {create_identity(ind_result)};
+    TOCK("constructing identity on ind");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("identity on ind has {} states", id_ind.num_of_states()), verbosityLevel);
 
+    TICK();
     Nft v_id {compose(abstraction_framework, id_ind, 0, 0)};
+    TOCK("computing product v_id of abstraction framework with identity on ind");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("v_id has {} states", v_id.num_of_states()), verbosityLevel);
     if (v_id.levels.num_of_levels != 2) {
         std::cout << "nft result of composition does not have 2 levels, need to handle.";
         throw 2;
     }
+    TICK();
     Nft product {compose(v_id, v_complement)};
+    TOCK("computing product of v_id with complement of abstraction framework");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("product has {} states", product.num_of_states()), verbosityLevel);
     product.alphabet = &concrete_alphabet;
     if (product.levels.num_of_levels != 2) {
         std::cout << "nft result of composition does not have 2 levels, need to handle.";

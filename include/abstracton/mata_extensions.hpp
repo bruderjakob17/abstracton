@@ -28,6 +28,10 @@ mata::nfa::Nfa apply(const mata::nft::Nft& nft, const mata::nfa::Nfa& nfa, int l
 
 namespace mata::ext {
 
+/// traverses along given by @param symbols, starting from @param initial, returning the set of all states reachable with these symbols
+/// only works for length-preserving transducers without epsilon-transitions, DONT_CAREs and jump-transitions (TODO: extend implementation)
+mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::nft::StateSet initial, const std::vector<mata::Symbol> symbols);
+
 // requires nft to not have epsilon-transitions and be trimmed
 mata::nft::Nft determinize(const mata::nft::Nft& nft);
 
