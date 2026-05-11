@@ -41,7 +41,7 @@ TEST_CASE( "Inductive sets are correct", "[compute_ind]" ) {
     mata::EnumAlphabet concrete_alphabet = {'0', '1'};
     mata::EnumAlphabet abstract_alphabet = {'#', 'a', 'b'};
 
-    Nfa ind {compute_ind(daf, t, concrete_alphabet, abstract_alphabet, true, logging::VerbosityLevel::DEBUG)};
+    Nfa ind {compute_ind(daf, t, concrete_alphabet, abstract_alphabet, true, logging::VerbosityLevel::DEBUGV)};
 
     std::cout << ind.print_to_dot(true) << std::endl;
 

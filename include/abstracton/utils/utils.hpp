@@ -4,7 +4,11 @@
 #include <iterator>
 #include <vector>
 #include <random> // for PRNG based hashing using mersenne twister
+#include <iostream>
+#include <sstream>
+#include <unordered_set>
 #include <string>
+#include <algorithm>
 
 template <typename T>
 std::string stream_to_string(const T& value)
@@ -19,7 +23,7 @@ namespace logging {
         const int QUIET = 0;
         const int NORMAL = 1;
         const int VERBOSE = 2;
-        const int DEBUG = 3;
+        const int DEBUGV = 3; // DEBUG conflicts with some headers generated from cmake in RelWithDebInfo build type
     };
 
     static const int DEFAULT_VERBOSITY_LEVEL = VerbosityLevel::NORMAL;

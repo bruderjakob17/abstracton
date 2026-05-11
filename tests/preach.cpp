@@ -40,17 +40,17 @@ TEST_CASE( "PReach is correct", "[compute_preach]" ) {
     mata::EnumAlphabet concrete_alphabet = {'0', '1'};
     mata::EnumAlphabet abstract_alphabet = {'#', 'a', 'b'};
 
-    Nfa ind {compute_ind(daf, t, concrete_alphabet, abstract_alphabet, true, logging::VerbosityLevel::DEBUG)};
+    Nfa ind {compute_ind(daf, t, concrete_alphabet, abstract_alphabet, true, logging::VerbosityLevel::DEBUGV)};
     ind = minimize_nfa(ind);
 
     std::cout << ind.print_to_dot(true) << std::endl;
 
-    Nft preach1 {compute_preach(daf, t, concrete_alphabet, abstract_alphabet, ind, logging::VerbosityLevel::DEBUG)};
+    Nft preach1 {compute_preach(daf, t, concrete_alphabet, abstract_alphabet, ind, logging::VerbosityLevel::DEBUGV)};
 
     std::cout << "preach using separately calculated ind:" << std::endl;
     std::cout << preach1.print_to_dot(true) << std::endl;
 
-    Nft preach2 {compute_preach(daf, t, concrete_alphabet, abstract_alphabet, std::nullopt, logging::VerbosityLevel::DEBUG)};
+    Nft preach2 {compute_preach(daf, t, concrete_alphabet, abstract_alphabet, std::nullopt, logging::VerbosityLevel::DEBUGV)};
 
     std::cout << "preach calculated together with ind:" << std::endl;
     std::cout << preach2.print_to_dot(true) << std::endl;

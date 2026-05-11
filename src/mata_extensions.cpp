@@ -6,6 +6,18 @@
 #include <abstracton/utils/utils.hpp>
 #include <mata/utils/utils.hh>
 #include <random>
+#include <format>
+
+#define INIT_XCLOCK(name) \
+    std::chrono::steady_clock::time_point begin_##name, end_##name; \
+    std::chrono::microseconds duration_##name{};
+#define XTICK(name) \
+    begin_##name = std::chrono::steady_clock::now();
+#define XTOCK(name) \
+    end_##name = std::chrono::steady_clock::now(); \
+    duration_##name += std::chrono::duration_cast<std::chrono::microseconds>(end_##name - begin_##name);
+#define XFINISH(name, message) \
+    std::cout << "Time needed for " << message << ": " << duration_##name.count() << "[µs]" << std::endl;
 
 using namespace mata;
 using namespace mata::nfa;
@@ -258,7 +270,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
 
             // process it
             for (Symbol symb : possible_symbols) {
-                StateSet succ = aut.post(state, symb);
+                StateSet succ = aut.post(state, symb); // TODO rewrite: do NOT call post so often, as this needs linear time for searching symb in the delta structure
                 bool all_are_at_level_0 = true;
                 for (State s : succ) {
                     if (aut.levels[s] != 0) {
@@ -325,7 +337,178 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         return mata::nft::algorithms::is_included_antichains(univ, aut, nullptr, cex);
     }
 
-    bool is_universal_lazy(const Nft& aut, const std::vector<Alphabet*> alphabets, Run* cex) {
+    bool is_universal_lazy(const Nft& aut, const std::vector<Alphabet*> alphabets, Run* cex, int verbosityLevel, bool dfs) {
+        using WorklistType = std::list<StateSet>;
+        using ProcessedType = std::unordered_set<StateSet>;
+
+        // check initial states
+        if (are_disjoint(aut.initial, aut.final)) {
+            if (nullptr != cex) { cex->word.clear(); }
+            logging::log(logging::VerbosityLevel::VERBOSE, "lazy algorithm explored only initial states - there was no final initial state.", verbosityLevel);
+            return false;
+        }
+
+        // initialize
+        WorklistType worklist = { StateSet(aut.initial) };
+        ProcessedType processed = { StateSet(aut.initial) };
+        int worklist_num_of_states_with_level_0 = 1;
+        int processed_num_of_states_with_level_0 = 1;
+        int worklist_num_of_states_added = 1;
+        int worklist_num_of_states_with_level_0_added = 1;
+        std::vector<mata::utils::OrdVector<Symbol>> alph_symbols{};
+        for (int i{ 0 }; i < alphabets.size(); ++i) {
+            alph_symbols.push_back(alphabets[i]->get_alphabet_symbols());
+        }
+
+        // 'paths[s] == t' denotes that state 's' was accessed from state 't',
+        // 'paths[s] == s' means that 's' is an initial state
+        std::map<StateSet, std::pair<StateSet, Symbol>> paths =
+            { {StateSet(aut.initial), {StateSet(aut.initial), 0}} };
+
+        // INIT_XCLOCK(assertion);
+        // INIT_XCLOCK(create_local_transitions);
+        // INIT_XCLOCK(no_missing_symbol_1);
+        // INIT_XCLOCK(no_missing_symbol_2)
+        // INIT_XCLOCK(next_state_empty);
+        // INIT_XCLOCK(next_state_final);
+        // INIT_XCLOCK(insert_processed);
+        // INIT_XCLOCK(create_next_states);
+
+        while (!worklist.empty()) {
+            // get a next state
+            StateSet state;
+
+            // process parameters
+            if (dfs) {
+                state = *worklist.rbegin();
+                worklist.pop_back();
+            } else { // BFS
+                state = *worklist.begin();
+                worklist.pop_front();
+            }
+
+            // a symbol x is called possible in stateset S iff for every s in S, x is in the alphabet at the level of s.
+            // this can be calculated as intersection of all alphabets for which there exists some s in S which is at the level of the alphabet.
+            std::vector<State> state_as_vector = state.to_vector();
+            // state is guaranteed to have at least one state (empty sets have empty intersection with final states and are never added to worklist)
+            int state_level = aut.levels[state_as_vector[0]];
+            if (state_level == 0) --worklist_num_of_states_with_level_0;
+            mata::utils::OrdVector<Symbol> possible_symbols{alph_symbols[state_level]};
+
+            auto check_all_same_level = [&] (std::vector<State> state_vec) -> bool {
+                if (state_vec.size() <= 1) {
+                    return true;
+                }
+                int lvl = aut.levels[state_vec[0]];
+                for (int i{ 1 }; i < state_vec.size(); ++i) {
+                    if (aut.levels[state_vec[i]] != lvl) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+            // XTICK(assertion);
+            assert(check_all_same_level(state_as_vector));
+            // XTOCK(assertion);
+
+            // process it
+            // check how many symbols are locally used
+            // XTICK(create_local_transitions);
+            std::unordered_map<Symbol, StateSet> local_transitions{};
+            int num_of_local_symbols = 0;
+            for (const State& source : state) {
+                for (const SymbolPost& sp : aut.delta.state_post(source)) {
+                    if (local_transitions.contains(sp.symbol)) {
+                        local_transitions[sp.symbol].insert(sp.targets);
+                    } else {
+                        local_transitions[sp.symbol] = sp.targets;
+                        num_of_local_symbols++;
+                    }
+                }
+            }
+            // XTOCK(create_local_transitions);
+
+            // XTICK(no_missing_symbol_1);
+            if (num_of_local_symbols < possible_symbols.size()) {
+                logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+                return false;
+            }
+            // XTOCK(no_missing_symbol_1);
+            // automaton might have symbols that do not appear in the considered alphabet, check that indeed each letter has a successor
+            // XTICK(no_missing_symbol_2);
+            for (const Symbol& symb : possible_symbols) {
+                if (!local_transitions.contains(symb)) {
+                    logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+                    return false;
+                }
+            }
+            // XTOCK(no_missing_symbol_2);
+
+            // XTICK(create_next_states);
+            for (const auto& sp : local_transitions) {
+                StateSet succ = sp.second;
+
+                // XTICK(next_state_empty);
+                if (succ.empty()) {
+                    logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+                    return false;
+                }
+                // XTOCK(next_state_empty);
+
+                int succ_level = aut.levels[succ.front()]; // again, assume all states are at same level. If not, then an error will be thrown once succ is pulled from the worklist, so do not need to verify here.
+                // XTICK(next_state_final);
+                if (succ_level == 0 && !aut.final.intersects_with(succ)) {
+                    if (nullptr != cex) {
+                        cex->word.clear();
+                        cex->word.push_back(sp.first);
+                        StateSet trav = state;
+                        while (paths[trav].first != trav)
+                        { // go back until initial state
+                            cex->word.push_back(paths[trav].second);
+                            trav = paths[trav].first;
+                        }
+
+                        std::ranges::reverse(cex->word);
+                    }
+
+                    logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+                    return false;
+                }
+                // XTOCK(next_state_final);
+
+                // XTICK(insert_processed);
+                auto processed_insert_result = processed.insert(state); // store result for debugging/logging purposes
+                // XTOCK(insert_processed);
+                if (state_level == 0 && processed_insert_result.second) ++processed_num_of_states_with_level_0;
+                if (!processed.contains(succ)) {
+                    worklist.push_back(succ);
+                    ++worklist_num_of_states_added;
+                    if (succ_level == 0) {
+                        ++worklist_num_of_states_with_level_0;
+                        ++worklist_num_of_states_with_level_0_added;
+                    }
+                }
+
+                // also set that succ was accessed from state
+                paths[succ] = {state, sp.first};
+            }
+            // XTOCK(create_next_states);
+        }
+
+        // XFINISH(assertion, "assertion");
+        // XFINISH(create_local_transitions, "creating local transitions");
+        // XFINISH(no_missing_symbol_1, "checking if state has successor (easy)");
+        // XFINISH(no_missing_symbol_2, "checking if state has successor (full)")
+        // XFINISH(next_state_empty, "checking if next state is empty");
+        // XFINISH(next_state_final, "checking if next state has final state");
+        // XFINISH(insert_processed, "inserting states into set of processed states");
+        // XFINISH(create_next_states, "creating next states (total)");
+
+        logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+        return true;
+    }
+
+    bool is_universal_lazy_old(const Nft& aut, const std::vector<Alphabet*> alphabets, Run* cex) {
         using WorklistType = std::list<StateSet>;
         using ProcessedType = std::unordered_set<StateSet>;
 

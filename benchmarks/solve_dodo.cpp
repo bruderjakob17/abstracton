@@ -7,7 +7,19 @@
 #include <chrono>
 
 #define TICK() if (measure_time) { begin = std::chrono::steady_clock::now(); }
-#define TOCK(message) if (measure_time) { end = std::chrono::steady_clock::now(); std::cout << "Time needed for " << message << ": " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl; }
+#define TOCK(message) \
+if (measure_time) { \
+    end = std::chrono::steady_clock::now(); \
+    std::cout << "Time needed for " << message << ": " << \
+    std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl; }
+
+#define PRINT_AUT(name, aut) \
+log(VerbosityLevel::VERBOSE, std::format("automaton {}:", name), verbosityLevel); \
+if (no_dot_printing) { \
+    logexp(VerbosityLevel::VERBOSE, [&]() { return std::format("{} states", aut.num_of_states()); }, verbosityLevel); \
+} else { \
+    logexp(VerbosityLevel::VERBOSE, [&]() { return aut.print_to_dot(); }, verbosityLevel); \
+}
 
 void print_help() {
     std::cout << "SYNOPSIS\n";
@@ -25,20 +37,25 @@ void print_help() {
     std::cout << "\t\t\t  0: QUIET\n";
     std::cout << "\t\t\t  1: NORMAL\n";
     std::cout << "\t\t\t  2: VERBOSE\n";
-    std::cout << "\t\t\t  3: DEBUG\n";
+    std::cout << "\t\t\t  3: DEBUGV\n";
     std::cout << "\t\t-p PROPERTY\n";
     std::cout << "\t\t\tonly checks abstract safety for property PROPERTY\n";
     std::cout << "\t\t--minimize-input\n";
     std::cout << "\t\t\talso minimize input (automata for initial configurations, transition relation and unsafe configurations)\n";
+    std::cout << "\t\t--exclude-empty-abstractions\n";
+    std::cout << "\t\t\tafter calculating ind, remove abstractions that do not represent any configuration\n";
     std::cout << "\t\t--universality-alg ALG\n";
     std::cout << "\t\t\tChoose algorithm to be used for checking abstract safety. ALG can be one of:\n";
-    std::cout << "\t\t\t - antichains:           use lazy construction with subsumption checking (DEFAULT)\n";
-    std::cout << "\t\t\t - antichains-inclusion: first reduce to inclusion problem and then use antichains\n";
-    std::cout << "\t\t\t - lazy:                 use lazy construction without subsumption checking\n";
+    std::cout << "\t\t\t - antichains:           use lazy construction with subsumption checking\n";
+    std::cout << "\t\t\t - antichains-inclusion: first reduce to inclusion problem and then use antichains (DEFAULT)\n";
+    std::cout << "\t\t\t - lazy:                 use lazy construction (using dfs) without subsumption checking\n";
+    std::cout << "\t\t\t - lazy-bfs:             same as lazy-dfs, but using bfs for exploration\n";
     std::cout << "\t\t\t - explicit:             explicitly construct PReach\n";
     std::cout << "\t\t\tExample: solve_dodo input.json --universality-alg antichains-inclusion\n";
     std::cout << "\t\t--measure-time\n";
     std::cout << "\t\t\tUse system time to measure performance of some steps\n";
+    std::cout << "\t\t--no-dot-printing\n";
+    std::cout << "\t\t\tSuppress all dot output\n";
 }
 
 int main(int argc, char** argv) {
@@ -53,8 +70,10 @@ int main(int argc, char** argv) {
     std::optional<std::string> property = std::nullopt;
     std::vector<std::string> propertyNames{};
     bool minimize_input = false;
-    std::string universality_alg{"antichains"};
+    bool exclude_empty_abstractions = false;
+    std::string universality_alg{"antichains-inclusion"};
     bool measure_time = false;
+    bool no_dot_printing = false;
     std::string filename{};
     // no switch for strings in c++...so if else branches:
     for (int i{ 1 }; i < argc; ++i) {
@@ -97,8 +116,10 @@ int main(int argc, char** argv) {
             }
         } else if (arg == "--minimize-input") {
             minimize_input = true;
+        } else if (arg == "--exclude-empty-abstractions") {
+            exclude_empty_abstractions = true;
         } else if (arg == "--universality-alg") {
-            std::vector<std::string> possibilities{"antichains", "antichains-inclusion", "lazy", "explicit"};
+            std::vector<std::string> possibilities{"antichains", "antichains-inclusion", "lazy", "lazy-bfs", "explicit"};
             if (i + 1 < argc &&
                     std::find(possibilities.begin(), possibilities.end(), std::string(argv[i + 1])) != possibilities.end()) {
                 universality_alg = std::string(argv[i + 1]);
@@ -112,6 +133,8 @@ int main(int argc, char** argv) {
             }
         } else if (arg == "--measure-time") {
             measure_time = true;
+        } else if (arg == "--no-dot-printing") {
+            no_dot_printing = true;
         } else if (arg.find(".json") != std::string::npos) {
             filename = arg;
         } else {
@@ -128,22 +151,19 @@ int main(int argc, char** argv) {
     std::chrono::steady_clock::time_point end;
 
     TICK();
-    DodoParserResult dpr = parseDodoJSON(filename, verbosityLevel);
+    DodoParserResult dpr = parseDodoJSON(filename, verbosityLevel, no_dot_printing);
     TOCK("parsing json file");
 
     log(VerbosityLevel::VERBOSE, "parsed file " + filename + ".", verbosityLevel);
-    log(VerbosityLevel::DEBUG, "alphabet: " + stream_to_string(dpr.string_alphabet->get_alphabet_symbols()), verbosityLevel);
-    log(VerbosityLevel::VERBOSE, std::format("alphabet size: {}", dpr.string_alphabet->get_alphabet_symbols().size()), verbosityLevel);
+    log(VerbosityLevel::DEBUGV, "alphabet: " + stream_to_string(dpr.string_alphabet->get_alphabet_symbols()), verbosityLevel);
+    log(VerbosityLevel::NORMAL, std::format("alphabet size: {}", dpr.string_alphabet->get_alphabet_symbols().size()), verbosityLevel);
     assert(dpr.string_alphabet->is_equal(dpr.transitionRelation.alphabet));
-    log(VerbosityLevel::DEBUG, "initial configurations:", verbosityLevel);
-    logexp(VerbosityLevel::DEBUG, [&]() { return dpr.initialConfig.print_to_dot(); }, verbosityLevel);
-    log(VerbosityLevel::DEBUG, "transition relation:", verbosityLevel);
-    logexp(VerbosityLevel::DEBUG, [&]() { return dpr.transitionRelation.print_to_dot(); }, verbosityLevel);
+    PRINT_AUT("initial configurations", dpr.initialConfig);
+    PRINT_AUT("transition relation", dpr.transitionRelation);
     assert(dpr.properties.size() == dpr.propertyNames.size());
-    log(VerbosityLevel::DEBUG, "properties:", verbosityLevel);
+    log(VerbosityLevel::DEBUGV, "properties:", verbosityLevel);
     for (int i{ 0 }; i < dpr.properties.size(); ++i) {
-        log(VerbosityLevel::DEBUG, dpr.propertyNames[i], verbosityLevel);
-        logexp(VerbosityLevel::DEBUG, [&]() { return dpr.properties[i].print_to_dot(); }, verbosityLevel);
+        PRINT_AUT(dpr.propertyNames[i], dpr.properties[i]);
     }
 
     // TODO only minimize relevant input, e.g. don't minimize properties that should not be checked
@@ -181,13 +201,13 @@ int main(int argc, char** argv) {
         TOCK("constructing " + to_string(itype) + " interpretation transducer");
         mata::nft::Nft interpretation = ipa.first;
         std::shared_ptr<mata::OnTheFlyAlphabet> powerset_alphabet_ptr = ipa.second;
-        logexp(VerbosityLevel::DEBUG, [&]() { return interpretation.print_to_dot(); }, verbosityLevel);
+        PRINT_AUT("interpretation of type " + to_string(itype), interpretation);
 
         // compute ind
         log(VerbosityLevel::NORMAL, "computing ind...", verbosityLevel);
 
         TICK();
-        mata::nfa::Nfa ind {compute_ind(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, false, verbosityLevel, measure_time)}; // TODO change exclude-empty-abstractions to true or introduce parameter
+        mata::nfa::Nfa ind {compute_ind(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing)};
         TOCK("computing ind (total)");
 
         log(VerbosityLevel::NORMAL, std::format("automaton for ind has {} states.", ind.num_of_states()), verbosityLevel);
@@ -196,11 +216,10 @@ int main(int argc, char** argv) {
         // TICK();
         // ind = mata::nfa::minimize(ind);
         // TOCK("minimizing ind");
+        // log(VerbosityLevel::NORMAL, std::format("minimized automaton for ind has {} states.", ind.num_of_states()), verbosityLevel);
 
-        log(VerbosityLevel::NORMAL, std::format("minimized automaton for ind has {} states.", ind.num_of_states()), verbosityLevel);
         log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
-        log(VerbosityLevel::VERBOSE, "automaton for ind:", verbosityLevel);
-        logexp(VerbosityLevel::VERBOSE, [&]() { return ind.print_to_dot(); }, verbosityLevel);
+        PRINT_AUT("ind", ind);
 
         // already construct properties that need to be checked (needed in both branches of if)
         std::vector<mata::nfa::Nfa> properties_to_check{};
@@ -236,20 +255,19 @@ int main(int argc, char** argv) {
 
             log(VerbosityLevel::NORMAL, std::format("minimized automaton for preach has {} states.", preach.num_of_states()), verbosityLevel);
             log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
-            log(VerbosityLevel::VERBOSE, "automaton for preach:", verbosityLevel);
-            logexp(VerbosityLevel::VERBOSE, [&]() { return preach.print_to_dot(); }, verbosityLevel);
+            PRINT_AUT("preach", preach);
 
             // check whether safety can be proven, i.e. whether abstract safety holds
             log(VerbosityLevel::NORMAL, "trying to prove abstract safety...", verbosityLevel);
             TICK();
-            result = check_abstract_safety_explicit(dpr.initialConfig, preach, properties_to_check, verbosityLevel, measure_time);
+            result = check_abstract_safety_explicit(dpr.initialConfig, preach, properties_to_check, verbosityLevel, measure_time, no_dot_printing);
             TOCK("checking abstract safety");
         } else {
             // lazily check intersection of preach using complement of preach
             log(VerbosityLevel::NORMAL, "computing complement of preach...", verbosityLevel);
 
             TICK();
-            mata::nft::Nft preach_comp {compute_preach_complement(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind), verbosityLevel, measure_time)};
+            mata::nft::Nft preach_comp {compute_preach_complement(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind), verbosityLevel, measure_time, no_dot_printing)};
             TOCK("computing complement of preach");
 
             log(VerbosityLevel::NORMAL, std::format("automaton for complement of preach has {} states.", preach_comp.num_of_states()), verbosityLevel);
@@ -265,13 +283,12 @@ int main(int argc, char** argv) {
 
             // log(VerbosityLevel::NORMAL, std::format("minimized automaton for complement of preach has {} states.", preach_comp.num_of_states()), verbosityLevel);
             log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
-            log(VerbosityLevel::VERBOSE, "automaton for complement of preach:", verbosityLevel);
-            logexp(VerbosityLevel::VERBOSE, [&]() { return preach_comp.print_to_dot(); }, verbosityLevel);
+            PRINT_AUT("complement(preach)", preach_comp);
 
             // check whether safety can be proven, i.e. whether abstract safety holds
             log(VerbosityLevel::NORMAL, "trying to prove abstract safety...", verbosityLevel);
             TICK();
-            result = check_abstract_safety_lazy(dpr.initialConfig, preach_comp, properties_to_check, *dpr.string_alphabet, universality_alg, verbosityLevel, measure_time);
+            result = check_abstract_safety_lazy(dpr.initialConfig, preach_comp, properties_to_check, *dpr.string_alphabet, universality_alg, verbosityLevel, measure_time, no_dot_printing);
             TOCK("checking abstract safety");
         }
 

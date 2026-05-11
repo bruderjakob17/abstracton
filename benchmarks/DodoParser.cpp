@@ -1,6 +1,15 @@
 #include "DodoParser.h"
 #include <unordered_map>
 #include <abstracton/utils/utils.hpp>
+#include <format>
+
+#define PRINT_AUT(name, aut) \
+logging::log(logging::VerbosityLevel::VERBOSE, std::format("automaton {}:", name), verbosityLevel); \
+if (no_dot_printing) { \
+    logging::logexp(logging::VerbosityLevel::VERBOSE, [&]() { return std::format("{} states", aut.num_of_states()); }, verbosityLevel); \
+} else { \
+    logging::logexp(logging::VerbosityLevel::VERBOSE, [&]() { return aut.print_to_dot(); }, verbosityLevel); \
+}
 
 void dfs_explore(std::vector<std::vector<int>> const& adjacency_list, std::vector<int> &order, std::vector<bool> &visited, int node) {
     visited[node] = true;
@@ -228,7 +237,7 @@ mata::nft::Nft parseTransducer(Json::Value t, mata::OnTheFlyAlphabet* string_alp
 //     };
 // }
 
-DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel) {
+DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel, bool no_dot_printing) {
     std::ifstream ifs(filepath);
     if (!ifs.good()) {
         throw std::runtime_error("file " + filepath + " does not exist");
@@ -248,18 +257,16 @@ DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel) {
     // // convert to char alphabet
     // alphabet_encoding alphabet_enc = alphabetToCharAlphabet(string_alphabet);
     // std::vector<char> alphabet = alphabet_enc.alphabet;
-    logging::log(logging::VerbosityLevel::DEBUG, "parser: alphabet vec " + vec_to_string(string_alphabet_vec), verbosityLevel);
-    logging::log(logging::VerbosityLevel::DEBUG, "parser: alphabet " + stream_to_string(string_alphabet_ptr->get_alphabet_symbols()) + " initialized!", verbosityLevel);
+    logging::log(logging::VerbosityLevel::DEBUGV, "parser: alphabet vec " + vec_to_string(string_alphabet_vec), verbosityLevel);
+    logging::log(logging::VerbosityLevel::DEBUGV, "parser: alphabet " + stream_to_string(string_alphabet_ptr->get_alphabet_symbols()) + " initialized!", verbosityLevel);
 
     // Parse transducer
     mata::nft::Nft t = parseTransducer(obj["transducer"], string_alphabet_ptr.get(), verbosityLevel);
-    logging::log(logging::VerbosityLevel::DEBUG, "transducer:", verbosityLevel);
-    logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return t.print_to_dot(); }, verbosityLevel);
+    PRINT_AUT("transducer (parsed)", t);
 
     // Parse initial nfa
     mata::nfa::Nfa initialConfig = parseDodoNfa(obj["initial"], string_alphabet_ptr.get());
-    logging::log(logging::VerbosityLevel::DEBUG, "initial:", verbosityLevel);
-    logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return initialConfig.print_to_dot(); }, verbosityLevel);
+    PRINT_AUT("initial configs (parsed)", initialConfig);
 
     // Parse properties
     std::vector<mata::nfa::Nfa> properties {};
@@ -267,14 +274,11 @@ DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel) {
     for (auto p : obj["properties"].getMemberNames()) {
         properties.push_back(parseDodoNfa(obj["properties"][p], string_alphabet_ptr.get()));
         propertyNames.push_back(p);
-        logging::log(logging::VerbosityLevel::DEBUG, "property \"" + p + "\":", verbosityLevel);
-        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return properties[properties.size() - 1].print_to_dot(); }, verbosityLevel);
+        PRINT_AUT("property \"" + p + "\" (parsed)", properties[properties.size() - 1]);
     }
 
 
-    logging::log(logging::VerbosityLevel::DEBUG, "parser: alphabet " + stream_to_string(string_alphabet_ptr->get_alphabet_symbols()) + " still intact!", verbosityLevel);
-    logging::log(logging::VerbosityLevel::DEBUG, "parser: transition relation:", verbosityLevel);
-    logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return t.print_to_dot(); }, verbosityLevel);
+    logging::log(logging::VerbosityLevel::DEBUGV, "parser: alphabet " + stream_to_string(string_alphabet_ptr->get_alphabet_symbols()) + " still intact!", verbosityLevel);
     assert(string_alphabet_ptr->is_equal(t.alphabet));
 
     return DodoParserResult {

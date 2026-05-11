@@ -7,14 +7,25 @@
 #define TOCKM(message) end = std::chrono::steady_clock::now(); std::cout << "Time needed for " << message << ": " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl;
 
 
-int main() {
-    for (int i = 0; i < 5; ++i) {
+int main(int argc, char** argv) {
+    std::optional<unsigned int> seed = std::nullopt;
+    int iterations = 5;
+    bool user_seed = false;
+    if (argc == 2) {
+        seed = std::make_optional(atoi(argv[1]));
+        iterations = 1;
+        user_seed = true;
+    }
+
+    for (int i = 0; i < iterations; ++i) {
         size_t num_of_levels = 2;
         size_t num_of_states = 200;
         std::vector<size_t> alphabet_sizes = {2, 3};
         double states_trans_ratio_per_symbol = 10.0;
         double final_state_density = 0.1;
-        std::optional<unsigned int> seed = std::make_optional(std::random_device{}());
+        if (!user_seed) {
+            seed = std::make_optional(std::random_device{}());
+        }
         mata::nft::Nft aut = mata::ext::builder::create_random_nft_tabakov_vardi(
             num_of_levels,
             num_of_states,

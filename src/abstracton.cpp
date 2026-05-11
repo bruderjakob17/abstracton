@@ -11,13 +11,21 @@
 #define TICK() if (measure_time) { begin = std::chrono::steady_clock::now(); }
 #define TOCK(message) if (measure_time) { end = std::chrono::steady_clock::now(); std::cout << "Time needed for " << message << ": " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() << "[µs]" << std::endl; }
 
+#define PRINT_AUT(name, aut) \
+logging::log(logging::VerbosityLevel::VERBOSE, std::format("automaton {}:", name), verbosityLevel); \
+if (no_dot_printing) { \
+    logging::logexp(logging::VerbosityLevel::VERBOSE, [&]() { return std::format("{} states", aut.num_of_states()); }, verbosityLevel); \
+} else { \
+    logging::logexp(logging::VerbosityLevel::VERBOSE, [&]() { return aut.print_to_dot(); }, verbosityLevel); \
+}
+
 using namespace mata;
 using namespace mata::nfa;
 using namespace mata::nft;
 
 /// previous function: compute_ind_old
 /// this function improves upon the old implementation by explicitly constructing the product, instead of constructing a sequence of products
-Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time) {
+Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     INIT_CLOCKS();
 
     using namespace std;
@@ -126,8 +134,8 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized ind has {} states", ind.num_of_states()), verbosityLevel);
     if (exclude_empty_abstractions) {
         // intersect with pi_1(V)
-        logging::log(logging::VerbosityLevel::DEBUG, "ind with empty abstractions:", verbosityLevel);
-        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return ind.print_to_dot(); }, verbosityLevel);
+        logging::log(logging::VerbosityLevel::DEBUGV, "ind with empty abstractions:", verbosityLevel);
+        logging::logexp(logging::VerbosityLevel::DEBUGV, [&]() { return ind.print_to_dot(); }, verbosityLevel);
         TICK();
         auto result = mata::nfa::intersection(ind, project(abstraction_framework, 0));
         TOCK("excluding empty abstractions");
@@ -191,8 +199,8 @@ Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_rela
     Nft v_complement {mata::ext::complement(abstraction_framework, nullptr, std::make_optional<std::vector<Alphabet*>>(alphabets), true)};
     TOCK("computing complement v_complement of abstraction framework");
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("v_complement has {} states (0-level: {})", v_complement.num_of_states(), v_complement.num_of_states_with_level(0)), verbosityLevel);
-    logging::log(logging::VerbosityLevel::DEBUG, "complement of abstraction framework:", verbosityLevel);
-    logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return v_complement.print_to_dot(); }, verbosityLevel);
+    logging::log(logging::VerbosityLevel::DEBUGV, "complement of abstraction framework:", verbosityLevel);
+    logging::logexp(logging::VerbosityLevel::DEBUGV, [&]() { return v_complement.print_to_dot(); }, verbosityLevel);
     // TICK();
     // v_complement = mata::ext::minimize(v_complement);
     // TOCK("minimizing v_complement");
@@ -240,8 +248,8 @@ Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_rela
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized ind has {} states", ind.num_of_states()), verbosityLevel);
     if (exclude_empty_abstractions) {
         // intersect with pi_1(V)
-        logging::log(logging::VerbosityLevel::DEBUG, "ind with empty abstractions:", verbosityLevel);
-        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return ind.print_to_dot(); }, verbosityLevel);
+        logging::log(logging::VerbosityLevel::DEBUGV, "ind with empty abstractions:", verbosityLevel);
+        logging::logexp(logging::VerbosityLevel::DEBUGV, [&]() { return ind.print_to_dot(); }, verbosityLevel);
         TICK();
         auto result = mata::nfa::intersection(ind, project(abstraction_framework, 0));
         TOCK("excluding empty abstractions");
@@ -255,11 +263,17 @@ Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_rela
         return ind;
     }
 }
-Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, std::optional<const Nfa> ind, int verbosityLevel, bool measure_time) {
+Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, std::optional<const Nfa> ind, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     INIT_CLOCKS();
 
     // inverse(V) id_Ind complement(V), then complement
-    Nfa ind_result = ind.value_or(compute_ind(abstraction_framework, transition_relation, concrete_alphabet, abstract_alphabet, false, verbosityLevel));
+    Nfa ind_result;
+    if (!ind.has_value()) {
+        logging::log(logging::VerbosityLevel::DEBUGV, "ind not given as input to compute_preach_complement, need to construct.", verbosityLevel);
+        ind_result = compute_ind(abstraction_framework, transition_relation, concrete_alphabet, abstract_alphabet, false, verbosityLevel, measure_time, no_dot_printing);
+    } else {
+        ind_result = ind.value();
+    }
 
     std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
     Nft v_complement {mata::ext::complement(abstraction_framework, nullptr, std::make_optional<std::vector<Alphabet*>>(alphabets), true)}; // TODO only calculate once (not in ind and preach)
@@ -294,7 +308,7 @@ Nft compute_preach(const Nft& abstraction_framework, const Nft& transition_relat
     return mata::ext::complement(compute_preach_complement(abstraction_framework, transition_relation, concrete_alphabet, abstract_alphabet, ind, verbosityLevel), &concrete_alphabet);
 }
 
-std::vector<bool> check_abstract_safety_explicit(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach, std::vector<mata::nfa::Nfa> unsafe_properties, int verbosityLevel, bool measure_time) {
+std::vector<bool> check_abstract_safety_explicit(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach, std::vector<mata::nfa::Nfa> unsafe_properties, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     INIT_CLOCKS();
     TICK();
     Nfa preach_image = apply(preach, initial_configurations);
@@ -308,7 +322,7 @@ std::vector<bool> check_abstract_safety_explicit(const mata::nfa::Nfa& initial_c
     return result;
 }
 
-std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach_complement, std::vector<mata::nfa::Nfa> unsafe_properties, Alphabet& concrete_alphabet, std::string universality_alg, int verbosityLevel, bool measure_time) {
+std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach_complement, std::vector<mata::nfa::Nfa> unsafe_properties, Alphabet& concrete_alphabet, std::string universality_alg, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     INIT_CLOCKS();
 
     mata::nft::Nft initial_nft = mata::nft::builder::from_nfa_with_levels_advancing(initial_configurations, 1);
@@ -317,20 +331,17 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
         TICK();
         mata::nft::Nft unsafe_property_nft = mata::nft::builder::from_nfa_with_levels_advancing(unsafe_property, 1);
         TOCK("constructing transducer for unsafe property");
-        logging::log(logging::VerbosityLevel::DEBUG, "transducer for unsafe property:", verbosityLevel);
-        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return unsafe_property_nft.print_to_dot(); }, verbosityLevel);
+        PRINT_AUT("unsafe property", unsafe_property_nft);
 
         TICK();
         mata::nft::Nft initial_unsafe_pairs = mata::ext::relational_product_length_preserving_dont_care({initial_nft, unsafe_property_nft});
         TOCK("constructing transducer for (initial, unsafe) pairs");
-        logging::log(logging::VerbosityLevel::DEBUG, "transducer for (initial, unsafe)-pairs:", verbosityLevel);
-        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return initial_unsafe_pairs.print_to_dot(); }, verbosityLevel);
+        PRINT_AUT("(initial, unsafe) pairs", initial_unsafe_pairs);
 
         TICK();
         mata::nft::Nft initial_unsafe_complement = mata::ext::complement(initial_unsafe_pairs, &concrete_alphabet, std::nullopt, true);
         TOCK("constructing transducer for complement of (initial, unsafe) pairs");
-        logging::log(logging::VerbosityLevel::DEBUG, "transducer for complement of (initial, unsafe)-pairs:", verbosityLevel);
-        logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return initial_unsafe_complement.print_to_dot(); }, verbosityLevel);
+        PRINT_AUT("complement((initial, unsafe) pairs)", initial_unsafe_complement);
 
         TICK();
         mata::nft::Nft union2 = mata::nft::union_nondet(preach_complement, initial_unsafe_complement);
@@ -339,7 +350,11 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
         // TODO select best algorithm here...
         if (universality_alg == "lazy") {
             TICK();
-            result.push_back(mata::ext::is_universal_lazy(union2, {&concrete_alphabet, &concrete_alphabet}, &cex));
+            result.push_back(mata::ext::is_universal_lazy(union2, {&concrete_alphabet, &concrete_alphabet}, &cex, verbosityLevel));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else if (universality_alg == "lazy-bfs") {
+            TICK();
+            result.push_back(mata::ext::is_universal_lazy(union2, {&concrete_alphabet, &concrete_alphabet}, &cex, verbosityLevel, false));
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "antichains-inclusion") {
             TICK();
@@ -356,7 +371,14 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
 
         if (!result[result.size() - 1]) {
             logging::log(logging::VerbosityLevel::VERBOSE, "counterexample (abstractly reachable):", verbosityLevel);
-            logging::logexp(logging::VerbosityLevel::DEBUG, [&]() { return vec_to_string(cex.word); }, verbosityLevel);
+            logging::logexp(logging::VerbosityLevel::VERBOSE, [&]() {
+                std::vector<std::string> cex_symbols;
+                cex_symbols.reserve(cex.word.size());
+                for (const Symbol& x : cex.word) {
+                    cex_symbols.push_back(concrete_alphabet.reverse_translate_symbol(x));
+                }
+                return vec_to_string(cex_symbols);
+            }, verbosityLevel);
         }
     }
     return result;

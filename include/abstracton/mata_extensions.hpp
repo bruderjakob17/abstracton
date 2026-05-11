@@ -1,11 +1,13 @@
 #pragma once
 
+#include "utils/utils.hpp"
 #include <mata/nfa/nfa.hh>
 #include <mata/nft/nft.hh>
 #include <mata/nfa/algorithms.hh>
 #include <mata/nft/algorithms.hh>
 #include <mata/nfa/types.hh>
 #include <mata/nft/types.hh>
+#include <abstracton/utils/utils.hpp>
 
 mata::nft::Nft create_identity(mata::Alphabet& alphabet);
 
@@ -63,7 +65,7 @@ bool is_universal_antichains(const mata::nft::Nft& aut, const std::vector<Alphab
 bool is_universal_antichains_by_inclusion(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex);
 
 /// similar to is_universal_antichains, but do not do subsumption checks
-bool is_universal_lazy(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex);
+bool is_universal_lazy(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
 
 /**
  * Inserts tapes to construct a new NFT. Assumes @param aut is length-preserving.

@@ -40,4 +40,4 @@ struct DodoParserResult {
     mata::nft::Nft transitionRelation;
 };
 
-DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL);
+DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool no_dot_printing = false);
