@@ -59,6 +59,16 @@ namespace logging {
             }
         }
     }
+
+    inline std::string info(std::string message) {
+        return "\033[1;32m[INFO]\033[0m " + message;
+    }
+    inline std::string warning(std::string message) {
+        return "\033[1;33m[WARNING]\033[0m " + message;
+    }
+    inline std::string error(std::string message) {
+        return "\033[1;31m[ERROR]\033[0m " + message;
+    }
 }
 
 template<typename T>

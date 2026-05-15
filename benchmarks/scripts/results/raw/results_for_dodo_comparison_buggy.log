@@ -1,0 +1,4033 @@
+0 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+t
+exclusiveexclusive
+Running as unit: run-r118fb5111ae34bf593eb345934500edf.scope; invocation ID: 3180efda61664194a40a533044d5451c
+using Trap interpretation
+computing ind...
+automaton for ind has 1947 states.
+minimized automaton for ind has 8 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 396 states.
+minimized automaton for complement of preach has 38 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m3,422s
+user	0m3,381s
+sys	0m0,021s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+s
+exclusiveexclusive
+Running as unit: run-rcc80c16386e54da7af7512a51b1052e1.scope; invocation ID: 209d2e66d59641ffbbbe6ebd16a9e8c8
+using Siphon interpretation
+computing ind...
+automaton for ind has 1287 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m2,295s
+user	0m2,259s
+sys	0m0,019s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+f
+exclusiveexclusive
+Running as unit: run-re26d5b0aed2f4c579d987a8adf032b9f.scope; invocation ID: 7cf96f77f2e1425086d78730bcfba7f3
+using Flow interpretation
+computing ind...
+automaton for ind has 33416 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m43,339s
+user	0m43,189s
+sys	0m0,104s
+********************
+1 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+t
+exclusiveunowned
+Running as unit: run-r7c5dda460ac54503928bf51e0493344e.scope; invocation ID: df999387152c445ca8be9aced55c3430
+using Trap interpretation
+computing ind...
+automaton for ind has 1947 states.
+minimized automaton for ind has 8 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 396 states.
+minimized automaton for complement of preach has 38 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusiveunowned]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m3,853s
+user	0m3,808s
+sys	0m0,025s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+s
+exclusiveunowned
+Running as unit: run-rb81c547b168344a6be94540f005f8428.scope; invocation ID: 0ca2bae683fc41a7bc3f359a79caf3d2
+using Siphon interpretation
+computing ind...
+automaton for ind has 1287 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveunowned]
+
+real	0m2,242s
+user	0m2,205s
+sys	0m0,021s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+f
+exclusiveunowned
+Running as unit: run-r402e1461f46a4eedbf3c962498bf0503.scope; invocation ID: 0aa33610ee674dda95b0a779fd1e5152
+using Flow interpretation
+computing ind...
+automaton for ind has 33416 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveunowned]
+
+real	0m43,033s
+user	0m42,907s
+sys	0m0,092s
+********************
+2 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+t
+exclusivenonexclusive
+Running as unit: run-r012c295cfb0c4877992de8cc8c08ab45.scope; invocation ID: d8aeeb9befa6440f97cc4643c2af329f
+using Trap interpretation
+computing ind...
+automaton for ind has 1947 states.
+minimized automaton for ind has 8 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 396 states.
+minimized automaton for complement of preach has 38 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusivenonexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m3,372s
+user	0m3,333s
+sys	0m0,024s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+s
+exclusivenonexclusive
+Running as unit: run-r39808153d45e4a92b8a359e968daf460.scope; invocation ID: f00b902f255748189113cdae09d07513
+using Siphon interpretation
+computing ind...
+automaton for ind has 1287 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivenonexclusive]
+
+real	0m2,140s
+user	0m2,104s
+sys	0m0,025s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+f
+exclusivenonexclusive
+Running as unit: run-r5ad47df6f32d4db791fb58003efc4230.scope; invocation ID: 5c87bd9e226545ae9873651e123579a2
+using Flow interpretation
+computing ind...
+automaton for ind has 33416 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivenonexclusive]
+
+real	0m42,814s
+user	0m42,653s
+sys	0m0,117s
+********************
+3 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+t
+deadlock
+Running as unit: run-r58dbabc1cfeb400bbaf0deeae33d07ea.scope; invocation ID: c1b8c15ea8694751bac1102b21d0fc7e
+using Trap interpretation
+computing ind...
+automaton for ind has 1947 states.
+minimized automaton for ind has 8 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 396 states.
+minimized automaton for complement of preach has 38 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m3,392s
+user	0m3,345s
+sys	0m0,022s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+s
+deadlock
+Running as unit: run-r7b87f8706fa64dd2af94217423761810.scope; invocation ID: dc838aef700a49ce8e7449979584ce39
+using Siphon interpretation
+computing ind...
+automaton for ind has 1287 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m2,156s
+user	0m2,121s
+sys	0m0,021s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Berkeley.json
+f
+deadlock
+Running as unit: run-r2cf5d103a7754aa49e58d48914874978.scope; invocation ID: 2db7badee2134ac5bfa913d8585cb589
+using Flow interpretation
+computing ind...
+automaton for ind has 33416 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m43,048s
+user	0m42,921s
+sys	0m0,085s
+********************
+4 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Burns.json
+t
+nomutex
+Running as unit: run-rad4d2d58787144678e6a1654f965da6c.scope; invocation ID: 3afd8146e98b4e11b5a3ea03287336d7
+using Trap interpretation
+computing ind...
+automaton for ind has 941 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 391 states.
+minimized automaton for complement of preach has 30 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[nomutex]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	3m34,891s
+user	3m34,223s
+sys	0m0,520s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Burns.json
+s
+nomutex
+Running as unit: run-r54a04ea05d48447f8264b6c95b161eb0.scope; invocation ID: 0228b9a2eeed456882c179a199293601
+using Siphon interpretation
+computing ind...
+automaton for ind has 474 states.
+minimized automaton for ind has 1 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[nomutex]
+
+real	1m45,734s
+user	1m45,264s
+sys	0m0,364s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Burns.json
+f
+nomutex
+Running as unit: run-r0fa868203ce547e19a4453eb1db79448.scope; invocation ID: f7262d31d8d047ad81340e3efe186b17
+using Flow interpretation
+computing ind...
+automaton for ind has 8325 states.
+minimized automaton for ind has 2 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[nomutex]
+
+real	8m23,843s
+user	8m21,949s
+sys	0m1,580s
+********************
+5 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Burns.json
+t
+deadlock
+Running as unit: run-r6cac9a0d3be04415b2dd69dd93899878.scope; invocation ID: 1249a8733fa141e6a1bfdf35081ca658
+using Trap interpretation
+computing ind...
+automaton for ind has 941 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 391 states.
+minimized automaton for complement of preach has 30 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	3m32,786s
+user	3m32,158s
+sys	0m0,514s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Burns.json
+s
+deadlock
+Running as unit: run-r3e31d5930cb9445fb6b192887d2f9f12.scope; invocation ID: b5df3e988bca41c1a955ae1a300b4333
+using Siphon interpretation
+computing ind...
+automaton for ind has 474 states.
+minimized automaton for ind has 1 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	1m45,928s
+user	1m45,489s
+sys	0m0,369s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Burns.json
+f
+deadlock
+Running as unit: run-r4f9db90ba32a43c7b788e8f2b00f0723.scope; invocation ID: dbd5c6f2515440b28cb8ca45567e1b66
+using Flow interpretation
+computing ind...
+automaton for ind has 8325 states.
+minimized automaton for ind has 2 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	8m24,529s
+user	8m22,904s
+sys	0m1,366s
+********************
+6 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+t
+twob
+Running as unit: run-r924cf2f9d2434a7190f952af735cd5b3.scope; invocation ID: 4334e261fd1046eaa95b92b2c7e01be2
+using Trap interpretation
+computing ind...
+automaton for ind has 181 states.
+minimized automaton for ind has 9 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 457 states.
+minimized automaton for complement of preach has 33 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[twob]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m1,271s
+user	0m1,240s
+sys	0m0,019s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+s
+twob
+Running as unit: run-r4b40e35d3a6742f7b44c37ff320a39ed.scope; invocation ID: 73c5358e395f4fc6b562f1fccbc807cc
+using Siphon interpretation
+computing ind...
+automaton for ind has 98 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 222 states.
+minimized automaton for complement of preach has 24 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[twob]
+
+real	0m0,586s
+user	0m0,556s
+sys	0m0,017s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+f
+twob
+Running as unit: run-r9462e3734d0646ca8b7d95bcd8614dc0.scope; invocation ID: 2eb8e8e6aa30415293502eaacfe67ad3
+using Flow interpretation
+computing ind...
+automaton for ind has 2408 states.
+minimized automaton for ind has 20 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1114 states.
+minimized automaton for complement of preach has 33 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[twob]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m55,881s
+user	0m55,626s
+sys	0m0,211s
+********************
+7 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+t
+twod
+Running as unit: run-r8606d6b0623245f4b58887e148830b78.scope; invocation ID: 4972ef5c3bc74890af6a116f3e5e613e
+using Trap interpretation
+computing ind...
+automaton for ind has 181 states.
+minimized automaton for ind has 9 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 457 states.
+minimized automaton for complement of preach has 33 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[twod]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m1,259s
+user	0m1,231s
+sys	0m0,018s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+s
+twod
+Running as unit: run-r2132d51428c64343ac1d0ffec28dc2c2.scope; invocation ID: 7fa1fb4488464bf5ad6a27f1021f2c08
+using Siphon interpretation
+computing ind...
+automaton for ind has 98 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 222 states.
+minimized automaton for complement of preach has 24 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[twod]
+
+real	0m0,615s
+user	0m0,587s
+sys	0m0,014s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+f
+twod
+Running as unit: run-r573508f0bb4a4c0995588c0bac5f3608.scope; invocation ID: dfd655598f35472d96895b5246c89592
+using Flow interpretation
+computing ind...
+automaton for ind has 2408 states.
+minimized automaton for ind has 20 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1114 states.
+minimized automaton for complement of preach has 33 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[twod]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m55,729s
+user	0m55,449s
+sys	0m0,235s
+********************
+8 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+t
+deadlock
+Running as unit: run-r0913ce63723949048a2365565b066ac4.scope; invocation ID: 19a68cfacad14d6eaa9f17f011a82a47
+using Trap interpretation
+computing ind...
+automaton for ind has 181 states.
+minimized automaton for ind has 9 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 457 states.
+minimized automaton for complement of preach has 33 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m1,255s
+user	0m1,216s
+sys	0m0,027s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+s
+deadlock
+Running as unit: run-r8ccedca77f4d4c448ac293a6017c9bed.scope; invocation ID: f092ac59f72748acb16b3f858c66cebb
+using Siphon interpretation
+computing ind...
+automaton for ind has 98 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 222 states.
+minimized automaton for complement of preach has 24 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m0,596s
+user	0m0,573s
+sys	0m0,013s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+f
+deadlock
+Running as unit: run-r6a4233db0ab142c49f29d5ab2ced2b11.scope; invocation ID: ef659f33cb27471fb5f1c5f2eed9153f
+using Flow interpretation
+computing ind...
+automaton for ind has 2408 states.
+minimized automaton for ind has 20 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1114 states.
+minimized automaton for complement of preach has 33 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m56,002s
+user	0m55,722s
+sys	0m0,228s
+********************
+9 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-ring.json
+t
+nomutex
+Running as unit: run-rbcddca6316b643b6a0bb8b6a650dc440.scope; invocation ID: dc54ea7646454a70a57f1d3b0585b611
+using Trap interpretation
+computing ind...
+
+real	20m0,274s
+user	19m57,917s
+sys	0m1,839s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-ring.json
+s
+nomutex
+Running as unit: run-r6452264c9ece421b8d9097858c8c801f.scope; invocation ID: 783be522f5bf4895903bd29f299543a7
+using Siphon interpretation
+computing ind...
+
+real	20m0,162s
+user	19m58,558s
+sys	0m1,009s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-ring.json
+f
+nomutex
+Running as unit: run-r11746d2e64dd46ee8154cb677ccd87ce.scope; invocation ID: 54199d93ede5419b91b73877db9be80e
+using Flow interpretation
+computing ind...
+
+real	20m0,344s
+user	19m57,144s
+sys	0m2,568s
+********************
+10 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-ring.json
+t
+deadlock
+Running as unit: run-r0ef69e83d5ac44c595eaea6314734a4a.scope; invocation ID: 034e8fd2b871452e9384a6ecee6fbf2b
+using Trap interpretation
+computing ind...
+
+real	20m0,270s
+user	19m57,709s
+sys	0m1,938s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-ring.json
+s
+deadlock
+Running as unit: run-rd4104490f60b40179905ee86b5ef9218.scope; invocation ID: 951a461ff5b34df1b2b3f0e678954911
+using Siphon interpretation
+computing ind...
+
+real	20m0,172s
+user	19m58,530s
+sys	0m1,032s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Dijkstra-ring.json
+f
+deadlock
+Running as unit: run-rc6affa86e46e4c22b0b8e5189e0cd692.scope; invocation ID: 5747eb97b08c4c4b9c1666b0eef72c17
+using Flow interpretation
+computing ind...
+
+real	20m0,345s
+user	19m57,273s
+sys	0m2,533s
+********************
+11 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/DijkstraMutEx.json
+t
+nomutex
+Running as unit: run-rc587869f25a34a80a3d10ee226a7f575.scope; invocation ID: e98144a5f9454785bdf50e396270a10c
+using Trap interpretation
+
+real	20m1,187s
+user	19m49,983s
+sys	0m10,429s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/DijkstraMutEx.json
+s
+nomutex
+Running as unit: run-rc9b196ea640f4c56b86b4b45ae84ce32.scope; invocation ID: 18fe809e7d094621ac39e9c9f0ed0d00
+using Siphon interpretation
+
+real	20m1,130s
+user	19m50,413s
+sys	0m9,891s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/DijkstraMutEx.json
+f
+nomutex
+Running as unit: run-r0dc8017e06fe47cca37ba1af27ec9540.scope; invocation ID: 98de81bd07dd4aa5be93359cfdc1ea38
+using Flow interpretation
+
+real	20m1,143s
+user	19m49,989s
+sys	0m10,304s
+********************
+12 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/DijkstraMutEx.json
+t
+deadlock
+Running as unit: run-ra9cf288c52924d77a9322ce5c9fc9196.scope; invocation ID: fbf7b3a87fba4bafbd1980b98129d353
+using Trap interpretation
+
+real	20m1,181s
+user	19m49,562s
+sys	0m10,675s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/DijkstraMutEx.json
+s
+deadlock
+Running as unit: run-r2f2a340b18c04d108b76fec4d22b7b17.scope; invocation ID: 1a890113d2be49e3ba404f033867c04a
+using Siphon interpretation
+
+real	20m1,160s
+user	19m50,448s
+sys	0m9,859s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/DijkstraMutEx.json
+f
+deadlock
+Running as unit: run-r0f25a2b746554ce1a879b68797d18634.scope; invocation ID: ce9a6a3738fc4694a26791cf169be558
+using Flow interpretation
+
+real	20m1,158s
+user	19m49,864s
+sys	0m10,428s
+********************
+13 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+t
+pendingrightsecond
+Running as unit: run-r2f25404640bf43529a642ae511c36717.scope; invocation ID: 9efcc6ee102a4a3a8cf63c7bd2fa3b29
+using Trap interpretation
+computing ind...
+
+real	20m0,782s
+user	19m53,900s
+sys	0m6,232s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+s
+pendingrightsecond
+Running as unit: run-rd9a38ad596a54b499aa7f753f27c9db4.scope; invocation ID: ce3322e49a374eafaa537ca733f13f26
+using Siphon interpretation
+computing ind...
+
+real	20m0,617s
+user	19m55,184s
+sys	0m4,812s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+f
+pendingrightsecond
+Running as unit: run-r46676e0448bf4741950fdf0335b33503.scope; invocation ID: 58e2bf1f4aee434d80561d8a6a1d270c
+using Flow interpretation
+computing ind...
+
+real	20m1,045s
+user	19m51,419s
+sys	0m8,970s
+********************
+14 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+t
+sharedexclusive
+Running as unit: run-r9abe099dd1c34101871b9ca8513e7481.scope; invocation ID: 511548dc2513469ea7b85c2198e9e541
+using Trap interpretation
+computing ind...
+
+real	20m0,791s
+user	19m53,897s
+sys	0m6,247s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+s
+sharedexclusive
+Running as unit: run-re092c75b4d3e4d5d8a70e6d341b88e97.scope; invocation ID: 4694a8d9a71044e28e2f1738cfaa99e9
+using Siphon interpretation
+computing ind...
+
+real	20m0,626s
+user	19m55,152s
+sys	0m4,788s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+f
+sharedexclusive
+Running as unit: run-rbd0d69a4d7ab4565b74b1e5690f7a409.scope; invocation ID: a60b08e6afa14bc18e3b0c730fed623e
+using Flow interpretation
+computing ind...
+
+real	20m1,074s
+user	19m51,598s
+sys	0m8,822s
+********************
+15 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+t
+secondpending
+Running as unit: run-r9e19a3ab6d304b4ba8f628566e34bb95.scope; invocation ID: 49499874b7ce4fd0aa15a1a07697b3ca
+using Trap interpretation
+computing ind...
+
+real	20m0,819s
+user	19m53,597s
+sys	0m6,438s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+s
+secondpending
+Running as unit: run-r96af409c05b24de085969d4ba32e3731.scope; invocation ID: b44553ace6684b8badd6b7a912e47148
+using Siphon interpretation
+computing ind...
+
+real	20m0,632s
+user	19m55,151s
+sys	0m4,832s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+f
+secondpending
+Running as unit: run-r00696e1493354360b24ef32b8f356d11.scope; invocation ID: b816b417871345b7bc81c1b06d6f386b
+using Flow interpretation
+computing ind...
+
+real	20m1,039s
+user	19m51,578s
+sys	0m8,838s
+********************
+16 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+t
+exclusiveexclusive
+Running as unit: run-rf90f0ed8ddb14bfd94c28430ad7dc9ab.scope; invocation ID: 97939fd4178b4e53aa4997f3df9d09e2
+using Trap interpretation
+computing ind...
+
+real	20m0,791s
+user	19m53,945s
+sys	0m6,204s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+s
+exclusiveexclusive
+Running as unit: run-r9d28f04199544faa95d0f545d5997e38.scope; invocation ID: 2d240dcb0f47418c92de1b3d33b736b4
+using Siphon interpretation
+computing ind...
+
+real	20m0,638s
+user	19m55,158s
+sys	0m4,796s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+f
+exclusiveexclusive
+Running as unit: run-rc417ceaea6c54cf68f30d5c5b123c905.scope; invocation ID: 3b6968a9dc1944c69c9c57a355a7bb12
+using Flow interpretation
+computing ind...
+
+real	20m1,071s
+user	19m51,314s
+sys	0m9,018s
+********************
+17 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+t
+deadlock
+Running as unit: run-r3b2fdf1b3bad44a38f7dfa8b282b96dc.scope; invocation ID: e5c641e6d3074483b087d9b56071ebde
+using Trap interpretation
+computing ind...
+
+real	20m0,823s
+user	19m53,688s
+sys	0m6,397s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+s
+deadlock
+Running as unit: run-rc878a4abfc234fb896915db6f9c46fc9.scope; invocation ID: cfc53240ca10403195620711afb6a921
+using Siphon interpretation
+computing ind...
+
+real	20m0,632s
+user	19m55,142s
+sys	0m4,860s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/FutureBus.json
+f
+deadlock
+Running as unit: run-r8b641bac75ae413284c6731b89bc6e3f.scope; invocation ID: b0657566951b47e8b329414f0ad865ec
+using Flow interpretation
+computing ind...
+
+real	20m1,079s
+user	19m51,382s
+sys	0m9,086s
+********************
+18 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Herman.json
+t
+notoken
+Running as unit: run-r8ffdab0fc5244c6ca6632dcdb8c1a725.scope; invocation ID: 948de9c635044a9381ff3a662891d8ca
+using Trap interpretation
+computing ind...
+automaton for ind has 88 states.
+minimized automaton for ind has 5 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 11 states.
+minimized automaton for complement of preach has 7 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,112s
+user	0m0,090s
+sys	0m0,008s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Herman.json
+s
+notoken
+Running as unit: run-r3e401383e2c44c3e8ef604cec2d1bc0f.scope; invocation ID: e73653673905432ea32bf9254cbf8c7f
+using Siphon interpretation
+computing ind...
+automaton for ind has 56 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 8 states.
+minimized automaton for complement of preach has 7 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,078s
+user	0m0,052s
+sys	0m0,008s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Herman.json
+f
+notoken
+Running as unit: run-rc0ae108958c64ff88aaaa7e85d2f8c58.scope; invocation ID: 2c39f162cbee4b5081bfa1a1e44527cb
+using Flow interpretation
+computing ind...
+automaton for ind has 341 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 4 states.
+minimized automaton for complement of preach has 4 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,209s
+user	0m0,184s
+sys	0m0,010s
+********************
+19 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Illinois.json
+t
+dirtydirty
+Running as unit: run-rdba9ce1854ca4ca99fa817285156b145.scope; invocation ID: 5e2b7263ee0045c798776a82c14ba62c
+using Trap interpretation
+computing ind...
+automaton for ind has 11192 states.
+minimized automaton for ind has 12 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 234 states.
+minimized automaton for complement of preach has 60 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m10,901s
+user	0m10,842s
+sys	0m0,036s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Illinois.json
+s
+dirtydirty
+Running as unit: run-r480c9aedc12c4d099c971fe4c5e6a08a.scope; invocation ID: 7fd7881891f042298d858d1670daff97
+using Siphon interpretation
+computing ind...
+automaton for ind has 4053 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m6,643s
+user	0m6,591s
+sys	0m0,028s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Illinois.json
+f
+dirtydirty
+Running as unit: run-r1810ff0c95e14a409747c7a9270db37c.scope; invocation ID: 4d2eb3edc5af4c50ab150231375c69a5
+using Flow interpretation
+computing ind...
+automaton for ind has 157716 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	7m42,137s
+user	7m41,242s
+sys	0m0,549s
+********************
+20 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Illinois.json
+t
+dirtyshared
+Running as unit: run-r36d6dd8b12064a52b8a5aee89272c445.scope; invocation ID: d23f53f099b44fd1ade7946890939de1
+using Trap interpretation
+computing ind...
+automaton for ind has 11192 states.
+minimized automaton for ind has 12 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 234 states.
+minimized automaton for complement of preach has 60 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	0m10,932s
+user	0m10,876s
+sys	0m0,030s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Illinois.json
+s
+dirtyshared
+Running as unit: run-rc5cea1c77ea44956a97be54b2b7e61eb.scope; invocation ID: 56fc309b2325422badbe7528474a0c84
+using Siphon interpretation
+computing ind...
+automaton for ind has 4053 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	0m6,651s
+user	0m6,605s
+sys	0m0,025s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Illinois.json
+f
+dirtyshared
+Running as unit: run-rf396543c9edf43e393aa32cbea97779e.scope; invocation ID: 94b7550776db4ca69b0b7beefe9440ff
+using Flow interpretation
+computing ind...
+automaton for ind has 157716 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	7m39,854s
+user	7m39,132s
+sys	0m0,450s
+********************
+21 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Illinois.json
+t
+deadlock
+Running as unit: run-re2343b0397a440ef9c76a9320e5de13b.scope; invocation ID: e5cfa6c839e248f79670331f134bc7fa
+using Trap interpretation
+computing ind...
+automaton for ind has 11192 states.
+minimized automaton for ind has 12 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 234 states.
+minimized automaton for complement of preach has 60 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m10,766s
+user	0m10,712s
+sys	0m0,033s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Illinois.json
+s
+deadlock
+Running as unit: run-r4e39a1bcad4a4f1c9ce431a8270c9c10.scope; invocation ID: 034cbb3b66b146aa95a12e4452472751
+using Siphon interpretation
+computing ind...
+automaton for ind has 4053 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m6,766s
+user	0m6,717s
+sys	0m0,030s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Illinois.json
+f
+deadlock
+Running as unit: run-r2e094f199f7e498f913b696dfa3b9cd6.scope; invocation ID: 411ada5b2e23475c967785ad41dcf200
+using Flow interpretation
+computing ind...
+automaton for ind has 157716 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	7m41,188s
+user	7m40,426s
+sys	0m0,482s
+********************
+22 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Israeli-Jafon.json
+t
+notoken
+Running as unit: run-r6aceec0e3a634ca99fc0b7392fe75b90.scope; invocation ID: 7a82ea8bbd7a419f90cab2060a54a061
+using Trap interpretation
+computing ind...
+automaton for ind has 74 states.
+minimized automaton for ind has 5 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 11 states.
+minimized automaton for complement of preach has 7 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,095s
+user	0m0,074s
+sys	0m0,010s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Israeli-Jafon.json
+s
+notoken
+Running as unit: run-rcf2bf98ca68649b2bf74d411ec86dacc.scope; invocation ID: 4a633962b0f74da79d1b9c979d3d9ad4
+using Siphon interpretation
+computing ind...
+automaton for ind has 40 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 8 states.
+minimized automaton for complement of preach has 7 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,060s
+user	0m0,040s
+sys	0m0,008s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Israeli-Jafon.json
+f
+notoken
+Running as unit: run-r9552a8e813844f95924e0d0fd195cbff.scope; invocation ID: 867c08dfd28b43e6bcdd288499d5d44b
+using Flow interpretation
+computing ind...
+automaton for ind has 240 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 4 states.
+minimized automaton for complement of preach has 4 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,143s
+user	0m0,115s
+sys	0m0,014s
+********************
+23 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MESI.json
+t
+modifiedmodified
+Running as unit: run-rd4c9cc9346ef4530b2efb967eb6b9f7b.scope; invocation ID: 55ed8e404cc94b07b8bd9379295136e0
+using Trap interpretation
+computing ind...
+automaton for ind has 667 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 175 states.
+minimized automaton for complement of preach has 21 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[modifiedmodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m2,294s
+user	0m2,249s
+sys	0m0,017s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MESI.json
+s
+modifiedmodified
+Running as unit: run-r9cb01bb220154de4abd340f94f2b3d24.scope; invocation ID: 68cc1e0c78eb4487924f6551e1a59cc3
+using Siphon interpretation
+computing ind...
+automaton for ind has 676 states.
+minimized automaton for ind has 1 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[modifiedmodified]
+
+real	0m1,426s
+user	0m1,389s
+sys	0m0,016s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MESI.json
+f
+modifiedmodified
+Running as unit: run-r6a965b8230eb43548fee6631471bff5e.scope; invocation ID: c95821c0da6042b98a8bb84ca3982d6a
+using Flow interpretation
+computing ind...
+automaton for ind has 10009 states.
+minimized automaton for ind has 2 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[modifiedmodified]
+
+real	0m11,712s
+user	0m11,637s
+sys	0m0,046s
+********************
+24 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MESI.json
+t
+sharedmodified
+Running as unit: run-ra21b2b19264c4316b3c668f574fac535.scope; invocation ID: 1b1fd7d80d23417999833d039f3e3e60
+using Trap interpretation
+computing ind...
+automaton for ind has 667 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 175 states.
+minimized automaton for complement of preach has 21 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[sharedmodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m2,272s
+user	0m2,242s
+sys	0m0,016s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MESI.json
+s
+sharedmodified
+Running as unit: run-r1d9fc23ba609448f86feeb6babc9d6aa.scope; invocation ID: f4285fab3fe04f7eb15bdbf79a05069a
+using Siphon interpretation
+computing ind...
+automaton for ind has 676 states.
+minimized automaton for ind has 1 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedmodified]
+
+real	0m1,419s
+user	0m1,380s
+sys	0m0,018s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MESI.json
+f
+sharedmodified
+Running as unit: run-r5988df9f739848b196ac126b2922f7b9.scope; invocation ID: d89930a46c6142a6831b1f36587adc02
+using Flow interpretation
+computing ind...
+automaton for ind has 10009 states.
+minimized automaton for ind has 2 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedmodified]
+
+real	0m11,695s
+user	0m11,650s
+sys	0m0,030s
+********************
+25 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MESI.json
+t
+deadlock
+Running as unit: run-rdaa14a2e421d4d13bc47cfc66c6a693c.scope; invocation ID: 3b10cf3908d246da9a194a939123fceb
+using Trap interpretation
+computing ind...
+automaton for ind has 667 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 175 states.
+minimized automaton for complement of preach has 21 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m2,260s
+user	0m2,223s
+sys	0m0,023s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MESI.json
+s
+deadlock
+Running as unit: run-racf74e63aed64105927e334065112623.scope; invocation ID: 1bcabb90938a46b4b150f66abd68605a
+using Siphon interpretation
+computing ind...
+automaton for ind has 676 states.
+minimized automaton for ind has 1 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m1,422s
+user	0m1,393s
+sys	0m0,017s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MESI.json
+f
+deadlock
+Running as unit: run-r4db788e528b9404aa2b9b5bc304082cc.scope; invocation ID: 7475add3a4ed488089b22a3f3b17e6d1
+using Flow interpretation
+computing ind...
+automaton for ind has 10009 states.
+minimized automaton for ind has 2 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m11,654s
+user	0m11,592s
+sys	0m0,040s
+********************
+26 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+t
+modifiedmodified
+Running as unit: run-r74c6d4c4e68b4eb698ab7e22ea443fbe.scope; invocation ID: 6866a6a58c6143cbbc75374af18f6ce6
+using Trap interpretation
+computing ind...
+automaton for ind has 2045 states.
+minimized automaton for ind has 13 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1220 states.
+minimized automaton for complement of preach has 49 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[modifiedmodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m20,909s
+user	0m20,804s
+sys	0m0,072s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+s
+modifiedmodified
+Running as unit: run-ra6ce031595bc4ef8961a6bad69f1541b.scope; invocation ID: eec68c504531492184b2954803dae174
+using Siphon interpretation
+computing ind...
+automaton for ind has 1334 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[modifiedmodified]
+
+real	0m11,291s
+user	0m11,204s
+sys	0m0,063s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+f
+modifiedmodified
+Running as unit: run-rb9dc675f0cff41ac94f3d2d4d7f94390.scope; invocation ID: dd03fe41be1b480eab76811bafa67d70
+using Flow interpretation
+computing ind...
+automaton for ind has 34302 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[modifiedmodified]
+
+real	1m40,693s
+user	1m40,383s
+sys	0m0,243s
+********************
+27 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+t
+exclusiveexclusive
+Running as unit: run-rbc738e5d9c1549f285872482d1b820d0.scope; invocation ID: 439422d805b7447f84cd6fb7999049ec
+using Trap interpretation
+computing ind...
+automaton for ind has 2045 states.
+minimized automaton for ind has 13 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1220 states.
+minimized automaton for complement of preach has 49 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusiveexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m20,851s
+user	0m20,746s
+sys	0m0,079s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+s
+exclusiveexclusive
+Running as unit: run-r17ca96c946e94281b0fa07257a0f1d93.scope; invocation ID: 143ba025d1544ca8aefb67774c369d73
+using Siphon interpretation
+computing ind...
+automaton for ind has 1334 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m11,317s
+user	0m11,233s
+sys	0m0,065s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+f
+exclusiveexclusive
+Running as unit: run-r1b078e5fcdc64a848438249cdf7499c6.scope; invocation ID: 7385a238fd03408daeb82e965a5c091e
+using Flow interpretation
+computing ind...
+automaton for ind has 34302 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	1m41,043s
+user	1m40,715s
+sys	0m0,253s
+********************
+28 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+t
+sharedexclusive
+Running as unit: run-rc66e8cd2124f4a8ba3174a382d8fba4c.scope; invocation ID: 8bcde11cf0524f279aea81f5d8eb3f83
+using Trap interpretation
+computing ind...
+automaton for ind has 2045 states.
+minimized automaton for ind has 13 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1220 states.
+minimized automaton for complement of preach has 49 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[sharedexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m20,969s
+user	0m20,874s
+sys	0m0,066s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+s
+sharedexclusive
+Running as unit: run-rf8c49515408f4fb381083b01e9fbe294.scope; invocation ID: c10d0e8ba2354e64a6b9df9f213ce57b
+using Siphon interpretation
+computing ind...
+automaton for ind has 1334 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedexclusive]
+
+real	0m11,301s
+user	0m11,212s
+sys	0m0,066s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+f
+sharedexclusive
+Running as unit: run-rff3839583d5a411ebd629fc079629dc2.scope; invocation ID: 5cdc59a6c0fa480db37b22d8629cf1b5
+using Flow interpretation
+computing ind...
+automaton for ind has 34302 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedexclusive]
+
+real	1m40,539s
+user	1m40,237s
+sys	0m0,239s
+********************
+29 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+t
+ownedexclusive
+Running as unit: run-r7709700512be4bee8c33bea6860ad338.scope; invocation ID: 85a50c9aaba84e4a979ab63499a4e096
+using Trap interpretation
+computing ind...
+automaton for ind has 2045 states.
+minimized automaton for ind has 13 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1220 states.
+minimized automaton for complement of preach has 49 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[ownedexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m20,837s
+user	0m20,742s
+sys	0m0,070s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+s
+ownedexclusive
+Running as unit: run-r33ad77faf0574f03b233e5f56502314d.scope; invocation ID: b737d3f1e5a94eea91223dd1b0f60aeb
+using Siphon interpretation
+computing ind...
+automaton for ind has 1334 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[ownedexclusive]
+
+real	0m11,220s
+user	0m11,121s
+sys	0m0,083s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+f
+ownedexclusive
+Running as unit: run-rf46c054c2b5146b899b65841df242e5d.scope; invocation ID: a964308cf3b54ec49f614e80eb3b3d7b
+using Flow interpretation
+computing ind...
+automaton for ind has 34302 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[ownedexclusive]
+
+real	1m40,992s
+user	1m40,694s
+sys	0m0,229s
+********************
+30 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+t
+exclusivemodified
+Running as unit: run-r9f153124989e43768a0aa0f49a95ce06.scope; invocation ID: b602478c063541fbbcd0c423dc056c5e
+using Trap interpretation
+computing ind...
+automaton for ind has 2045 states.
+minimized automaton for ind has 13 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1220 states.
+minimized automaton for complement of preach has 49 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusivemodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m21,120s
+user	0m21,014s
+sys	0m0,077s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+s
+exclusivemodified
+Running as unit: run-r18b920554cce4746ba0b19c91988ab17.scope; invocation ID: ed268fc3f64149529818191ed112151c
+using Siphon interpretation
+computing ind...
+automaton for ind has 1334 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivemodified]
+
+real	0m11,180s
+user	0m11,107s
+sys	0m0,051s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+f
+exclusivemodified
+Running as unit: run-rb6fe3951f6b54985ae71db4f0125f3ec.scope; invocation ID: 35ee29e13213438d996d1c08bc4f24a1
+using Flow interpretation
+computing ind...
+automaton for ind has 34302 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivemodified]
+
+real	1m41,209s
+user	1m40,916s
+sys	0m0,230s
+********************
+31 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+t
+ownedmodified
+Running as unit: run-rfa258e06045243d2bc351fac4c2401d9.scope; invocation ID: 8009ffc37ba2405cac30d230e2a70606
+using Trap interpretation
+computing ind...
+automaton for ind has 2045 states.
+minimized automaton for ind has 13 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1220 states.
+minimized automaton for complement of preach has 49 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[ownedmodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m20,829s
+user	0m20,734s
+sys	0m0,066s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+s
+ownedmodified
+Running as unit: run-r0b16f0df4bf0434885a583e25d13bb1a.scope; invocation ID: fdebdba9eefe4f83978817063b522f2a
+using Siphon interpretation
+computing ind...
+automaton for ind has 1334 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[ownedmodified]
+
+real	0m11,237s
+user	0m11,163s
+sys	0m0,056s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+f
+ownedmodified
+Running as unit: run-r09de6f55c4ff400ca910df22e5adc9a7.scope; invocation ID: e1bb75fa34c04efa93406e3710ccb0cf
+using Flow interpretation
+computing ind...
+automaton for ind has 34302 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[ownedmodified]
+
+real	1m40,913s
+user	1m40,633s
+sys	0m0,219s
+********************
+32 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+t
+sharedmodified
+Running as unit: run-rd85fe89e85ca45f9ae841c5851fbedc6.scope; invocation ID: 524c58dadf164533b3c920c94fc86e72
+using Trap interpretation
+computing ind...
+automaton for ind has 2045 states.
+minimized automaton for ind has 13 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1220 states.
+minimized automaton for complement of preach has 49 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[sharedmodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m21,102s
+user	0m21,011s
+sys	0m0,066s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+s
+sharedmodified
+Running as unit: run-rbb8a8dba2c7145ae96c88c70cfb1641a.scope; invocation ID: 9e5dcd742cc746cd90b6cb845c8c3b94
+using Siphon interpretation
+computing ind...
+automaton for ind has 1334 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedmodified]
+
+real	0m11,303s
+user	0m11,215s
+sys	0m0,063s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+f
+sharedmodified
+Running as unit: run-r6594a055aa614bdd9fe1440c09cfde19.scope; invocation ID: 33ccd9c4f9e74d62ba409da06775d648
+using Flow interpretation
+computing ind...
+automaton for ind has 34302 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedmodified]
+
+real	1m41,483s
+user	1m41,141s
+sys	0m0,238s
+********************
+33 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+t
+deadlock
+Running as unit: run-ra9b8f3e2c9714bb68e706372e000f8fc.scope; invocation ID: 208287e4fd0c4c2a96215e01ebcbbf06
+using Trap interpretation
+computing ind...
+automaton for ind has 2045 states.
+minimized automaton for ind has 13 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1220 states.
+minimized automaton for complement of preach has 49 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m20,898s
+user	0m20,793s
+sys	0m0,083s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+s
+deadlock
+Running as unit: run-rcf951617f6324a12bd0667e38140adfc.scope; invocation ID: e5fa2f41ddc948cf80fdd1e21f7e72e1
+using Siphon interpretation
+computing ind...
+automaton for ind has 1334 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m11,326s
+user	0m11,243s
+sys	0m0,066s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/MOESI.json
+f
+deadlock
+Running as unit: run-r531b23df630842bab18c181286d33415.scope; invocation ID: 48c8afb78f2b418b879aef80f6735707
+using Flow interpretation
+computing ind...
+automaton for ind has 34302 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	1m40,877s
+user	1m40,560s
+sys	0m0,239s
+********************
+34 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Szymanski.json
+t
+nomutex
+Running as unit: run-r018fb04ef6e342ce930a8c68868b1cad.scope; invocation ID: ffe7bc6defb74d75b7f83a5098a7c682
+using Trap interpretation
+
+real	20m2,806s
+user	19m37,578s
+sys	0m24,370s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Szymanski.json
+s
+nomutex
+Running as unit: run-re6a5ef54f0d14e5193a0edb6d79a4cdf.scope; invocation ID: 0ca9fe6ef3c44804b2824ce6ffb4e6ea
+using Siphon interpretation
+
+real	20m3,056s
+user	19m36,991s
+sys	0m25,153s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Szymanski.json
+f
+nomutex
+Running as unit: run-r34d39690c38940ba96fbe27037505c96.scope; invocation ID: df6f370ee1cd4d58a9781cd36d24d614
+using Flow interpretation
+
+real	20m3,000s
+user	19m37,117s
+sys	0m25,018s
+********************
+35 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/Szymanski.json
+t
+deadlock
+Running as unit: run-r4a6b35568a044f4c95b12d507247f6a1.scope; invocation ID: da4998a951ae48938e09f3d384a19ffd
+using Trap interpretation
+
+real	20m2,980s
+user	19m37,328s
+sys	0m24,808s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Szymanski.json
+s
+deadlock
+Running as unit: run-r9c8d4026c6fc423e995f9993210394f6.scope; invocation ID: 7b5bd5868e8e4f8f81ffffdd13184157
+using Siphon interpretation
+
+real	20m2,903s
+user	19m37,565s
+sys	0m24,656s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/Szymanski.json
+f
+deadlock
+Running as unit: run-r655dd091f47f428099c789ea1ee843cc.scope; invocation ID: 1051e15fa1364b75bd0ee706bb197749
+using Flow interpretation
+
+real	20m2,874s
+user	19m37,360s
+sys	0m24,721s
+********************
+36 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/atomic-dining-philosophers.json
+t
+deadlock
+Running as unit: run-r98cbdf2538f44226b69e2fdf0ca53aa3.scope; invocation ID: 4a45df717b654446be46419bcef6ab7a
+using Trap interpretation
+computing ind...
+automaton for ind has 1241 states.
+minimized automaton for ind has 27 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1056 states.
+minimized automaton for complement of preach has 207 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m3,137s
+user	0m3,060s
+sys	0m0,053s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/atomic-dining-philosophers.json
+s
+deadlock
+Running as unit: run-rd0e68c220c594111a323ecbc2e3082e8.scope; invocation ID: b15224e3a65645e8835375c45db52caa
+using Siphon interpretation
+computing ind...
+automaton for ind has 628 states.
+minimized automaton for ind has 24 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 527 states.
+minimized automaton for complement of preach has 161 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m1,491s
+user	0m1,454s
+sys	0m0,014s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/atomic-dining-philosophers.json
+f
+deadlock
+Running as unit: run-rb26cb3f675e3446bb4a3e4f8d4e572fa.scope; invocation ID: b361ab243f9a4fb0a434919821f0b442
+using Flow interpretation
+computing ind...
+automaton for ind has 7382 states.
+minimized automaton for ind has 56 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1955 states.
+minimized automaton for complement of preach has 1102 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	4m13,404s
+user	4m12,455s
+sys	0m0,803s
+********************
+37 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/bakery.json
+t
+nomutex
+Running as unit: run-r2daa4ba60bd3496b91f750cd248d52d1.scope; invocation ID: 756c52a5a6564a4baa583e55cc52596c
+using Trap interpretation
+computing ind...
+automaton for ind has 90 states.
+minimized automaton for ind has 7 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 196 states.
+minimized automaton for complement of preach has 34 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[nomutex]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,203s
+user	0m0,180s
+sys	0m0,011s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/bakery.json
+s
+nomutex
+Running as unit: run-r4157baa43dc84eb78c84e171ae1591f3.scope; invocation ID: 94fc6daa1cb34bccb804c0e6608e6403
+using Siphon interpretation
+computing ind...
+automaton for ind has 60 states.
+minimized automaton for ind has 2 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 15 states.
+minimized automaton for complement of preach has 5 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[nomutex]
+
+real	0m0,087s
+user	0m0,068s
+sys	0m0,007s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/bakery.json
+f
+nomutex
+Running as unit: run-r30faed1c345441ab8d51b5de0ba1af6d.scope; invocation ID: 7459e9a7dbaf4b0ba9ad47220f373b28
+using Flow interpretation
+computing ind...
+automaton for ind has 1053 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 53 states.
+minimized automaton for complement of preach has 9 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[nomutex]
+
+real	0m0,383s
+user	0m0,362s
+sys	0m0,010s
+********************
+38 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/dining-cryptographers.json
+t
+internal
+Running as unit: run-rccdd96c526c2435d87a3a515c405d464.scope; invocation ID: f867f7dfffac406fb41ee4e8196995f6
+using Trap interpretation
+computing ind...
+
+real	20m0,232s
+user	19m58,337s
+sys	0m1,327s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dining-cryptographers.json
+s
+internal
+Running as unit: run-ra1e9e8f2d7d64ac6a79406393f538ee8.scope; invocation ID: 43363169c6f74fe380effd8b0b704b2d
+using Siphon interpretation
+computing ind...
+
+real	20m0,144s
+user	19m58,865s
+sys	0m0,693s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dining-cryptographers.json
+f
+internal
+Running as unit: run-r1d7f8442633046438a940a0c19c3be79.scope; invocation ID: c121a944ad8546ca85aa8baeba924184
+using Flow interpretation
+computing ind...
+
+real	20m0,300s
+user	19m57,807s
+sys	0m1,831s
+********************
+39 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/dining-cryptographers.json
+t
+external
+Running as unit: run-r8edf27ed3f7a413ea498b1808d250f1c.scope; invocation ID: 4f0ffe7f65dd476c8f10f3be45c0ffe7
+using Trap interpretation
+computing ind...
+
+real	20m0,230s
+user	19m58,302s
+sys	0m1,349s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dining-cryptographers.json
+s
+external
+Running as unit: run-r6745a8a39c2a4c7aa812a86e4c7f55a9.scope; invocation ID: 5983d11945ca48458e90f02ed2e57b82
+using Siphon interpretation
+computing ind...
+
+real	20m0,144s
+user	19m58,690s
+sys	0m0,834s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dining-cryptographers.json
+f
+external
+Running as unit: run-r7a1feb2bb5524937b9d949ec9c3212e9.scope; invocation ID: 0945c909cf564c8d88a33c6b9944e5f3
+using Flow interpretation
+computing ind...
+
+real	20m0,293s
+user	19m57,824s
+sys	0m1,807s
+********************
+40 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+t
+dirtydirty
+Running as unit: run-r0e3a4a3352ac4295be103105479f6b71.scope; invocation ID: 151e7276a22146e3a98950e6598e8311
+using Trap interpretation
+computing ind...
+automaton for ind has 23107 states.
+minimized automaton for ind has 37 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 4148 states.
+minimized automaton for complement of preach has 143 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[dirtydirty]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	1m35,310s
+user	1m35,015s
+sys	0m0,190s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+s
+dirtydirty
+Running as unit: run-r38c84128db6e42c19fa1bf52cff0ef5d.scope; invocation ID: 71142b3601924f98909f98d1cce4b8a7
+using Siphon interpretation
+computing ind...
+automaton for ind has 11078 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 13 states.
+minimized automaton for complement of preach has 5 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m57,967s
+user	0m57,773s
+sys	0m0,150s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+f
+dirtydirty
+Running as unit: run-r7a8d417195e1452e984609ec6f3e4e7b.scope; invocation ID: ada2377cdffe4bbc88272ae4fd9db160
+using Flow interpretation
+computing ind...
+
+real	20m0,116s
+user	19m58,745s
+sys	0m0,685s
+********************
+41 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+t
+exclusiveexclusive
+Running as unit: run-rd4a361e453354d5c986f15e8fdf06032.scope; invocation ID: 7eef0b566a3f4421866bb2ebc0d36cb2
+using Trap interpretation
+computing ind...
+automaton for ind has 23107 states.
+minimized automaton for ind has 37 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 4148 states.
+minimized automaton for complement of preach has 143 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusiveexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	1m35,116s
+user	1m34,879s
+sys	0m0,171s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+s
+exclusiveexclusive
+Running as unit: run-rcfbe143cc9584d00845dd8e211ff1641.scope; invocation ID: 9c934c6d53a64b649899c25c9fa4ae6a
+using Siphon interpretation
+computing ind...
+automaton for ind has 11078 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 13 states.
+minimized automaton for complement of preach has 5 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m58,167s
+user	0m57,956s
+sys	0m0,156s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+f
+exclusiveexclusive
+Running as unit: run-r823d27bbd9a5442b97491ce7cd522c46.scope; invocation ID: bb70980d67f649769d571b37568c44b5
+using Flow interpretation
+computing ind...
+
+real	20m0,116s
+user	19m58,652s
+sys	0m0,709s
+********************
+42 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+t
+dirtysharedexclusive
+Running as unit: run-rd30fe58ecfa84fbda1781175cb9ba134.scope; invocation ID: 6d3bbf85d29f477285d2ec09bc6f4d33
+using Trap interpretation
+computing ind...
+automaton for ind has 23107 states.
+minimized automaton for ind has 37 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 4148 states.
+minimized automaton for complement of preach has 143 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[dirtysharedexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	1m35,089s
+user	1m34,781s
+sys	0m0,223s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+s
+dirtysharedexclusive
+Running as unit: run-r28a63a5da0384147999c3fa32728cc85.scope; invocation ID: 1af2d555be0f4aaaa23385f7fd1e4952
+using Siphon interpretation
+computing ind...
+automaton for ind has 11078 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 13 states.
+minimized automaton for complement of preach has 5 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtysharedexclusive]
+
+real	0m57,900s
+user	0m57,711s
+sys	0m0,147s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+f
+dirtysharedexclusive
+Running as unit: run-r60def93246e74c7e82f40ad553e82c0f.scope; invocation ID: af69e9429f034af6a128de15aa80d028
+using Flow interpretation
+computing ind...
+
+real	20m0,115s
+user	19m58,579s
+sys	0m0,738s
+********************
+43 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+t
+exclusiveshared
+Running as unit: run-ra8af1d221f7948108143c7e7f66153a8.scope; invocation ID: 16330f28658c4dc8b7171a08ba91410a
+using Trap interpretation
+computing ind...
+automaton for ind has 23107 states.
+minimized automaton for ind has 37 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 4148 states.
+minimized automaton for complement of preach has 143 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusiveshared]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	1m34,975s
+user	1m34,709s
+sys	0m0,198s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+s
+exclusiveshared
+Running as unit: run-rf619d7f1727b433790bfec4ddafaeb3a.scope; invocation ID: fdc6920fce564adeb0daa46fe968a224
+using Siphon interpretation
+computing ind...
+automaton for ind has 11078 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 13 states.
+minimized automaton for complement of preach has 5 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveshared]
+
+real	0m57,808s
+user	0m57,604s
+sys	0m0,154s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+f
+exclusiveshared
+Running as unit: run-rc7668f730b0c450aaa8c8c20d1f37f94.scope; invocation ID: 4a1abff6bf514440a8579a3e10670dc1
+using Flow interpretation
+computing ind...
+
+real	20m0,113s
+user	19m58,841s
+sys	0m0,622s
+********************
+44 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+t
+exclusivedirty
+Running as unit: run-rd147653837c04c259e295ee33c53083a.scope; invocation ID: 84a217f2f7bf49f999656b3855b44ead
+using Trap interpretation
+computing ind...
+automaton for ind has 23107 states.
+minimized automaton for ind has 37 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 4148 states.
+minimized automaton for complement of preach has 143 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusivedirty]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	1m35,990s
+user	1m35,662s
+sys	0m0,224s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+s
+exclusivedirty
+Running as unit: run-r0552ab4a69c644f2adbff455f1ae1513.scope; invocation ID: d98a92d3a352411398de05e5ce901ac6
+using Siphon interpretation
+computing ind...
+automaton for ind has 11078 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 13 states.
+minimized automaton for complement of preach has 5 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivedirty]
+
+real	0m58,277s
+user	0m58,075s
+sys	0m0,141s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+f
+exclusivedirty
+Running as unit: run-r9625d929855a4ec2aac1f1b1c4df4f52.scope; invocation ID: b05086cb7471494f976a526e7037f37b
+using Flow interpretation
+computing ind...
+
+real	20m0,111s
+user	19m58,594s
+sys	0m0,709s
+********************
+45 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+t
+shareddirty
+Running as unit: run-ra356155441df44df84ad2a8a27213647.scope; invocation ID: 96414bc48c324b19a0bbc0d66d088c18
+using Trap interpretation
+computing ind...
+automaton for ind has 23107 states.
+minimized automaton for ind has 37 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 4148 states.
+minimized automaton for complement of preach has 143 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[shareddirty]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	1m35,061s
+user	1m34,841s
+sys	0m0,163s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+s
+shareddirty
+Running as unit: run-r87dac1b5864c4e9bb1b8b0b01fa71a59.scope; invocation ID: e21ea4abde464556899663df9a833f9e
+using Siphon interpretation
+computing ind...
+automaton for ind has 11078 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 13 states.
+minimized automaton for complement of preach has 5 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[shareddirty]
+
+real	0m58,272s
+user	0m58,035s
+sys	0m0,169s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+f
+shareddirty
+Running as unit: run-r448861010d6b446a9efdccdeb52acb87.scope; invocation ID: 35eb470bcb2f4c6dbcc53859bbaa1d72
+using Flow interpretation
+computing ind...
+
+real	20m0,111s
+user	19m58,644s
+sys	0m0,694s
+********************
+46 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+t
+dirtyshareddirty
+Running as unit: run-r64c627d7c0034805a217bea0a6d7d7e0.scope; invocation ID: dd6fd9fe796f41caa87e57467ba0e79d
+using Trap interpretation
+computing ind...
+automaton for ind has 23107 states.
+minimized automaton for ind has 37 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 4148 states.
+minimized automaton for complement of preach has 143 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshareddirty]
+
+real	1m35,284s
+user	1m35,007s
+sys	0m0,183s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+s
+dirtyshareddirty
+Running as unit: run-rd951e4f562ea4af8a87172b2d14c71da.scope; invocation ID: 38a1b933fa9c43689b0334222e02d94a
+using Siphon interpretation
+computing ind...
+automaton for ind has 11078 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 13 states.
+minimized automaton for complement of preach has 5 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshareddirty]
+
+real	0m58,073s
+user	0m57,863s
+sys	0m0,152s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+f
+dirtyshareddirty
+Running as unit: run-r3ca8b6f5ac834a96ae2a2af4c61ff996.scope; invocation ID: c88337e5eedc4f299a651152e451e803
+using Flow interpretation
+computing ind...
+
+real	20m0,112s
+user	19m58,726s
+sys	0m0,656s
+********************
+47 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+t
+deadlock
+Running as unit: run-r659a7ec7773b451fbb6d83b693c90f6a.scope; invocation ID: fdd837b12f514a64a9d9ef79055cfbeb
+using Trap interpretation
+computing ind...
+automaton for ind has 23107 states.
+minimized automaton for ind has 37 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 4148 states.
+minimized automaton for complement of preach has 143 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	1m35,103s
+user	1m34,840s
+sys	0m0,190s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+s
+deadlock
+Running as unit: run-rf568c07ed1164375984291043e6bdf4f.scope; invocation ID: bdeb58afd05e4187a1e01fdb1dfac206
+using Siphon interpretation
+computing ind...
+automaton for ind has 11078 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 13 states.
+minimized automaton for complement of preach has 5 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m58,207s
+user	0m57,974s
+sys	0m0,164s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/dragon.json
+f
+deadlock
+Running as unit: run-rcb4045d6d26c448cbfbc3a46096f69dc.scope; invocation ID: ecb083e1a4fe4f99803f4d5107bcbc48
+using Flow interpretation
+computing ind...
+
+real	20m0,111s
+user	19m58,678s
+sys	0m0,663s
+********************
+48 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+t
+dirtydirty
+Running as unit: run-r7c26fa665df64904829fc0f88efeb1a5.scope; invocation ID: 1ba2893b396345ad8c1093f9151026a9
+using Trap interpretation
+computing ind...
+automaton for ind has 4478 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 44 states.
+minimized automaton for complement of preach has 11 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m6,702s
+user	0m6,650s
+sys	0m0,034s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+s
+dirtydirty
+Running as unit: run-raf0a4506ed23441599042c9509ebe270.scope; invocation ID: a298d1782b4f456d844c53420e2456a7
+using Siphon interpretation
+computing ind...
+automaton for ind has 3630 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m5,603s
+user	0m5,559s
+sys	0m0,029s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+f
+dirtydirty
+Running as unit: run-r4ebad293f9a1455dae830443b2c49e56.scope; invocation ID: b3e720b2c6c74d839433f4ed3d1ff4ac
+using Flow interpretation
+computing ind...
+automaton for ind has 48266 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	1m33,143s
+user	1m32,916s
+sys	0m0,159s
+********************
+49 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+t
+exclusiveexclusive
+Running as unit: run-r9005e5598e504901bcad79def0b14a36.scope; invocation ID: 6dbceb22b84c4bb39d2e8b4e8bfd998d
+using Trap interpretation
+computing ind...
+automaton for ind has 4478 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 44 states.
+minimized automaton for complement of preach has 11 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m6,647s
+user	0m6,582s
+sys	0m0,038s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+s
+exclusiveexclusive
+Running as unit: run-r1abb57b05775407d8cb29ab0eafd5114.scope; invocation ID: b9a74d6747dd42b49082eb4de8ced203
+using Siphon interpretation
+computing ind...
+automaton for ind has 3630 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m5,678s
+user	0m5,610s
+sys	0m0,032s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+f
+exclusiveexclusive
+Running as unit: run-ra2963ddf3b084237a89f48ac33795171.scope; invocation ID: 6dc3474a295d4e799f92afbee98643a3
+using Flow interpretation
+computing ind...
+automaton for ind has 48266 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	1m33,391s
+user	1m33,165s
+sys	0m0,131s
+********************
+50 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+t
+dirtyshared
+Running as unit: run-r48c0a4e86b0d4beaa63e3bce82124e03.scope; invocation ID: c2ef911e0a1942c58cc31b95f511e42c
+using Trap interpretation
+computing ind...
+automaton for ind has 4478 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 44 states.
+minimized automaton for complement of preach has 11 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	0m6,617s
+user	0m6,567s
+sys	0m0,032s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+s
+dirtyshared
+Running as unit: run-rd0fc58eb4ef24451a4ec55cf90d2ff26.scope; invocation ID: f8c5843991554d9cb324b04d66d4846a
+using Siphon interpretation
+computing ind...
+automaton for ind has 3630 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	0m5,641s
+user	0m5,603s
+sys	0m0,024s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+f
+dirtyshared
+Running as unit: run-r712aed076fc0487f9aad7af8e462e9c9.scope; invocation ID: f0f843b6049746a9b2382b3414d04a14
+using Flow interpretation
+computing ind...
+automaton for ind has 48266 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	1m33,573s
+user	1m33,342s
+sys	0m0,147s
+********************
+51 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+t
+dirtyexclusive
+Running as unit: run-r17111656914e4a7b82404651ec66bd50.scope; invocation ID: 7b8bcf7846ce47cb8082bfee37804c89
+using Trap interpretation
+computing ind...
+automaton for ind has 4478 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 44 states.
+minimized automaton for complement of preach has 11 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyexclusive]
+
+real	0m6,617s
+user	0m6,569s
+sys	0m0,034s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+s
+dirtyexclusive
+Running as unit: run-rf45807a8eb9d4858a253ffbf46366a35.scope; invocation ID: 60bfdfa0e95a445f8498a44dc0082bbc
+using Siphon interpretation
+computing ind...
+automaton for ind has 3630 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyexclusive]
+
+real	0m5,644s
+user	0m5,595s
+sys	0m0,027s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+f
+dirtyexclusive
+Running as unit: run-r8b54f538108a4fff9bc996106bd6652a.scope; invocation ID: b48f20fac8714c2e88595a0624be1b98
+using Flow interpretation
+computing ind...
+automaton for ind has 48266 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyexclusive]
+
+real	1m32,665s
+user	1m32,442s
+sys	0m0,148s
+********************
+52 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+t
+deadlock
+Running as unit: run-r954553c63d1b4ebebb145ce1c92d0c2e.scope; invocation ID: 260c01490fe44b3d8204e8d4ecde1413
+using Trap interpretation
+computing ind...
+automaton for ind has 4478 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 44 states.
+minimized automaton for complement of preach has 11 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m6,593s
+user	0m6,536s
+sys	0m0,035s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+s
+deadlock
+Running as unit: run-r3b5e3f898c9a4ceea3a1bda9b61ee587.scope; invocation ID: 9fa8b6fab602427d9da5041a8366203f
+using Siphon interpretation
+computing ind...
+automaton for ind has 3630 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m5,639s
+user	0m5,595s
+sys	0m0,030s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/firefly.json
+f
+deadlock
+Running as unit: run-r0e442e24b0724374b464515e519977c2.scope; invocation ID: 59bc9091b6d24795a8c0a2a87732c077
+using Flow interpretation
+computing ind...
+automaton for ind has 48266 states.
+minimized automaton for ind has 4 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 5 states.
+minimized automaton for complement of preach has 3 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	1m33,599s
+user	1m33,321s
+sys	0m0,166s
+********************
+53 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/left-dining-philosophers.json
+t
+deadlock
+Running as unit: run-rc962ee8d098a4736aa82d59b0435bdd7.scope; invocation ID: a7881ecd68ca404ba1f9e4de2bf4d170
+using Trap interpretation
+computing ind...
+automaton for ind has 11242 states.
+minimized automaton for ind has 42 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6466 states.
+minimized automaton for complement of preach has 282 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	4m34,171s
+user	4m33,199s
+sys	0m0,734s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/left-dining-philosophers.json
+s
+deadlock
+Running as unit: run-raff532e3331b4a61ac1dd5c8490814e9.scope; invocation ID: 625586e8ba894a0fa151b0f2feb7c703
+using Siphon interpretation
+computing ind...
+automaton for ind has 5672 states.
+minimized automaton for ind has 40 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 2916 states.
+minimized automaton for complement of preach has 210 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	2m16,745s
+user	2m16,158s
+sys	0m0,495s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/left-dining-philosophers.json
+f
+deadlock
+Running as unit: run-r3601bd18e1b34f3784b2e8ed42850490.scope; invocation ID: 9675f62724da45ce82e13b5677718a6e
+using Flow interpretation
+computing ind...
+automaton for ind has 85260 states.
+minimized automaton for ind has 71 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 6612 states.
+
+real	20m0,170s
+user	19m57,328s
+sys	0m2,062s
+********************
+54 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/lehmann-rabin.json
+t
+deadlock
+Running as unit: run-rb5d01dcf291c449bbe40f3f1e5303d76.scope; invocation ID: 10c942fa05e04318a7980d783877dce0
+using Trap interpretation
+computing ind...
+automaton for ind has 5932 states.
+minimized automaton for ind has 12 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1537 states.
+minimized automaton for complement of preach has 50 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	2m36,396s
+user	2m35,856s
+sys	0m0,453s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/lehmann-rabin.json
+s
+deadlock
+Running as unit: run-r26a6e9d489684101a26aae0c1e1298de.scope; invocation ID: ee22a686e4f341e68ae4c7e2c8c8fa5a
+using Siphon interpretation
+computing ind...
+automaton for ind has 3029 states.
+minimized automaton for ind has 11 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 784 states.
+minimized automaton for complement of preach has 38 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	1m21,840s
+user	1m21,475s
+sys	0m0,306s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/lehmann-rabin.json
+f
+deadlock
+Running as unit: run-rf62a608413b64da1a0c75e099b904de7.scope; invocation ID: baab4ecf665a45e4a84fcff1f5c8fbd4
+using Flow interpretation
+computing ind...
+automaton for ind has 33302 states.
+minimized automaton for ind has 24 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 1661 states.
+minimized automaton for complement of preach has 115 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	9m9,891s
+user	9m7,931s
+sys	0m1,678s
+********************
+55 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/synapse.json
+t
+dirtydirty
+Running as unit: run-rf9fa449415d64607920bc139778a12fa.scope; invocation ID: cc37ff46ba21442bbeb0941f0eb634df
+using Trap interpretation
+computing ind...
+automaton for ind has 106 states.
+minimized automaton for ind has 5 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 65 states.
+minimized automaton for complement of preach has 12 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[dirtydirty]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,262s
+user	0m0,234s
+sys	0m0,011s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/synapse.json
+s
+dirtydirty
+Running as unit: run-rd9f87da9cc9549029a15feecce6d642f.scope; invocation ID: 7a20540d0cb948cd98c69c233acf4d91
+using Siphon interpretation
+computing ind...
+automaton for ind has 57 states.
+minimized automaton for ind has 1 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m0,142s
+user	0m0,121s
+sys	0m0,008s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/synapse.json
+f
+dirtydirty
+Running as unit: run-rb9461b5ae8fd484cb2469b196a54be3e.scope; invocation ID: 349f364ea6f743caa93236f8a85ee82e
+using Flow interpretation
+computing ind...
+automaton for ind has 367 states.
+minimized automaton for ind has 2 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m0,446s
+user	0m0,424s
+sys	0m0,011s
+********************
+56 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/synapse.json
+t
+dirtyvalid
+Running as unit: run-rc8b85fc280384deaa5ee322b6369e51d.scope; invocation ID: e84e2205319144cc8f8968b806e475c2
+using Trap interpretation
+computing ind...
+automaton for ind has 106 states.
+minimized automaton for ind has 5 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 65 states.
+minimized automaton for complement of preach has 12 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[dirtyvalid]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,262s
+user	0m0,230s
+sys	0m0,012s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/synapse.json
+s
+dirtyvalid
+Running as unit: run-r43e36180845f4c39b6a0460b23a12adb.scope; invocation ID: 469d7f5b7ec94f6ca462fbdc4a6bd0ca
+using Siphon interpretation
+computing ind...
+automaton for ind has 57 states.
+minimized automaton for ind has 1 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyvalid]
+
+real	0m0,144s
+user	0m0,116s
+sys	0m0,009s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/synapse.json
+f
+dirtyvalid
+Running as unit: run-r2027786edb294273b2b81fac4dfe3ddd.scope; invocation ID: 4cdfeae24cd04bc2a31ecdde78eeaf89
+using Flow interpretation
+computing ind...
+automaton for ind has 367 states.
+minimized automaton for ind has 2 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyvalid]
+
+real	0m0,458s
+user	0m0,428s
+sys	0m0,014s
+********************
+57 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/synapse.json
+t
+deadlock
+Running as unit: run-r442bdef8d6624b7ba52b7d9ee935544a.scope; invocation ID: cb4d8f4f03e243b3bfe08b1d3f31d83d
+using Trap interpretation
+computing ind...
+automaton for ind has 106 states.
+minimized automaton for ind has 5 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 65 states.
+minimized automaton for complement of preach has 12 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m0,257s
+user	0m0,230s
+sys	0m0,010s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/synapse.json
+s
+deadlock
+Running as unit: run-r7d091ea13282483c8b93ff96b7353bae.scope; invocation ID: 699f01e8baef418f80cbef779137b65e
+using Siphon interpretation
+computing ind...
+automaton for ind has 57 states.
+minimized automaton for ind has 1 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m0,145s
+user	0m0,117s
+sys	0m0,012s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/synapse.json
+f
+deadlock
+Running as unit: run-r3c9a180b18434b83ad9f2eebe2726b86.scope; invocation ID: eea218bb2eb84f0eb7026e8d3b70e197
+using Flow interpretation
+computing ind...
+automaton for ind has 367 states.
+minimized automaton for ind has 2 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 0 states.
+minimized automaton for complement of preach has 0 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m0,447s
+user	0m0,421s
+sys	0m0,014s
+********************
+58 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+t
+notoken
+Running as unit: run-r58069e97acad4d7cb70ab469850b38b1.scope; invocation ID: 60fd5f4f6dc04004b240d0a0c0449373
+using Trap interpretation
+computing ind...
+automaton for ind has 26 states.
+minimized automaton for ind has 7 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 42 states.
+minimized automaton for complement of preach has 9 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,068s
+user	0m0,040s
+sys	0m0,008s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+s
+notoken
+Running as unit: run-r9502bf2f1eab425891096156ceaf8217.scope; invocation ID: 7765b23458df4eaa8d0481f38183290c
+using Siphon interpretation
+computing ind...
+automaton for ind has 13 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 22 states.
+minimized automaton for complement of preach has 9 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,038s
+user	0m0,018s
+sys	0m0,009s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+f
+notoken
+Running as unit: run-r6677da4929f54db1af084a94f3f414a3.scope; invocation ID: d1abac6e23c64668b42ec13d3f2fb364
+using Flow interpretation
+computing ind...
+automaton for ind has 181 states.
+minimized automaton for ind has 9 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 110 states.
+minimized automaton for complement of preach has 25 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,098s
+user	0m0,073s
+sys	0m0,008s
+********************
+59 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+t
+manytoken
+Running as unit: run-r91296c311b904780a2d3f2ee29691809.scope; invocation ID: 875935eb7b444686a013a0706d93838a
+using Trap interpretation
+computing ind...
+automaton for ind has 26 states.
+minimized automaton for ind has 7 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 42 states.
+minimized automaton for complement of preach has 9 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[manytoken]
+
+real	0m0,065s
+user	0m0,050s
+sys	0m0,004s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+s
+manytoken
+Running as unit: run-r1dde050813dc4fd88a73167ff784bed2.scope; invocation ID: a179bdd477e9446b98aef22380452169
+using Siphon interpretation
+computing ind...
+automaton for ind has 13 states.
+minimized automaton for ind has 3 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 22 states.
+minimized automaton for complement of preach has 9 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[manytoken]
+
+real	0m0,040s
+user	0m0,023s
+sys	0m0,007s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+f
+manytoken
+Running as unit: run-r8ac208dbcf8b4428983d6ae52b58aa29.scope; invocation ID: 10a8cf9f540b4be79a7078f1be48b731
+using Flow interpretation
+computing ind...
+automaton for ind has 181 states.
+minimized automaton for ind has 9 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 110 states.
+minimized automaton for complement of preach has 25 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[manytoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,102s
+user	0m0,073s
+sys	0m0,007s
+********************
+60 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing.json
+t
+notoken
+Running as unit: run-rce9185110e5b4cc4addf469829f618a4.scope; invocation ID: e696f26a37eb47ca8ab3df58fb79b253
+using Trap interpretation
+computing ind...
+automaton for ind has 24 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 70 states.
+minimized automaton for complement of preach has 14 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,086s
+user	0m0,055s
+sys	0m0,010s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing.json
+s
+notoken
+Running as unit: run-r28cd0826952c42299894bb3e3952483c.scope; invocation ID: a812575ff56745408a85a0e7296d1b07
+using Siphon interpretation
+computing ind...
+automaton for ind has 15 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 60 states.
+minimized automaton for complement of preach has 13 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,061s
+user	0m0,037s
+sys	0m0,009s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing.json
+f
+notoken
+Running as unit: run-re9db3981fc7a4da796d873f87173dbf8.scope; invocation ID: 9a1b1c0a958545cca15c1df0ff0d640c
+using Flow interpretation
+computing ind...
+automaton for ind has 125 states.
+minimized automaton for ind has 19 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 572 states.
+minimized automaton for complement of preach has 12 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m10,359s
+user	0m10,274s
+sys	0m0,065s
+********************
+61 of 61
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing.json
+t
+manytoken
+Running as unit: run-rf6f18d8e0ff54660abc49cbb4c81d800.scope; invocation ID: 1be59a5109db4262b3401d075256341e
+using Trap interpretation
+computing ind...
+automaton for ind has 24 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 70 states.
+minimized automaton for complement of preach has 14 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[manytoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,083s
+user	0m0,059s
+sys	0m0,012s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing.json
+s
+manytoken
+Running as unit: run-raa96e2d7935b4ab3b4e5e860a6d2f65b.scope; invocation ID: ce8d9d84d7634fb9bf8af2a8e28348bb
+using Siphon interpretation
+computing ind...
+automaton for ind has 15 states.
+minimized automaton for ind has 6 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 60 states.
+minimized automaton for complement of preach has 13 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[manytoken]
+
+real	0m0,063s
+user	0m0,036s
+sys	0m0,009s
+********************
+/home/jakob/Documents/abstracton/benchmarks/dodo/token-passing.json
+f
+manytoken
+Running as unit: run-rb790efdfd50642a6991b7a1dbd69289f.scope; invocation ID: 6c1642a584f442a9acaef6a40f429eb7
+using Flow interpretation
+computing ind...
+automaton for ind has 125 states.
+minimized automaton for ind has 19 states.
+...done.
+computing complement of preach...
+automaton for complement of preach has 572 states.
+minimized automaton for complement of preach has 12 states.
+...done.
+trying to prove abstract safety...
+...done.
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[manytoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m10,403s
+user	0m10,302s
+sys	0m0,079s
+********************

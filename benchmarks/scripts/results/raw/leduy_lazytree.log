@@ -1,0 +1,2978 @@
+0 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+t
+exclusiveexclusive
+Running as unit: run-r3fc18afbeda647ddac0fc8d2ec7b525b.scope; invocation ID: 252d245b7a1841a6ba80d678c73085a3
+using Trap interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m0,249s
+user	0m0,221s
+sys	0m0,011s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+s
+exclusiveexclusive
+Running as unit: run-re4ff9938f716494b8d8911d1933afdfd.scope; invocation ID: 114e453521b7439e891496111e45d032
+using Siphon interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m0,052s
+user	0m0,034s
+sys	0m0,009s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+f
+exclusiveexclusive
+Running as unit: run-r8d17182f8dfb44309846d4180729dbbb.scope; invocation ID: 64ee6ee9e7864d23b0444f5b7c405b33
+using Flow interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m1,048s
+user	0m1,016s
+sys	0m0,016s
+********************
+1 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+t
+exclusiveunowned
+Running as unit: run-rd056a7c291444bb6afa58f555b5881fe.scope; invocation ID: e4f23a77cda94e90b29e4d7114e77b69
+using Trap interpretation
+trying to prove abstract safety for property exclusiveunowned...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusiveunowned]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,263s
+user	0m0,242s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+s
+exclusiveunowned
+Running as unit: run-rf0045a2dd4ca4c90beb7e9b34746451d.scope; invocation ID: 1c846b9299e4479fa64d04e4d94a1e74
+using Siphon interpretation
+trying to prove abstract safety for property exclusiveunowned...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveunowned]
+
+real	0m0,054s
+user	0m0,033s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+f
+exclusiveunowned
+Running as unit: run-r27872bdd03f34c5bb08d76ef86588503.scope; invocation ID: 80bd6317806347fcb667f494b966d3b9
+using Flow interpretation
+trying to prove abstract safety for property exclusiveunowned...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveunowned]
+
+real	0m1,123s
+user	0m1,085s
+sys	0m0,026s
+********************
+2 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+t
+exclusivenonexclusive
+Running as unit: run-raabfe332f0be45eca4291da4b96f8417.scope; invocation ID: a857ef98b6ee407095f556f66230abdf
+using Trap interpretation
+trying to prove abstract safety for property exclusivenonexclusive...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusivenonexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,271s
+user	0m0,247s
+sys	0m0,014s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+s
+exclusivenonexclusive
+Running as unit: run-r52f321360bb84572b58fbc403a86f357.scope; invocation ID: 053115a9971846a8b04b4fa37919fc36
+using Siphon interpretation
+trying to prove abstract safety for property exclusivenonexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivenonexclusive]
+
+real	0m0,061s
+user	0m0,032s
+sys	0m0,013s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+f
+exclusivenonexclusive
+Running as unit: run-r06d9d90c43d04079960dfbb79c40e60c.scope; invocation ID: 4661d594b7ed4b8fab448038b17b5e32
+using Flow interpretation
+trying to prove abstract safety for property exclusivenonexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivenonexclusive]
+
+real	0m0,340s
+user	0m0,308s
+sys	0m0,018s
+********************
+3 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+t
+deadlock
+Running as unit: run-rcc289de4067f4073b6c80486feff6da7.scope; invocation ID: 8c69860117224fdfa4d7d0136b951346
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,284s
+user	0m0,259s
+sys	0m0,012s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+s
+deadlock
+Running as unit: run-r1a729f276e904c6490b0b08802603f9b.scope; invocation ID: 05907a846ea141dba51d042dd1ba1283
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,050s
+user	0m0,033s
+sys	0m0,007s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Berkeley.json
+f
+deadlock
+Running as unit: run-r8307f3e7fbfb423398d5065bf6196e16.scope; invocation ID: 20a59dd226a8430086266bdd4e47accf
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m8,737s
+user	0m8,684s
+sys	0m0,028s
+********************
+4 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Burns.json
+t
+nomutex
+Running as unit: run-rf6390b83158d4602bbcd18c07344fa11.scope; invocation ID: 1bf9401abcfc4687b77b168f3b1a68cc
+using Trap interpretation
+trying to prove abstract safety for property nomutex...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[nomutex]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m2,420s
+user	0m2,361s
+sys	0m0,040s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Burns.json
+s
+nomutex
+Running as unit: run-ra51b3c7e317c43adaacf02fcb8b796d3.scope; invocation ID: 8a17b234ca064883ba27ebdcad80a2f1
+using Siphon interpretation
+trying to prove abstract safety for property nomutex...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[nomutex]
+
+real	0m0,762s
+user	0m0,720s
+sys	0m0,021s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Burns.json
+f
+nomutex
+Running as unit: run-rc464acb93c324ff8b8deb1aa3b48e21e.scope; invocation ID: b50dc275988248149986b766cfd6b779
+using Flow interpretation
+trying to prove abstract safety for property nomutex...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[nomutex]
+
+real	0m1,943s
+user	0m1,889s
+sys	0m0,039s
+********************
+5 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Burns.json
+t
+deadlock
+Running as unit: run-r9daf0621867e4e40870094839d7a8d0a.scope; invocation ID: c0bad4d857f2425dba53136d251a6819
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m1,975s
+user	0m1,926s
+sys	0m0,040s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Burns.json
+s
+deadlock
+Running as unit: run-r83a69da89d7b4d00a775ca20f9cdb4d0.scope; invocation ID: c4258f9afd7642f5923edaf4f40bd770
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,665s
+user	0m0,636s
+sys	0m0,015s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Burns.json
+f
+deadlock
+Running as unit: run-r138915267f2f4cb688197c1646665a77.scope; invocation ID: 672676b366f9461f97e6a1c8d5e90717
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m2,268s
+user	0m2,209s
+sys	0m0,038s
+********************
+6 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+t
+twob
+Running as unit: run-r784785305dc048eaab4765bec3ae8919.scope; invocation ID: c1e29b88b832495f8a0ecf0a79e1b4e5
+using Trap interpretation
+trying to prove abstract safety for property twob...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[twob]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,164s
+user	0m0,143s
+sys	0m0,009s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+s
+twob
+Running as unit: run-rb0972aa775c84e4f9b463c440ed6cf04.scope; invocation ID: f51a44c2226142b4a2d64c5cc53e095b
+using Siphon interpretation
+trying to prove abstract safety for property twob...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[twob]
+
+real	0m0,036s
+user	0m0,016s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+f
+twob
+Running as unit: run-r16d8da3a919547839675cacc14a31a65.scope; invocation ID: 28fbdb80dabe41f49b66288fcefb8382
+using Flow interpretation
+trying to prove abstract safety for property twob...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[twob]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m20,266s
+user	0m20,195s
+sys	0m0,037s
+********************
+7 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+t
+twod
+Running as unit: run-rd84af40ccc3542f1821803238fba20d0.scope; invocation ID: eaed0d30d1d0430587df189d9d5eacae
+using Trap interpretation
+trying to prove abstract safety for property twod...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[twod]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,145s
+user	0m0,123s
+sys	0m0,010s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+s
+twod
+Running as unit: run-raa880009056c40f8a1b1af88a0f01c0e.scope; invocation ID: 15355cd3c85e453ea1faaf0a014087e5
+using Siphon interpretation
+trying to prove abstract safety for property twod...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[twod]
+
+real	0m0,033s
+user	0m0,017s
+sys	0m0,007s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+f
+twod
+Running as unit: run-r3cf2e21161114e39853ad3b0ac2ca6d9.scope; invocation ID: f0edbf3bc7f644778657e8e2090516d2
+using Flow interpretation
+trying to prove abstract safety for property twod...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[twod]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m17,723s
+user	0m17,682s
+sys	0m0,024s
+********************
+8 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+t
+deadlock
+Running as unit: run-r176be6781c1a41ad845e9c7f15c12ed9.scope; invocation ID: 2fdae78b5ee24a57aa58fb8bf9a08ea2
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,150s
+user	0m0,127s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+s
+deadlock
+Running as unit: run-r7b83d41bc30041588d1054266c8a5ca9.scope; invocation ID: 8b8e4dc06fd64fe0b3b2955c143d2d6e
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m0,035s
+user	0m0,016s
+sys	0m0,007s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-Scholten.json
+f
+deadlock
+Running as unit: run-r4b6d4c9b5ec24427b1eafc14fb8c0d22.scope; invocation ID: 5f3d6a4b191648eeaf98af868747127f
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m19,579s
+user	0m19,534s
+sys	0m0,023s
+********************
+18 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Herman.json
+t
+notoken
+Running as unit: run-rbe0b190da06749fe8ac97136945d57d3.scope; invocation ID: 685d11bdfbbb450cbebcc22f6ffde4f8
+using Trap interpretation
+trying to prove abstract safety for property notoken...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,034s
+user	0m0,008s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Herman.json
+s
+notoken
+Running as unit: run-rfc8b6e515bcf4b97b26373df69539595.scope; invocation ID: a412056de1714c1ba9924e4ebecac480
+using Siphon interpretation
+trying to prove abstract safety for property notoken...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,033s
+user	0m0,005s
+sys	0m0,009s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Herman.json
+f
+notoken
+Running as unit: run-r8f91ec12e5f642da8a0ee6c963e8f2f4.scope; invocation ID: 103ab18592b74af299d8ef4c4edb9f8a
+using Flow interpretation
+trying to prove abstract safety for property notoken...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,037s
+user	0m0,007s
+sys	0m0,010s
+********************
+19 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Illinois.json
+t
+dirtydirty
+Running as unit: run-rb07e62ac61764e2a8ebb80f10450cc38.scope; invocation ID: 32be270f7fa14f95ab5b6abeeccba77a
+using Trap interpretation
+trying to prove abstract safety for property dirtydirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m0,308s
+user	0m0,280s
+sys	0m0,017s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Illinois.json
+s
+dirtydirty
+Running as unit: run-r062c6fee235143aa9915ef8782e11901.scope; invocation ID: 1f0ffdac5ab5464fa102fa9d1646e14d
+using Siphon interpretation
+trying to prove abstract safety for property dirtydirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m0,082s
+user	0m0,057s
+sys	0m0,011s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Illinois.json
+f
+dirtydirty
+Running as unit: run-rb29ab9384740468a96e4ffdf9e662975.scope; invocation ID: e300a28d60a749e084846c2374b1ed74
+using Flow interpretation
+trying to prove abstract safety for property dirtydirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m2,953s
+user	0m2,903s
+sys	0m0,033s
+********************
+20 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Illinois.json
+t
+dirtyshared
+Running as unit: run-re61f273c4ac54bcb8ca7eb5020523068.scope; invocation ID: 7a8f2b39745948ce9569946ec017ad05
+using Trap interpretation
+trying to prove abstract safety for property dirtyshared...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	0m0,306s
+user	0m0,270s
+sys	0m0,020s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Illinois.json
+s
+dirtyshared
+Running as unit: run-r54281f532d3044bf86504a5fa71e7456.scope; invocation ID: 84d2805333334763bc623b286897dd5f
+using Siphon interpretation
+trying to prove abstract safety for property dirtyshared...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	0m0,087s
+user	0m0,058s
+sys	0m0,011s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Illinois.json
+f
+dirtyshared
+Running as unit: run-r3774ac39c9d74bcf9a46312817b10a2c.scope; invocation ID: a7b88ee9e5174fb1b6a4a129b31573a5
+using Flow interpretation
+trying to prove abstract safety for property dirtyshared...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	0m3,015s
+user	0m2,972s
+sys	0m0,026s
+********************
+21 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Illinois.json
+t
+deadlock
+Running as unit: run-rc67ee9364c3842aabbb7fd303ab9e45b.scope; invocation ID: c0326a175b9d479596b3da89c60897f2
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m2,067s
+user	0m2,033s
+sys	0m0,019s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Illinois.json
+s
+deadlock
+Running as unit: run-r838c9dc768c742b6bfb535a3efba6dd7.scope; invocation ID: 6fb1a8f37a1044a09a0e0029b2590fee
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,083s
+user	0m0,058s
+sys	0m0,011s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Illinois.json
+f
+deadlock
+Running as unit: run-r31ec6a8d0b5740e8885117bd989eff00.scope; invocation ID: cac27a7609d4441383e11d0ced190400
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m28,629s
+user	0m28,519s
+sys	0m0,063s
+********************
+22 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Israeli-Jafon.json
+t
+notoken
+Running as unit: run-reafcffc1fe3e4c7d9088ebbd23615af1.scope; invocation ID: f7d89ecd7f4e49428769fc460a2b4fea
+using Trap interpretation
+trying to prove abstract safety for property notoken...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,034s
+user	0m0,012s
+sys	0m0,006s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Israeli-Jafon.json
+s
+notoken
+Running as unit: run-ra76a554e7dec4673962d87f9c0814e48.scope; invocation ID: da5060e78c1f4beea909e65882c9450b
+using Siphon interpretation
+trying to prove abstract safety for property notoken...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,030s
+user	0m0,006s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Israeli-Jafon.json
+f
+notoken
+Running as unit: run-r376d58575f1841949777d5ef69642d66.scope; invocation ID: d10442c70c5c4339b130403bd0480226
+using Flow interpretation
+trying to prove abstract safety for property notoken...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,030s
+user	0m0,007s
+sys	0m0,009s
+********************
+23 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MESI.json
+t
+modifiedmodified
+Running as unit: run-red828c59eeb9472095813519910da0e3.scope; invocation ID: d13b1b2bf67d4399976206250577db08
+using Trap interpretation
+trying to prove abstract safety for property modifiedmodified...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[modifiedmodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,141s
+user	0m0,116s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MESI.json
+s
+modifiedmodified
+Running as unit: run-r747ba01182684faaa04a971ec437c232.scope; invocation ID: 941149dfd623477584d781091e545cb1
+using Siphon interpretation
+trying to prove abstract safety for property modifiedmodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[modifiedmodified]
+
+real	0m0,050s
+user	0m0,027s
+sys	0m0,009s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MESI.json
+f
+modifiedmodified
+Running as unit: run-r9300d285fb534190b8f3fb2d9f072021.scope; invocation ID: 58b6ca1ab91d447e92d6977e292c0ef5
+using Flow interpretation
+trying to prove abstract safety for property modifiedmodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[modifiedmodified]
+
+real	0m0,212s
+user	0m0,185s
+sys	0m0,011s
+********************
+24 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MESI.json
+t
+sharedmodified
+Running as unit: run-r459cd55ffb204d4481334e155121811f.scope; invocation ID: d1b8bb3f755a45c196294dc07a245cfd
+using Trap interpretation
+trying to prove abstract safety for property sharedmodified...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[sharedmodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,140s
+user	0m0,121s
+sys	0m0,007s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MESI.json
+s
+sharedmodified
+Running as unit: run-r45a8ad83a5da48b2ae673ec8f7317162.scope; invocation ID: 580562e323864aadaf08e1a0ebbc9dba
+using Siphon interpretation
+trying to prove abstract safety for property sharedmodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedmodified]
+
+real	0m0,047s
+user	0m0,028s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MESI.json
+f
+sharedmodified
+Running as unit: run-r60e40d2e345e41dc89b2aa70d924b568.scope; invocation ID: 5b189f5fd3534247bb44c11f3efa8d13
+using Flow interpretation
+trying to prove abstract safety for property sharedmodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedmodified]
+
+real	0m0,203s
+user	0m0,179s
+sys	0m0,009s
+********************
+25 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MESI.json
+t
+deadlock
+Running as unit: run-r077d1b1d18304db3a5152409f65d6e91.scope; invocation ID: 5e8b9dd347bb4d018a47c2bea249a45f
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,133s
+user	0m0,109s
+sys	0m0,010s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MESI.json
+s
+deadlock
+Running as unit: run-r75e3c63f46dd400c82f060ae692708df.scope; invocation ID: fd75db138bd144aabb20c87fefc833b3
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,046s
+user	0m0,023s
+sys	0m0,010s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MESI.json
+f
+deadlock
+Running as unit: run-r805f2f2264744aaa935a8c0d63d3ed72.scope; invocation ID: 948a0071f42d4f22bf2f6a64922d69df
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,880s
+user	0m0,857s
+sys	0m0,011s
+********************
+26 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+t
+modifiedmodified
+Running as unit: run-rb9ba48981cf74ed1ab6836c6812eea31.scope; invocation ID: bd6f300d845f4d689b4a8ef98f30c599
+using Trap interpretation
+trying to prove abstract safety for property modifiedmodified...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[modifiedmodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,657s
+user	0m0,629s
+sys	0m0,017s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+s
+modifiedmodified
+Running as unit: run-r43f2ceea0c53402abdc5f72d45434d63.scope; invocation ID: d8ef53d8644a4e77bd4d00886377e4df
+using Siphon interpretation
+trying to prove abstract safety for property modifiedmodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[modifiedmodified]
+
+real	0m0,179s
+user	0m0,156s
+sys	0m0,012s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+f
+modifiedmodified
+Running as unit: run-rfd77f7d6157448d880b3b71020e46ab5.scope; invocation ID: ac005e23f73e435e9e9b59f7e6f168a6
+using Flow interpretation
+trying to prove abstract safety for property modifiedmodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[modifiedmodified]
+
+real	0m0,934s
+user	0m0,897s
+sys	0m0,024s
+********************
+27 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+t
+exclusiveexclusive
+Running as unit: run-r1bf9505cbfd74834846ca4bb1983a2b9.scope; invocation ID: f6bbe72aa27f4e0baf7a4bccd827b0d5
+using Trap interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusiveexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,656s
+user	0m0,630s
+sys	0m0,015s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+s
+exclusiveexclusive
+Running as unit: run-r86b4652f5fce43939824481ec7f095f1.scope; invocation ID: 7b1202c506284aa79ce02a446c915edb
+using Siphon interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m0,179s
+user	0m0,149s
+sys	0m0,010s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+f
+exclusiveexclusive
+Running as unit: run-r2c7f7cf7a4cd4da797e1ca3200395201.scope; invocation ID: 838e0a80ea024ac5a3aa93f65c70654a
+using Flow interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m0,737s
+user	0m0,696s
+sys	0m0,027s
+********************
+28 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+t
+sharedexclusive
+Running as unit: run-ra317c627ce96439fbcbbb462315b4c78.scope; invocation ID: 3cad4f69e1c8462bac0a6fd3d70a69ae
+using Trap interpretation
+trying to prove abstract safety for property sharedexclusive...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[sharedexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,656s
+user	0m0,626s
+sys	0m0,016s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+s
+sharedexclusive
+Running as unit: run-rfa3df194678741dfa76b1c8fd55a16e2.scope; invocation ID: 9830a0663d7e447ea162b0bd7c7da447
+using Siphon interpretation
+trying to prove abstract safety for property sharedexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedexclusive]
+
+real	0m0,169s
+user	0m0,142s
+sys	0m0,015s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+f
+sharedexclusive
+Running as unit: run-re8b39fa7149d4c0fac67d15e239a3e10.scope; invocation ID: 3b46ef226fba4b9199f0be27188b4a77
+using Flow interpretation
+trying to prove abstract safety for property sharedexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedexclusive]
+
+real	0m0,736s
+user	0m0,703s
+sys	0m0,018s
+********************
+29 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+t
+ownedexclusive
+Running as unit: run-r0189f6c4afa940c090ee07ba6fcb8cad.scope; invocation ID: acd256c53df84f93aed987e81a65f13d
+using Trap interpretation
+trying to prove abstract safety for property ownedexclusive...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[ownedexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,747s
+user	0m0,705s
+sys	0m0,027s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+s
+ownedexclusive
+Running as unit: run-re5270da76926410a911e12aa52cf09bd.scope; invocation ID: ae9df36b7a6f49038ae76b601c771b31
+using Siphon interpretation
+trying to prove abstract safety for property ownedexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[ownedexclusive]
+
+real	0m0,190s
+user	0m0,158s
+sys	0m0,015s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+f
+ownedexclusive
+Running as unit: run-rf954116a205c4c5ca96b9f0f6bf79429.scope; invocation ID: f5126e005e4e435db868d206a78e8274
+using Flow interpretation
+trying to prove abstract safety for property ownedexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[ownedexclusive]
+
+real	0m0,925s
+user	0m0,887s
+sys	0m0,018s
+********************
+30 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+t
+exclusivemodified
+Running as unit: run-r83ef912550bd4b729bdd4e17574d87ea.scope; invocation ID: 268c2a839bb343ad88401c107c24b503
+using Trap interpretation
+trying to prove abstract safety for property exclusivemodified...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusivemodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,665s
+user	0m0,628s
+sys	0m0,021s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+s
+exclusivemodified
+Running as unit: run-re2ff22bd3dd047c5886b4c2bbd925d99.scope; invocation ID: 9f61c715bdcb4877aeaba716aaea9759
+using Siphon interpretation
+trying to prove abstract safety for property exclusivemodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivemodified]
+
+real	0m0,181s
+user	0m0,155s
+sys	0m0,014s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+f
+exclusivemodified
+Running as unit: run-r520cf07ed27e4468992047367cb9aee1.scope; invocation ID: 54cde1f317994ddc9681853456f75231
+using Flow interpretation
+trying to prove abstract safety for property exclusivemodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivemodified]
+
+real	0m0,930s
+user	0m0,900s
+sys	0m0,017s
+********************
+31 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+t
+ownedmodified
+Running as unit: run-r89a11691d8bb422fa69522d246ea85c8.scope; invocation ID: 02fa3a29e38546e098ad073c7a33e3cc
+using Trap interpretation
+trying to prove abstract safety for property ownedmodified...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[ownedmodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,736s
+user	0m0,703s
+sys	0m0,021s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+s
+ownedmodified
+Running as unit: run-r57ea9b95957d498e84643ab64ce5a578.scope; invocation ID: fec1bfa20a6e4e5ba0b4e124e96f09c1
+using Siphon interpretation
+trying to prove abstract safety for property ownedmodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[ownedmodified]
+
+real	0m0,189s
+user	0m0,166s
+sys	0m0,010s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+f
+ownedmodified
+Running as unit: run-r3d2ad8ce70ab441d94b431dcabe37ff9.scope; invocation ID: 6d2ec2f10f80489183cb100fa3ddba43
+using Flow interpretation
+trying to prove abstract safety for property ownedmodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[ownedmodified]
+
+real	0m0,916s
+user	0m0,886s
+sys	0m0,018s
+********************
+32 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+t
+sharedmodified
+Running as unit: run-r5b6df0eb35f940f0bc5f0373f1ac923d.scope; invocation ID: 315fa428e39a489ea53c904b4fd8ca9f
+using Trap interpretation
+trying to prove abstract safety for property sharedmodified...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[sharedmodified]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,651s
+user	0m0,619s
+sys	0m0,020s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+s
+sharedmodified
+Running as unit: run-r2fc68949f678481fb5b534edada66f7c.scope; invocation ID: 625499ec412c4f8d800c6f0dfc35862d
+using Siphon interpretation
+trying to prove abstract safety for property sharedmodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedmodified]
+
+real	0m0,171s
+user	0m0,154s
+sys	0m0,006s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+f
+sharedmodified
+Running as unit: run-r11ad4bb46c2e4ffd9391865d7757722c.scope; invocation ID: 4d31a8751dd8434190af3ab0736bac29
+using Flow interpretation
+trying to prove abstract safety for property sharedmodified...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[sharedmodified]
+
+real	0m1,064s
+user	0m1,027s
+sys	0m0,023s
+********************
+33 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+t
+deadlock
+Running as unit: run-rf83ae02c05ff42aebc67ea897f3b571f.scope; invocation ID: 7dcef25839cc41d89b6dd14ce5ec6f9d
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,791s
+user	0m0,752s
+sys	0m0,026s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+s
+deadlock
+Running as unit: run-r635593ec32c24a8dbcdb0c06ba4ee488.scope; invocation ID: ae3e1ce2ce934521a209943d952f35d8
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,188s
+user	0m0,164s
+sys	0m0,012s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/MOESI.json
+f
+deadlock
+Running as unit: run-r604f8b517fc24b2e831826f81447adc2.scope; invocation ID: b2cca36cd620413e868554308774c241
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m1,310s
+user	0m1,261s
+sys	0m0,035s
+********************
+34 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Szymanski.json
+t
+nomutex
+Running as unit: run-r6a2c0dae94ba49419499e318ca8aa8f1.scope; invocation ID: 8ca8868af47a47ddb56a4ce7ee49bbee
+using Trap interpretation
+
+real	20m3,253s
+user	19m37,385s
+sys	0m24,850s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Szymanski.json
+s
+nomutex
+Running as unit: run-r0a750874a5964d518323046b6a66d4d4.scope; invocation ID: e971de0098cb4bc59eee6ba9cb76caba
+using Siphon interpretation
+
+real	20m4,039s
+user	19m37,419s
+sys	0m24,754s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Szymanski.json
+f
+nomutex
+Running as unit: run-r97202c46421a413b88e361ac6d791a18.scope; invocation ID: 1c4bb6ed3bdc4e1596ff857295673b4d
+using Flow interpretation
+
+real	20m3,113s
+user	19m36,693s
+sys	0m25,382s
+********************
+35 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Szymanski.json
+t
+deadlock
+Running as unit: run-r16d7769df95a40988d5dead2f5b443a5.scope; invocation ID: 557925f552bc4d6a95a73c19290a1f4a
+using Trap interpretation
+
+real	20m3,020s
+user	19m38,266s
+sys	0m24,066s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Szymanski.json
+s
+deadlock
+Running as unit: run-r6dba7546791949e9b3ecf0544491e0db.scope; invocation ID: a0037f01408c42fd99bb4b45da647188
+using Siphon interpretation
+
+real	20m2,937s
+user	19m38,397s
+sys	0m23,810s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Szymanski.json
+f
+deadlock
+Running as unit: run-r908da919c9394843b7f7d97e9878d489.scope; invocation ID: e9ce49c7448445e2a0f2c561c4adb6f3
+using Flow interpretation
+
+real	20m2,911s
+user	19m38,258s
+sys	0m24,061s
+********************
+36 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/atomic-dining-philosophers.json
+t
+deadlock
+Running as unit: run-r8b861306cf0444d6bb980e82d23889c7.scope; invocation ID: 3d997ae539e24b7f9305b9ef628ca56f
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,520s
+user	0m0,476s
+sys	0m0,019s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/atomic-dining-philosophers.json
+s
+deadlock
+Running as unit: run-r147a44d41baa40b382a4d6111ff3908a.scope; invocation ID: 7ce633df6064448594f15fc91d9f188a
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m0,036s
+user	0m0,020s
+sys	0m0,007s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/atomic-dining-philosophers.json
+f
+deadlock
+Running as unit: run-re600f152b35842929eed68b0494d78de.scope; invocation ID: 3dbb994c7bff499484d861ec3ff6b6c6
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m8,963s
+user	0m8,922s
+sys	0m0,027s
+********************
+37 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/bakery.json
+t
+nomutex
+Running as unit: run-re6790539c2bc4ab3a5091a0e0a8d7a2f.scope; invocation ID: b2777ce84f694c498d4d1b3ea0ebf9fe
+using Trap interpretation
+trying to prove abstract safety for property nomutex...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[nomutex]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,038s
+user	0m0,014s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/bakery.json
+s
+nomutex
+Running as unit: run-r80f9567563604aa098d44ef70c03c1e5.scope; invocation ID: a14aa3d3f74648b5aa2edcad8e631c64
+using Siphon interpretation
+trying to prove abstract safety for property nomutex...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[nomutex]
+
+real	0m0,025s
+user	0m0,007s
+sys	0m0,007s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/bakery.json
+f
+nomutex
+Running as unit: run-r578dd1c0643747c99c72fb76c638030b.scope; invocation ID: 4dd4eda20481454ba78aa6d4f6e1b946
+using Flow interpretation
+trying to prove abstract safety for property nomutex...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[nomutex]
+
+real	0m0,154s
+user	0m0,120s
+sys	0m0,010s
+********************
+38 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dining-cryptographers.json
+t
+internal
+Running as unit: run-r60e44bb0f20f444aae0ae3e8b4671440.scope; invocation ID: c988da9b1ce9429f836a9785fdf403f0
+using Trap interpretation
+trying to prove abstract safety for property internal...
+
+real	20m41,077s
+user	6m50,986s
+sys	1m14,652s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dining-cryptographers.json
+s
+internal
+Running as unit: run-rf8262149d3cc4fe683d8f7638910e920.scope; invocation ID: 17acbbaae93d4036a0867e08c587d128
+using Siphon interpretation
+trying to prove abstract safety for property internal...
+
+real	20m3,535s
+user	19m22,023s
+sys	0m40,463s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dining-cryptographers.json
+f
+internal
+Running as unit: run-rd90395a03c4c4cd9904323a146a70028.scope; invocation ID: a3ed91d58a284dfcb34c6464dacc80b8
+using Flow interpretation
+trying to prove abstract safety for property internal...
+
+real	20m7,508s
+user	7m28,237s
+sys	1m7,951s
+********************
+41 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+t
+exclusiveexclusive
+Running as unit: run-r0dec4f77041f466cab14c18986434477.scope; invocation ID: 4d96a49ace6e48a2b310a94603850542
+using Trap interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusiveexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m6,005s
+user	0m5,930s
+sys	0m0,048s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+s
+exclusiveexclusive
+Running as unit: run-ra0f099b9939440a1a645b35e96ff8930.scope; invocation ID: cf93438ec0454681ab606ab3c3184198
+using Siphon interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m0,649s
+user	0m0,620s
+sys	0m0,014s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+f
+exclusiveexclusive
+Running as unit: run-rb625ab793db042dea639897fe2a45de0.scope; invocation ID: 37b5b7d8f7b2454097c355589892c8e2
+using Flow interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m5,038s
+user	0m4,970s
+sys	0m0,052s
+********************
+42 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+t
+dirtysharedexclusive
+Running as unit: run-r1615b98f40394ca2b23ed7a8d1020cc9.scope; invocation ID: ba218e38597044029415bcd955e2973d
+using Trap interpretation
+trying to prove abstract safety for property dirtysharedexclusive...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[dirtysharedexclusive]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m4,814s
+user	0m4,757s
+sys	0m0,036s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+s
+dirtysharedexclusive
+Running as unit: run-r547b9e2d6cdf4b4e90f37602232b279a.scope; invocation ID: ba7013f1a00f4e9d84093f008659b3a8
+using Siphon interpretation
+trying to prove abstract safety for property dirtysharedexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtysharedexclusive]
+
+real	0m0,369s
+user	0m0,334s
+sys	0m0,017s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+f
+dirtysharedexclusive
+Running as unit: run-rd232ea97ecfa41f288f1dcddda696d36.scope; invocation ID: 6ccd008d7e984bc0a9fa49890e26a21f
+using Flow interpretation
+trying to prove abstract safety for property dirtysharedexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtysharedexclusive]
+
+real	0m2,015s
+user	0m1,969s
+sys	0m0,036s
+********************
+43 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+t
+exclusiveshared
+Running as unit: run-r0d60b92aebf64dabaaeb4206790895ba.scope; invocation ID: e5640a3ffe87436580ec72cd7b182f02
+using Trap interpretation
+trying to prove abstract safety for property exclusiveshared...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusiveshared]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m4,674s
+user	0m4,630s
+sys	0m0,030s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+s
+exclusiveshared
+Running as unit: run-r0565e1280e864ce091ed9be58edf467d.scope; invocation ID: 4438f5f3ed2b4d8fbb891846f251ed86
+using Siphon interpretation
+trying to prove abstract safety for property exclusiveshared...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveshared]
+
+real	0m0,385s
+user	0m0,358s
+sys	0m0,010s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+f
+exclusiveshared
+Running as unit: run-r4ce6a40fe2c54d5eb428c7f7a42f0bb6.scope; invocation ID: 20396fe8aab24d6c8c7d0dd9276a2440
+using Flow interpretation
+trying to prove abstract safety for property exclusiveshared...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveshared]
+
+real	0m4,279s
+user	0m4,214s
+sys	0m0,051s
+********************
+44 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+t
+exclusivedirty
+Running as unit: run-r999f0c7c1d7e49b69be887f6e2785f7b.scope; invocation ID: 54850c8680d34fa488e30027bdb1089c
+using Trap interpretation
+trying to prove abstract safety for property exclusivedirty...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[exclusivedirty]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m5,288s
+user	0m5,233s
+sys	0m0,037s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+s
+exclusivedirty
+Running as unit: run-r7e57fd6adfc14408b64725efa2dc46d8.scope; invocation ID: 4b4af13ce31747aaad13f68706732c81
+using Siphon interpretation
+trying to prove abstract safety for property exclusivedirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivedirty]
+
+real	0m0,374s
+user	0m0,348s
+sys	0m0,014s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+f
+exclusivedirty
+Running as unit: run-r7aeb999f5e56420c9dd02eef6055fa9a.scope; invocation ID: 70c07d717822497492b43f4149a8914a
+using Flow interpretation
+trying to prove abstract safety for property exclusivedirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusivedirty]
+
+real	0m4,189s
+user	0m4,115s
+sys	0m0,058s
+********************
+45 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+t
+shareddirty
+Running as unit: run-rb87d77f60bfa40e58e77e153f06a25ce.scope; invocation ID: ad064d6518204c40987171e2d3d8b1d8
+using Trap interpretation
+trying to prove abstract safety for property shareddirty...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[shareddirty]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m4,536s
+user	0m4,483s
+sys	0m0,042s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+s
+shareddirty
+Running as unit: run-r5d985b98df62419ba9cad67e0aa3bee4.scope; invocation ID: cb361fa0c56341e7ae49d173845f9b0a
+using Siphon interpretation
+trying to prove abstract safety for property shareddirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[shareddirty]
+
+real	0m0,385s
+user	0m0,353s
+sys	0m0,021s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+f
+shareddirty
+Running as unit: run-rc009de1ea4d7491c986b9e019b4a2a44.scope; invocation ID: 13dc1c550c7a44008edbac88f9ced757
+using Flow interpretation
+trying to prove abstract safety for property shareddirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[shareddirty]
+
+real	0m4,205s
+user	0m4,137s
+sys	0m0,053s
+********************
+46 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+t
+dirtyshareddirty
+Running as unit: run-r2f17b32c4c0f41dc9294007a109baef0.scope; invocation ID: 199cd39423864b00bd299bc787ef244b
+using Trap interpretation
+trying to prove abstract safety for property dirtyshareddirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshareddirty]
+
+real	0m1,148s
+user	0m1,104s
+sys	0m0,031s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+s
+dirtyshareddirty
+Running as unit: run-rabfced3d5553482c89ba98440fb095a9.scope; invocation ID: d6961979bdac4f4491cc3758389abe13
+using Siphon interpretation
+trying to prove abstract safety for property dirtyshareddirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshareddirty]
+
+real	0m0,353s
+user	0m0,326s
+sys	0m0,017s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+f
+dirtyshareddirty
+Running as unit: run-rd97c92ad081a45acba05576a7d08fcd7.scope; invocation ID: 44937ea86fdd414fbc0501a177573ac9
+using Flow interpretation
+trying to prove abstract safety for property dirtyshareddirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshareddirty]
+
+real	0m1,991s
+user	0m1,939s
+sys	0m0,040s
+********************
+47 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+t
+deadlock
+Running as unit: run-r38aa78a48672457882f7d330744a5d1f.scope; invocation ID: 82b6aca82476418e8829484e98bde37f
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m3,906s
+user	0m3,862s
+sys	0m0,029s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+s
+deadlock
+Running as unit: run-r6fe5430327f443aabf5d813e215a6d3f.scope; invocation ID: ae5fa510b8664d05b08796f87fec81bd
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,363s
+user	0m0,339s
+sys	0m0,014s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+f
+deadlock
+Running as unit: run-rc7be7565062142fab9d6b50b7f02fc19.scope; invocation ID: 5d3cade718fe4d19bcb11336a954d391
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	1m22,290s
+user	1m22,089s
+sys	0m0,154s
+********************
+48 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+t
+dirtydirty
+Running as unit: run-rf20525ff056c41eca86ffb485eed9b53.scope; invocation ID: 220d6cd284a54d1eb532dc1e057918d0
+using Trap interpretation
+trying to prove abstract safety for property dirtydirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m0,177s
+user	0m0,149s
+sys	0m0,012s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+s
+dirtydirty
+Running as unit: run-r4655e7cda74f4fd8b785e3b645c1875a.scope; invocation ID: 9ce25d162eb34f05a318b389d0a52be0
+using Siphon interpretation
+trying to prove abstract safety for property dirtydirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m0,069s
+user	0m0,048s
+sys	0m0,007s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+f
+dirtydirty
+Running as unit: run-r1a1228ae551f45b5b5b5f3e83c5370bf.scope; invocation ID: f2b957570ed14aa1a1f23dad0645cdf5
+using Flow interpretation
+trying to prove abstract safety for property dirtydirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m0,812s
+user	0m0,781s
+sys	0m0,017s
+********************
+49 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+t
+exclusiveexclusive
+Running as unit: run-r2497c2b9da3541c8b73d02579f613edc.scope; invocation ID: 351fb4cb57d24c89bb3237cf0eb3e2e1
+using Trap interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m0,171s
+user	0m0,148s
+sys	0m0,009s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+s
+exclusiveexclusive
+Running as unit: run-r7bbdeb40185b4780936f999904beb053.scope; invocation ID: 3b9651d334a743cf93a9950eae9a39d9
+using Siphon interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m0,072s
+user	0m0,049s
+sys	0m0,007s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+f
+exclusiveexclusive
+Running as unit: run-r95a2b3ddab6143bb9a066a42923c8613.scope; invocation ID: 8f8d732f9bf84e3d8e4d3bc2f1fe8229
+using Flow interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[exclusiveexclusive]
+
+real	0m0,682s
+user	0m0,654s
+sys	0m0,015s
+********************
+50 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+t
+dirtyshared
+Running as unit: run-rb0ead70672ca4188844ccc670199e135.scope; invocation ID: 080c7d74f99b42eb9a1b45f496e1e689
+using Trap interpretation
+trying to prove abstract safety for property dirtyshared...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	0m0,176s
+user	0m0,141s
+sys	0m0,016s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+s
+dirtyshared
+Running as unit: run-r8f4c6441c18640a6963970ba84c36648.scope; invocation ID: 14d9c516be7147a5abfaa24ccaa08ec4
+using Siphon interpretation
+trying to prove abstract safety for property dirtyshared...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	0m0,071s
+user	0m0,046s
+sys	0m0,009s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+f
+dirtyshared
+Running as unit: run-r716621eb51ac40848297d235290c046a.scope; invocation ID: 2b866c27bf574f52a2b042099a8781e7
+using Flow interpretation
+trying to prove abstract safety for property dirtyshared...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyshared]
+
+real	0m0,793s
+user	0m0,763s
+sys	0m0,019s
+********************
+51 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+t
+dirtyexclusive
+Running as unit: run-r107d096977e74af1ac59cbea6581a73d.scope; invocation ID: 2dced069748e4e71b34b69288c2709b0
+using Trap interpretation
+trying to prove abstract safety for property dirtyexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyexclusive]
+
+real	0m0,172s
+user	0m0,145s
+sys	0m0,012s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+s
+dirtyexclusive
+Running as unit: run-r0fc175b3a34a419885181350f5109f59.scope; invocation ID: 1ee321019efb49149de39f46789a1a40
+using Siphon interpretation
+trying to prove abstract safety for property dirtyexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyexclusive]
+
+real	0m0,067s
+user	0m0,047s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+f
+dirtyexclusive
+Running as unit: run-rfa385228e6904cd0b731a0f655c606a8.scope; invocation ID: 45f60af642b840fbb9b1228d3de892b1
+using Flow interpretation
+trying to prove abstract safety for property dirtyexclusive...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyexclusive]
+
+real	0m0,678s
+user	0m0,645s
+sys	0m0,022s
+********************
+52 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+t
+deadlock
+Running as unit: run-r31f74017f5c346b69c85c09cf8970b68.scope; invocation ID: 8b5616ba68b24692b8fae33d71a4ddca
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,261s
+user	0m0,230s
+sys	0m0,013s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+s
+deadlock
+Running as unit: run-r7101e59ba26c473c818998e1023bca80.scope; invocation ID: 2ba02573931443a7951634c54b1a6f8d
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,067s
+user	0m0,047s
+sys	0m0,007s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/firefly.json
+f
+deadlock
+Running as unit: run-r89d15d9b083448448705895f5854453e.scope; invocation ID: 3d4133a6c35b48b59f691ce0edbaf0f5
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m7,396s
+user	0m7,353s
+sys	0m0,031s
+********************
+53 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/left-dining-philosophers.json
+t
+deadlock
+Running as unit: run-r66e79e6190954b2fbe47d2d281fb90c3.scope; invocation ID: a54c680edf0f4788861434c4532d250a
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m6,283s
+user	0m6,207s
+sys	0m0,062s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/left-dining-philosophers.json
+s
+deadlock
+Running as unit: run-r5ff0f95c03a04c54adea785dadf746aa.scope; invocation ID: 8d5c2a54e2884c26a7ba374f200a6c63
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m0,816s
+user	0m0,783s
+sys	0m0,018s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/left-dining-philosophers.json
+f
+deadlock
+Running as unit: run-r70db5d7c4bf643419288cfffba32726b.scope; invocation ID: 8d3a043b1c47441882cc8cb9eaf51a7d
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	4m4,887s
+user	4m4,682s
+sys	0m0,120s
+********************
+54 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/lehmann-rabin.json
+t
+deadlock
+Running as unit: run-r972aaba6411e408bb72ecf71877c1623.scope; invocation ID: b750c9999f50456a998e7e3e541182b9
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m8,311s
+user	0m8,239s
+sys	0m0,058s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/lehmann-rabin.json
+s
+deadlock
+Running as unit: run-r684fb74b4a174fcc897e7bda9e8dc85e.scope; invocation ID: 36728d93581544e49c578a84b0ce6349
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m0,708s
+user	0m0,672s
+sys	0m0,017s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/lehmann-rabin.json
+f
+deadlock
+Running as unit: run-ra63f0786a4aa418b8224c794836890ea.scope; invocation ID: 494df8d272854e71ba3bdd10f451d0f4
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[deadlock]
+
+real	0m22,283s
+user	0m22,176s
+sys	0m0,088s
+********************
+55 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/synapse.json
+t
+dirtydirty
+Running as unit: run-r289d154c1a5540e3b9639f9ec13ab1ba.scope; invocation ID: 6eb1974f5b3d4aa690f85f30ff90f496
+using Trap interpretation
+trying to prove abstract safety for property dirtydirty...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[dirtydirty]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,037s
+user	0m0,016s
+sys	0m0,009s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/synapse.json
+s
+dirtydirty
+Running as unit: run-rd6f7a0438697447c985265dee1d1d4aa.scope; invocation ID: 5170e885423c4dd28d3017560eadabe9
+using Siphon interpretation
+trying to prove abstract safety for property dirtydirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m0,030s
+user	0m0,009s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/synapse.json
+f
+dirtydirty
+Running as unit: run-r95308fb28d0b4a849627f1e6daf2b674.scope; invocation ID: 3f89f0b0987b45b992edd33728c0ccad
+using Flow interpretation
+trying to prove abstract safety for property dirtydirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m0,039s
+user	0m0,015s
+sys	0m0,009s
+********************
+56 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/synapse.json
+t
+dirtyvalid
+Running as unit: run-rd0e7b0f7ae96431abff8153b6487fa1f.scope; invocation ID: c5dd0df826654633a064c6297e60affd
+using Trap interpretation
+trying to prove abstract safety for property dirtyvalid...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[dirtyvalid]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,036s
+user	0m0,017s
+sys	0m0,006s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/synapse.json
+s
+dirtyvalid
+Running as unit: run-ra18ea9fcef774946a32249f23a792ddc.scope; invocation ID: 53fcf0c83d5947c08e7c94036d1b06f8
+using Siphon interpretation
+trying to prove abstract safety for property dirtyvalid...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyvalid]
+
+real	0m0,026s
+user	0m0,008s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/synapse.json
+f
+dirtyvalid
+Running as unit: run-r6fbe64ba6d694e96a519e7b3028abdf6.scope; invocation ID: 440af8ca55a8451dbe0adc244c945e38
+using Flow interpretation
+trying to prove abstract safety for property dirtyvalid...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtyvalid]
+
+real	0m0,036s
+user	0m0,018s
+sys	0m0,005s
+********************
+57 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/synapse.json
+t
+deadlock
+Running as unit: run-r987561572997438081550df16fc66645.scope; invocation ID: ed8b3ea2628e43babc3d2b09a1fba3c6
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,033s
+user	0m0,013s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/synapse.json
+s
+deadlock
+Running as unit: run-r76c5becabcf64bb6a5f4708bfb995424.scope; invocation ID: 27ceaed57d3540d79280f3e42076073f
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,031s
+user	0m0,010s
+sys	0m0,006s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/synapse.json
+f
+deadlock
+Running as unit: run-r22e6486012df4f6e93a0e1a65fe7135a.scope; invocation ID: 2e699a2eb6364dee872945f17adb1c0b
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[deadlock]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,043s
+user	0m0,016s
+sys	0m0,009s
+********************
+58 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+t
+notoken
+Running as unit: run-ref06661911aa41ce8fc7f4e8161ae0b3.scope; invocation ID: 3593c4fe04cd4ab6b5144316d30427dd
+using Trap interpretation
+trying to prove abstract safety for property notoken...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,028s
+user	0m0,006s
+sys	0m0,009s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+s
+notoken
+Running as unit: run-ra24f638d7b144de481fdce9d618aa9b7.scope; invocation ID: edad06b92087478694ff7015878a31c9
+using Siphon interpretation
+trying to prove abstract safety for property notoken...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,025s
+user	0m0,005s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+f
+notoken
+Running as unit: run-rd1d5258e76304b5399b49e5c244efb30.scope; invocation ID: 9fb2fee7c96b449e8e0d90a8455390af
+using Flow interpretation
+trying to prove abstract safety for property notoken...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,035s
+user	0m0,019s
+sys	0m0,006s
+********************
+59 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+t
+manytoken
+Running as unit: run-r30697daaf4fa4e0fa8f27e28a1b66d69.scope; invocation ID: f3047950808949e6ab61096cd79b62d9
+using Trap interpretation
+trying to prove abstract safety for property manytoken...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[manytoken]
+
+real	0m0,018s
+user	0m0,006s
+sys	0m0,007s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+s
+manytoken
+Running as unit: run-r4b3c0ec1e93b407eb3d46732f1977084.scope; invocation ID: 96c0bcc2fc20467f96795f5c18db748f
+using Siphon interpretation
+trying to prove abstract safety for property manytoken...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[manytoken]
+
+real	0m0,017s
+user	0m0,004s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing-no-invariant.json
+f
+manytoken
+Running as unit: run-red5432e3074c43048c00e928d93ba256.scope; invocation ID: 2132592a38244d7598d3cdba432684b6
+using Flow interpretation
+trying to prove abstract safety for property manytoken...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[manytoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,037s
+user	0m0,018s
+sys	0m0,007s
+********************
+60 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing.json
+t
+notoken
+Running as unit: run-r0db60541ecff415bb5666f908002c6db.scope; invocation ID: 5cb17a1b6bb647d3b80bc3fc809ee9af
+using Trap interpretation
+trying to prove abstract safety for property notoken...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,025s
+user	0m0,008s
+sys	0m0,005s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing.json
+s
+notoken
+Running as unit: run-rb0a57f179a294c1189713d7a761fc37c.scope; invocation ID: c1d5dd8ad39443ae8b9205150e416e48
+using Siphon interpretation
+trying to prove abstract safety for property notoken...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[notoken]
+
+real	0m0,024s
+user	0m0,004s
+sys	0m0,008s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing.json
+f
+notoken
+Running as unit: run-r516c99a55ce3494ba16c94c3be80ca7d.scope; invocation ID: af667d93af8b470bb30a58ac4714bea1
+using Flow interpretation
+trying to prove abstract safety for property notoken...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[notoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,099s
+user	0m0,075s
+sys	0m0,008s
+********************
+61 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing.json
+t
+manytoken
+Running as unit: run-r82b5729532b54f8fb45c3eb634a91fdf.scope; invocation ID: 40667c1b65234758b34430dd11b1d2c3
+using Trap interpretation
+trying to prove abstract safety for property manytoken...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[manytoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,029s
+user	0m0,004s
+sys	0m0,011s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing.json
+s
+manytoken
+Running as unit: run-r92e25f72a84240209ed258a440870091.scope; invocation ID: dc8f3063791e47c8b5c279fb16cf569b
+using Siphon interpretation
+trying to prove abstract safety for property manytoken...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[manytoken]
+
+real	0m0,023s
+user	0m0,007s
+sys	0m0,006s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/token-passing.json
+f
+manytoken
+Running as unit: run-r28f2536e66d74cf78d4fc9ee8f5a8810.scope; invocation ID: aa1b095973e14215bace53d781183942
+using Flow interpretation
+trying to prove abstract safety for property manytoken...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[manytoken]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m0,108s
+user	0m0,093s
+sys	0m0,005s
+********************
+9 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-ring.json
+t
+nomutex
+Running as unit: run-r7339aeb70b5f4146a08ea823027884e3.scope; invocation ID: 5df01839a82b4f4393c6a091c8540703
+using Trap interpretation
+trying to prove abstract safety for property nomutex...
+
+real	23m24,578s
+user	6m57,036s
+sys	1m8,032s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-ring.json
+s
+nomutex
+Running as unit: run-rcd3f6af6fe084fc797eb84a2a591fab3.scope; invocation ID: 3899bcfdea844babae3a6b83d85ceb31
+using Siphon interpretation
+trying to prove abstract safety for property nomutex...
+
+real	20m44,447s
+user	5m55,718s
+sys	1m11,943s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-ring.json
+f
+nomutex
+Running as unit: run-rf950dce80fe749e0a4288d2526b54550.scope; invocation ID: 23d321c011bc4138adbfb327be44cbf2
+using Flow interpretation
+trying to prove abstract safety for property nomutex...
+
+real	22m17,279s
+user	7m5,203s
+sys	1m0,924s
+********************
+10 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-ring.json
+t
+deadlock
+Running as unit: run-r582db7f6a5d444afb619c18f82746cfe.scope; invocation ID: 3ed545df8b854249b9e899d26d031ea2
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+
+real	22m32,010s
+user	6m36,203s
+sys	1m1,576s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-ring.json
+s
+deadlock
+Running as unit: run-rdd933eef79f64734a644157bb689d2b9.scope; invocation ID: d53d9863c7334f0aab1f126d7b37f0b4
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+
+real	22m21,775s
+user	6m4,185s
+sys	1m17,999s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/Dijkstra-ring.json
+f
+deadlock
+Running as unit: run-r5162430b8a07404c9b03c4d15e88b06e.scope; invocation ID: b3ff27ebd6a04a1ca77c6b75cd4db2a5
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+
+real	22m41,260s
+user	7m3,281s
+sys	0m57,711s
+********************
+11 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/DijkstraMutEx.json
+t
+nomutex
+Running as unit: run-rbeead79a1e54426fb120ba3ea93b907a.scope; invocation ID: fc83e8dbd307413d8105b85b7a60b4b4
+using Trap interpretation
+
+real	20m1,660s
+user	19m49,156s
+sys	0m11,826s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/DijkstraMutEx.json
+s
+nomutex
+Running as unit: run-r25dd8e24523e41f4af4f1aaebbef60ac.scope; invocation ID: 8e5af6d7165b44daaeeac4e403957ca1
+using Siphon interpretation
+
+real	20m1,550s
+user	19m49,047s
+sys	0m11,870s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/DijkstraMutEx.json
+f
+nomutex
+Running as unit: run-r434d7349c02f4056ad777a08e9bef626.scope; invocation ID: dd816468066b42e49991385c52a61b9c
+using Flow interpretation
+
+real	20m1,450s
+user	19m49,642s
+sys	0m11,109s
+********************
+12 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/DijkstraMutEx.json
+t
+deadlock
+Running as unit: run-r7ae69d7bc6ab492a97f74c8638383ef2.scope; invocation ID: 6f71ad7043c1401b957117179aa3a6cd
+using Trap interpretation
+
+real	20m1,483s
+user	19m49,683s
+sys	0m11,299s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/DijkstraMutEx.json
+s
+deadlock
+Running as unit: run-rfa2bc301534f458d8d82dd380a4861f9.scope; invocation ID: 0c5c58e0e6f84f3da666c1b65a9e8257
+using Siphon interpretation
+
+real	20m1,564s
+user	19m48,800s
+sys	0m12,169s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/DijkstraMutEx.json
+f
+deadlock
+Running as unit: run-rc61cd12c662342bca5d90c7a0cecbb9b.scope; invocation ID: b78163d713904b938a2c78cb2efc1951
+using Flow interpretation
+
+real	20m1,501s
+user	19m49,679s
+sys	0m11,174s
+********************
+13 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+t
+pendingrightsecond
+Running as unit: run-ra6edbae0ab3c4d0a8940d5174949f0e3.scope; invocation ID: d210c1e21d954b1cbde2dd5fcad32daa
+using Trap interpretation
+trying to prove abstract safety for property pendingrightsecond...
+
+real	20m0,372s
+user	19m55,549s
+sys	0m4,142s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+s
+pendingrightsecond
+Running as unit: run-r3be2b2a7a1914aa393f1bcd8d8d54568.scope; invocation ID: 427e2f42cc514be4a067e1db7f8fc34a
+using Siphon interpretation
+trying to prove abstract safety for property pendingrightsecond...
+
+real	20m0,343s
+user	19m56,049s
+sys	0m3,646s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+f
+pendingrightsecond
+Running as unit: run-r8d4610fdd2004a4c96b0f61148b43bee.scope; invocation ID: d3a6b9c5422f40ee861baf6919384e38
+using Flow interpretation
+trying to prove abstract safety for property pendingrightsecond...
+
+real	20m0,377s
+user	19m55,751s
+sys	0m3,949s
+********************
+14 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+t
+sharedexclusive
+Running as unit: run-r4e1eab5469ff47fb89bd6ca67cf137e2.scope; invocation ID: a169738fddc246c9825458becad84be9
+using Trap interpretation
+trying to prove abstract safety for property sharedexclusive...
+
+real	20m0,396s
+user	19m55,736s
+sys	0m3,947s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+s
+sharedexclusive
+Running as unit: run-rb7ff4b7ea797459b91354189682cf134.scope; invocation ID: 43f6973f02eb4375bb5089a107ff54db
+using Siphon interpretation
+trying to prove abstract safety for property sharedexclusive...
+
+real	20m0,346s
+user	19m56,128s
+sys	0m3,599s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+f
+sharedexclusive
+Running as unit: run-r6f903108dab84aa1b4917117b18d9554.scope; invocation ID: 69f8758761974417be2349fb4df6c0d5
+using Flow interpretation
+trying to prove abstract safety for property sharedexclusive...
+
+real	20m0,385s
+user	19m55,986s
+sys	0m3,942s
+********************
+15 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+t
+secondpending
+Running as unit: run-ree43885a06b543979a403e6bece86b85.scope; invocation ID: f2a4b35da2fc46139dd8dd1746c04044
+using Trap interpretation
+trying to prove abstract safety for property secondpending...
+
+real	20m0,384s
+user	19m55,944s
+sys	0m3,957s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+s
+secondpending
+Running as unit: run-r17a81a24d3554f90bbc6c198a19f7545.scope; invocation ID: a4d69ba67bc94d57a37da101507c421b
+using Siphon interpretation
+trying to prove abstract safety for property secondpending...
+
+real	20m0,351s
+user	19m56,247s
+sys	0m3,584s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+f
+secondpending
+Running as unit: run-r01cfdacaa32f452bb161d5403147da38.scope; invocation ID: 92896856434d4ce7b9943c4ae767ddcf
+using Flow interpretation
+trying to prove abstract safety for property secondpending...
+
+real	20m0,401s
+user	19m55,881s
+sys	0m3,950s
+********************
+16 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+t
+exclusiveexclusive
+Running as unit: run-r2dfb5ae4d22340a99f5c0ffa3e176dc8.scope; invocation ID: ffdc482083614bbcbe43238d475a726d
+using Trap interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+
+real	20m0,395s
+user	19m55,714s
+sys	0m3,960s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+s
+exclusiveexclusive
+Running as unit: run-racde455d9abf47dbbfef144d9b8542e2.scope; invocation ID: 8d544159ae994cee9a23b30d2a7bc939
+using Siphon interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+
+real	20m0,381s
+user	19m56,010s
+sys	0m3,585s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+f
+exclusiveexclusive
+Running as unit: run-r56533769dfc14bbc80f6b8a31073558f.scope; invocation ID: 8311de8dc637431998062b782419b1ea
+using Flow interpretation
+trying to prove abstract safety for property exclusiveexclusive...
+
+real	20m0,382s
+user	19m55,694s
+sys	0m3,887s
+********************
+17 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+t
+deadlock
+Running as unit: run-r26d1fa68461d48868c39cb700fa2b9d1.scope; invocation ID: a56c9cef987843cea1d624c266928bbd
+using Trap interpretation
+trying to prove abstract safety for property deadlock...
+
+real	20m0,376s
+user	19m55,553s
+sys	0m3,932s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+s
+deadlock
+Running as unit: run-r9345831cac784048b5f7e9e682d02c3f.scope; invocation ID: 87dcfa00c218413cb1e8c98de33f6d9f
+using Siphon interpretation
+trying to prove abstract safety for property deadlock...
+
+real	20m0,348s
+user	19m55,957s
+sys	0m3,540s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/FutureBus.json
+f
+deadlock
+Running as unit: run-r07953eeaa93744b7969f381255742e4a.scope; invocation ID: 25890af36c0c4cb5b0f7f7012c711c5e
+using Flow interpretation
+trying to prove abstract safety for property deadlock...
+
+real	20m0,390s
+user	19m55,571s
+sys	0m3,985s
+********************
+39 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dining-cryptographers.json
+t
+external
+Running as unit: run-rf816d2110f144d0ea8c9bc006401e724.scope; invocation ID: f232cadb3bfc498088f18c4a4da3722d
+using Trap interpretation
+trying to prove abstract safety for property external...
+
+real	20m13,856s
+user	7m21,536s
+sys	1m23,991s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dining-cryptographers.json
+s
+external
+Running as unit: run-r734788998af0486d967454a76df4c0ae.scope; invocation ID: 78d5afb3c9d14f6a93f352c0200d813f
+using Siphon interpretation
+trying to prove abstract safety for property external...
+
+real	20m3,198s
+user	19m23,644s
+sys	0m38,629s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dining-cryptographers.json
+f
+external
+Running as unit: run-r454622f2adff4080862354a137b9123c.scope; invocation ID: 65838e3115cc424db6cc3a6911a9c44e
+using Flow interpretation
+trying to prove abstract safety for property external...
+
+real	20m55,638s
+user	7m48,448s
+sys	1m10,971s
+********************
+40 of 61
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+t
+dirtydirty
+Running as unit: run-ra8fc5bc60e204d17a654d03851d7beb7.scope; invocation ID: 21ef7d0b45eb47afbe9199a60df8cb9d
+using Trap interpretation
+trying to prove abstract safety for property dirtydirty...
+...safe
+Result: [1]
+This means that the following properties could be separated from the initial configurations:
+	[dirtydirty]
+While the following properties could not be separated from the initial configurations:
+	[]
+
+real	0m6,666s
+user	0m6,558s
+sys	0m0,065s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+s
+dirtydirty
+Running as unit: run-rdcbb8ae36e814906ac04c299f3ab73c0.scope; invocation ID: e7d4b630741c41798b72a646911b15bd
+using Siphon interpretation
+trying to prove abstract safety for property dirtydirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m0,553s
+user	0m0,512s
+sys	0m0,027s
+********************
+/home/jakob/Documents/regular-abstraction-framework-stuff/nguyen-le-duy-lazy-mata/abstracton/benchmarks/dodo/dragon.json
+f
+dirtydirty
+Running as unit: run-r2578a8d417a04a3c882bc5221fe783b6.scope; invocation ID: 4e8a4a640778485ead8a0963c1b25507
+using Flow interpretation
+trying to prove abstract safety for property dirtydirty...
+...unsafe
+Result: [0]
+This means that the following properties could be separated from the initial configurations:
+	[]
+While the following properties could not be separated from the initial configurations:
+	[dirtydirty]
+
+real	0m4,849s
+user	0m4,778s
+sys	0m0,050s
+********************

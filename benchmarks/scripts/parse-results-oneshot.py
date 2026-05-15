@@ -6,6 +6,9 @@ benchmarks_folder = "benchmarks/dodo"
 benchmarks_suffix = "json"
 results_folder = pathlib.Path(__file__).parent / "results"
 
+mata_infile = results_folder / "raw" / "results_for_dodo_comparison_lazy_bfs_worklist_fix.log"
+csv_output_path = results_folder / "oneshot_comparison_mata_lazy_bfs_worklist_fix.csv"
+
 def line_to_min_sec(s):
     s1 = s.split("m")
     mins = int(''.join(c for c in s1[0] if c.isdigit()))
@@ -84,11 +87,9 @@ def print_as_csv(dicts, filename, header=True):
                 d_keys.append("NA")
         filename.write(",".join(d_keys) + "\n")
 
-csv_output_path = results_folder / "oneshot_comparison_mata.csv"
-
 # read results from raw file
 def read_results():
-    with open(results_folder / "raw" / "results_for_dodo_comparison.log") as f:
+    with open(mata_infile) as f:
         results = parse_raw_bench(f)
         return [{k: v for k, v in result.items() if k not in ["solved", "unsolved"]} for result in results]
 

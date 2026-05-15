@@ -339,7 +339,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
 
     bool is_universal_lazy(const Nft& aut, const std::vector<Alphabet*> alphabets, Run* cex, int verbosityLevel, bool dfs) {
         using WorklistType = std::list<StateSet>;
-        using ProcessedType = std::unordered_set<StateSet>;
+        using ProcessedType = std::unordered_map<StateSet, bool>; // store for each explored state whether it was already processed
 
         // check initial states
         if (are_disjoint(aut.initial, aut.final)) {
@@ -350,7 +350,8 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
 
         // initialize
         WorklistType worklist = { StateSet(aut.initial) };
-        ProcessedType processed = { StateSet(aut.initial) };
+        ProcessedType processed = {};
+        processed[StateSet(aut.initial)] = false;
         int worklist_num_of_states_with_level_0 = 1;
         int processed_num_of_states_with_level_0 = 1;
         int worklist_num_of_states_added = 1;
@@ -364,6 +365,21 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         // 'paths[s] == s' means that 's' is an initial state
         std::map<StateSet, std::pair<StateSet, Symbol>> paths =
             { {StateSet(aut.initial), {StateSet(aut.initial), 0}} };
+
+        auto construct_cex = [&] (const StateSet& last_accepting, const Symbol& symbol_to_non_accepting) {
+            if (nullptr != cex) {
+                cex->word.clear();
+                cex->word.push_back(symbol_to_non_accepting);
+                StateSet trav = last_accepting;
+                while (paths[trav].first != trav)
+                { // go back until initial state
+                    cex->word.push_back(paths[trav].second);
+                    trav = paths[trav].first;
+                }
+
+                std::ranges::reverse(cex->word);
+            }
+        };
 
         // INIT_XCLOCK(assertion);
         // INIT_XCLOCK(create_local_transitions);
@@ -430,6 +446,9 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
 
             // XTICK(no_missing_symbol_1);
             if (num_of_local_symbols < possible_symbols.size()) {
+                // could construct_cex, by picking any possible symbol that is not locally available...but this defeats the purpose of this time optimization. What TODO?
+                logging::log(logging::VerbosityLevel::VERBOSE, logging::warning("last letter of constructed counterexample might be invalid - but there exists one that makes the counterexample end in an empty set of states."), verbosityLevel);
+                construct_cex(state, 0); // TODO !!!
                 logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
                 return false;
             }
@@ -438,6 +457,9 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
             // XTICK(no_missing_symbol_2);
             for (const Symbol& symb : possible_symbols) {
                 if (!local_transitions.contains(symb)) {
+                    // TODO construct_cex; note that run possibly needs to be padded to end at level 0! (OR make contract that cex EITHER ends in a level 0 state that is not final OR in a trap state (at any level))
+                    logging::log(logging::VerbosityLevel::VERBOSE, logging::info("constructed counterexample ends in empty set of states"), verbosityLevel);
+                    construct_cex(state, symb);
                     logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
                     return false;
                 }
@@ -450,6 +472,9 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
 
                 // XTICK(next_state_empty);
                 if (succ.empty()) {
+                    // TODO construct_cex; note that run possibly needs to be padded to end at level 0!
+                    logging::log(logging::VerbosityLevel::VERBOSE, logging::info("constructed counterexample ends in empty set of states"), verbosityLevel);
+                    construct_cex(state, sp.first);
                     logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
                     return false;
                 }
@@ -458,39 +483,33 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
                 int succ_level = aut.levels[succ.front()]; // again, assume all states are at same level. If not, then an error will be thrown once succ is pulled from the worklist, so do not need to verify here.
                 // XTICK(next_state_final);
                 if (succ_level == 0 && !aut.final.intersects_with(succ)) {
-                    if (nullptr != cex) {
-                        cex->word.clear();
-                        cex->word.push_back(sp.first);
-                        StateSet trav = state;
-                        while (paths[trav].first != trav)
-                        { // go back until initial state
-                            cex->word.push_back(paths[trav].second);
-                            trav = paths[trav].first;
-                        }
-
-                        std::ranges::reverse(cex->word);
-                    }
-
+                    logging::log(logging::VerbosityLevel::VERBOSE, logging::info("constructed counterexample is valid and ends at level 0"), verbosityLevel);
+                    construct_cex(state, sp.first);
                     logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
                     return false;
                 }
                 // XTOCK(next_state_final);
 
                 // XTICK(insert_processed);
-                auto processed_insert_result = processed.insert(state); // store result for debugging/logging purposes
+                assert(processed.contains(state));
+                assert(!processed.at(state));
+                auto processed_insert_result = processed.insert(std::pair(state, true)); // store result for debugging/logging purposes TODO can just set processed[state] = true, as each state is only added to worklist if it was not even discovered yet (i.e. its key is in processed) ?
                 // XTOCK(insert_processed);
                 if (state_level == 0 && processed_insert_result.second) ++processed_num_of_states_with_level_0;
+                assert(processed.contains(succ) == paths.contains(succ));
+                // if succ was not yet discovered, add it to the worklist
                 if (!processed.contains(succ)) {
                     worklist.push_back(succ);
                     ++worklist_num_of_states_added;
+                    processed[succ] = false;
                     if (succ_level == 0) {
                         ++worklist_num_of_states_with_level_0;
                         ++worklist_num_of_states_with_level_0_added;
                     }
-                }
 
-                // also set that succ was accessed from state
-                paths[succ] = {state, sp.first};
+                    // also set that succ was accessed from state
+                    paths[succ] = {state, sp.first};
+                }
             }
             // XTOCK(create_next_states);
         }
