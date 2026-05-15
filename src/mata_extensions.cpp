@@ -339,7 +339,6 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
 
     bool is_universal_lazy(const Nft& aut, const std::vector<Alphabet*> alphabets, Run* cex, int verbosityLevel, bool dfs) {
         using WorklistType = std::list<StateSet>;
-        using ProcessedType = std::unordered_map<StateSet, bool>; // store for each explored state whether it was already processed
 
         // check initial states
         if (are_disjoint(aut.initial, aut.final)) {
@@ -350,10 +349,9 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
 
         // initialize
         WorklistType worklist = { StateSet(aut.initial) };
-        ProcessedType processed = {};
-        processed[StateSet(aut.initial)] = false;
         int worklist_num_of_states_with_level_0 = 1;
-        int processed_num_of_states_with_level_0 = 1;
+        int processed_num_of_states = 0;
+        int processed_num_of_states_with_level_0 = 0;
         int worklist_num_of_states_added = 1;
         int worklist_num_of_states_with_level_0_added = 1;
         std::vector<mata::utils::OrdVector<Symbol>> alph_symbols{};
@@ -449,7 +447,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
                 // could construct_cex, by picking any possible symbol that is not locally available...but this defeats the purpose of this time optimization. What TODO?
                 logging::log(logging::VerbosityLevel::VERBOSE, logging::warning("last letter of constructed counterexample might be invalid - but there exists one that makes the counterexample end in an empty set of states."), verbosityLevel);
                 construct_cex(state, 0); // TODO !!!
-                logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+                logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed_num_of_states, worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed_num_of_states, processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
                 return false;
             }
             // XTOCK(no_missing_symbol_1);
@@ -460,7 +458,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
                     // TODO construct_cex; note that run possibly needs to be padded to end at level 0! (OR make contract that cex EITHER ends in a level 0 state that is not final OR in a trap state (at any level))
                     logging::log(logging::VerbosityLevel::VERBOSE, logging::info("constructed counterexample ends in empty set of states"), verbosityLevel);
                     construct_cex(state, symb);
-                    logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+                    logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed_num_of_states, worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed_num_of_states, processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
                     return false;
                 }
             }
@@ -475,7 +473,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
                     // TODO construct_cex; note that run possibly needs to be padded to end at level 0!
                     logging::log(logging::VerbosityLevel::VERBOSE, logging::info("constructed counterexample ends in empty set of states"), verbosityLevel);
                     construct_cex(state, sp.first);
-                    logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+                    logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed_num_of_states, worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed_num_of_states, processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
                     return false;
                 }
                 // XTOCK(next_state_empty);
@@ -485,23 +483,17 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
                 if (succ_level == 0 && !aut.final.intersects_with(succ)) {
                     logging::log(logging::VerbosityLevel::VERBOSE, logging::info("constructed counterexample is valid and ends at level 0"), verbosityLevel);
                     construct_cex(state, sp.first);
-                    logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+                    logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed_num_of_states, worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed_num_of_states, processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
                     return false;
                 }
                 // XTOCK(next_state_final);
 
                 // XTICK(insert_processed);
-                assert(processed.contains(state));
-                assert(!processed.at(state));
-                auto processed_insert_result = processed.insert(std::pair(state, true)); // store result for debugging/logging purposes TODO can just set processed[state] = true, as each state is only added to worklist if it was not even discovered yet (i.e. its key is in processed) ?
-                // XTOCK(insert_processed);
-                if (state_level == 0 && processed_insert_result.second) ++processed_num_of_states_with_level_0;
-                assert(processed.contains(succ) == paths.contains(succ));
+                assert(paths.contains(state));
                 // if succ was not yet discovered, add it to the worklist
-                if (!processed.contains(succ)) {
+                if (!paths.contains(succ)) {
                     worklist.push_back(succ);
                     ++worklist_num_of_states_added;
-                    processed[succ] = false;
                     if (succ_level == 0) {
                         ++worklist_num_of_states_with_level_0;
                         ++worklist_num_of_states_with_level_0_added;
@@ -512,6 +504,8 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
                 }
             }
             // XTOCK(create_next_states);
+            ++processed_num_of_states;
+            if (state_level == 0) ++processed_num_of_states_with_level_0;
         }
 
         // XFINISH(assertion, "assertion");
@@ -523,7 +517,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         // XFINISH(insert_processed, "inserting states into set of processed states");
         // XFINISH(create_next_states, "creating next states (total)");
 
-        logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed.size(), worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed.size(), processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+        logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed_num_of_states, worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed_num_of_states, processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
         return true;
     }
 
