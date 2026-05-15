@@ -58,7 +58,7 @@ mata::nft::Nft create_sigma_star_nft(int number_of_levels, Alphabet* alphabet = 
  * @param[out] cex Counterexample word which eventually breaks the universality
  * @return True if the automaton is universal, otherwise false. IMPORTANT: in contrast to mata's mata::nft::algorithms::is_universal_antichains, this algorithm checks only universality w.r.t. words which have the same length on each tape
  */
-bool is_universal_antichains(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex);
+bool is_universal_antichains(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
 
 /// similar to is_universal_antichains, but solves the problem by just calling inclusion algorithm to check if sigma star (length-preserving version) is included
 /// Note: this check seems to be a LOT slower than is_universal_antichains, see examples/compare_inclusion_checks.cpp. The reason might be that @param alphabets is only used to create sigma star, and for the inclusion, mata's is_included_antichains is called, which does not support tape-specific alphabets, meaning it constructs an alphabet valid for all tapes by iterating over the whole automaton

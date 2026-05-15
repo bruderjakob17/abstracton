@@ -47,9 +47,10 @@ void print_help() {
     std::cout << "\t\t--universality-alg ALG\n";
     std::cout << "\t\t\tChoose algorithm to be used for checking abstract safety. ALG can be one of:\n";
     std::cout << "\t\t\t - antichains:           use lazy construction with subsumption checking\n";
+    std::cout << "\t\t\t - antichains-bfs:       same as antichains, but using bfs for exploration\n";
     std::cout << "\t\t\t - antichains-inclusion: first reduce to inclusion problem and then use antichains (DEFAULT)\n";
     std::cout << "\t\t\t - lazy:                 use lazy construction (using dfs) without subsumption checking\n";
-    std::cout << "\t\t\t - lazy-bfs:             same as lazy-dfs, but using bfs for exploration\n";
+    std::cout << "\t\t\t - lazy-bfs:             same as lazy, but using bfs for exploration\n";
     std::cout << "\t\t\t - explicit:             explicitly construct PReach\n";
     std::cout << "\t\t\tExample: solve_dodo input.json --universality-alg antichains-inclusion\n";
     std::cout << "\t\t--measure-time\n";
@@ -119,7 +120,7 @@ int main(int argc, char** argv) {
         } else if (arg == "--exclude-empty-abstractions") {
             exclude_empty_abstractions = true;
         } else if (arg == "--universality-alg") {
-            std::vector<std::string> possibilities{"antichains", "antichains-inclusion", "lazy", "lazy-bfs", "explicit"};
+            std::vector<std::string> possibilities{"antichains", "antichains-bfs", "antichains-inclusion", "lazy", "lazy-bfs", "explicit"};
             if (i + 1 < argc &&
                     std::find(possibilities.begin(), possibilities.end(), std::string(argv[i + 1])) != possibilities.end()) {
                 universality_alg = std::string(argv[i + 1]);

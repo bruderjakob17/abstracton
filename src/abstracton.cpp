@@ -350,7 +350,7 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
         // TODO select best algorithm here...
         if (universality_alg == "lazy") {
             TICK();
-            result.push_back(mata::ext::is_universal_lazy(union2, {&concrete_alphabet, &concrete_alphabet}, &cex, verbosityLevel));
+            result.push_back(mata::ext::is_universal_lazy(union2, {&concrete_alphabet, &concrete_alphabet}, &cex, verbosityLevel, true));
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "lazy-bfs") {
             TICK();
@@ -360,12 +360,16 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
             TICK();
             result.push_back(mata::ext::is_universal_antichains_by_inclusion(union2, {&concrete_alphabet, &concrete_alphabet}, &cex));
             TOCK("checking universality using " + universality_alg + " algorithm");
+        } else if (universality_alg == "antichains-bfs") {
+            TICK();
+            result.push_back(mata::ext::is_universal_antichains(union2, {&concrete_alphabet, &concrete_alphabet}, &cex, verbosityLevel, false));
+            TOCK("checking universality using " + universality_alg + " algorithm");
         } else {
             if (universality_alg != "antichains") {
                 logging::log(logging::VerbosityLevel::VERBOSE, "WARNING: unknown universality algorithm \"" + universality_alg + "\", defaulting to antichains.", verbosityLevel);
             }
             TICK();
-            result.push_back(mata::ext::is_universal_antichains(union2, {&concrete_alphabet, &concrete_alphabet}, &cex));
+            result.push_back(mata::ext::is_universal_antichains(union2, {&concrete_alphabet, &concrete_alphabet}, &cex, verbosityLevel, true));
             TOCK("checking universality using " + universality_alg + " algorithm");
         }
 
