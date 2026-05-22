@@ -634,6 +634,135 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         return true;
     }
 
+    bool is_included_lazy(const mata::nft::Nft& smaller, const mata::nft::Nft& bigger, Run* cex, int verbosityLevel, bool dfs) {
+        using ProdStateType = std::pair<State, StateSet>;
+        using WorklistType = std::list<ProdStateType>;
+
+        // initialize
+        WorklistType worklist = {};
+        int worklist_num_of_states_with_level_0 = 0;
+        int processed_num_of_states = 0;
+        int processed_num_of_states_with_level_0 = 0;
+        int worklist_num_of_states_added = 0;
+        int worklist_num_of_states_with_level_0_added = 0;
+        // 'paths[s] == t' denotes that state 's' was accessed from state 't',
+        // 'paths[s] == s' means that 's' is an initial state
+        std::map<ProdStateType, std::pair<ProdStateType, Symbol>> paths = {};
+
+        // check initial states
+        for (const State& state_smaller : smaller.initial) {
+            if (smaller.final[state_smaller] && are_disjoint(bigger.initial, bigger.final)) {
+                if (cex != nullptr) {
+                    cex->word.clear();
+                    cex->path = {state_smaller};
+                }
+                logging::log(logging::VerbosityLevel::VERBOSE, "lazy algorithm explored only initial states - there was no final initial state.", verbosityLevel);
+                return false;
+            }
+
+            StateSet states_bigger{ bigger.initial };
+            const ProdStateType state = std::pair(state_smaller, states_bigger);
+            worklist.push_back(state);
+            paths[state] = {state, 0};
+
+            ++worklist_num_of_states_added;
+            ++worklist_num_of_states_with_level_0;
+            ++worklist_num_of_states_with_level_0_added;
+        }
+
+        auto construct_cex = [&] (const ProdStateType& last_accepting, const Symbol& symbol_to_non_accepting) {
+            if (nullptr != cex) {
+                cex->word.clear();
+                cex->word.push_back(symbol_to_non_accepting);
+                ProdStateType trav = last_accepting;
+                while (paths[trav].first != trav)
+                { // go back until initial state
+                    cex->word.push_back(paths[trav].second);
+                    trav = paths[trav].first;
+                }
+
+                std::ranges::reverse(cex->word);
+            }
+        };
+
+        auto print_summary = [&] () {
+            logging::log(logging::VerbosityLevel::VERBOSE, std::format("lazy algorithm explored {} (0-level: {}) states (processed: {} (0-level: {}), still in worklist: {} (0-level: {})), added to worklist (in total): {} (0-level: {})", worklist.size() + processed_num_of_states, worklist_num_of_states_with_level_0 + processed_num_of_states_with_level_0, processed_num_of_states, processed_num_of_states_with_level_0, worklist.size(), worklist_num_of_states_with_level_0, worklist_num_of_states_added, worklist_num_of_states_with_level_0_added), verbosityLevel);
+        };
+
+        // INIT_XCLOCK(assertion);
+
+        while (!worklist.empty()) {
+            // get a next state
+            ProdStateType state;
+
+            if (dfs) {
+                state = *worklist.rbegin();
+                worklist.pop_back();
+            } else { // BFS
+                state = *worklist.begin();
+                worklist.pop_front();
+            }
+
+            const State& state_smaller = state.first;
+            const StateSet& states_bigger = state.second;
+
+            int state_level = smaller.levels[state_smaller];
+            if (state_level == 0) --worklist_num_of_states_with_level_0;
+
+            auto check_all_same_level = [&] (const int lvl, const std::vector<State>& state_vec) -> bool {
+                for (int i{ 0 }; i < state_vec.size(); ++i) {
+                    if (bigger.levels[state_vec[i]] != lvl) {
+                        return false;
+                    }
+                }
+                return true;
+            };
+            // XTICK(assertion);
+            assert(check_all_same_level(state_level, states_bigger.to_vector()));
+            // XTOCK(assertion);
+
+            // process it
+            for (const SymbolPost& sp_smaller : smaller.delta.state_post(state_smaller)) {
+                const Symbol symb = sp_smaller.symbol;
+
+                for (const State& succ_smaller : sp_smaller.targets) {
+                    // TODO maybe speed up by moving succ_bigger outside of loop (and also all constructions not depending on succ_smaller, like whether succ_bigger contains a final state) -> may be faster if sp_smaller has >= 2 states, but slower if it has 0 states of course :)
+                    const StateSet succ_bigger = bigger.post(states_bigger, symb);
+
+                    const ProdStateType succ = std::pair(succ_smaller, succ_bigger);
+
+                    // check if succ is new
+                    if (paths.contains(succ)) {
+                        continue;
+                    }
+                    // check if we found a counterexample
+                    if (smaller.final[succ_smaller] && !bigger.final.intersects_with(succ_bigger)) {
+                        construct_cex(state, symb);
+                        print_summary();
+                        return false;
+                    }
+
+                    // add succ to worklist and paths
+                    worklist.push_back(succ);
+                    paths[succ] = {state, symb};
+                    ++worklist_num_of_states_added;
+                    if (smaller.levels[succ_smaller] == 0) {
+                        ++worklist_num_of_states_with_level_0;
+                        ++worklist_num_of_states_with_level_0_added;
+                    }
+                }
+            }
+
+            ++processed_num_of_states;
+            if (state_level == 0) ++processed_num_of_states_with_level_0;
+        }
+
+        // XFINISH(assertion, "assertion");
+
+        print_summary();
+        return true;
+    }
+
     Nft insert_tapes(const Nft& aut, const std::vector<int> inserted_tape_indices, const std::vector<Alphabet*> inserted_tape_alphabets) {
         assert(inserted_tape_indices.size() == inserted_tape_alphabets.size());
         for (int i{ 0 }; i < inserted_tape_indices.size(); ++i) {

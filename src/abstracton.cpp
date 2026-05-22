@@ -358,7 +358,18 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "antichains-inclusion") {
             TICK();
-            result.push_back(mata::ext::is_universal_antichains_by_inclusion(union2, {&concrete_alphabet, &concrete_alphabet}, &cex));
+            //TODO need not construct union2 and complement of initial-unsafe-pairs here
+            result.push_back(mata::nft::is_included(initial_unsafe_pairs, preach_complement, &cex, &concrete_alphabet));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else if (universality_alg == "lazy-inclusion") {
+            TICK();
+            //TODO need not construct union2 and complement of initial-unsafe-pairs here
+            result.push_back(mata::ext::is_included_lazy(initial_unsafe_pairs, preach_complement, &cex, verbosityLevel, true));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else if (universality_alg == "lazy-inclusion-bfs") {
+            TICK();
+            //TODO need not construct union2 and complement of initial-unsafe-pairs here
+            result.push_back(mata::ext::is_included_lazy(initial_unsafe_pairs, preach_complement, &cex, verbosityLevel, false));
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "antichains-bfs") {
             TICK();

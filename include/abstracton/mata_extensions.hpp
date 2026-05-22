@@ -67,6 +67,8 @@ bool is_universal_antichains_by_inclusion(const mata::nft::Nft& aut, const std::
 /// similar to is_universal_antichains, but do not do subsumption checks
 bool is_universal_lazy(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
 
+bool is_included_lazy(const mata::nft::Nft& smaller, const mata::nft::Nft& bigger, mata::nft::Run* cex, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
+
 /**
  * Inserts tapes to construct a new NFT. Assumes @param aut is length-preserving.
  * It is equivalent to the "relational length-preserving product" of @param aut with sigma stars specified by @param inserted_tape_alphabets, at positions @param inserted_tape_indices.
