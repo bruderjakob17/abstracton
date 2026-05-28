@@ -95,3 +95,6 @@ comparisons/*
 
 # Debug build
 Debug/
+
+# other build folders
+build_*/
