@@ -33,6 +33,9 @@ inline std::string to_string(SetInterpretation i) {
  *
  * The elements are ordered lexicographically in the string representation, making it unique.
  *
+ * NOTE: The resulting transducer works on (abstract, concrete) letters, i.e. subsets are read on the FIRST tape,
+ * while elements are read on the SECOND tape!
+ *
  * @param[in] string_alphabet The alphabet S.
  * @return A transducer for the Trap Interpretation on S, and a pointer to the constructed Alphabet for the power set of S (needs to be deconstructed eventually).
  *

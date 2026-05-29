@@ -6,7 +6,7 @@
 #include <abstracton/utils/utils.hpp>
 
 TEST_CASE( "DefaultVecAlphabet", "[DefaultVecAlphabet]" ) {
-    using namespace mata::ext;
+    using namespace mata::ext::bddlike;
 
     DefaultVecAlphabet alph = DefaultVecAlphabet(3);
     CHECK(alph.dimension == 3);
@@ -17,7 +17,7 @@ TEST_CASE( "DefaultVecAlphabet", "[DefaultVecAlphabet]" ) {
 
 TEST_CASE( "SimpleVecAlphabet", "[SimpleVecAlphabet]" ) {
     using namespace mata;
-    using namespace mata::ext;
+    using namespace mata::ext::bddlike;
     using namespace std;
 
     SECTION("EnumAlphabet") {
@@ -44,7 +44,7 @@ TEST_CASE( "SimpleVecAlphabet", "[SimpleVecAlphabet]" ) {
 
 TEST_CASE( "PowersetVecAlphabet", "[PowersetVecAlphabet]" ) {
     using namespace mata;
-    using namespace mata::ext;
+    using namespace mata::ext::bddlike;
     using namespace std;
 
     OnTheFlyAlphabet alphabet{vector<string>{"ab", "c", "d"}};
@@ -53,12 +53,12 @@ TEST_CASE( "PowersetVecAlphabet", "[PowersetVecAlphabet]" ) {
     CHECK(alph.dimension == 3);
     CHECK(alph.translate_symbol({"ab", "c"}) == vector<Symbol>{1, 1, 0});
     CHECK(alph.reverse_translate_symbol({1, 1, 0}) == vector<string>{"ab", "c"});
-    CHECK(alph.print({1, 1, 0}) == "[ab, c]");
+    CHECK(alph.print({1, 1, 0}) == "{ab, c}");
 }
 
 TEST_CASE( "BaseMSDVecAlphabet", "[BaseMSDVecAlphabet]") {
     using namespace mata;
-    using namespace mata::ext;
+    using namespace mata::ext::bddlike;
     using namespace std;
 
     BaseMSDVecAlphabet alph = BaseMSDVecAlphabet(2, 4);
@@ -85,7 +85,7 @@ TEST_CASE( "BaseMSDVecAlphabet", "[BaseMSDVecAlphabet]") {
 
 TEST_CASE( "BaseLSDVecAlphabet", "[BaseLSDVecAlphabet]") {
     using namespace mata;
-    using namespace mata::ext;
+    using namespace mata::ext::bddlike;
     using namespace std;
 
     BaseLSDVecAlphabet alph = BaseLSDVecAlphabet(2, 4);
@@ -111,7 +111,7 @@ TEST_CASE( "BaseLSDVecAlphabet", "[BaseLSDVecAlphabet]") {
 }
 
 TEST_CASE( "bddlike_nft default alphabet", "[bddlike_nft]" ) {
-    using namespace mata::ext;
+    using namespace mata::ext::bddlike;
 
     BDDlikeNft aut = BDDlikeNft::with_alphabet_sizes({2, 3});
     CHECK(aut.levels.num_of_levels == 5);

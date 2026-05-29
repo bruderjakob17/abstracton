@@ -2,6 +2,60 @@
 #include <mata/parser/re2parser.hh>
 #include <abstracton/utils/utils.hpp>
 
+TEST_CASE("vec_to_string correct", "[vec_to_string]") {
+    using namespace std;
+
+    // empty vec
+    CHECK(vec_to_string(vector<int>{}) == "[]");
+    CHECK(vec_to_string(vector<int>{}, "complicated delimiter") == "[]");
+    CHECK(vec_to_string(vector<string>{}, "complicated delimiter") == "[]");
+
+    // vec with one element
+    CHECK(vec_to_string(vector<int>{17}) == "[17]");
+    CHECK(vec_to_string(vector<int>{17}, "complicated delimiter") == "[17]");
+    CHECK(vec_to_string(vector<string>{"hello"}, "complicated delimiter") == "[hello]");
+
+    // vec with more elements
+    CHECK(vec_to_string(vector<int>{17, 23}) == "[17, 23]");
+    CHECK(vec_to_string(vector<int>{17, 23, 29}, ";") == "[17;23;29]");
+    CHECK(vec_to_string(vector<string>{"hello", "world", "how", "are", "you"}, "  ") == "[hello  world  how  are  you]");
+}
+
+TEST_CASE("vec_sum correct", "[vec_sum(const std::vector<T>&)]") {
+    using namespace std;
+
+    vector<int> v_int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    CHECK(vec_sum(v_int) == 55);
+
+    vector<long> v_long{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    CHECK(vec_sum(v_long) == 55);
+
+    vector<size_t> v_size_t{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    CHECK(vec_sum(v_size_t) == 55);
+}
+
+TEST_CASE("split correct", "[split]") {
+    using namespace std;
+
+    // "normal" case
+    CHECK(split(vector<string>{"a", "b", "c"}, vector<size_t>{1, 0, 0, 2}) == vector<vector<string>>{{"a"}, {}, {}, {"b", "c"}});
+    CHECK(split(vector<string>{"a", "b", "c"}, vector<size_t>{2, 1, 0}) == vector<vector<string>>{{"a", "b"}, {"c"}, {}});
+
+    // only one chunk
+    CHECK(split(vector<string>{"a", "b", "c"}, vector<size_t>{3}) == vector<vector<string>>{{"a", "b", "c"}});
+
+    // empty vector, one chunk
+    CHECK(split(vector<string>{}, vector<size_t>{0}) == vector<vector<string>>{{}});
+
+    // empty vector, no chunk
+    CHECK(split(vector<string>{}, vector<size_t>{}) == vector<vector<string>>{});
+
+    // exceeding size
+    CHECK_THROWS(split(vector<string>{}, vector<size_t>{1}));
+    CHECK_THROWS(split(vector<string>{"a", "b", "c"}, vector<size_t>{1, 2, 1}));
+    CHECK_THROWS(split(vector<string>{"a", "b", "c"}, vector<size_t>{2, 2}));
+}
+
 TEST_CASE( "Bounded Tuple Iterator correct", "[BoundedTuples(std::vector<unsigned int>)]" ) {
     BoundedTuples t0(std::vector<unsigned int> {1, 2, 3});
     std::vector<std::vector<unsigned int>> t0_vec(t0.begin(), t0.end());

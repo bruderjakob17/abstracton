@@ -72,20 +72,54 @@ namespace logging {
 }
 
 template<typename T>
-std::string vec_to_string(const std::vector<T>& v, std::string delimiter = ", ") {
+std::string vec_to_string(const std::vector<T>& v, std::string separator = ", ", std::string opening = "[", std::string closing = "]") {
     if (v.empty()) {
-        return "[]";
+        return opening + closing;
     }
 
     std::string result {};
     for (int i = 0; i < v.size(); ++i) {
         result += std::to_string(v[i]);
         if (i < v.size() - 1) {
-            result += delimiter;
+            result += separator;
         }
     }
 
-    return "[" + result + "]";
+    return opening + result + closing;
+}
+
+template<typename T>
+T vec_sum(const std::vector<T>& v) {
+    T result{0};
+
+    for (T summand : v) {
+        result += summand;
+    }
+
+    return result;
+}
+
+template<typename T>
+std::vector<std::vector<T>> split(const std::vector<T>& v, const std::vector<size_t>& sizes) {
+    std::vector<std::vector<T>> result;
+    size_t current_index = 0;
+
+    // Split the vector into chunks
+    for (size_t size : sizes) {
+        if (size == 0) {
+            result.emplace_back(); // Add an empty chunk if size is 0
+            continue;
+        }
+        if (current_index + size > v.size()) {
+            throw std::invalid_argument("The sum of sizes does not match the size of the input vector.");
+        }
+        auto start = v.begin() + current_index;
+        auto end = start + size;
+        result.emplace_back(start, end);
+        current_index += size;
+    }
+
+    return result;
 }
 
 template<>

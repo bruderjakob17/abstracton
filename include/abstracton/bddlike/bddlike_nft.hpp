@@ -7,7 +7,7 @@
 #include <mata/nft/types.hh>
 #include <format>
 
-namespace mata::ext {
+namespace mata::ext::bddlike {
 
 class VecAlphabetPrinter {
 public:
@@ -124,7 +124,7 @@ public:
         return result;
     }
     std::string print(const std::vector<Symbol>& bits) override {
-        return vec_to_string(reverse_translate_symbol(bits));
+        return vec_to_string(reverse_translate_symbol(bits), ", ", "{", "}");
     }
 };
 
@@ -270,6 +270,17 @@ public:
 
         return result;
     }
+
+    /**
+     * Prints the automaton at *high-level* only, meaning it does *not* show its internal structure, but e.g. prints
+     * s -(a, [a, b])-> t
+     * if the automaton has as SimpleVecAlphabet containing a at the first tape and a PowersetVecAlphabet containing
+     * [a, b] at the second "tape".
+     *
+     * To see the internal structure, use print_to_dot().
+     */
+    void print_to_dot_using_alphabets(std::ostream &output) const;
+    std::string print_to_dot_using_alphabets() const;
 };
 
 }
