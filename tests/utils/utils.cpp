@@ -9,6 +9,8 @@ TEST_CASE("vec_to_string correct", "[vec_to_string]") {
     CHECK(vec_to_string(vector<int>{}) == "[]");
     CHECK(vec_to_string(vector<int>{}, "complicated delimiter") == "[]");
     CHECK(vec_to_string(vector<string>{}, "complicated delimiter") == "[]");
+    CHECK(vec_to_string(vector<int>{}, "complicated delimiter", "(", ")") == "()");
+    CHECK(vec_to_string(vector<int>{}, "complicated delimiter", "(|", "|)") == "(||)");
 
     // vec with one element
     CHECK(vec_to_string(vector<int>{17}) == "[17]");
@@ -54,6 +56,27 @@ TEST_CASE("split correct", "[split]") {
     CHECK_THROWS(split(vector<string>{}, vector<size_t>{1}));
     CHECK_THROWS(split(vector<string>{"a", "b", "c"}, vector<size_t>{1, 2, 1}));
     CHECK_THROWS(split(vector<string>{"a", "b", "c"}, vector<size_t>{2, 2}));
+}
+
+TEST_CASE("zip correct", "[zip]") {
+    using namespace std;
+
+    // "normal" case
+    vector<vector<string>> vec_3x2{{"a", "b"}, {"c", "d"}, {"e", "f"}};
+    vector<vector<string>> vec_2x3{{"a", "c", "e"}, {"b", "d", "f"}};
+
+    CHECK(zip(vec_3x2) == vec_2x3);
+    CHECK(zip(vec_2x3) == vec_3x2);
+
+    // not all same length
+    CHECK_THROWS(zip(vector<vector<string>>{{"a", "b"}, {"c", "d"}, {"e", "f", "g"}}));
+}
+
+TEST_CASE("flatten correct", "[flatten]") {
+    using namespace std;
+
+    vector<vector<string>> vec_3x2{{"a", "b"}, {"c", "d"}, {"e", "f"}};
+    CHECK(flatten(vec_3x2) == vector<string>{"a", "b", "c", "d", "e", "f"});
 }
 
 TEST_CASE( "Bounded Tuple Iterator correct", "[BoundedTuples(std::vector<unsigned int>)]" ) {

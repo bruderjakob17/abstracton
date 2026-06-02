@@ -36,6 +36,22 @@ public:
 
     std::vector<Symbol> operator[](const T& symbol) { return this->translate_symbol(symbol); }
 
+    std::vector<std::vector<Symbol>> translate_word(const std::vector<T>& word) {
+        std::vector<std::vector<Symbol>> result{};
+        for (const T& symbol : word) {
+            result.push_back(translate_symbol(symbol));
+        }
+        return result;
+    }
+
+    std::vector<T> reverse_translate_word(const std::vector<std::vector<Symbol>>& word) {
+        std::vector<T> result{};
+        for (const std::vector<Symbol>& symbol : word) {
+            result.push_back(reverse_translate_symbol(symbol));
+        }
+        return result;
+    }
+
     virtual ~VecAlphabet() = default;
 };
 
@@ -223,6 +239,7 @@ public:
 class BDDlikeNft : public nft::Nft {
 private:
     using super = nft::Nft;
+    using Nft::is_in_lang_by_levels;
 public:
     std::vector<size_t> alphabet_sizes;
     std::vector<std::shared_ptr<VecAlphabetPrinter>> alphabets;
@@ -240,6 +257,16 @@ public:
         utils::SparseSet<mata::nft::State> final_states = {},
         mata::nft::Levels levels = {}
     ) : Nft{ num_of_states, std::move(initial_states), std::move(final_states), std::move(levels)} {}
+
+    explicit BDDlikeNft(
+        mata::nft::Nft aut
+    ) : Nft{ std::move(aut) } {}
+
+    explicit BDDlikeNft(
+        mata::nft::Nft aut,
+        std::vector<size_t> alphabet_sizes,
+        std::vector<std::shared_ptr<VecAlphabetPrinter>> alphabets
+    ) : Nft{ std::move(aut) }, alphabet_sizes{std::move(alphabet_sizes)}, alphabets{std::move(alphabets)} {}
 
     static BDDlikeNft with_alphabet_sizes(
         std::vector<size_t> alphabet_sizes,
@@ -272,6 +299,16 @@ public:
     }
 
     /**
+     * Creates a new BDDlikeNft with one tape of dimension 1.
+     * The created alphabet is a SimpleVecAlphabet on the given alphabet (and can be cast back to it).
+     */
+    static BDDlikeNft from_nfa_with_alphabet(mata::nfa::Nfa aut, std::shared_ptr<Alphabet> alphabet) {
+        SimpleVecAlphabet alph(alphabet);
+        std::shared_ptr<VecAlphabetPrinter> alph_ptr{std::make_shared<SimpleVecAlphabet>(alph)};
+        return BDDlikeNft{Nft{aut}, std::vector<size_t>{1}, std::vector<std::shared_ptr<VecAlphabetPrinter>>{alph_ptr}};
+    }
+
+    /**
      * Prints the automaton at *high-level* only, meaning it does *not* show its internal structure, but e.g. prints
      * s -(a, [a, b])-> t
      * if the automaton has as SimpleVecAlphabet containing a at the first tape and a PowersetVecAlphabet containing
@@ -281,6 +318,15 @@ public:
      */
     void print_to_dot_using_alphabets(std::ostream &output) const;
     std::string print_to_dot_using_alphabets() const;
+    /**
+     * A "Word" is now a vector of symbol vectors, as each symbol vector represents one letter.
+     */
+    bool is_in_lang_by_levels(const std::vector<std::vector<std::vector<Symbol>>> level_words, bool match_prefix = false) const;
+
+    Nft to_nft_copy() const { return Nft{ delta, initial, final, levels }; };
+    Nft to_nft_move() { return Nft{ std::move(delta), std::move(initial), std::move(final), std::move(levels) }; }
 };
+
+BDDlikeNft minimize(const BDDlikeNft& aut);
 
 }

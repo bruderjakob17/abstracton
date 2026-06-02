@@ -26,10 +26,10 @@ namespace mata::ext::bddlike {
  * This order leads to an automaton size of Theta(|S| * |S|) instead of Theta(2 ^ |S|).
  *
  * @param[in] string_alphabet The alphabet S.
- * @return A transducer for the Trap Interpretation on S (first entry) and an interface for the superset alphabet (second entry).
+ * @return A transducer for the Trap Interpretation on S. The alphabets created are referenced to by pointers managed by the transducer.
  *
  * TODO: add to documentation siphon/flow capabilities of this function, rename function
  */
-std::pair<BDDlikeNft, PowersetVecAlphabet> trapInterpretation(std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet, enum SetInterpretation type);
+BDDlikeNft trapInterpretation(std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet, enum SetInterpretation type);
 
 }

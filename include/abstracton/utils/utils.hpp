@@ -122,6 +122,38 @@ std::vector<std::vector<T>> split(const std::vector<T>& v, const std::vector<siz
     return result;
 }
 
+template<typename T>
+std::vector<std::vector<T>> zip(const std::vector<std::vector<T>>& v) {
+    if (v.empty()) {
+        return {};
+    }
+
+    size_t v_lengths{ v[0].size() };
+    for (int i{ 1 }; i < v.size(); ++i) {
+        if (v[i].size() != v_lengths) {
+            throw std::invalid_argument("All vectors need to have the same length.");
+        }
+    }
+    std::vector<std::vector<T>> result(v_lengths);
+
+    for (int i{ 0 }; i < v_lengths; ++i) {
+        for (int j{ 0 }; j < v.size(); ++j) {
+            result[i].push_back(v[j][i]);
+        }
+    }
+
+    return result;
+}
+
+template<typename T>
+std::vector<T> flatten(const std::vector<std::vector<T>>& v) {
+    std::vector<T> result{};
+    for (const std::vector<T>& v_vec : v) {
+        result.insert(result.end(), v_vec.begin(), v_vec.end());
+    }
+    return result;
+}
+
 template<>
 struct std::hash<std::unordered_set<int>> {
     std::size_t operator()(const std::unordered_set<int>& s) const noexcept {

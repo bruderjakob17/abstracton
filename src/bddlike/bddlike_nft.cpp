@@ -1,4 +1,5 @@
 #include <abstracton/bddlike/bddlike_nft.hpp>
+#include <abstracton/mata_extensions.hpp>
 
 void mata::ext::bddlike::BDDlikeNft::print_to_dot_using_alphabets(std::ostream &output) const {
     using namespace std;
@@ -98,4 +99,23 @@ std::string mata::ext::bddlike::BDDlikeNft::print_to_dot_using_alphabets() const
     std::stringstream output;
     print_to_dot_using_alphabets(output);
     return output.str();
+}
+
+bool mata::ext::bddlike::BDDlikeNft::is_in_lang_by_levels(const std::vector<std::vector<std::vector<Symbol>>> level_words, bool match_prefix) const {
+    // split each "big symbol" into its small symbols, and collect all small symbols at the same level
+    std::vector<std::vector<std::vector<Symbol>>> rough_words{};
+    for (const std::vector<std::vector<Symbol>>& high_level_word : level_words) {
+        rough_words.push_back(zip(high_level_word));
+    }
+    std::vector<std::vector<Symbol>> flat_words{ flatten(rough_words) };
+    return super::is_in_lang_by_levels(flat_words, match_prefix);
+}
+
+mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::minimize(const mata::ext::bddlike::BDDlikeNft& aut) {
+    auto alphabet_sizes = aut.alphabet_sizes;
+    auto alphabets = aut.alphabets;
+    mata::nft::Nft aut_as_nft{ aut.to_nft_copy() };
+    mata::nft::Nft result_as_nft{mata::ext::minimize(aut_as_nft)}; // TODO move instead?
+    mata::ext::bddlike::BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
+    return result;
 }

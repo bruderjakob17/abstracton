@@ -4,18 +4,19 @@
 #include <abstracton/mata_extensions.hpp>
 #include <abstracton/bddlike/interpretations.hpp>
 
-std::pair<mata::ext::bddlike::BDDlikeNft, mata::ext::bddlike::PowersetVecAlphabet> mata::ext::bddlike::trapInterpretation(std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet, enum SetInterpretation type) {
-    using namespace mata::ext;
+mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::trapInterpretation(std::shared_ptr<mata::OnTheFlyAlphabet> mata_string_alphabet, enum SetInterpretation type) {
+    using namespace mata::ext::bddlike;
     using namespace std;
 
-    mata::utils::OrdVector<mata::Symbol> alphabet = string_alphabet->get_alphabet_symbols();
+    mata::utils::OrdVector<mata::Symbol> alphabet = mata_string_alphabet->get_alphabet_symbols();
     /*std::vector<std::string> string_alphabet_vector {};
 
     for (mata::Symbol x : alphabet) {
         string_alphabet_vector.push_back(string_alphabet->reverse_translate_symbol(x));
     }*/
 
-    PowersetVecAlphabet powerset_alphabet {string_alphabet};
+    SimpleVecAlphabet string_alphabet{mata_string_alphabet};
+    PowersetVecAlphabet powerset_alphabet{mata_string_alphabet};
 
     shared_ptr<SimpleVecAlphabet> string_alphabet_ptr = make_shared<SimpleVecAlphabet>(string_alphabet);
     shared_ptr<PowersetVecAlphabet> powerset_alphabet_ptr = make_shared<PowersetVecAlphabet>(powerset_alphabet);
@@ -58,6 +59,11 @@ std::pair<mata::ext::bddlike::BDDlikeNft, mata::ext::bddlike::PowersetVecAlphabe
         insert_transitions(states[0], states[1], true);
     }
 
+    // add q1 -H-> q1 for trap interpretation
+    if (type == Trap) {
+        insert_transitions(states[1], states[1], true);
+    }
+
     // add q -M-> q
     for (const mata::nft::State& q : states) {
         insert_transitions(q, q, false);
@@ -70,7 +76,9 @@ std::pair<mata::ext::bddlike::BDDlikeNft, mata::ext::bddlike::PowersetVecAlphabe
         result.final.insert(states[0]);
     }
 
-    return make_pair(result, powerset_alphabet);
+    BDDlikeNft result_min {minimize(result)};
+
+    return result_min;
 
     /*
     // construct automaton

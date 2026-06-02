@@ -86,12 +86,12 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
 
     Nft minimize(const Nft& nft) {
         int levels = nft.levels.num_of_levels;
-        Nfa aut {nft.to_nfa_copy()};
+        Nfa aut {nft.to_nfa_copy()}; // TODO move instead of copy?
         // TODO for mindet, brzozowski better?
         Nfa aut_det {determinize(aut)};
         aut_det = aut_det.trim();
         Nfa aut_min {mata::nfa::algorithms::minimize_hopcroft(aut_det)};
-        Nft result =  mata::nft::builder::from_nfa_with_levels_advancing(aut_min, levels);
+        Nft result = mata::nft::builder::from_nfa_with_levels_advancing(aut_min, levels);
         result.alphabet = nft.alphabet;
         result.alphabets = nft.alphabets;
         return result;

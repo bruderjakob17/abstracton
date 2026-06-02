@@ -54,6 +54,12 @@ TEST_CASE( "PowersetVecAlphabet", "[PowersetVecAlphabet]" ) {
     CHECK(alph.translate_symbol({"ab", "c"}) == vector<Symbol>{1, 1, 0});
     CHECK(alph.reverse_translate_symbol({1, 1, 0}) == vector<string>{"ab", "c"});
     CHECK(alph.print({1, 1, 0}) == "{ab, c}");
+    CHECK(alph.translate_word({}) == vector<vector<Symbol>>{});
+    CHECK(alph.translate_word({{"ab", "c"}}) == vector<vector<Symbol>>{{1, 1, 0}});
+    CHECK(alph.translate_word({{"ab", "c"}, {"ab", "c"}, {}, {"c", "d"}, {"ab", "c", "d"}}) ==
+            vector<vector<Symbol>>{{1, 1, 0}, {1, 1, 0}, {0, 0, 0}, {0, 1, 1}, {1, 1, 1}});
+    CHECK(alph.reverse_translate_word({{1, 1, 0}, {1, 1, 0}, {0, 0, 0}, {0, 1, 1}, {1, 1, 1}}) ==
+            vector<vector<string>>{{"ab", "c"}, {"ab", "c"}, {}, {"c", "d"}, {"ab", "c", "d"}});
 }
 
 TEST_CASE( "BaseMSDVecAlphabet", "[BaseMSDVecAlphabet]") {
