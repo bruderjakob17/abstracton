@@ -157,8 +157,10 @@ mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::compose(BDDlikeNft& lhs, BDDl
             if (rhs_sync_high_levels.contains(j)) {
                 // here, one could assert that the i-th alphabet of lhs is the same as the j-th alphabet of rhs
                 assert(lhs.alphabet_sizes[i] == rhs.alphabet_sizes[j]);
-                alphabet_sizes.push_back(lhs.alphabet_sizes[i]);
-                alphabets.push_back(lhs.alphabets[i]);
+                if (!project_out_sync_levels) {
+                    alphabet_sizes.push_back(lhs.alphabet_sizes[i]);
+                    alphabets.push_back(lhs.alphabets[i]);
+                }
                 ++i;
                 ++j;
             } else {
