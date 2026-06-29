@@ -10,7 +10,9 @@
  * the order of tapes in the abstraction framework must be (abstract, concrete).
  * TODO maybe switch to (concrete, abstract) ? this might perform better for set interpretations in bddlike nfts
  */
+mata::nfa::Nfa compute_ind_new(const mata::nft::Nft& abstraction_framework, const mata::nft::Nft& transition_relation, mata::Alphabet& concrete_alphabet, mata::Alphabet& abstract_alphabet, bool exclude_empty_abstractions = false, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool measure_time = false, bool no_dot_printing = false);
 mata::nfa::Nfa compute_ind(const mata::nft::Nft& abstraction_framework, const mata::nft::Nft& transition_relation, mata::Alphabet& concrete_alphabet, mata::Alphabet& abstract_alphabet, bool exclude_empty_abstractions = false, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool measure_time = false, bool no_dot_printing = false);
+mata::nfa::Nfa compute_ind_old(const mata::nft::Nft& abstraction_framework, const mata::nft::Nft& transition_relation, mata::Alphabet& concrete_alphabet, mata::Alphabet& abstract_alphabet, bool exclude_empty_abstractions = false, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool measure_time = false, bool no_dot_printing = false);
 
 // input: DETERMINISTIC abstraction framework!
 mata::nft::Nft compute_preach_complement(const mata::nft::Nft& abstraction_framework, const mata::nft::Nft& transition_relation, mata::Alphabet& concrete_alphabet, mata::Alphabet& abstract_alphabet, std::optional<const mata::nfa::Nfa> ind, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool measure_time = false, bool no_dot_printing = false);

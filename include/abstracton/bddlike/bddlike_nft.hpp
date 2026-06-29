@@ -1,6 +1,7 @@
 #pragma once
 
 #include <mata/alphabet.hh>
+#include <mata/nfa/nfa.hh>
 #include <mata/nft/nft.hh>
 #include <mata/nft/delta.hh>
 #include <abstracton/utils/utils.hpp>
@@ -241,7 +242,9 @@ private:
     using super = nft::Nft;
     using Nft::is_in_lang_by_levels;
 public:
-    std::vector<size_t> alphabet_sizes;
+    std::vector<size_t> alphabet_sizes; // TODO rename to alphabet_dimensions, TODO add number of alphabets as maintained member
+    std::vector<size_t> high_levels; // maps an internal level to the correct "high level".
+    std::vector<size_t> alphabet_sizes_prefixsums;
     std::vector<std::shared_ptr<VecAlphabetPrinter>> alphabets;
 
     explicit BDDlikeNft(
@@ -325,8 +328,45 @@ public:
 
     Nft to_nft_copy() const { return Nft{ delta, initial, final, levels }; };
     Nft to_nft_move() { return Nft{ std::move(delta), std::move(initial), std::move(final), std::move(levels) }; }
+
+    /**
+     * Initializes high_levels and alphabet_sizes_prefixsums vector, if uninitialized.
+     */
+    void initialize_maintained_metadata() {
+        if (high_levels.empty()) {
+            high_levels = std::vector<size_t>(levels.num_of_levels, 0);
+            alphabet_sizes_prefixsums = std::vector<size_t>(alphabet_sizes.size(), 0);
+            int levels_seen = 0;
+            for (int i = 0; i < alphabet_sizes.size(); ++i) {
+                for (int j = 0; j < alphabet_sizes[i]; ++j) {
+                    high_levels[levels_seen + j] = alphabet_sizes[i];
+                }
+                alphabet_sizes_prefixsums[i] = levels_seen;
+                levels_seen += alphabet_sizes[i];
+            }
+        }
+    }
+    size_t get_high_level(size_t internal_level) {
+        initialize_maintained_metadata();
+        assert(internal_level < levels.num_of_levels);
+        return high_levels[internal_level];
+    }
+
+    std::vector<size_t> get_internal_levels(size_t high_level) {
+        initialize_maintained_metadata();
+        assert(high_level < alphabet_sizes.size());
+        std::vector<size_t> result(alphabet_sizes[high_level], 0);
+        for (int i = 0; i < alphabet_sizes[high_level]; ++i) {
+            result[i] = alphabet_sizes_prefixsums[high_level] + i;
+        }
+        return result;
+    }
 };
 
 BDDlikeNft minimize(const BDDlikeNft& aut);
+BDDlikeNft compose(BDDlikeNft& lhs, BDDlikeNft& rhs,
+            const utils::OrdVector<mata::nft::Level>& lhs_sync_high_levels, const utils::OrdVector<mata::nft::Level>& rhs_sync_high_levels,
+            bool project_out_sync_levels = true,
+            mata::nft::JumpMode jump_mode = mata::nft::JumpMode::RepeatSymbol);
 
 }

@@ -23,6 +23,75 @@ using namespace mata;
 using namespace mata::nfa;
 using namespace mata::nft;
 
+/// uses the fact that pi(Id cap (V delta V_comp_inv)) = pi_1((V delta) cap V_comp)
+Nfa compute_ind_new(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time, bool no_dot_printing) {
+    INIT_CLOCKS();
+
+    using namespace std;
+    using namespace mata::utils;
+
+    TICK();
+    Nft v_delta {compose(abstraction_framework, transition_relation)};
+    TOCK("computing composition v_delta of abstraction framework and transition relation");
+    PRINT_AUT("V o ->", v_delta);
+
+    TICK();
+    v_delta = mata::nft::reduce(v_delta);
+    TOCK("reducing V o ->");
+    PRINT_AUT("reduce(V o ->)", v_delta);
+
+    std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
+    TICK();
+    Nft v_complement {mata::ext::complement(abstraction_framework, nullptr, std::make_optional<std::vector<Alphabet*>>(alphabets), true)};
+    TOCK("computing complement v_complement of abstraction framework");
+    PRINT_AUT("complement(V)", v_complement);
+
+    TICK()
+    v_complement = mata::ext::minimize(v_complement);
+    TOCK("minimizing complement(V)");
+    PRINT_AUT("min(complement(V))", v_complement);
+
+    TICK();
+    Nft preprojection {mata::nft::intersection(v_delta, v_complement)};
+    TOCK("computing intersection 'preprojection' of v_delta and v_complement");
+    PRINT_AUT("preprojection", preprojection);
+
+    TICK();
+    Nfa projection{ project(preprojection, 0) };
+    TOCK("computing complement of ind (i.e. projecting preprojection onto first tape)");
+    PRINT_AUT("complement(ind)", projection);
+
+    TICK();
+    projection = minimize_nfa(projection);
+    TOCK("minimizing projection");
+    PRINT_AUT("min(projection)", projection);
+
+    TICK();
+    Nfa ind{ mata::nfa::complement(projection, abstract_alphabet) };
+    TOCK("computing ind");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("ind has {} states", ind.num_of_states()), verbosityLevel);
+    TICK();
+    ind = minimize_nfa(ind);
+    TOCK("minimizing ind");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized ind has {} states", ind.num_of_states()), verbosityLevel);
+    if (exclude_empty_abstractions) {
+        // intersect with pi_1(V)
+        logging::log(logging::VerbosityLevel::DEBUGV, "ind with empty abstractions:", verbosityLevel);
+        logging::logexp(logging::VerbosityLevel::DEBUGV, [&]() { return ind.print_to_dot(); }, verbosityLevel);
+        TICK();
+        auto result = mata::nfa::intersection(ind, project(abstraction_framework, 0));
+        TOCK("excluding empty abstractions");
+        logging::log(logging::VerbosityLevel::VERBOSE, std::format("ind without empty abstractions has {} states", result.num_of_states()), verbosityLevel);
+        TICK();
+        result = minimize_nfa(result);
+        TOCK("minimizing ind without empty abstractions");
+        logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized ind without empty abstractions has {} states", result.num_of_states()), verbosityLevel);
+        return result;
+    } else {
+        return ind;
+    }
+}
+
 /// previous function: compute_ind_old
 /// this function improves upon the old implementation by explicitly constructing the product, instead of constructing a sequence of products
 Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time, bool no_dot_printing) {
@@ -155,88 +224,50 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
 // input: DETERMINISTIC abstraction framework!
 // TODO convert output to debug output
 // TODO exclude all a where V(a) = emptyset (optional, but nicer...)
-Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time) {
+Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     // project_1(Id intersect (V delta complement(inverse(V)))), then complement
     INIT_CLOCKS();
     TICK();
     Nft v_delta {compose(abstraction_framework, transition_relation)};
     TOCK("computing composition v_delta of abstraction framework and transition relation");
-    logging::log(logging::VerbosityLevel::VERBOSE, std::format("v_delta has {} states (0-level: {})", v_delta.num_of_states(), v_delta.num_of_states_with_level(0)), verbosityLevel);
-    // TICK();
-    // v_delta = mata::nft::reduce(v_delta);
-    // TOCK("reducing v_delta");
-    // logging::log(logging::VerbosityLevel::VERBOSE, std::format("reduced v_delta has {} states (0-level: {})", v_delta.num_of_states(), v_delta.num_of_states_with_level(0)), verbosityLevel);
+    PRINT_AUT("v_delta", v_delta);
 
-    if (v_delta.levels.num_of_levels != 2) {
-        std::cout << "compose function of nfts with ";
-        std::cout << abstraction_framework.levels.num_of_levels;
-        std::cout << ", ";
-        std::cout << transition_relation.levels.num_of_levels;
-        std::cout << " levels returned nft with ";
-        std::cout << v_delta.levels.num_of_levels;
-        std::cout << " levels." << std::endl;
-        if (v_delta.is_lang_empty()) {
-            std::cout << "language of nft result is empty.\n";
-            // complement of ind is empty, ind is sigma star
-            Nfa ind{ mata::nfa::builder::create_sigma_star_nfa(&abstract_alphabet) };
-            std::cout << "sigma star nfa:\n";
-            std::cout << ind.print_to_dot() << std::endl;
-            if (exclude_empty_abstractions) {
-                // intersect with pi_1(V)
-                return mata::nfa::intersection(ind, project(abstraction_framework, 0));
-            } else {
-                return ind;
-            }
-
-        } else {
-            std::cout << "language of nft result is not empty. Don't know what to do. Please inspect result NFT.\n";
-            throw 2;
-        }
-    }
+    TICK();
+    v_delta = mata::nft::reduce(v_delta);
+    TOCK("reducing v_delta");
+    PRINT_AUT("reduce(v_delta)", v_delta);
 
     std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
     TICK();
     Nft v_complement {mata::ext::complement(abstraction_framework, nullptr, std::make_optional<std::vector<Alphabet*>>(alphabets), true)};
     TOCK("computing complement v_complement of abstraction framework");
-    logging::log(logging::VerbosityLevel::VERBOSE, std::format("v_complement has {} states (0-level: {})", v_complement.num_of_states(), v_complement.num_of_states_with_level(0)), verbosityLevel);
-    logging::log(logging::VerbosityLevel::DEBUGV, "complement of abstraction framework:", verbosityLevel);
-    logging::logexp(logging::VerbosityLevel::DEBUGV, [&]() { return v_complement.print_to_dot(); }, verbosityLevel);
-    // TICK();
-    // v_complement = mata::ext::minimize(v_complement);
-    // TOCK("minimizing v_complement");
-    // logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized v_complement has {} states (0-level: {})", v_complement.num_of_states(), v_complement.num_of_states_with_level(0)), verbosityLevel);
+    PRINT_AUT("v_complement", v_complement);
+
+    TICK()
+    v_complement = mata::ext::minimize(v_complement);
+    TOCK("minimizing complement(V)");
+    PRINT_AUT("min(complement(V))", v_complement);
 
     TICK();
     Nft product1 {compose(v_delta, v_complement, 1, 1)};
     TOCK("computing product product1 of v_delta with v_complement");
-    logging::log(logging::VerbosityLevel::VERBOSE, std::format("product1 has {} states (0-level: {})", product1.num_of_states(), product1.num_of_states_with_level(0)), verbosityLevel);
-    // TICK();
-    // product1 = mata::nft::reduce(product1);
-    // TOCK("reducing product1");
-    // logging::log(logging::VerbosityLevel::VERBOSE, std::format("reduced product1 has {} states (0-level: {})", product1.num_of_states(), product1.num_of_states_with_level(0)), verbosityLevel);
-    if (product1.levels.num_of_levels != 2) {
-        std::cout << "nft result of composition does not have 2 levels, need to handle.";
-        throw 2;
-    }
+    PRINT_AUT("product1", product1);
 
     product1.alphabet = &abstract_alphabet;
     TICK();
     Nft preprojection {mata::nft::intersection(create_identity(abstract_alphabet), product1)};
     TOCK("computing identity on complement of ind (preprojection)");
-    logging::log(logging::VerbosityLevel::VERBOSE, std::format("preprojection has {} states (0-level: {})", preprojection.num_of_states(), preprojection.num_of_states_with_level(0)), verbosityLevel);
-    // TICK();
-    // preprojection = mata::nft::reduce(preprojection);
-    // TOCK("reducing preprojection");
-    // logging::log(logging::VerbosityLevel::VERBOSE, std::format("reduced preprojection has {} states (0-level: {})", preprojection.num_of_states(), preprojection.num_of_states_with_level(0)), verbosityLevel);
+    PRINT_AUT("preprojection", preprojection);
 
     TICK();
     Nfa projection{ project(preprojection, 0) };
     TOCK("computing complement of ind (i.e. projecting preprojection onto one tape)");
-    logging::log(logging::VerbosityLevel::VERBOSE, std::format("complement of ind has {} states", projection.num_of_states()), verbosityLevel);
-    // TICK();
-    // projection = minimize_nfa(projection);
-    // TOCK("minimizing projection");
-    // logging::log(logging::VerbosityLevel::VERBOSE, std::format("minimized complement of ind has {} states", projection.num_of_states()), verbosityLevel);
+    PRINT_AUT("projection", projection);
+
+    TICK();
+    projection = minimize_nfa(projection);
+    TOCK("minimizing projection");
+    PRINT_AUT("min(projection)", projection);
 
     TICK();
     Nfa ind{ mata::nfa::complement(projection, abstract_alphabet) };

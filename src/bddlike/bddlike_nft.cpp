@@ -119,3 +119,61 @@ mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::minimize(const mata::ext::bdd
     mata::ext::bddlike::BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
     return result;
 }
+
+mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::compose(BDDlikeNft& lhs, BDDlikeNft& rhs,
+            const utils::OrdVector<mata::nft::Level>& lhs_sync_high_levels, const utils::OrdVector<mata::nft::Level>& rhs_sync_high_levels,
+            bool project_out_sync_levels,
+            mata::nft::JumpMode jump_mode) {
+    // map get_internal_levels to input high levels, then flatten them
+    utils::OrdVector<mata::nft::Level> lhs_sync_levels{};
+    for (const mata::nft::Level& lhs_high_lvl : lhs_sync_high_levels) {
+        // append internal levels of high level lhs_sync_high_levels[i] to lhs_sync_levels
+        for (size_t lhs_internal_lvl : lhs.get_internal_levels(lhs_high_lvl)) {
+            lhs_sync_levels.insert(lhs_internal_lvl);
+        }
+        // lhs_sync_levels.insert(mata::utils::OrdVector(lhs.get_internal_levels(lhs_lvl)));
+    }
+    //utils::OrdVector<mata::nft::Level> lhs_sync_levels = flatten(lhs_sync_high_levels | std::views::transform(lhs.get_internal_levels) | std::ranges::to<std::vector>());
+
+    utils::OrdVector<mata::nft::Level> rhs_sync_levels{};
+    for (const mata::nft::Level& rhs_high_lvl : rhs_sync_high_levels) {
+        // append internal levels of high level rhs_sync_high_levels[i] to rhs_sync_levels
+        for (size_t rhs_internal_lvl : rhs.get_internal_levels(rhs_high_lvl)) {
+            rhs_sync_levels.insert(rhs_internal_lvl);
+        }
+        // rhs_sync_levels.insert(mata::utils::OrdVector(rhs.get_internal_levels(rhs_lvl)));
+    }
+
+    // call compose function of Nft
+    mata::nft::Nft result_as_nft{mata::nft::compose(lhs.to_nft_copy(), rhs.to_nft_copy(), lhs_sync_levels, rhs_sync_levels, project_out_sync_levels, jump_mode)};
+
+    // create alphabet_sizes and alphabets vector to assemble bddlikenft
+    std::vector<size_t> alphabet_sizes{};
+    std::vector<std::shared_ptr<VecAlphabetPrinter>> alphabets{};
+    size_t i = 0;
+    size_t j = 0;
+    while (i < lhs.alphabet_sizes.size() || j < rhs.alphabet_sizes.size()) {
+        if (lhs_sync_high_levels.contains(i)) {
+            if (rhs_sync_high_levels.contains(j)) {
+                // here, one could assert that the i-th alphabet of lhs is the same as the j-th alphabet of rhs
+                assert(lhs.alphabet_sizes[i] == rhs.alphabet_sizes[j]);
+                alphabet_sizes.push_back(lhs.alphabet_sizes[i]);
+                alphabets.push_back(lhs.alphabets[i]);
+                ++i;
+                ++j;
+            } else {
+                alphabet_sizes.push_back(rhs.alphabet_sizes[j]);
+                alphabets.push_back(rhs.alphabets[j]);
+                ++j;
+            }
+        } else {
+            alphabet_sizes.push_back(lhs.alphabet_sizes[i]);
+            alphabets.push_back(lhs.alphabets[i]);
+            ++i;
+        }
+    }
+
+    mata::ext::bddlike::BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
+
+    return result;
+}
