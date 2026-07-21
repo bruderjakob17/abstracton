@@ -40,8 +40,7 @@ compare_programs = function(df, ...) {
     labs(
       x = "Program 1 runtime",
       y = "Program 2 runtime"
-    ) +
-    theme_bw()
+    )
   
   # top bar:
   # program 2 timed out (y = NA)
@@ -49,13 +48,9 @@ compare_programs = function(df, ...) {
   p_top <- ggplot(t2_timeout %>% mutate(timeout = factor("timeout")), mapping = aes(x = time_p1, y = timeout, !!!extra_aes)) +
     geom_point(alpha = 0.7) +
     scale_x_log10(limits = lims) +
-    theme_bw() +
-    labs(x = NULL, y = NULL) +
-    theme(
-      axis.text.x = element_blank(),
-      axis.ticks.x = element_blank(),
-      #axis.text.y = element_blank(),
-      axis.ticks.y = element_blank()
+    labs(
+      x = "Program 1 runtime",
+      y = "Program 2 runtime"
     )
   
   # right bar:
@@ -64,43 +59,40 @@ compare_programs = function(df, ...) {
   p_right <- ggplot(t1_timeout %>% mutate(timeout = factor("timeout")), aes(y = time_p2, x = timeout, !!!extra_aes)) +
     geom_point(alpha = 0.7) +
     scale_y_log10(limits = lims) +
-    # coord_flip() +
-    labs(x = NULL, y = NULL) +
-    theme_bw() +
-    theme(
-      axis.text.y = element_blank(),
-      axis.ticks.y = element_blank(),
-      # axis.text.x = element_blank(),
-      axis.ticks.x = element_blank()
+    labs(
+      x = "Program 1 runtime",
+      y = "Program 2 runtime"
     )
   
   # empty corner
   p_empty <- ggplot(t1_t2_timeout %>% mutate(timeout_x = factor("timeout"), timeout_y = factor("timeout")),
                     aes(x = timeout_x, y = timeout_y, !!!extra_aes)) +
     geom_jitter(alpha = 0.7) +
-    labs(x = NULL, y = NULL) +
-    theme_bw() +
-    theme(
-      axis.text.y = element_blank(),
-      axis.ticks.y = element_blank(),
-      axis.text.x = element_blank(),
-      axis.ticks.x = element_blank()
+    labs(
+      x = "Program 1 runtime",
+      y = "Program 2 runtime"
     )
   
-  return ((p_top + p_empty) /
-    (p_main + p_right) +
+  return (((p_top + p_empty) /
+    (p_main + p_right)) +
     plot_layout(
       widths = c(5, 1),
       heights = c(1, 5),
-      guides = "collect"
-    ))
+      guides = "collect",
+      axis_titles = "collect"
+    )) +
+    labs(x = "asdf", y = "asdf")
 }
 
 # compare data produced by running parse-results-oneshot.py on output log in results/raw/
 join_results <- function(df1, df2) {
-  return (full_join(df1, df2, by = join_by(name, property, interpretation), suffix = c("_p1", "_p2")))
+  # alphabet_sizes <- read_csv("metadata/alphabet-sizes.csv", col_names = c("name", "alphabet_size"))
+  join_without_metadata <- full_join(df1, df2, by = join_by(name, property, interpretation), suffix = c("_p1", "_p2"))
+  # join_with_metadata <- left_join(join_without_metadata, alphabet_sizes, by = join_by(name))
+  return (join_without_metadata)
 }
 compare_processed_data <- function(df1, df2, ...) {
   joined <- join_results(df1, df2)
   return (compare_programs(joined, ...))
 }
+
