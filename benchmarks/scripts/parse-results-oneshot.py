@@ -6,8 +6,8 @@ benchmarks_folder = "benchmarks/dodo"
 benchmarks_suffix = "json"
 results_folder = pathlib.Path(__file__).parent / "results"
 
-mata_infile = results_folder / "raw" / "results_for_dodo_comparison_lazy_bfs_worklist_fix.log"
-csv_output_path = results_folder / "oneshot_comparison_mata_lazy_bfs_worklist_fix.csv"
+mata_infile = results_folder / "raw" / "results_for_dodo_comparison_lazy_inclusion_bfs.log"
+csv_output_path = results_folder / "oneshot_comparison_mata_lazy_inclusion_bfs.csv"
 
 def line_to_min_sec(s):
     s1 = s.split("m")
@@ -59,7 +59,7 @@ def parse_raw_bench(f):
                         s = s - 60.0
                     if "output" not in instance:
                         instance["output"] = "TIMEOUT"
-                    else:
+                    elif instance["output"] != "OOM":
                         instance["time"] = "{:.3f}".format(60*m + s)
                 elif "Killed" in lines[j]:
                     instance["output"] = "OOM"
