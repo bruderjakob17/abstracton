@@ -111,7 +111,7 @@ TEST_CASE("Nft complement", "[mata::ext::complement]") {
     aut.add_transition(2, {0, 0}, 3);
 
     SECTION("Min during det") {
-        Nft comp {mata::ext::complement(aut, nullptr, std::nullopt, true)};
+        Nft comp {mata::ext::complement(aut, nullptr, true)};
 
         for (int k { 0 }; k <= 3; ++k) {
             // create vector filled with 2k 2s
@@ -133,7 +133,7 @@ TEST_CASE("Nft complement", "[mata::ext::complement]") {
     }
 
     SECTION("Only det") {
-        Nft comp {mata::ext::complement(aut, nullptr, std::nullopt, false)};
+        Nft comp {mata::ext::complement(aut, nullptr, false)};
 
         for (int k { 0 }; k <= 3; ++k) {
             // create vector filled with 2k 2s
@@ -161,9 +161,10 @@ TEST_CASE("Nft complement", "[mata::ext::complement]") {
         std::cout << empty.print_to_dot() << std::endl;
 
         EnumAlphabet alph {0, 1};
+        AlphabetLevels alph_levels({&alph}, AlphabetLevels::Mode::Global);
 
-        Nft univ1 {mata::ext::complement(empty, &alph, std::nullopt, true)};
-        Nft univ2 {mata::ext::complement(empty, &alph, std::nullopt, false)};
+        Nft univ1 {mata::ext::complement(empty, &alph_levels, true)};
+        Nft univ2 {mata::ext::complement(empty, &alph_levels, false)};
 
         std::cout << "result (with minimization):" << std::endl;
         std::cout << univ1.print_to_dot() << std::endl;
@@ -204,6 +205,14 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
     using namespace mata;
     using namespace mata::nft;
 
+    EnumAlphabet ab_alphabet = {'a', 'b'};
+    EnumAlphabet ac_alphabet = {'a', 'c'};
+
+    AlphabetLevels ab_alphabet_levels(&ab_alphabet);
+    AlphabetLevels ab_alphabet_levels_multilevel({&ab_alphabet}, AlphabetLevels::Mode::MultiLevel);
+    AlphabetLevels ab_ac_alphabet_levels({&ab_alphabet, &ac_alphabet});
+    AlphabetLevels ab_ac_ab_alphabet_levels({&ab_alphabet, &ac_alphabet, &ab_alphabet});
+
     // TODO: mata is buggy with 0 tapes...
     // SECTION("0 tapes") {
     //     Nft nft0 = mata::ext::create_sigma_star_nft(0);
@@ -220,8 +229,7 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
     //     REQUIRE(nft.is_in_lang({'a', 'b'}));
     // }
     SECTION("1 tape, generic alphabet") {
-        EnumAlphabet alphabet = {'a', 'b'};
-        Nft nft = mata::ext::create_sigma_star_nft(1, &alphabet, std::nullopt);
+        Nft nft = mata::ext::create_sigma_star_nft(1, &ab_alphabet_levels);
         REQUIRE(nft.is_in_lang(Word {}));
         REQUIRE(nft.is_in_lang({'a'}));
         REQUIRE(nft.is_in_lang({'b'}));
@@ -230,19 +238,7 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
         REQUIRE(!nft.is_in_lang({'a', 'c'}));
     }
     SECTION("1 tape, specific alphabet") {
-        EnumAlphabet alphabet = {'a', 'b'};
-        Nft nft = mata::ext::create_sigma_star_nft(1, nullptr, std::make_optional(std::vector<Alphabet*>{&alphabet}));
-        REQUIRE(nft.is_in_lang(Word {}));
-        REQUIRE(nft.is_in_lang({'a'}));
-        REQUIRE(nft.is_in_lang({'b'}));
-        REQUIRE(!nft.is_in_lang({'c'}));
-        REQUIRE(nft.is_in_lang({'a', 'b'}));
-        REQUIRE(!nft.is_in_lang({'a', 'c'}));
-    }
-    SECTION("1 tape, generic and specific alphabet") {
-        EnumAlphabet generic_alphabet = {'a', 'b', 'c'};
-        EnumAlphabet specific_alphabet = {'a', 'b'};
-        Nft nft = mata::ext::create_sigma_star_nft(1, &generic_alphabet, std::make_optional(std::vector<Alphabet*>{&specific_alphabet}));
+        Nft nft = mata::ext::create_sigma_star_nft(1, &ab_alphabet_levels_multilevel);
         REQUIRE(nft.is_in_lang(Word {}));
         REQUIRE(nft.is_in_lang({'a'}));
         REQUIRE(nft.is_in_lang({'b'}));
@@ -251,8 +247,7 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
         REQUIRE(!nft.is_in_lang({'a', 'c'}));
     }
     SECTION("2 tapes, generic alphabet") {
-        EnumAlphabet alphabet = {'a', 'b'};
-        Nft nft = mata::ext::create_sigma_star_nft(2, &alphabet, std::nullopt);
+        Nft nft = mata::ext::create_sigma_star_nft(2, &ab_alphabet_levels);
         REQUIRE(nft.is_in_lang(Word {}));
         // REQUIRE(!nft.is_in_lang({'a'}));
         // REQUIRE(!nft.is_in_lang({'b'}));
@@ -263,10 +258,7 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
         REQUIRE(nft.is_in_lang({'a', 'b', 'b', 'b'}));
     }
     SECTION("2 tapes, specific alphabets") {
-        EnumAlphabet alphabet1 = {'a', 'b'};
-        EnumAlphabet alphabet2 = {'a', 'c'};
-
-        Nft nft = mata::ext::create_sigma_star_nft(2, nullptr, std::make_optional(std::vector<Alphabet*>{&alphabet1, &alphabet2}));
+        Nft nft = mata::ext::create_sigma_star_nft(2, &ab_ac_alphabet_levels);
 
         REQUIRE(nft.is_in_lang(Word {}));
         // REQUIRE(!nft.is_in_lang({'a'}));
@@ -283,35 +275,24 @@ TEST_CASE("Create Sigma Star NFT", "[mata::ext::create_sigma_star_nft]") {
         REQUIRE(!nft.is_in_lang({'a', 'b', 'a', 'c'}));
         REQUIRE(nft.is_in_lang({'a', 'a', 'b', 'c'}));
     }
-    SECTION("2 tapes, generic and specific alphabet") {
-        EnumAlphabet alphabet1 = {'a', 'b'};
-        EnumAlphabet alphabet2 = {'a', 'c'};
-
-        Nft nft = mata::ext::create_sigma_star_nft(2, &alphabet1, std::make_optional(std::vector<Alphabet*>{nullptr, &alphabet2}));
-
-        REQUIRE(nft.is_in_lang(Word {}));
-        // REQUIRE(!nft.is_in_lang({'a'})); // recent mata version throws error when words are checked that have a length which is not a multiple of the number of levels of the nft
-
-        REQUIRE(nft.is_in_lang({'a', 'a'}));
-        REQUIRE(nft.is_in_lang({'b', 'a'}));
-        REQUIRE(nft.is_in_lang({'a', 'c'}));
-        REQUIRE(nft.is_in_lang({'b', 'c'}));
-
-        REQUIRE(!nft.is_in_lang({'c', 'a'}));
-        REQUIRE(!nft.is_in_lang({'a', 'b'}));
-        REQUIRE(!nft.is_in_lang({'c', 'b'}));
-
-        REQUIRE(!nft.is_in_lang({'a', 'b', 'a', 'c'}));
-        REQUIRE(nft.is_in_lang({'a', 'a', 'b', 'c'}));
-    }
-    SECTION("3 tapes, generic and specific alphabets, compare with complement of EMPTYSET") {
-        EnumAlphabet alphabet1 = {'a', 'b'};
-        EnumAlphabet alphabet2 = {'a', 'c'};
-
-        Nft nft = mata::ext::create_sigma_star_nft(3, &alphabet1, std::make_optional(std::vector<Alphabet*>{nullptr, &alphabet2, nullptr}));
+    SECTION("3 tapes, generic alphabet, compare with complement of EMPTYSET") {
+        Nft nft = mata::ext::create_sigma_star_nft(3, &ab_alphabet_levels);
 
         Nft empty = Nft::with_levels(3);
-        Nft univ = mata::ext::complement(empty, &alphabet1, std::make_optional(std::vector<Alphabet*>{nullptr, &alphabet2, nullptr}));
+        Nft univ = mata::ext::complement(empty, &ab_alphabet_levels);
+
+        std::cout << "create_sigma_star_nft output:\n";
+        std::cout << nft.print_to_dot(true) << std::endl;
+        std::cout << "complementing empty nft:\n";
+        std::cout << univ.print_to_dot(true) << std::endl;
+
+        REQUIRE(mata::nft::are_equivalent(nft, univ));
+    }
+    SECTION("3 tapes, specific alphabets, compare with complement of EMPTYSET") {
+        Nft nft = mata::ext::create_sigma_star_nft(3, &ab_ac_ab_alphabet_levels);
+
+        Nft empty = Nft::with_levels(3);
+        Nft univ = mata::ext::complement(empty, &ab_ac_ab_alphabet_levels);
 
         std::cout << "create_sigma_star_nft output:\n";
         std::cout << nft.print_to_dot(true) << std::endl;
@@ -333,9 +314,10 @@ TEST_CASE("Complement of empty NFT is Sigma Star") {
         std::cout << empty.print_to_dot() << std::endl;
 
         EnumAlphabet alph {0, 1};
+        AlphabetLevels alph_levels(&alph);
 
-        Nft univ1 {mata::ext::complement(empty, &alph, std::nullopt, true)};
-        Nft univ2 {mata::ext::complement(empty, &alph, std::nullopt, false)};
+        Nft univ1 {mata::ext::complement(empty, &alph_levels, true)};
+        Nft univ2 {mata::ext::complement(empty, &alph_levels, false)};
 
         std::cout << "result (with minimization):" << std::endl;
         std::cout << univ1.print_to_dot() << std::endl;
@@ -343,14 +325,16 @@ TEST_CASE("Complement of empty NFT is Sigma Star") {
         std::cout << univ2.print_to_dot() << std::endl;
 
         // check univ1
-        REQUIRE(mata::nft::are_equivalent(univ1, mata::ext::create_sigma_star_nft(2, &alph)));
+        REQUIRE(mata::nft::are_equivalent(univ1, mata::ext::create_sigma_star_nft(2, &alph_levels)));
 
         // check univ2
-        REQUIRE(mata::nft::are_equivalent(univ2, mata::ext::create_sigma_star_nft(2, &alph)));
+        REQUIRE(mata::nft::are_equivalent(univ2, mata::ext::create_sigma_star_nft(2, &alph_levels)));
     }
 }
 
 TEST_CASE("Universality for length-preserving NFTs using antichains") {
+    using namespace mata;
+
     auto print_run = [](mata::nft::Run cex) -> void {
         std::cout << "Run:\n";
         std::cout << '\t' << vec_to_string(cex.word) << std::endl;
@@ -360,6 +344,7 @@ TEST_CASE("Universality for length-preserving NFTs using antichains") {
 
     // define a few sample nfts
     mata::EnumAlphabet ab_alph {'a', 'b'};
+    AlphabetLevels ab_alphabet_levels(&ab_alph);
     std::vector<mata::Alphabet*> ab_alphs = {&ab_alph, &ab_alph};
     mata::nft::Nft univ = mata::nft::Nft::with_levels(2, 2, {0}, {0});
     //univ.final.insert(0); //TODO why does mata not automatically add 0 as final state in with_levels()?
@@ -371,8 +356,8 @@ TEST_CASE("Universality for length-preserving NFTs using antichains") {
     univ.levels[1] = 1;
 
     mata::EnumAlphabet bc_alph {'b', 'c'};
-    std::vector<mata::Alphabet*> ab_bc_alphs = {&ab_alph, &bc_alph};
-    mata::nft::Nft univ2 = mata::ext::create_sigma_star_nft(2, nullptr, std::make_optional(ab_bc_alphs));
+    AlphabetLevels ab_bc_alphabet_levels({&ab_alph, &bc_alph});
+    mata::nft::Nft univ2 = mata::ext::create_sigma_star_nft(2, &ab_bc_alphabet_levels);
 
     std::cout << univ.print_to_dot(true) << std::endl;
     std::cout << univ2.print_to_dot(true) << std::endl;
@@ -381,15 +366,15 @@ TEST_CASE("Universality for length-preserving NFTs using antichains") {
         bool is_univ;
         mata::nft::Run cex;
 
-        is_univ = mata::ext::is_universal_antichains(univ, ab_alphs, &cex);
+        is_univ = mata::ext::is_universal_antichains(univ, &ab_alphabet_levels, &cex);
         print_run(cex);
         REQUIRE(is_univ);
 
-        is_univ = mata::ext::is_universal_antichains(univ2, ab_bc_alphs, &cex);
+        is_univ = mata::ext::is_universal_antichains(univ2, &ab_bc_alphabet_levels, &cex);
         print_run(cex);
         REQUIRE(is_univ);
 
-        is_univ = mata::ext::is_universal_antichains(univ2, ab_alphs, &cex);
+        is_univ = mata::ext::is_universal_antichains(univ2, &ab_alphabet_levels, &cex);
         print_run(cex);
         REQUIRE(!is_univ);
     }
@@ -398,15 +383,15 @@ TEST_CASE("Universality for length-preserving NFTs using antichains") {
         bool is_univ;
         mata::nft::Run cex;
 
-        is_univ = mata::ext::is_universal_antichains_by_inclusion(univ, ab_alphs, &cex);
+        is_univ = mata::ext::is_universal_antichains_by_inclusion(univ, &ab_alphabet_levels, &cex);
         print_run(cex);
         REQUIRE(is_univ);
 
-        is_univ = mata::ext::is_universal_antichains_by_inclusion(univ2, ab_bc_alphs, &cex);
+        is_univ = mata::ext::is_universal_antichains_by_inclusion(univ2, &ab_bc_alphabet_levels, &cex);
         print_run(cex);
         REQUIRE(is_univ);
 
-        is_univ = mata::ext::is_universal_antichains_by_inclusion(univ2, ab_alphs, &cex);
+        is_univ = mata::ext::is_universal_antichains_by_inclusion(univ2, &ab_alphabet_levels, &cex);
         print_run(cex);
         REQUIRE(!is_univ);
     }
@@ -415,15 +400,15 @@ TEST_CASE("Universality for length-preserving NFTs using antichains") {
         bool is_univ;
         mata::nft::Run cex;
 
-        is_univ = mata::ext::is_universal_lazy(univ, ab_alphs, &cex);
+        is_univ = mata::ext::is_universal_lazy(univ, &ab_alphabet_levels, &cex);
         print_run(cex);
         REQUIRE(is_univ);
 
-        is_univ = mata::ext::is_universal_lazy(univ2, ab_bc_alphs, &cex);
+        is_univ = mata::ext::is_universal_lazy(univ2, &ab_bc_alphabet_levels, &cex);
         print_run(cex);
         REQUIRE(is_univ);
 
-        is_univ = mata::ext::is_universal_lazy(univ2, ab_alphs, &cex);
+        is_univ = mata::ext::is_universal_lazy(univ2, &ab_alphabet_levels, &cex);
         print_run(cex);
         REQUIRE(!is_univ);
     }
@@ -441,8 +426,8 @@ TEST_CASE("Insert tapes", "[mata::ext::insert_tapes]") {
     EnumAlphabet yz_alph {'y', 'z'};
 
     SECTION("Simple example") {
-        std::vector<Alphabet*> x_yz_alphs = {&x_alph, &yz_alph};
-        Nft aut = Nft::with_levels(2, 4, {0}, {2, 3}, nullptr, std::make_optional(x_yz_alphs));
+        AlphabetLevels x_yz_alphabet_levels({&x_alph, &yz_alph});
+        Nft aut = Nft::with_levels(2, 4, {0}, {2, 3}, &x_yz_alphabet_levels);
         aut.levels[0] = 0;
         aut.levels[1] = 1;
         aut.levels[2] = 0;
@@ -454,7 +439,8 @@ TEST_CASE("Insert tapes", "[mata::ext::insert_tapes]") {
 
         assert((aut.get_words(4) == std::set<std::vector<Symbol>>{{'x', 'y'}, {'x', 'z'}, {'x', 'y', 'x', 'y'}, {'x', 'y', 'x', 'z'}}));
 
-        Nft aut_inserted = mata::ext::insert_tapes(aut, {0, 2, 4}, {&ab_alph, &cd_alph, &ef_alph});
+        AlphabetLevels ab_cd_ef_alphabet_levels({&ab_alph, &cd_alph, &ef_alph});
+        Nft aut_inserted = mata::ext::insert_tapes(aut, {0, 2, 4}, ab_cd_ef_alphabet_levels.alphabets);
         std::cout << aut_inserted.print_to_dot(true) << std::endl;
 
         REQUIRE(aut_inserted.get_words(5) == std::set<std::vector<Symbol>>{
@@ -488,17 +474,17 @@ TEST_CASE("Insert tapes", "[mata::ext::insert_tapes]") {
     // TODO later, for relational product, test that sigma star products are equivalent to sigma star nft
 
     SECTION("Sigma Star") {
-        std::vector<Alphabet*> ab_bc_alphs = {&ab_alph, &bc_alph};
-        std::vector<Alphabet*> x_yz_alphs = {&x_alph, &yz_alph};
-        Nft ab_bc_aut = mata::ext::create_sigma_star_nft(2, nullptr, std::make_optional(ab_bc_alphs));
-        Nft x_yz_aut = mata::ext::create_sigma_star_nft(2, nullptr, std::make_optional(x_yz_alphs));
+        AlphabetLevels ab_bc_alphabet_levels({&ab_alph, &bc_alph});
+        AlphabetLevels x_yz_alphabet_levels({&x_alph, &yz_alph});
+        Nft ab_bc_aut = mata::ext::create_sigma_star_nft(2, &ab_bc_alphabet_levels);
+        Nft x_yz_aut = mata::ext::create_sigma_star_nft(2, &x_yz_alphabet_levels);
 
         std::cout << "{a, b} x {b, c}:\n" << ab_bc_aut.print_to_dot(true) << std::endl;
         std::cout << "{x} x {y, z}:\n" << x_yz_aut.print_to_dot(true) << std::endl;
 
-        Nft ab_x_bc_yz_aut1 = mata::ext::insert_tapes(ab_bc_aut, {1, 3}, {&x_alph, &yz_alph});
+        Nft ab_x_bc_yz_aut1 = mata::ext::insert_tapes(ab_bc_aut, {1, 3}, x_yz_alphabet_levels.alphabets);
         std::cout << "inserting tapes {x}, {y, z} in first automaton:\n" <<ab_x_bc_yz_aut1.print_to_dot(true) << std::endl;
-        Nft ab_x_bc_yz_aut2 = mata::ext::insert_tapes(x_yz_aut, {0, 2}, {&ab_alph, &bc_alph});
+        Nft ab_x_bc_yz_aut2 = mata::ext::insert_tapes(x_yz_aut, {0, 2}, ab_bc_alphabet_levels.alphabets);
         std::cout << "inserting tapes {a, b}, {b, c} in second automaton:\n" <<ab_x_bc_yz_aut2.print_to_dot(true) << std::endl;
 
         REQUIRE(mata::nft::are_equivalent(ab_x_bc_yz_aut1, ab_x_bc_yz_aut2));

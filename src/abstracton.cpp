@@ -41,8 +41,9 @@ Nfa compute_ind_new(const Nft& abstraction_framework, const Nft& transition_rela
     PRINT_AUT("reduce(V o ->)", v_delta);
 
     std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
+    AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
     TICK();
-    Nft v_complement {mata::ext::complement(abstraction_framework, nullptr, std::make_optional<std::vector<Alphabet*>>(alphabets), true)};
+    Nft v_complement {mata::ext::complement(abstraction_framework, &alphabet_levels, true)};
     TOCK("computing complement v_complement of abstraction framework");
     PRINT_AUT("complement(V)", v_complement);
 
@@ -238,8 +239,9 @@ Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_rela
     PRINT_AUT("reduce(v_delta)", v_delta);
 
     std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
+    AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
     TICK();
-    Nft v_complement {mata::ext::complement(abstraction_framework, nullptr, std::make_optional<std::vector<Alphabet*>>(alphabets), true)};
+    Nft v_complement {mata::ext::complement(abstraction_framework, &alphabet_levels, true)};
     TOCK("computing complement v_complement of abstraction framework");
     PRINT_AUT("v_complement", v_complement);
 
@@ -307,7 +309,8 @@ Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& trans
     }
 
     std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
-    Nft v_complement {mata::ext::complement(abstraction_framework, nullptr, std::make_optional<std::vector<Alphabet*>>(alphabets), true)}; // TODO only calculate once (not in ind and preach)
+    AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
+    Nft v_complement {mata::ext::complement(abstraction_framework, &alphabet_levels, true)}; // TODO only calculate once (not in ind and preach)
 
     TICK();
     Nft id_ind {create_identity(ind_result)};
@@ -336,7 +339,9 @@ Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& trans
 }
 
 Nft compute_preach(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, std::optional<const Nfa> ind, int verbosityLevel) {
-    return mata::ext::complement(compute_preach_complement(abstraction_framework, transition_relation, concrete_alphabet, abstract_alphabet, ind, verbosityLevel), &concrete_alphabet);
+    auto preach_comp = compute_preach_complement(abstraction_framework, transition_relation, concrete_alphabet, abstract_alphabet, ind, verbosityLevel);
+    AlphabetLevels concrete_alphabet_levels({&concrete_alphabet}, AlphabetLevels::Mode::Global);
+    return mata::ext::complement(preach_comp, &concrete_alphabet_levels);
 }
 
 std::vector<bool> check_abstract_safety_explicit(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach, std::vector<mata::nfa::Nfa> unsafe_properties, int verbosityLevel, bool measure_time, bool no_dot_printing) {
@@ -356,6 +361,8 @@ std::vector<bool> check_abstract_safety_explicit(const mata::nfa::Nfa& initial_c
 std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach_complement, std::vector<mata::nfa::Nfa> unsafe_properties, Alphabet& concrete_alphabet, std::string universality_alg, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     INIT_CLOCKS();
 
+    AlphabetLevels concrete_alphabet_levels(&concrete_alphabet);
+
     mata::nft::Nft initial_nft = mata::nft::builder::from_nfa_with_levels_advancing(initial_configurations, 1);
     std::vector<bool> result{};
     for (const mata::nfa::Nfa& unsafe_property : unsafe_properties) {
@@ -370,7 +377,7 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
         PRINT_AUT("(initial, unsafe) pairs", initial_unsafe_pairs);
 
         TICK();
-        mata::nft::Nft initial_unsafe_complement = mata::ext::complement(initial_unsafe_pairs, &concrete_alphabet, std::nullopt, true);
+        mata::nft::Nft initial_unsafe_complement = mata::ext::complement(initial_unsafe_pairs, &concrete_alphabet_levels, true);
         TOCK("constructing transducer for complement of (initial, unsafe) pairs");
         PRINT_AUT("complement((initial, unsafe) pairs)", initial_unsafe_complement);
 
@@ -381,11 +388,11 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
         // TODO select best algorithm here...
         if (universality_alg == "lazy") {
             TICK();
-            result.push_back(mata::ext::is_universal_lazy(union2, {&concrete_alphabet, &concrete_alphabet}, &cex, verbosityLevel, true));
+            result.push_back(mata::ext::is_universal_lazy(union2, &concrete_alphabet_levels, &cex, verbosityLevel, true));
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "lazy-bfs") {
             TICK();
-            result.push_back(mata::ext::is_universal_lazy(union2, {&concrete_alphabet, &concrete_alphabet}, &cex, verbosityLevel, false));
+            result.push_back(mata::ext::is_universal_lazy(union2, &concrete_alphabet_levels, &cex, verbosityLevel, false));
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "antichains-inclusion") {
             TICK();
@@ -404,14 +411,14 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "antichains-bfs") {
             TICK();
-            result.push_back(mata::ext::is_universal_antichains(union2, {&concrete_alphabet, &concrete_alphabet}, &cex, verbosityLevel, false));
+            result.push_back(mata::ext::is_universal_antichains(union2, &concrete_alphabet_levels, &cex, verbosityLevel, false));
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else {
             if (universality_alg != "antichains") {
                 logging::log(logging::VerbosityLevel::VERBOSE, "WARNING: unknown universality algorithm \"" + universality_alg + "\", defaulting to antichains.", verbosityLevel);
             }
             TICK();
-            result.push_back(mata::ext::is_universal_antichains(union2, {&concrete_alphabet, &concrete_alphabet}, &cex, verbosityLevel, true));
+            result.push_back(mata::ext::is_universal_antichains(union2, &concrete_alphabet_levels, &cex, verbosityLevel, true));
             TOCK("checking universality using " + universality_alg + " algorithm");
         }
 

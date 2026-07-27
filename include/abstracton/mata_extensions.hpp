@@ -42,14 +42,13 @@ mata::nft::Nft minimize(const mata::nft::Nft& nft);
 
 // computes complement of nft
 // contrary to mata's complement, this only complements final states on level 0'
-mata::nft::Nft complement(const mata::nft::Nft& nft, const std::vector<mata::utils::OrdVector<Symbol>>& symbols, bool minimize_during_determinization = false);
-mata::nft::Nft complement(const mata::nft::Nft& nft, const Alphabet* alphabet = nullptr, const std::optional<const std::vector<Alphabet*>> alphabets = std::nullopt, bool minimize_during_determinization = false);
+mata::nft::Nft complement(const mata::nft::Nft& nft, AlphabetLevels* alphabets, bool minimize_during_determinization = false);
 
 // some constructions for same-length nfts
 /**
  * Constructs a *length-preserving* NFT accepting all words over the given alphabet(s). For examples, see the tests.
  */
-mata::nft::Nft create_sigma_star_nft(int number_of_levels, Alphabet* alphabet = nullptr, const std::optional<const std::vector<Alphabet*>> alphabets = std::nullopt);
+mata::nft::Nft create_sigma_star_nft(int number_of_levels, AlphabetLevels* alphabets);
 
 /**
  * Universality checking based on subset construction with antichain.
@@ -58,14 +57,14 @@ mata::nft::Nft create_sigma_star_nft(int number_of_levels, Alphabet* alphabet = 
  * @param[out] cex Counterexample word which eventually breaks the universality
  * @return True if the automaton is universal, otherwise false. IMPORTANT: in contrast to mata's mata::nft::algorithms::is_universal_antichains, this algorithm checks only universality w.r.t. words which have the same length on each tape
  */
-bool is_universal_antichains(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
+bool is_universal_antichains(const mata::nft::Nft& aut, AlphabetLevels* alphabets, mata::nft::Run* cex, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
 
 /// similar to is_universal_antichains, but solves the problem by just calling inclusion algorithm to check if sigma star (length-preserving version) is included
 /// Note: this check seems to be a LOT slower than is_universal_antichains, see examples/compare_inclusion_checks.cpp. The reason might be that @param alphabets is only used to create sigma star, and for the inclusion, mata's is_included_antichains is called, which does not support tape-specific alphabets, meaning it constructs an alphabet valid for all tapes by iterating over the whole automaton
-bool is_universal_antichains_by_inclusion(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex);
+bool is_universal_antichains_by_inclusion(const mata::nft::Nft& aut, AlphabetLevels* alphabets, mata::nft::Run* cex);
 
 /// similar to is_universal_antichains, but do not do subsumption checks
-bool is_universal_lazy(const mata::nft::Nft& aut, const std::vector<Alphabet*> alphabets, mata::nft::Run* cex, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
+bool is_universal_lazy(const mata::nft::Nft& aut, AlphabetLevels* alphabets, mata::nft::Run* cex, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
 
 bool is_included_lazy(const mata::nft::Nft& smaller, const mata::nft::Nft& bigger, mata::nft::Run* cex, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
 
@@ -79,6 +78,10 @@ bool is_included_lazy(const mata::nft::Nft& smaller, const mata::nft::Nft& bigge
  * - @param inserted_tape_indices must be strictly increasing
  * - all states in @param aut must be reachable
  *
+ * Creates a new AlphabetLevels object (pointed to by result.alphabets), which should eventually be deleted.
+ *
+ * The function cannot do that, as an Nft only stores a pointer to an AlphabetLevels object, hence the created AlphabetLevels object would be destroyed if not returned.
+ *
  * TODO compare with mata::nft::insert_tapes (which inserts DONT_CARE symbols); i.e. construct that and replace DONT_CAREs with corresp. alphabets
  */
 mata::nft::Nft insert_tapes(const mata::nft::Nft& aut, const std::vector<int> inserted_tape_indices, const std::vector<Alphabet*> inserted_tape_alphabets);
@@ -91,7 +94,7 @@ mata::nft::Nft insert_tapes(const mata::nft::Nft& aut, const std::vector<int> in
 mata::nft::Nft relational_product_length_preserving(const std::vector<mata::nft::Nft> nfts);
 
 /**
- * same as relational_product_length_preserving, but does not need to exctract any alphabets
+ * same as relational_product_length_preserving, but does not need to extract any alphabets
  */
 mata::nft::Nft relational_product_length_preserving_dont_care(const std::vector<mata::nft::Nft> nfts);
 
@@ -101,10 +104,9 @@ void padding_closure(mata::nfa::Nfa& nfa, Symbol padding_symbol);
 // completes the given nft in-place wrt. the transition function: adds missing transitions to each state at each level
 // does not reuse any sink state, contrary to mata's make_complete. Instead, it just adds an aray of states leading
 // to a sink state, where each level is contained in the array.
-void make_complete(mata::nft::Nft& nft, const std::vector<mata::utils::OrdVector<Symbol>>& symbols);
-void make_complete(mata::nft::Nft& nft, const Alphabet* alphabet = nullptr, const std::optional<const std::vector<Alphabet*>> alphabets = std::nullopt);
+void make_complete(mata::nft::Nft& nft, AlphabetLevels* alphabets);
 
-std::vector<mata::utils::OrdVector<Symbol>> get_tape_symbols_to_work_with(const mata::nft::Nft& nft, const Alphabet* alphabet = nullptr, const std::optional<const std::vector<Alphabet*>> alphabets = std::nullopt);
+AlphabetLevels* get_tape_symbols_to_work_with(const mata::nft::Nft& nft, AlphabetLevels* alphabets);
 
 namespace builder {
 

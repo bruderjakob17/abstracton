@@ -187,7 +187,7 @@ mata::nft::Nft parseTransducer(Json::Value t, mata::OnTheFlyAlphabet* string_alp
 
     // build mata nft (dodo benchmarks ALL have exactly 2 levels)
     mata::nft::Nft result = mata::nft::Nft::with_levels(
-            2, states.size(), initial_state_indices, final_state_indices, string_alphabet);
+            2, states.size(), initial_state_indices, final_state_indices, new mata::AlphabetLevels(string_alphabet));
 
     for (auto d : transitions) {
         // TODO add "add" function of signature (State, string, State) to delta in mata if OnTheFlyAlphabet specified

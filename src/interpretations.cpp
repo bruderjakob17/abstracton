@@ -1,9 +1,11 @@
 #include <mata/nft/nft.hh>
+#include <mata/alphabet.hh>
 #include <abstracton/utils/utils.hpp>
 #include <abstracton/interpretations.hpp>
 #include <abstracton/mata_extensions.hpp>
 
 std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> trapInterpretation(mata::OnTheFlyAlphabet* string_alphabet, enum SetInterpretation type) {
+    using namespace mata;
 
     mata::utils::OrdVector<mata::Symbol> alphabet = string_alphabet->get_alphabet_symbols();
     std::vector<std::string> string_alphabet_vector {};
@@ -24,8 +26,9 @@ std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> trapInterpret
     std::shared_ptr<mata::OnTheFlyAlphabet> powerset_OnTheFlyAlphabet = std::make_shared<mata::OnTheFlyAlphabet>(mata::OnTheFlyAlphabet(powerset_alphabet));
 
     std::vector<mata::Alphabet*> alphabets {powerset_OnTheFlyAlphabet.get(), string_alphabet};
+    AlphabetLevels* alphabet_levels = new AlphabetLevels(alphabets, AlphabetLevels::Mode::MultiLevel);
 
-    mata::nft::Nft result = mata::nft::Nft::with_levels(2, 0, {}, {}, nullptr, alphabets);
+    mata::nft::Nft result = mata::nft::Nft::with_levels(2, 0, {}, {}, alphabet_levels);
 
     // construct automaton
     // states:
