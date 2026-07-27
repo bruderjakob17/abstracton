@@ -16,6 +16,12 @@ public:
     VecAlphabetPrinter(size_t dimension) : dimension(dimension) {};
     virtual std::string print(const std::vector<Symbol>& bits) = 0;
     virtual ~VecAlphabetPrinter() = default;
+
+    /**
+     * Creates an Nft that accepts all words w that represent a "big symbol" of the alphabet.
+     * In particular, all accepted words have a dimension equal to the value stored in the dimension member.
+     */
+    virtual mata::nft::Nft alphabet_nft() = 0;
 };
 
 /**
@@ -54,6 +60,47 @@ public:
     }
 
     virtual ~VecAlphabet() = default;
+
+protected:
+    /**
+     * assuming a constant tape size, constructs the alphabet_nfa for this alphabet.
+     */
+    mata::nft::Nft alphabet_nft(size_t tape_alphabet_size) const {
+        using namespace mata::nft;
+
+        Nft aut = Nft::with_levels(dimension, dimension + 1, {0}, {dimension});
+
+        for (State source{ 0 }; source < dimension; ++source) {
+            aut.levels[source] = source;
+            for (Symbol x{ 0 }; x < tape_alphabet_size; ++x) {
+                aut.delta.add(source, x, source + 1);
+            }
+        }
+
+        aut.levels[dimension] = 0;
+
+        return aut;
+    }
+
+    /**
+     * assuming a variable tape size, constructs the alphabet_nfa for this alphabet.
+     */
+    mata::nft::Nft alphabet_nft(const std::vector<size_t>& tape_alphabet_sizes) const {
+        using namespace mata::nft;
+
+        Nft aut = Nft::with_levels(dimension, dimension + 1, {0}, {dimension});
+
+        for (State source{ 0 }; source < dimension; ++source) {
+            aut.levels[source] = source;
+            for (Symbol x{ 0 }; x < tape_alphabet_sizes[source]; ++x) {
+                aut.delta.add(source, x, source + 1);
+            }
+        }
+
+        aut.levels[dimension] = 0;
+
+        return aut;
+    }
 };
 
 /**
@@ -70,6 +117,8 @@ class SimpleVecAlphabet : public VecAlphabet<std::string> {
 private:
     std::shared_ptr<Alphabet> base_alphabet;
 public:
+    using VecAlphabet::alphabet_nft;
+
     explicit SimpleVecAlphabet(std::shared_ptr<Alphabet> base_alphabet) : VecAlphabet(1), base_alphabet(std::move(base_alphabet)) {}
 
     std::vector<Symbol> translate_symbol(const std::string& symbol) override {
@@ -82,6 +131,10 @@ public:
     std::string print(const std::vector<Symbol>& bits) override {
         assert(bits.size() == 1);
         return base_alphabet->reverse_translate_symbol(bits[0]);
+    }
+
+    mata::nft::Nft alphabet_nft() override {
+        return alphabet_nft(base_alphabet->get_alphabet_symbols().size());
     }
 };
 
@@ -96,6 +149,8 @@ public:
  */
 class DefaultVecAlphabet : public VecAlphabet<std::vector<Symbol>> {
 public:
+    using VecAlphabet::alphabet_nft;
+
     explicit DefaultVecAlphabet(size_t dimension) : VecAlphabet(dimension) {}
 
     std::vector<Symbol> translate_symbol(const std::vector<Symbol>& symbol) override {
@@ -106,6 +161,22 @@ public:
     }
     std::string print(const std::vector<Symbol>& bits) override {
         return vec_to_string(bits);
+    }
+
+    mata::nft::Nft alphabet_nft() override {
+        // be careful! introduces DONT CARE symbols which might lead to problems!
+        using namespace mata::nft;
+
+        Nft aut = Nft::with_levels(dimension, dimension + 1, {0}, {dimension});
+
+        for (State source{ 0 }; source < dimension; ++source) {
+            aut.levels[source] = source;
+            aut.delta.add(source, mata::nft::DONT_CARE, source + 1);
+        }
+
+        aut.levels[dimension] = 0;
+
+        return aut;
     }
 };
 
@@ -121,6 +192,8 @@ class PowersetVecAlphabet : public VecAlphabet<std::vector<std::string>> {
 private:
     std::shared_ptr<Alphabet> base_alphabet;
 public:
+    using VecAlphabet::alphabet_nft;
+
     explicit PowersetVecAlphabet(std::shared_ptr<Alphabet> base_alphabet) : VecAlphabet(base_alphabet->get_alphabet_symbols().size()), base_alphabet(std::move(base_alphabet)) {
     }
 
@@ -143,6 +216,10 @@ public:
     std::string print(const std::vector<Symbol>& bits) override {
         return vec_to_string(reverse_translate_symbol(bits), ", ", "{", "}");
     }
+
+    mata::nft::Nft alphabet_nft() override {
+        return alphabet_nft(2);
+    }
 };
 
 /**
@@ -157,6 +234,8 @@ class BaseMSDVecAlphabet : public VecAlphabet<long> {
 private:
     size_t base;
 public:
+    using VecAlphabet::alphabet_nft;
+
     explicit BaseMSDVecAlphabet(size_t base, size_t length) : VecAlphabet(length), base(base) {}
 
     std::vector<Symbol> translate_symbol(const long& symbol) override {
@@ -189,6 +268,10 @@ public:
     std::string print(const std::vector<Symbol>& bits) override {
         return std::to_string(reverse_translate_symbol(bits));
     }
+
+    mata::nft::Nft alphabet_nft() override {
+        return alphabet_nft(base);
+    }
 };
 
 /**
@@ -203,6 +286,8 @@ class BaseLSDVecAlphabet : public VecAlphabet<long> {
 private:
     size_t base;
 public:
+    using VecAlphabet::alphabet_nft;
+
     explicit BaseLSDVecAlphabet(size_t base, size_t length) : VecAlphabet(length), base(base) {}
 
     std::vector<Symbol> translate_symbol(const long& symbol) override {
@@ -234,6 +319,10 @@ public:
     }
     std::string print(const std::vector<Symbol>& bits) override {
         return std::to_string(reverse_translate_symbol(bits));
+    }
+
+    mata::nft::Nft alphabet_nft() override {
+        return alphabet_nft(base);
     }
 };
 
@@ -368,5 +457,8 @@ BDDlikeNft compose(BDDlikeNft& lhs, BDDlikeNft& rhs,
             const utils::OrdVector<mata::nft::Level>& lhs_sync_high_levels, const utils::OrdVector<mata::nft::Level>& rhs_sync_high_levels,
             bool project_out_sync_levels = true,
             mata::nft::JumpMode jump_mode = mata::nft::JumpMode::RepeatSymbol);
+
+BDDlikeNft create_sigma_star_nft(int number_of_levels, const VecAlphabetPrinter& alphabet);
+BDDlikeNft create_sigma_star_nft(const std::vector<VecAlphabetPrinter>& alphabets);
 
 }
