@@ -9,6 +9,16 @@
 #include <mata/nft/types.hh>
 #include <abstracton/utils/utils.hpp>
 
+/**
+ * Inserts an NFA between @p source and @p target state.
+ * The initial state of @p inserted is glued to @p source, while all final states are glued to @p target.
+ * Modifies @p aut in-place.
+ *
+ * Note that all non-initial and non-final states of @p inserted are inserted as *new* states.
+ */
+void insert_nfa_between(mata::nfa::Nfa& aut, mata::nfa::State source, mata::nfa::State target, mata::nfa::Nfa inserted);
+void insert_nft_between(mata::nft::Nft& aut, mata::nft::State source, mata::nft::State target, mata::nft::Nft inserted);
+
 mata::nft::Nft create_identity(mata::Alphabet& alphabet);
 
 mata::nft::Nft create_identity(const mata::nfa::Nfa& language);

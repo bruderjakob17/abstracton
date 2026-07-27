@@ -4,6 +4,60 @@
 #include <abstracton/mata_extensions.hpp>
 #include <algorithm>
 #include <abstracton/utils/utils.hpp>
+#include <mata/nfa/builder.hh>
+#include <mata/nft/builder.hh>
+
+TEST_CASE( "Insert NFA into NFA", "[insert_nfa_between]" ) {
+    using namespace mata;
+    using namespace mata::nfa;
+
+    Nfa aut(4, {0}, {3});
+    aut.delta.add(0, 'a', 1);
+    aut.delta.add(2, 'c', 3);
+
+    Nfa inserted(3, {0}, {2});
+    inserted.delta.add(0, 'b', 1);
+    inserted.delta.add(1, 'b', 2);
+    inserted.delta.add(0, 'd', 2);
+
+    insert_nfa_between(aut, 1, 2, inserted);
+
+    REQUIRE(aut.get_words(10) == std::set<Word> {
+        {'a', 'b', 'b', 'c'},
+        {'a', 'd', 'c'}
+    });
+}
+
+TEST_CASE( "Insert NFT into NFT", "[insert_nft_between]" ) {
+    using namespace mata;
+    using namespace mata::nfa;
+    using namespace mata::nft;
+
+    Nfa abcd = mata::nfa::builder::create_from_regex("abcd");
+    Nft aut = mata::nft::builder::from_nfa_with_levels_advancing(abcd, 2);
+
+    Nfa ef = mata::nfa::builder::create_from_regex("ef|fe");
+    Nft inserted = mata::nft::builder::from_nfa_with_levels_advancing(ef, 2);
+
+    StateSet q1 = aut.read_word({'a'});
+    StateSet q3 = aut.read_word({'a', 'b', 'c'});
+    REQUIRE(q1.size() == 1);
+    REQUIRE(q3.size() == 1);
+    insert_nft_between(aut, q1.front(), q3.front(), inserted);
+
+    REQUIRE(aut.get_words(10) == std::set<Word> {
+        {'a', 'b', 'c', 'd'},
+        {'a', 'f', 'e', 'd'},
+        {'a', 'e', 'f', 'd'}
+    });
+    StateSet qaf = aut.read_word({'a', 'f'});
+    REQUIRE(qaf.size() == 1);
+    REQUIRE(aut.levels[qaf.front()] == 0);
+
+    Nft inserted2 = mata::nft::builder::from_nfa_with_levels_advancing(mata::nfa::builder::create_from_regex("xy"), 2);
+    insert_nft_between(aut, aut.read_word({'a', 'b'}).front(), aut.read_word({'a', 'b', 'c', 'd'}).front(), inserted2);
+    REQUIRE(aut.levels[aut.read_word({'a', 'b', 'x'}).front()] == 1);
+}
 
 TEST_CASE( "Identity on Alphabet correct", "[create_identity]" ) {
     using namespace mata;

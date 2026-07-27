@@ -24,6 +24,60 @@ using namespace mata;
 using namespace mata::nfa;
 using namespace mata::nft;
 
+void insert_nfa_between(Nfa& aut, nfa::State source, nfa::State target, Nfa inserted) {
+    using namespace std;
+
+    unordered_map<nfa::State, nfa::State> state_renaming{};
+    for (const nfa::State& init : inserted.initial) {
+        state_renaming[init] = source;
+    }
+    for (const nfa::State& final : inserted.final) {
+        state_renaming[final] = target;
+    }
+    for (nfa::State s{ 0 }; s < inserted.num_of_states(); ++s) {
+        if (!state_renaming.contains(s))
+            state_renaming[s] = aut.add_state();
+    }
+
+    // rename delta and insert into aut
+    for (nfa::State s{ 0 }; s < inserted.num_of_states(); ++s) {
+        for (const SymbolPost& sp : inserted.delta.state_post(s)) {
+            StateSet new_successors{};
+            for (const nfa::State& succ : sp.targets) {
+                new_successors.insert(state_renaming[succ]);
+            }
+            aut.delta.add(state_renaming[s], sp.symbol, new_successors);
+        }
+    }
+}
+
+void insert_nft_between(Nft& aut, nft::State source, nft::State target, Nft inserted) {
+    using namespace std;
+
+    unordered_map<nft::State, nft::State> state_renaming{};
+    for (const nft::State& init : inserted.initial) {
+        state_renaming[init] = source;
+    }
+    for (const nft::State& final : inserted.final) {
+        state_renaming[final] = target;
+    }
+    for (nft::State s{ 0 }; s < inserted.num_of_states(); ++s) {
+        if (!state_renaming.contains(s))
+            state_renaming[s] = aut.add_state_with_level((aut.levels[source] + inserted.levels[s]) % aut.levels.num_of_levels);
+    }
+
+    // rename delta and insert into aut
+    for (nft::State s{ 0 }; s < inserted.num_of_states(); ++s) {
+        for (const SymbolPost& sp : inserted.delta.state_post(s)) {
+            StateSet new_successors{};
+            for (const nft::State& succ : sp.targets) {
+                new_successors.insert(state_renaming[succ]);
+            }
+            aut.delta.add(state_renaming[s], sp.symbol, new_successors);
+        }
+    }
+}
+
 Nft create_identity(Alphabet& alphabet) {
     Nft result {};
     State initial {result.add_state()};
