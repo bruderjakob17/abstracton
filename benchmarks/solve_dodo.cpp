@@ -55,6 +55,11 @@ void print_help() {
     std::cout << "\t\t\t - lazy-inclusion-bfs:   same as lazy-inclusion, but using bfs for exploration\n";
     std::cout << "\t\t\t - explicit:             explicitly construct PReach\n";
     std::cout << "\t\t\tExample: solve_dodo input.json --universality-alg antichains-inclusion\n";
+    std::cout << "\t\t--ind-alg ALG\n";
+    std::cout << "\t\t\tChoose algorithm to be used for constructing ind. ALG can be one of:\n";
+    std::cout << "\t\t\t - id-intersection:      intersect triple composition V delta complement(inv(V)) with id, then project\n";
+    std::cout << "\t\t\t - project:              build intersection(V delta, complement(V)), then project to first component\n";
+    std::cout << "\t\t\t - product-construction: explicitly build complement(ind) as product automaton (DEFAULT)\n";
     std::cout << "\t\t--measure-time\n";
     std::cout << "\t\t\tUse system time to measure performance of some steps\n";
     std::cout << "\t\t--no-dot-printing\n";
@@ -75,6 +80,7 @@ int main(int argc, char** argv) {
     bool minimize_input = false;
     bool exclude_empty_abstractions = false;
     std::string universality_alg{"antichains-inclusion"};
+    std::string ind_alg{"product-construction"};
     bool measure_time = false;
     bool no_dot_printing = false;
     std::string filename{};
@@ -126,6 +132,19 @@ int main(int argc, char** argv) {
             if (i + 1 < argc &&
                     std::find(possibilities.begin(), possibilities.end(), std::string(argv[i + 1])) != possibilities.end()) {
                 universality_alg = std::string(argv[i + 1]);
+                ++i;
+            } else {
+                std::cout << "need to name algorithm after " << argv[i] << " option. Possible choices:\n";
+                for (const std::string& possibility : possibilities) {
+                    std::cout << "\t" << possibility << std::endl;
+                }
+                return 0;
+            }
+        } else if (arg == "--ind-alg") {
+            std::vector<std::string> possibilities{"id-intersection", "project", "product-construction"};
+            if (i + 1 < argc &&
+                    std::find(possibilities.begin(), possibilities.end(), std::string(argv[i + 1])) != possibilities.end()) {
+                ind_alg = std::string(argv[i + 1]);
                 ++i;
             } else {
                 std::cout << "need to name algorithm after " << argv[i] << " option. Possible choices:\n";
@@ -210,7 +229,14 @@ int main(int argc, char** argv) {
         log(VerbosityLevel::NORMAL, "computing ind...", verbosityLevel);
 
         TICK();
-        mata::nfa::Nfa ind {compute_ind(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing)};
+        mata::nfa::Nfa ind;
+        if (ind_alg == "project") {
+            ind = compute_ind_new(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
+        } else if (ind_alg == "id-intersection") {
+            ind = compute_ind_old(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
+        } else {
+            ind = compute_ind(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
+        }
         TOCK("computing ind (total)");
 
         log(VerbosityLevel::NORMAL, std::format("automaton for ind has {} states.", ind.num_of_states()), verbosityLevel);
