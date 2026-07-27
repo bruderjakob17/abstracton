@@ -152,7 +152,7 @@ mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::compose(BDDlikeNft& lhs, BDDl
     std::vector<std::shared_ptr<VecAlphabetPrinter>> alphabets{};
     size_t i = 0;
     size_t j = 0;
-    while (i < lhs.alphabet_sizes.size() || j < rhs.alphabet_sizes.size()) {
+    while (i < lhs.alphabet_sizes.size() && j < rhs.alphabet_sizes.size()) {
         if (lhs_sync_high_levels.contains(i)) {
             if (rhs_sync_high_levels.contains(j)) {
                 // here, one could assert that the i-th alphabet of lhs is the same as the j-th alphabet of rhs
@@ -173,6 +173,20 @@ mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::compose(BDDlikeNft& lhs, BDDl
             alphabets.push_back(lhs.alphabets[i]);
             ++i;
         }
+    }
+    while (i < lhs.alphabet_sizes.size()) {
+        if (!lhs_sync_high_levels.contains(i) || !project_out_sync_levels) {
+            alphabet_sizes.push_back(lhs.alphabet_sizes[i]);
+            alphabets.push_back(lhs.alphabets[i]);
+        }
+        ++i;
+    }
+    while (j < rhs.alphabet_sizes.size()) {
+        if (!rhs_sync_high_levels.contains(j) || !project_out_sync_levels) {
+            alphabet_sizes.push_back(rhs.alphabet_sizes[j]);
+            alphabets.push_back(rhs.alphabets[j]);
+        }
+        ++j;
     }
 
     mata::ext::bddlike::BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};

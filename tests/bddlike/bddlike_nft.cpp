@@ -122,3 +122,22 @@ TEST_CASE( "bddlike_nft default alphabet", "[bddlike_nft]" ) {
     BDDlikeNft aut = BDDlikeNft::with_alphabet_sizes({2, 3});
     CHECK(aut.levels.num_of_levels == 5);
 }
+
+TEST_CASE( "BDDlikeNft compose function", "[BDDlikeNft::compose]" ) {
+    using namespace mata::ext::bddlike;
+
+    BDDlikeNft aut1 = BDDlikeNft::with_alphabet_sizes({2, 2, 2}, 2, {0}, {1});
+    BDDlikeNft aut2 = BDDlikeNft::with_alphabet_sizes({2, 2, 2}, 2, {0}, {1});
+
+    aut1.insert_word(0, {0, 0, 1, 2, 3, 4}, 1);
+    aut2.insert_word(0, {5, 6, 1, 2, 7, 8}, 1);
+    aut2.insert_word(0, {0, 0, 1, 0, 3, 4}, 1);
+
+    BDDlikeNft comp = mata::ext::bddlike::compose(aut1, aut2, {1}, {1}, true);
+
+    REQUIRE(
+        comp.get_words(20) == std::set<mata::Word> {
+            {0, 0, 5, 6, 3, 4, 7, 8}
+        }
+    );
+}
