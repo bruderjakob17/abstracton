@@ -441,7 +441,7 @@ public:
         return high_levels[internal_level];
     }
 
-    std::vector<size_t> get_internal_levels(size_t high_level) {
+    std::vector<size_t> get_internal_levels(mata::nft::Level high_level) {
         initialize_maintained_metadata();
         assert(high_level < alphabet_sizes.size());
         std::vector<size_t> result(alphabet_sizes[high_level], 0);
@@ -450,6 +450,17 @@ public:
         }
         return result;
     }
+
+    mata::utils::OrdVector<mata::nft::Level> get_internal_levels(const mata::utils::OrdVector<mata::nft::Level>& high_levels) {
+        utils::OrdVector<mata::nft::Level> internal_levels{};
+        for (mata::nft::Level high_lvl : high_levels) {
+            // append internal levels of high level
+            for (size_t internal_lvl : get_internal_levels(high_lvl)) {
+                internal_levels.insert(internal_lvl);
+            }
+        }
+        return internal_levels;
+    }
 };
 
 BDDlikeNft minimize(const BDDlikeNft& aut);
@@ -457,6 +468,10 @@ BDDlikeNft compose(BDDlikeNft& lhs, BDDlikeNft& rhs,
             const utils::OrdVector<mata::nft::Level>& lhs_sync_high_levels, const utils::OrdVector<mata::nft::Level>& rhs_sync_high_levels,
             bool project_out_sync_levels = true,
             mata::nft::JumpMode jump_mode = mata::nft::JumpMode::RepeatSymbol);
+BDDlikeNft project_to(BDDlikeNft& nft, const mata::utils::OrdVector<mata::nft::Level>& high_levels_to_project, mata::nft::JumpMode jump_mode = mata::nft::JumpMode::RepeatSymbol);
+inline BDDlikeNft project_to(BDDlikeNft& nft, mata::nft::Level high_level_to_project, mata::nft::JumpMode jump_mode = mata::nft::JumpMode::RepeatSymbol) {
+    return mata::ext::bddlike::project_to(nft, mata::utils::OrdVector<mata::nft::Level>{high_level_to_project}, jump_mode);
+}
 
 BDDlikeNft create_sigma_star_nft(int number_of_levels, const VecAlphabetPrinter& alphabet);
 BDDlikeNft create_sigma_star_nft(const std::vector<VecAlphabetPrinter>& alphabets);

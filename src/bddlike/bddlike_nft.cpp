@@ -111,38 +111,27 @@ bool mata::ext::bddlike::BDDlikeNft::is_in_lang_by_levels(const std::vector<std:
     return super::is_in_lang_by_levels(flat_words, match_prefix);
 }
 
-mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::minimize(const mata::ext::bddlike::BDDlikeNft& aut) {
+namespace mata::ext::bddlike {
+
+BDDlikeNft minimize(const BDDlikeNft& aut) {
     auto alphabet_sizes = aut.alphabet_sizes;
     auto alphabets = aut.alphabets;
     mata::nft::Nft aut_as_nft{ aut.to_nft_copy() };
     mata::nft::Nft result_as_nft{mata::ext::minimize(aut_as_nft)}; // TODO move instead?
-    mata::ext::bddlike::BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
+    BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
     return result;
 }
 
-mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::compose(BDDlikeNft& lhs, BDDlikeNft& rhs,
+BDDlikeNft compose(
+            BDDlikeNft& lhs,
+            BDDlikeNft& rhs,
             const utils::OrdVector<mata::nft::Level>& lhs_sync_high_levels, const utils::OrdVector<mata::nft::Level>& rhs_sync_high_levels,
             bool project_out_sync_levels,
             mata::nft::JumpMode jump_mode) {
     // map get_internal_levels to input high levels, then flatten them
-    utils::OrdVector<mata::nft::Level> lhs_sync_levels{};
-    for (const mata::nft::Level& lhs_high_lvl : lhs_sync_high_levels) {
-        // append internal levels of high level lhs_sync_high_levels[i] to lhs_sync_levels
-        for (size_t lhs_internal_lvl : lhs.get_internal_levels(lhs_high_lvl)) {
-            lhs_sync_levels.insert(lhs_internal_lvl);
-        }
-        // lhs_sync_levels.insert(mata::utils::OrdVector(lhs.get_internal_levels(lhs_lvl)));
-    }
-    //utils::OrdVector<mata::nft::Level> lhs_sync_levels = flatten(lhs_sync_high_levels | std::views::transform(lhs.get_internal_levels) | std::ranges::to<std::vector>());
+    utils::OrdVector<mata::nft::Level> lhs_sync_levels = lhs.get_internal_levels(lhs_sync_high_levels);
 
-    utils::OrdVector<mata::nft::Level> rhs_sync_levels{};
-    for (const mata::nft::Level& rhs_high_lvl : rhs_sync_high_levels) {
-        // append internal levels of high level rhs_sync_high_levels[i] to rhs_sync_levels
-        for (size_t rhs_internal_lvl : rhs.get_internal_levels(rhs_high_lvl)) {
-            rhs_sync_levels.insert(rhs_internal_lvl);
-        }
-        // rhs_sync_levels.insert(mata::utils::OrdVector(rhs.get_internal_levels(rhs_lvl)));
-    }
+    utils::OrdVector<mata::nft::Level> rhs_sync_levels = rhs.get_internal_levels(rhs_sync_high_levels);
 
     // call compose function of Nft
     mata::nft::Nft result_as_nft{mata::nft::compose(lhs.to_nft_copy(), rhs.to_nft_copy(), lhs_sync_levels, rhs_sync_levels, project_out_sync_levels, jump_mode)};
@@ -189,7 +178,28 @@ mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::compose(BDDlikeNft& lhs, BDDl
         ++j;
     }
 
-    mata::ext::bddlike::BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
+    BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
 
     return result;
+}
+
+BDDlikeNft project_to(BDDlikeNft& nft, const mata::utils::OrdVector<mata::nft::Level>& high_levels_to_project, mata::nft::JumpMode jump_mode) {
+    using namespace mata::ext::bddlike;
+
+    mata::nft::Nft result_as_nft{mata::nft::project_to(nft, nft.get_internal_levels(high_levels_to_project), jump_mode)};
+
+    std::vector<size_t> alphabet_sizes{};
+    std::vector<std::shared_ptr<VecAlphabetPrinter>> alphabets{};
+    for (int i{ 0 }; i < nft.alphabet_sizes.size(); ++i) {
+        if (high_levels_to_project.contains(i)) {
+            alphabet_sizes.push_back(nft.alphabet_sizes[i]);
+            alphabets.push_back(nft.alphabets[i]);
+        }
+    }
+
+    BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
+
+    return result;
+}
+
 }

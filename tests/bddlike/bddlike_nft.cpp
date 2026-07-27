@@ -141,3 +141,43 @@ TEST_CASE( "BDDlikeNft compose function", "[BDDlikeNft::compose]" ) {
         }
     );
 }
+
+TEST_CASE( "BDDlikeNft project_to", "[BDDlikeNft::project_to]" ) {
+    using namespace mata::ext::bddlike;
+
+    BDDlikeNft aut = BDDlikeNft::with_alphabet_sizes({2, 2, 2}, 2, {0}, {1});
+
+    aut.insert_word(0, {0, 0, 1, 2, 3, 4}, 1);
+    aut.insert_word(0, {1, 0, 3, 3, 4, 1}, 1);
+
+    std::vector<BDDlikeNft> results{};
+    for (mata::nft::Level i = 0; i < 3; ++i) {
+        results.push_back(mata::ext::bddlike::project_to(aut, {i}));
+    }
+    results.push_back(mata::ext::bddlike::project_to(aut, {0, 2}));
+
+    REQUIRE(
+        results[0].get_words(20) == std::set<mata::Word> {
+            {0, 0},
+            {1, 0}
+        }
+    );
+    REQUIRE(
+        results[1].get_words(20) == std::set<mata::Word> {
+            {1, 2},
+            {3, 3}
+        }
+    );
+    REQUIRE(
+        results[2].get_words(20) == std::set<mata::Word> {
+            {3, 4},
+            {4, 1}
+        }
+    );
+    REQUIRE(
+        results[3].get_words(20) == std::set<mata::Word> {
+            {0, 0, 3, 4},
+            {1, 0, 4, 1}
+        }
+    );
+}
