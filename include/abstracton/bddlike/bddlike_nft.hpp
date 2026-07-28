@@ -18,6 +18,11 @@ public:
     virtual ~VecAlphabetPrinter() = default;
 
     /**
+     * Returns an @p AlphabetLevels object that may be used to make the transition function complete.
+     */
+    virtual mata::AlphabetLevels construct_alphabet_levels() = 0;
+
+    /**
      * Creates an Nft that accepts all words w that represent a "big symbol" of the alphabet.
      * In particular, all accepted words have a dimension equal to the value stored in the dimension member.
      */
@@ -104,7 +109,7 @@ protected:
 };
 
 /**
- * SimpleAlphabet is a VecAlphabet where Big Symbol = small symbol, i.e. symbols do not get decomposed.
+ * SimpleVecAlphabet is a VecAlphabet where Big Symbol = small symbol, i.e. symbols do not get decomposed.
  *
  * Because of the general framework, one still needs to wrap the small symbol into a vec, e.g. 5 gets represented as [5].
  *
@@ -131,6 +136,10 @@ public:
     std::string print(const std::vector<Symbol>& bits) override {
         assert(bits.size() == 1);
         return base_alphabet->reverse_translate_symbol(bits[0]);
+    }
+
+    mata::AlphabetLevels construct_alphabet_levels() override {
+        return mata::AlphabetLevels(base_alphabet.get());
     }
 
     mata::nft::Nft alphabet_nft() override {
@@ -163,6 +172,10 @@ public:
         return vec_to_string(bits);
     }
 
+    mata::AlphabetLevels construct_alphabet_levels() override {
+        return mata::AlphabetLevels(new IntAlphabet());
+    }
+
     mata::nft::Nft alphabet_nft() override {
         // be careful! introduces DONT CARE symbols which might lead to problems!
         using namespace mata::nft;
@@ -177,6 +190,44 @@ public:
         aut.levels[dimension] = 0;
 
         return aut;
+    }
+};
+
+class AlphabetVecAlphabet : public VecAlphabet<std::vector<std::string>> {
+private:
+    std::shared_ptr<Alphabet> base_alphabet;
+public:
+    using VecAlphabet::alphabet_nft;
+
+    explicit AlphabetVecAlphabet(std::shared_ptr<Alphabet> base_alphabet, size_t dimension) : VecAlphabet(dimension), base_alphabet(std::move(base_alphabet)) {}
+
+    std::vector<Symbol> translate_symbol(const std::vector<std::string>& symbol) override {
+        assert(symbol.size() == dimension);
+        std::vector<Symbol> result(dimension, 0);
+        for (int i{ 0 }; i < dimension; ++i) {
+            result[i] = base_alphabet->translate_symb(symbol[i]);
+        }
+        return result;
+    }
+    std::vector<std::string> reverse_translate_symbol(const std::vector<Symbol>& symbol) override {
+        assert(symbol.size() == dimension);
+        std::vector<std::string> result(dimension, "");
+        for (int i{ 0 }; i < dimension; ++i) {
+            result[i] = base_alphabet->reverse_translate_symbol(symbol[i]);
+        }
+        return result;
+    }
+    std::string print(const std::vector<Symbol>& bits) override {
+        assert(bits.size() == dimension);
+        return vec_to_string(reverse_translate_symbol(bits));
+    }
+
+    mata::AlphabetLevels construct_alphabet_levels() override {
+        return mata::AlphabetLevels(base_alphabet.get());
+    }
+
+    mata::nft::Nft alphabet_nft() override {
+        return alphabet_nft(base_alphabet->get_alphabet_symbols().size());
     }
 };
 
@@ -215,6 +266,10 @@ public:
     }
     std::string print(const std::vector<Symbol>& bits) override {
         return vec_to_string(reverse_translate_symbol(bits), ", ", "{", "}");
+    }
+
+    mata::AlphabetLevels construct_alphabet_levels() override {
+        return mata::AlphabetLevels(new EnumAlphabet({0, 1}));
     }
 
     mata::nft::Nft alphabet_nft() override {
@@ -269,6 +324,10 @@ public:
         return std::to_string(reverse_translate_symbol(bits));
     }
 
+    mata::AlphabetLevels construct_alphabet_levels() override {
+        throw 2; // TODO
+    }
+
     mata::nft::Nft alphabet_nft() override {
         return alphabet_nft(base);
     }
@@ -319,6 +378,10 @@ public:
     }
     std::string print(const std::vector<Symbol>& bits) override {
         return std::to_string(reverse_translate_symbol(bits));
+    }
+
+    mata::AlphabetLevels construct_alphabet_levels() override {
+        throw 2; // TODO
     }
 
     mata::nft::Nft alphabet_nft() override {
@@ -461,9 +524,23 @@ public:
         }
         return internal_levels;
     }
+
+    mata::AlphabetLevels construct_alphabet_levels() {
+        std::vector<Alphabet*> alphabet_ptrs{};
+        for (int i{ 0 }; i < alphabet_sizes.size(); ++i) {
+            mata::AlphabetLevels high_level_alphabet = alphabets[i]->construct_alphabet_levels();
+            for (int j{ 0 }; j < alphabet_sizes[i]; ++j) {
+                alphabet_ptrs.push_back(&high_level_alphabet.for_level(j));
+            }
+        }
+        return mata::AlphabetLevels(alphabet_ptrs, mata::AlphabetLevels::Mode::MultiLevel);
+    }
 };
 
+void make_complete(BDDlikeNft& aut);
+BDDlikeNft complement(BDDlikeNft& aut, bool minimize_during_determinization = false);
 BDDlikeNft minimize(const BDDlikeNft& aut);
+BDDlikeNft intersection(const BDDlikeNft& aut1, const BDDlikeNft& aut2);
 BDDlikeNft compose(BDDlikeNft& lhs, BDDlikeNft& rhs,
             const utils::OrdVector<mata::nft::Level>& lhs_sync_high_levels, const utils::OrdVector<mata::nft::Level>& rhs_sync_high_levels,
             bool project_out_sync_levels = true,

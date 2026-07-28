@@ -1,4 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
+#include <mata/alphabet.hh>
 #include <mata/nft/nft.hh>
 #include <mata/parser/re2parser.hh>
 #include <abstracton/bddlike/bddlike_nft.hpp>
@@ -180,4 +181,35 @@ TEST_CASE( "BDDlikeNft project_to", "[BDDlikeNft::project_to]" ) {
             {1, 0, 4, 1}
         }
     );
+}
+
+TEST_CASE( "BDDlikeNft complement", "[BDDlikeNft::complement]" ) {
+    using namespace mata::ext::bddlike;
+
+    mata::OnTheFlyAlphabet alph(std::vector<std::string>{"ab", "cde"});
+    AlphabetVecAlphabet vec_alph(std::make_shared<mata::OnTheFlyAlphabet>(alph), 2);
+    std::vector<std::shared_ptr<VecAlphabetPrinter>> vec_alph_vec{};
+    vec_alph_vec.emplace_back(std::make_shared<AlphabetVecAlphabet>(vec_alph));
+    vec_alph_vec.emplace_back(std::make_shared<AlphabetVecAlphabet>(vec_alph));
+
+    BDDlikeNft aut = BDDlikeNft::with_alphabet_sizes({2, 2}, 2, {0}, {1}, std::make_optional<std::vector<std::shared_ptr<VecAlphabetPrinter>>>(vec_alph_vec));
+
+    mata::nft::State q1 = aut.insert_word(0, vec_alph.translate_symbol({"ab", "ab"}));
+    aut.insert_word(q1, vec_alph.translate_symbol({"cde", "ab"}), 1);
+
+    std::cout << "automaton:\n";
+    std::cout << aut.print_to_dot() << std::endl;
+
+    BDDlikeNft result = complement(aut);
+
+    std::cout << "complement:\n";
+    std::cout << result.print_to_dot() << std::endl;
+
+    std::vector<mata::Symbol> p1 = vec_alph.translate_symbol({"ab", "ab"});
+    std::vector<mata::Symbol> p2 = vec_alph.translate_symbol({"cde", "ab"});
+    auto w1 = flatten(std::vector<std::vector<mata::Symbol>>{p1, p2});
+    auto w2 = flatten(std::vector<std::vector<mata::Symbol>>{p1, p1});
+
+    REQUIRE(!result.get_words(4).contains(w1));
+    REQUIRE(result.get_words(4).contains(w2));
 }

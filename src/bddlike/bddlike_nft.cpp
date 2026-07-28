@@ -113,12 +113,32 @@ bool mata::ext::bddlike::BDDlikeNft::is_in_lang_by_levels(const std::vector<std:
 
 namespace mata::ext::bddlike {
 
+void make_complete(BDDlikeNft& aut) {
+    AlphabetLevels alphabet_levels = aut.construct_alphabet_levels();
+    mata::ext::make_complete(aut, &alphabet_levels);
+}
+
+BDDlikeNft complement(BDDlikeNft& aut, bool minimize_during_determinization) {
+    AlphabetLevels alphabet_levels = aut.construct_alphabet_levels();
+    mata::nft::Nft result_as_nft = mata::ext::complement(aut, &alphabet_levels, minimize_during_determinization); // TODO the DefaultVecAlphabet produces IntAlphabet pointers, which can not be used to make the automaton complete. Make an adequate check and use used_symbols in that case instead.
+
+    BDDlikeNft result{result_as_nft, aut.alphabet_sizes, aut.alphabets};
+    return result;
+}
+
 BDDlikeNft minimize(const BDDlikeNft& aut) {
     auto alphabet_sizes = aut.alphabet_sizes;
     auto alphabets = aut.alphabets;
     mata::nft::Nft aut_as_nft{ aut.to_nft_copy() };
     mata::nft::Nft result_as_nft{mata::ext::minimize(aut_as_nft)}; // TODO move instead?
     BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
+    return result;
+}
+
+BDDlikeNft intersection(const BDDlikeNft& aut1, const BDDlikeNft& aut2) {
+    assert(aut1.alphabet_sizes == aut2.alphabet_sizes); // TODO maybe assert that alphabets are equal, or merge alphabets?
+    mata::nft::Nft result_as_nft{mata::nft::intersection(aut1, aut2)};
+    BDDlikeNft result{result_as_nft, aut1.alphabet_sizes, aut1.alphabets};
     return result;
 }
 
