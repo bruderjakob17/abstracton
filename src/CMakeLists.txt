@@ -6,6 +6,7 @@ add_library(abstracton STATIC
     abstracton.cpp
     interpretations.cpp
     bddlike/interpretations.cpp
+    bddlike/abstracton.cpp
 )
 
 target_compile_features(abstracton PUBLIC cxx_std_20)
