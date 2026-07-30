@@ -193,6 +193,40 @@ public:
     }
 };
 
+class BoundedDefaultVecAlphabet : public DefaultVecAlphabet {
+public:
+    using VecAlphabet::alphabet_nft;
+
+    size_t alphabet_size;
+
+    explicit BoundedDefaultVecAlphabet(size_t alphabet_size, size_t dimension) : DefaultVecAlphabet(dimension), alphabet_size(alphabet_size) {}
+
+    mata::AlphabetLevels construct_alphabet_levels() override {
+        EnumAlphabet* alph = new EnumAlphabet();
+        for (Symbol i{ 0 }; i < alphabet_size; ++i) {
+            alph->add_new_symbol(i);
+        }
+        return mata::AlphabetLevels(alph);
+    }
+
+    mata::nft::Nft alphabet_nft() override {
+        // be careful! introduces DONT CARE symbols which might lead to problems!
+        using namespace mata::nft;
+
+        Nft aut = Nft::with_levels(dimension, dimension + 1, {0}, {dimension});
+
+        for (State source{ 0 }; source < dimension; ++source) {
+            aut.levels[source] = source;
+            for (Symbol i{ 0 }; i < alphabet_size; ++i)
+                aut.delta.add(source, i, source + 1);
+        }
+
+        aut.levels[dimension] = 0;
+
+        return aut;
+    }
+};
+
 class AlphabetVecAlphabet : public VecAlphabet<std::vector<std::string>> {
 private:
     std::shared_ptr<Alphabet> base_alphabet;
@@ -538,6 +572,64 @@ public:
 };
 
 void make_complete(BDDlikeNft& aut);
+
+/**
+ * Inserts a transition (@p symbol1, @p symbol2) from @p source to @p target in @p aut.
+ * Result is neither guaranteed to be minimal nor deterministic.
+ * Only works for BDDlikeNfts with two high levels, where the first alphabet is a @c VecAlphabet<T1>
+ * and the second alphabet is a @c VecAlpahbet<T2>.
+ */
+template<typename T1, typename T2>
+void insert(BDDlikeNft& aut, mata::nft::State source, T1 symbol1, T2 symbol2, mata::nft::State target) {
+    assert(aut.alphabet_sizes.size() == 2);
+    auto alphabet0 = std::dynamic_pointer_cast<VecAlphabet<T1>>(aut.alphabets[0]);
+    auto alphabet1 = std::dynamic_pointer_cast<VecAlphabet<T2>>(aut.alphabets[1]);
+    if (!alphabet0 || !alphabet1) {
+        throw std::runtime_error("Error: trying to insert things into BDDlikeNft with wrong type of symbols (not matching alphabets of nft)");
+    }
+    std::vector<mata::Symbol> symbols1 = alphabet0->translate_symbol(symbol1);
+    std::vector<mata::Symbol> symbols2 = alphabet1->translate_symbol(symbol2);
+    symbols1.insert(symbols1.end(), symbols2.begin(), symbols2.end());
+
+    mata::nft::State last_state = source;
+    mata::nft::Level last_level = aut.levels[last_state];
+    assert(last_level == 0); // TODO maybe generalize...
+    for (int i{ 0 }; i < symbols1.size(); ++i) {
+        if (i + 1 == symbols1.size()) {
+            aut.delta.add(last_state, symbols1[i], target);
+        } else {
+            mata::nft::Level next_level = (last_level + 1) % aut.levels.num_of_levels;
+            mata::nft::State next_state = aut.add_state_with_level(next_level);
+            aut.delta.add(last_state, symbols1[i], next_state);
+
+            last_state = next_state;
+            last_level = next_level;
+        }
+    }
+}
+
+template<typename T1, typename T2>
+void insert_word(BDDlikeNft& aut, mata::nft::State source, const std::vector<T1>& symbols1, const std::vector<T2>& symbols2, mata::nft::State target) {
+    assert(symbols1.size() == symbols2.size());
+    assert(aut.alphabet_sizes.size() == 2);
+    assert(std::dynamic_pointer_cast<VecAlphabet<T1>>(aut.alphabets[0]));
+    assert(std::dynamic_pointer_cast<VecAlphabet<T2>>(aut.alphabets[1]));
+
+    assert(aut.levels[source] == 0); // TODO maybe generalize...
+    assert(aut.levels[target] == 0);
+
+    mata::nft::State last_state = source;
+    for (int i{ 0 }; i < symbols1.size(); ++i) {
+        if (i + 1 == symbols1.size()) {
+            insert(aut, last_state, symbols1[i], symbols2[i], target);
+        } else {
+            mata::nft::State next_state = aut.add_state_with_level(0);
+            insert(aut, last_state, symbols1[i], symbols2[i], next_state);
+            last_state = next_state;
+        }
+    }
+}
+
 BDDlikeNft complement(BDDlikeNft& aut, bool minimize_during_determinization = false);
 BDDlikeNft minimize(const BDDlikeNft& aut);
 BDDlikeNft intersection(const BDDlikeNft& aut1, const BDDlikeNft& aut2);
