@@ -199,3 +199,98 @@ mata::ext::bddlike::BDDlikeNft compute_preach_complement(mata::ext::bddlike::BDD
 
     return product;
 }
+
+std::vector<bool> check_abstract_safety_explicit(mata::ext::bddlike::BDDlikeNft& initial_configurations, mata::ext::bddlike::BDDlikeNft& preach_complement, std::vector<mata::ext::bddlike::BDDlikeNft> unsafe_properties, int verbosityLevel, bool measure_time, bool no_dot_printing) {
+    INIT_CLOCKS();
+
+    using namespace mata::ext::bddlike;
+
+    TICK();
+    BDDlikeNft preach = complement(preach_complement, true);
+    TOCK("complementing complement of preach to obtain preach");
+    PRINT_AUT("preach", preach)
+
+    TICK();
+    BDDlikeNft preach_image = mata::ext::bddlike::compose(initial_configurations, preach, {0}, {0});
+    TOCK("calculating image of initial configs under preach");
+    std::vector<bool> result{};
+    for (BDDlikeNft& unsafe_property : unsafe_properties) {
+        TICK();
+        result.push_back(intersection(preach_image, unsafe_property).is_lang_empty());
+        TOCK("calculating intersection of preach image with unsafe configs");
+    }
+    return result;
+}
+std::vector<bool> check_abstract_safety_lazy(mata::ext::bddlike::BDDlikeNft& initial_configurations, mata::ext::bddlike::BDDlikeNft& preach_complement, std::vector<mata::ext::bddlike::BDDlikeNft> unsafe_properties, std::string universality_alg, int verbosityLevel, bool measure_time, bool no_dot_printing) {
+    INIT_CLOCKS();
+
+    using namespace mata::ext::bddlike;
+
+    std::vector<bool> result{};
+    for (BDDlikeNft& unsafe_property : unsafe_properties) {
+        TICK();
+        BDDlikeNft initial_unsafe_pairs = mata::ext::bddlike::relational_product_length_preserving_dont_care({initial_configurations, unsafe_property});
+        TOCK("constructing transducer for (initial, unsafe) pairs");
+        PRINT_AUT("(initial, unsafe) pairs", initial_unsafe_pairs);
+
+        TICK();
+        BDDlikeNft initial_unsafe_complement = mata::ext::bddlike::complement(initial_unsafe_pairs, true);
+        TOCK("constructing transducer for complement of (initial, unsafe) pairs");
+        PRINT_AUT("complement((initial, unsafe) pairs)", initial_unsafe_complement);
+
+        TICK();
+        BDDlikeNft union2 = mata::ext::bddlike::union_nondet(preach_complement, initial_unsafe_complement);
+        TOCK("building union of complements of preach and (initial, unsafe)-transducer");
+        mata::nft::Run cex; // possible counterexample, could e.g. be printed or returned... TODO
+        // TODO select best algorithm here...
+        if (universality_alg == "lazy") {
+            TICK();
+            result.push_back(mata::ext::bddlike::is_universal_lazy(union2, &cex, verbosityLevel, true));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else if (universality_alg == "lazy-bfs") {
+            TICK();
+            result.push_back(mata::ext::bddlike::is_universal_lazy(union2, &cex, verbosityLevel, false));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else if (universality_alg == "antichains-inclusion") {
+            TICK();
+            //TODO need not construct union2 and complement of initial-unsafe-pairs here
+            result.push_back(mata::ext::bddlike::is_included_antichains(initial_unsafe_pairs, preach_complement, &cex, verbosityLevel, true));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else if (universality_alg == "lazy-inclusion") {
+            TICK();
+            //TODO need not construct union2 and complement of initial-unsafe-pairs here
+            result.push_back(mata::ext::bddlike::is_included_lazy(initial_unsafe_pairs, preach_complement, &cex, verbosityLevel, true));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else if (universality_alg == "lazy-inclusion-bfs") {
+            TICK();
+            //TODO need not construct union2 and complement of initial-unsafe-pairs here
+            result.push_back(mata::ext::bddlike::is_included_lazy(initial_unsafe_pairs, preach_complement, &cex, verbosityLevel, false));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else if (universality_alg == "antichains-bfs") {
+            TICK();
+            result.push_back(mata::ext::bddlike::is_universal_antichains(union2, &cex, verbosityLevel, false));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        } else {
+            if (universality_alg != "antichains") {
+                logging::log(logging::VerbosityLevel::VERBOSE, "WARNING: unknown universality algorithm \"" + universality_alg + "\", defaulting to antichains.", verbosityLevel);
+            }
+            TICK();
+            result.push_back(mata::ext::bddlike::is_universal_antichains(union2, &cex, verbosityLevel, true));
+            TOCK("checking universality using " + universality_alg + " algorithm");
+        }
+
+        if (!result[result.size() - 1]) {
+            logging::log(logging::VerbosityLevel::VERBOSE, "counterexample (abstractly reachable):", verbosityLevel);
+            logging::logexp(logging::VerbosityLevel::VERBOSE, [&]() {
+                // std::vector<std::string> cex_symbols;
+                // cex_symbols.reserve(cex.word.size());
+                // for (const Symbol& x : cex.word) {
+                //     cex_symbols.push_back(concrete_alphabet.reverse_translate_symbol(x));
+                // }
+                // return vec_to_string(cex_symbols);
+                return "not implemented yet";
+            }, verbosityLevel);
+        }
+    }
+    return result;
+}

@@ -633,6 +633,7 @@ void insert_word(BDDlikeNft& aut, mata::nft::State source, const std::vector<T1>
 BDDlikeNft complement(BDDlikeNft& aut, bool minimize_during_determinization = false);
 BDDlikeNft minimize(const BDDlikeNft& aut);
 BDDlikeNft intersection(const BDDlikeNft& aut1, const BDDlikeNft& aut2);
+BDDlikeNft union_nondet(const BDDlikeNft& aut1, const BDDlikeNft& aut2);
 BDDlikeNft compose(BDDlikeNft& lhs, BDDlikeNft& rhs,
             const utils::OrdVector<mata::nft::Level>& lhs_sync_high_levels, const utils::OrdVector<mata::nft::Level>& rhs_sync_high_levels,
             bool project_out_sync_levels = true,
@@ -642,7 +643,14 @@ inline BDDlikeNft project_to(BDDlikeNft& nft, mata::nft::Level high_level_to_pro
     return mata::ext::bddlike::project_to(nft, mata::utils::OrdVector<mata::nft::Level>{high_level_to_project}, jump_mode);
 }
 
+bool is_included_lazy(BDDlikeNft smaller, BDDlikeNft bigger, mata::nft::Run* cex = nullptr, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
+bool is_included_antichains(BDDlikeNft smaller, BDDlikeNft bigger, mata::nft::Run* cex = nullptr, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
+bool is_universal_lazy(BDDlikeNft aut, mata::nft::Run* cex = nullptr, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
+bool is_universal_antichains(BDDlikeNft aut, mata::nft::Run* cex = nullptr, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
+
 BDDlikeNft create_sigma_star_nft(int number_of_levels, const VecAlphabetPrinter& alphabet);
 BDDlikeNft create_sigma_star_nft(const std::vector<VecAlphabetPrinter>& alphabets);
+
+BDDlikeNft relational_product_length_preserving_dont_care(const std::vector<BDDlikeNft> nfts);
 
 }

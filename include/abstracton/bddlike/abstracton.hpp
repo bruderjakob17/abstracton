@@ -14,3 +14,7 @@ mata::ext::bddlike::BDDlikeNft compute_ind_new(mata::ext::bddlike::BDDlikeNft& a
 
 // Input: DETERMINISTIC abstraction framework!
 mata::ext::bddlike::BDDlikeNft compute_preach_complement(mata::ext::bddlike::BDDlikeNft& abstraction_framework, mata::ext::bddlike::BDDlikeNft& transition_relation, std::optional<mata::ext::bddlike::BDDlikeNft>& ind, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool measure_time = false, bool no_dot_printing = false);
+
+
+std::vector<bool> check_abstract_safety_explicit(mata::ext::bddlike::BDDlikeNft& initial_configurations, mata::ext::bddlike::BDDlikeNft& preach, std::vector<mata::ext::bddlike::BDDlikeNft> unsafe_properties, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool measure_time = false, bool no_dot_printing = false);
+std::vector<bool> check_abstract_safety_lazy(mata::ext::bddlike::BDDlikeNft& initial_configurations, mata::ext::bddlike::BDDlikeNft& preach_complement, std::vector<mata::ext::bddlike::BDDlikeNft> unsafe_properties, std::string universality_alg = "antichains", int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool measure_time = false, bool no_dot_printing = false);

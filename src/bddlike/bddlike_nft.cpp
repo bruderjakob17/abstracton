@@ -142,6 +142,13 @@ BDDlikeNft intersection(const BDDlikeNft& aut1, const BDDlikeNft& aut2) {
     return result;
 }
 
+BDDlikeNft union_nondet(const BDDlikeNft& aut1, const BDDlikeNft& aut2) {
+    assert(aut1.alphabet_sizes == aut2.alphabet_sizes); // TODO maybe assert that alphabets are equal, or merge alphabets?
+    mata::nft::Nft result_as_nft{mata::nft::union_nondet(aut1, aut2)};
+    BDDlikeNft result{result_as_nft, aut1.alphabet_sizes, aut1.alphabets};
+    return result;
+}
+
 BDDlikeNft compose(
             BDDlikeNft& lhs,
             BDDlikeNft& rhs,
@@ -220,6 +227,33 @@ BDDlikeNft project_to(BDDlikeNft& nft, const mata::utils::OrdVector<mata::nft::L
     BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
 
     return result;
+}
+
+BDDlikeNft relational_product_length_preserving_dont_care(const std::vector<BDDlikeNft> nfts) {
+    mata::nft::Nft result_as_nft = relational_product_length_preserving_dont_care(nfts);
+
+    std::vector<size_t> alphabet_sizes;
+    std::vector<std::shared_ptr<VecAlphabetPrinter>> alphabets;
+
+    for (int i{ 0 }; i < nfts.size(); ++i) {
+        alphabet_sizes.insert(alphabet_sizes.end(), nfts[i].alphabet_sizes.begin(), nfts[i].alphabet_sizes.end());
+        alphabets.insert(alphabets.end(), nfts[i].alphabets.begin(), nfts[i].alphabets.end());
+    }
+
+    return BDDlikeNft(result_as_nft, alphabet_sizes, alphabets);
+}
+
+bool is_included_lazy(BDDlikeNft smaller, BDDlikeNft bigger, mata::nft::Run* cex, int verbosityLevel, bool dfs){
+    throw std::runtime_error("Not implemented yet");
+}
+bool is_included_antichains(BDDlikeNft smaller, BDDlikeNft bigger, mata::nft::Run* cex, int verbosityLevel, bool dfs){
+    throw std::runtime_error("Not implemented yet");
+}
+bool is_universal_lazy(BDDlikeNft aut, mata::nft::Run* cex, int verbosityLevel, bool dfs){
+    throw std::runtime_error("Not implemented yet");
+}
+bool is_universal_antichains(BDDlikeNft aut, mata::nft::Run* cex, int verbosityLevel, bool dfs){
+    throw std::runtime_error("Not implemented yet");
 }
 
 }
