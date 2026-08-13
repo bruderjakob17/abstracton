@@ -19,7 +19,7 @@ logging::log(logging::VerbosityLevel::VERBOSE, std::format("automaton {}:", name
 if (no_dot_printing) { \
     logging::logexp(logging::VerbosityLevel::VERBOSE, [&]() { return std::format("{} states", aut.num_of_states()); }, verbosityLevel); \
 } else { \
-    logging::logexp(logging::VerbosityLevel::VERBOSE, [&]() { return aut.print_to_dot(); }, verbosityLevel); \
+    logging::logexp(logging::VerbosityLevel::VERBOSE, [&]() { return aut.print_to_dot_using_alphabets(); }, verbosityLevel); \
 }
 
 using namespace mata;
@@ -78,7 +78,7 @@ mata::ext::bddlike::BDDlikeNft compute_ind_new(mata::ext::bddlike::BDDlikeNft& a
     if (exclude_empty_abstractions) {
         // intersect with pi_1(V)
         logging::log(logging::VerbosityLevel::DEBUGV, "ind with empty abstractions:", verbosityLevel);
-        logging::logexp(logging::VerbosityLevel::DEBUGV, [&]() { return ind.print_to_dot(); }, verbosityLevel);
+        logging::logexp(logging::VerbosityLevel::DEBUGV, [&]() { return ind.print_to_dot_using_alphabets(); }, verbosityLevel);
         TICK();
         auto result = mata::ext::bddlike::intersection(ind, mata::ext::bddlike::project_to(abstraction_framework, 1));
         TOCK("excluding empty abstractions");
@@ -163,4 +163,39 @@ mata::ext::bddlike::BDDlikeNft compute_ind_new(mata::ext::bddlike::BDDlikeNft& a
         return ind;
     }
     */
+}
+
+mata::ext::bddlike::BDDlikeNft compute_preach_complement(mata::ext::bddlike::BDDlikeNft& abstraction_framework, mata::ext::bddlike::BDDlikeNft& transition_relation, std::optional<mata::ext::bddlike::BDDlikeNft>& ind, int verbosityLevel, bool measure_time, bool no_dot_printing) {
+    using namespace mata;
+    using namespace mata::ext::bddlike;
+
+    INIT_CLOCKS();
+
+    // inverse(V) id_Ind complement(V), then complement
+    BDDlikeNft ind_result;
+    if (!ind.has_value()) {
+        logging::log(logging::VerbosityLevel::DEBUGV, "ind not given as input to compute_preach_complement, need to construct.", verbosityLevel);
+        ind_result = compute_ind_new(abstraction_framework, transition_relation, false, verbosityLevel, measure_time, no_dot_printing);
+    } else {
+        ind_result = ind.value();
+    }
+
+
+    TICK();
+    BDDlikeNft v_complement {mata::ext::bddlike::complement(abstraction_framework, true)};
+    TOCK("computing complement v_complement of abstraction framework");
+    PRINT_AUT("complement(V)", v_complement); // TODO only calculate once (not in ind and preach)
+
+    TICK();
+    BDDlikeNft v_id {mata::ext::bddlike::compose(abstraction_framework, ind_result, {1}, {0}, false)};
+    TOCK("computing product v_id of abstraction framework with ind");
+    PRINT_AUT("v_id", v_id);
+    // logging::log(logging::VerbosityLevel::VERBOSE, std::format("v_id has {} states", v_id.num_of_states()), verbosityLevel);
+    TICK();
+    BDDlikeNft product {mata::ext::bddlike::compose(v_id, v_complement, {1}, {1}, true)};
+    TOCK("computing product of v_id with complement of abstraction framework");
+    logging::log(logging::VerbosityLevel::VERBOSE, std::format("product has {} states", product.num_of_states()), verbosityLevel);
+    PRINT_AUT("product", product);
+
+    return product;
 }

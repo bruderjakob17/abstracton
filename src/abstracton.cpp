@@ -312,6 +312,7 @@ Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& trans
     AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
     Nft v_complement {mata::ext::complement(abstraction_framework, &alphabet_levels, true)}; // TODO only calculate once (not in ind and preach)
 
+    // TODO creating identity on ind is not necessary. instead, can just compose without projecting out. Test if this improves performance.
     TICK();
     Nft id_ind {create_identity(ind_result)};
     TOCK("constructing identity on ind");

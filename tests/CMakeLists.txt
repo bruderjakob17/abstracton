@@ -7,6 +7,7 @@ add_executable(tests
     bddlike/bddlike_nft.cpp
     bddlike/interpretations.cpp
     bddlike/inductive_sets.cpp
+    bddlike/preach.cpp
 )
 
 target_link_libraries(tests PRIVATE abstracton Catch2::Catch2WithMain)
