@@ -213,3 +213,55 @@ TEST_CASE( "BDDlikeNft complement", "[BDDlikeNft::complement]" ) {
     REQUIRE(!result.get_words(4).contains(w1));
     REQUIRE(result.get_words(4).contains(w2));
 }
+
+TEST_CASE( "BDDlikeNft inclusion", "[BDDlikeNft::is_included_lazy, BDDlikeNft::is_included_antichains]" ) {
+    using namespace mata::ext::bddlike;
+
+    mata::OnTheFlyAlphabet alph(std::vector<std::string>{"req", "syn", "ack"});
+    SimpleVecAlphabet vec_alph_0(std::make_shared<mata::OnTheFlyAlphabet>(alph));
+    BoundedDefaultVecAlphabet vec_alph_1(2, 3);
+
+    std::vector<std::shared_ptr<VecAlphabetPrinter>> vec_alph_vec{};
+    vec_alph_vec.emplace_back(std::make_shared<SimpleVecAlphabet>(vec_alph_0));
+    vec_alph_vec.emplace_back(std::make_shared<BoundedDefaultVecAlphabet>(vec_alph_1));
+
+    BDDlikeNft aut_0 = BDDlikeNft::with_alphabet_sizes({1, 3}, 2, {0}, {1}, std::make_optional<std::vector<std::shared_ptr<VecAlphabetPrinter>>>(vec_alph_vec));
+    BDDlikeNft aut_1 = BDDlikeNft::with_alphabet_sizes({1, 3}, 2, {0}, {1}, std::make_optional<std::vector<std::shared_ptr<VecAlphabetPrinter>>>(vec_alph_vec));
+    BDDlikeNft aut_2 = BDDlikeNft::with_alphabet_sizes({1, 3}, 2, {0}, {1}, std::make_optional<std::vector<std::shared_ptr<VecAlphabetPrinter>>>(vec_alph_vec));
+
+    insert_word(aut_0, 0, std::vector<std::string>{"syn", "ack", "req"}, std::vector<std::vector<mata::Symbol>>{{0, 0, 0}, {0, 1, 1}, {0, 1, 1}}, 1);
+    insert_word(aut_1, 0, std::vector<std::string>{"syn", "ack", "req"}, std::vector<std::vector<mata::Symbol>>{{0, 0, 0}, {0, 1, 1}, {0, 1, 1}}, 1);
+    insert_word(aut_2, 0, std::vector<std::string>{"syn", "ack", "req"}, std::vector<std::vector<mata::Symbol>>{{0, 0, 0}, {0, 1, 1}, {0, 1, 1}}, 1);
+    insert_word(aut_1, 0, std::vector<std::string>{"syn", "ack", "req"}, std::vector<std::vector<mata::Symbol>>{{0, 0, 0}, {0, 0, 1}, {0, 1, 1}}, 1);
+    insert_word(aut_2, 0, std::vector<std::string>{"syn", "ack", "ack"}, std::vector<std::vector<mata::Symbol>>{{0, 0, 0}, {0, 1, 1}, {0, 1, 1}}, 1);
+
+    // aut_0 contained in aut_1 and aut_2
+    REQUIRE(is_included_lazy(aut_0, aut_1, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(is_included_lazy(aut_0, aut_1, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    REQUIRE(is_included_lazy(aut_0, aut_2, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(is_included_lazy(aut_0, aut_2, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    REQUIRE(is_included_antichains(aut_0, aut_1, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(is_included_antichains(aut_0, aut_1, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    REQUIRE(is_included_antichains(aut_0, aut_2, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(is_included_antichains(aut_0, aut_2, nullptr, logging::VerbosityLevel::DEBUGV, false));
+
+    // aut_1 is not contained in aut_0 and aut_2
+    REQUIRE(!is_included_lazy(aut_1, aut_0, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(!is_included_lazy(aut_1, aut_0, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    REQUIRE(!is_included_lazy(aut_1, aut_2, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(!is_included_lazy(aut_1, aut_2, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    REQUIRE(!is_included_antichains(aut_1, aut_0, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(!is_included_antichains(aut_1, aut_0, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    REQUIRE(!is_included_antichains(aut_1, aut_2, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(!is_included_antichains(aut_1, aut_2, nullptr, logging::VerbosityLevel::DEBUGV, false));
+
+    // aut_2 is not contained in aut_0 and aut_1
+    REQUIRE(!is_included_lazy(aut_2, aut_0, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(!is_included_lazy(aut_2, aut_0, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    REQUIRE(!is_included_lazy(aut_2, aut_1, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(!is_included_lazy(aut_2, aut_1, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    REQUIRE(!is_included_antichains(aut_2, aut_0, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(!is_included_antichains(aut_2, aut_0, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    REQUIRE(!is_included_antichains(aut_2, aut_1, nullptr, logging::VerbosityLevel::DEBUGV, true));
+    REQUIRE(!is_included_antichains(aut_2, aut_1, nullptr, logging::VerbosityLevel::DEBUGV, false));
+}
