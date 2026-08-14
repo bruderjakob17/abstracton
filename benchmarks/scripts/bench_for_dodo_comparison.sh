@@ -90,7 +90,7 @@ do
         time systemd-run --user --scope \
               -p MemoryMax=32G \
               -p MemorySwapMax=7G \
-              timeout $TIMEOUT "${parentdir}/../build_release/benchmarks/solve_dodo" -i $MODE -p $PROPERTY $FILE --measure-time --no-dot-printing --universality-alg lazy-bfs
+              timeout $TIMEOUT "${parentdir}/../build_release/benchmarks/solve_dodo" -i $MODE -p $PROPERTY $FILE --measure-time --no-dot-printing --universality-alg antichains-inclusion
 		echo "********************"
       fi
     done
