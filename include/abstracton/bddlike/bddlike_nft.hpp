@@ -643,6 +643,8 @@ inline BDDlikeNft project_to(BDDlikeNft& nft, mata::nft::Level high_level_to_pro
     return mata::ext::bddlike::project_to(nft, mata::utils::OrdVector<mata::nft::Level>{high_level_to_project}, jump_mode);
 }
 
+/// all inclusion algorithms just check inclusion as nfts.
+/// TODO: also check if alphabets match / are included !!!
 bool is_included_lazy(BDDlikeNft smaller, BDDlikeNft bigger, mata::nft::Run* cex = nullptr, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
 bool is_included_antichains(BDDlikeNft smaller, BDDlikeNft bigger, mata::nft::Run* cex = nullptr, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
 bool is_universal_lazy(BDDlikeNft aut, mata::nft::Run* cex = nullptr, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool dfs = true);
