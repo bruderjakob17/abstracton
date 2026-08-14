@@ -244,16 +244,24 @@ BDDlikeNft relational_product_length_preserving_dont_care(const std::vector<BDDl
 }
 
 bool is_included_lazy(BDDlikeNft smaller, BDDlikeNft bigger, mata::nft::Run* cex, int verbosityLevel, bool dfs){
-    throw std::runtime_error("Not implemented yet");
+    return mata::ext::is_included_lazy(smaller, bigger, cex, verbosityLevel, dfs);
 }
 bool is_included_antichains(BDDlikeNft smaller, BDDlikeNft bigger, mata::nft::Run* cex, int verbosityLevel, bool dfs){
-    throw std::runtime_error("Not implemented yet");
+    return mata::nft::algorithms::is_included_antichains(smaller, bigger, nullptr, cex);
 }
 bool is_universal_lazy(BDDlikeNft aut, mata::nft::Run* cex, int verbosityLevel, bool dfs){
-    throw std::runtime_error("Not implemented yet");
+    mata::AlphabetLevels alphabet_levels = aut.construct_alphabet_levels();
+
+    bool result = mata::ext::is_universal_lazy(aut, &alphabet_levels, cex, verbosityLevel, dfs);
+
+    return result;
 }
 bool is_universal_antichains(BDDlikeNft aut, mata::nft::Run* cex, int verbosityLevel, bool dfs){
-    throw std::runtime_error("Not implemented yet");
+    mata::AlphabetLevels alphabet_levels = aut.construct_alphabet_levels();
+
+    bool result = mata::ext::is_universal_antichains(aut, &alphabet_levels, cex, verbosityLevel, dfs);
+
+    return result;
 }
 
 }
