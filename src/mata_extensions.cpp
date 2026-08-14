@@ -178,6 +178,11 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
             // std::cout << "adding sink state " << sinks[i] << " at level " << i << std::endl;
         }
 
+        // if no initial state exists
+        if (nft.initial.empty()) {
+            nft.initial.insert(sinks[0]);
+        }
+
         const size_t num_of_states{ nft.num_of_states() };
 
         for (State state{ 0 }; state < num_of_states; ++state) {
