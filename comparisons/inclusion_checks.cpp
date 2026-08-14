@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
 
         mata::EnumAlphabet alph0 = {0, 1};
         mata::EnumAlphabet alph1 = {0, 1, 2};
-        std::vector<mata::Alphabet*> alphabets = {&alph0, &alph1};
+        mata::AlphabetLevels alphabets({&alph0, &alph1});
         mata::nft::Run cex0, cex1, cex2;
 
         std::cout << "Seed: " << seed.value() << std::endl;
@@ -46,19 +46,19 @@ int main(int argc, char** argv) {
 
         std::cout << "Default:" << std::endl;
         TICK();
-        bool is_universal0 = mata::ext::is_universal_antichains(aut, alphabets, &cex0);
+        bool is_universal0 = mata::ext::is_universal_antichains(aut, &alphabets, &cex0);
         TOCK();
         std::cout << "Result: " << is_universal0 << std::endl;
 
         std::cout << "Using inclusion:" << std::endl;
         TICK();
-        bool is_universal1 = mata::ext::is_universal_antichains_by_inclusion(aut, alphabets, &cex1);
+        bool is_universal1 = mata::ext::is_universal_antichains_by_inclusion(aut, &alphabets, &cex1);
         TOCK();
         std::cout << "Result: " << is_universal1 << std::endl;
 
         std::cout << "Lazy (without subsumption):" << std::endl;
         TICK();
-        bool is_universal2 = mata::ext::is_universal_lazy(aut, alphabets, &cex2);
+        bool is_universal2 = mata::ext::is_universal_lazy(aut, &alphabets, &cex2);
         TOCK();
         std::cout << "Result: " <<is_universal2 << std::endl;
 
