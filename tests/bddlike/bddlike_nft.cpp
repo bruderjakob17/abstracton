@@ -265,3 +265,87 @@ TEST_CASE( "BDDlikeNft inclusion", "[BDDlikeNft::is_included_lazy, BDDlikeNft::i
     REQUIRE(!is_included_antichains(aut_2, aut_1, nullptr, logging::VerbosityLevel::DEBUGV, true));
     REQUIRE(!is_included_antichains(aut_2, aut_1, nullptr, logging::VerbosityLevel::DEBUGV, false));
 }
+
+TEST_CASE( "BDDlikeNft universality", "[BDDlikeNft::is_universal_lazy, BDDlikeNft::is_universal_antichains]" ) {
+    using namespace mata::ext::bddlike;
+
+    auto print_run = [](mata::nft::Run cex) -> void {
+        std::cout << "Run:\n";
+        std::cout << '\t' << vec_to_string(cex.word) << std::endl;
+        std::cout << "Trace in NFT:\n";
+        std::cout << '\t' << vec_to_string(cex.path) << std::endl;
+    };
+
+    mata::OnTheFlyAlphabet alph(std::vector<std::string>{"req", "syn", "ack"});
+    SimpleVecAlphabet vec_alph_0(std::make_shared<mata::OnTheFlyAlphabet>(alph));
+    BoundedDefaultVecAlphabet vec_alph_1(2, 3);
+
+    std::vector<std::shared_ptr<VecAlphabetPrinter>> vec_alph_vec{};
+    vec_alph_vec.emplace_back(std::make_shared<SimpleVecAlphabet>(vec_alph_0));
+    vec_alph_vec.emplace_back(std::make_shared<BoundedDefaultVecAlphabet>(vec_alph_1));
+
+    SECTION("complement of empty nft") {
+        BDDlikeNft aut_emptyset = BDDlikeNft::with_alphabet_sizes({1, 3}, 1, {0}, {}, std::make_optional<std::vector<std::shared_ptr<VecAlphabetPrinter>>>(vec_alph_vec));
+
+        BDDlikeNft aut_comp = complement(aut_emptyset, false);
+        BDDlikeNft aut_comp_min = complement(aut_emptyset, true);
+
+        std::cout << "empty nft:\n";
+        std::cout << aut_emptyset.print_to_dot_using_alphabets();
+        std::cout << "complement:\n";
+        std::cout << aut_comp.print_to_dot_using_alphabets();
+        std::cout << "complement (min):\n";
+        std::cout << aut_comp_min.print_to_dot_using_alphabets();
+
+        REQUIRE(is_universal_lazy(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(is_universal_lazy(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(is_universal_antichains(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(is_universal_antichains(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(is_universal_lazy(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(is_universal_lazy(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(is_universal_antichains(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(is_universal_antichains(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    }
+
+    SECTION("L(epsilon) and complement of it") {
+        BDDlikeNft aut_emptyword = BDDlikeNft::with_alphabet_sizes({1, 3}, 1, {0}, {0}, std::make_optional<std::vector<std::shared_ptr<VecAlphabetPrinter>>>(vec_alph_vec));
+
+        BDDlikeNft aut_comp = complement(aut_emptyword, false);
+        BDDlikeNft aut_comp_min = complement(aut_emptyword, true);
+
+        REQUIRE(!is_universal_lazy(aut_emptyword, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_lazy(aut_emptyword, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(!is_universal_antichains(aut_emptyword, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_antichains(aut_emptyword, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(!is_universal_lazy(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_lazy(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(!is_universal_antichains(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_antichains(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(!is_universal_lazy(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_lazy(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(!is_universal_antichains(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_antichains(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    }
+
+    SECTION("L(w) and complement of it") {
+        BDDlikeNft aut = BDDlikeNft::with_alphabet_sizes({1, 3}, 2, {0}, {1}, std::make_optional<std::vector<std::shared_ptr<VecAlphabetPrinter>>>(vec_alph_vec));
+
+        insert_word(aut, 0, std::vector<std::string>{"syn", "ack", "req"}, std::vector<std::vector<mata::Symbol>>{{0, 0, 0}, {0, 1, 1}, {0, 1, 1}}, 1);
+
+        BDDlikeNft aut_comp = complement(aut, false);
+        BDDlikeNft aut_comp_min = complement(aut, true);
+
+        REQUIRE(!is_universal_lazy(aut, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_lazy(aut, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(!is_universal_antichains(aut, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_antichains(aut, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(!is_universal_lazy(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_lazy(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(!is_universal_antichains(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_antichains(aut_comp, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(!is_universal_lazy(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_lazy(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, false));
+        REQUIRE(!is_universal_antichains(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, true));
+        REQUIRE(!is_universal_antichains(aut_comp_min, nullptr, logging::VerbosityLevel::DEBUGV, false));
+    }
+}
