@@ -10,6 +10,7 @@
 #include <mata/nfa/delta.hh>
 
 #include <abstracton/utils/utils.hpp>
+#include <abstracton/bddlike/bddlike_nft.hpp>
 
 // struct alphabet_encoding {
 //     std::vector<char> alphabet;
@@ -41,3 +42,17 @@ struct DodoParserResult {
 };
 
 DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL, bool no_dot_printing = false);
+
+struct BDDlikeDodoParserResult {
+    mata::ext::bddlike::SimpleVecAlphabet string_alphabet;
+    mata::ext::bddlike::BDDlikeNft initialConfig;
+    std::vector<mata::ext::bddlike::BDDlikeNft> properties;
+    std::vector<std::string> propertyNames;
+    mata::ext::bddlike::BDDlikeNft transitionRelation;
+};
+
+/**
+ * WARNING: dpr.string_alphabet gets converted to a shared_ptr, taking ownership of *dpr.string_alphabet.
+ * Do not use raw pointer dpr.string_alphabet after calling this function!
+ */
+BDDlikeDodoParserResult convertToBDDlike(DodoParserResult& dpr);

@@ -1,4 +1,5 @@
 #include "DodoParser.h"
+#include <mata/alphabet.hh>
 #include <unordered_map>
 #include <abstracton/utils/utils.hpp>
 #include <format>
@@ -63,7 +64,7 @@ mata::nfa::Nfa parseDodoNfa(Json::Value nfa, mata::OnTheFlyAlphabet* string_alph
         int source = t["source"].asInt();
 
         std::string letter = t["letter"].asString();
-        
+
         for (auto target : t["target"]) {
             assert(target.isInt());
             transitions.push_back(std::make_tuple(source, letter, target.asInt()));
@@ -137,7 +138,7 @@ mata::nft::Nft parseTransducer(Json::Value t, mata::OnTheFlyAlphabet* string_alp
         char b = encode_alphabet[letter.second];
         transitions.emplace(std::make_pair(source, std::make_pair(a, b)), targets);
     }
-    
+
     return Transducer(transitions, initialState, finalStates);*/
 
     std::vector<int> states {};
@@ -283,4 +284,29 @@ DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel, bool no
         propertyNames,
         t
     };
-} 
+}
+
+BDDlikeDodoParserResult convertToBDDlike(DodoParserResult& dpr) {
+    using namespace mata::ext::bddlike;
+
+    std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet_ptr(dpr.string_alphabet);
+    SimpleVecAlphabet string_alphabet(string_alphabet_ptr);
+
+    BDDlikeNft initialConfig(mata::nft::Nft{dpr.initialConfig}, std::vector<size_t>{1}, std::vector<std::shared_ptr<VecAlphabetPrinter>>{std::make_shared<SimpleVecAlphabet>(string_alphabet)});
+
+    std::vector<BDDlikeNft> properties{};
+    for (mata::nfa::Nfa& property : properties) {
+        BDDlikeNft property_bddlike(mata::nft::Nft{property}, std::vector<size_t>{1}, std::vector<std::shared_ptr<VecAlphabetPrinter>>{std::make_shared<SimpleVecAlphabet>(string_alphabet)});
+        properties.push_back(property_bddlike);
+    }
+
+    BDDlikeNft transitionRelation{dpr.transitionRelation, std::vector<size_t>{1, 1}, std::vector<std::shared_ptr<VecAlphabetPrinter>>{std::make_shared<SimpleVecAlphabet>(string_alphabet), std::make_shared<SimpleVecAlphabet>(string_alphabet)}};
+
+    return BDDlikeDodoParserResult{
+        string_alphabet,
+        initialConfig,
+        properties,
+        dpr.propertyNames,
+        transitionRelation
+    };
+}
