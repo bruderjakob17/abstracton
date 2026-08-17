@@ -251,8 +251,7 @@ DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel, bool no
     for (auto x : obj["alphabet"]) {
         string_alphabet_vec.push_back(x.asString());
     }
-    mata::OnTheFlyAlphabet string_alphabet(string_alphabet_vec);
-    std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet_ptr = std::make_shared<mata::OnTheFlyAlphabet>(string_alphabet);
+    mata::OnTheFlyAlphabet* string_alphabet_ptr = new mata::OnTheFlyAlphabet(string_alphabet_vec);
 
     // // convert to char alphabet
     // alphabet_encoding alphabet_enc = alphabetToCharAlphabet(string_alphabet);
@@ -261,25 +260,21 @@ DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel, bool no
     logging::log(logging::VerbosityLevel::DEBUGV, "parser: alphabet " + stream_to_string(string_alphabet_ptr->get_alphabet_symbols()) + " initialized!", verbosityLevel);
 
     // Parse transducer
-    mata::nft::Nft t = parseTransducer(obj["transducer"], string_alphabet_ptr.get(), verbosityLevel);
+    mata::nft::Nft t = parseTransducer(obj["transducer"], string_alphabet_ptr, verbosityLevel);
     PRINT_AUT("transducer (parsed)", t);
 
     // Parse initial nfa
-    mata::nfa::Nfa initialConfig = parseDodoNfa(obj["initial"], string_alphabet_ptr.get());
+    mata::nfa::Nfa initialConfig = parseDodoNfa(obj["initial"], string_alphabet_ptr);
     PRINT_AUT("initial configs (parsed)", initialConfig);
 
     // Parse properties
     std::vector<mata::nfa::Nfa> properties {};
     std::vector<std::string> propertyNames {};
     for (auto p : obj["properties"].getMemberNames()) {
-        properties.push_back(parseDodoNfa(obj["properties"][p], string_alphabet_ptr.get()));
+        properties.push_back(parseDodoNfa(obj["properties"][p], string_alphabet_ptr));
         propertyNames.push_back(p);
         PRINT_AUT("property \"" + p + "\" (parsed)", properties[properties.size() - 1]);
     }
-
-
-    logging::log(logging::VerbosityLevel::DEBUGV, "parser: alphabet " + stream_to_string(string_alphabet_ptr->get_alphabet_symbols()) + " still intact!", verbosityLevel);
-    assert(string_alphabet_ptr->is_equal(t.alphabet));
 
     return DodoParserResult {
         string_alphabet_ptr,

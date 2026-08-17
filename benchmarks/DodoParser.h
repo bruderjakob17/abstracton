@@ -33,7 +33,7 @@ mata::nft::Nft parseTransducer(Json::Value t, int verbosityLevel = logging::DEFA
 
 struct DodoParserResult {
     // alphabet_encoding char_alphabet_triple;
-    std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet;
+    mata::OnTheFlyAlphabet* string_alphabet;
     mata::nfa::Nfa initialConfig;
     std::vector<mata::nfa::Nfa> properties;
     std::vector<std::string> propertyNames;
