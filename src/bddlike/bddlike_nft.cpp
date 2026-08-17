@@ -230,7 +230,11 @@ BDDlikeNft project_to(BDDlikeNft& nft, const mata::utils::OrdVector<mata::nft::L
 }
 
 BDDlikeNft relational_product_length_preserving_dont_care(const std::vector<BDDlikeNft> nfts) {
-    mata::nft::Nft result_as_nft = relational_product_length_preserving_dont_care(nfts);
+    std::vector<mata::nft::Nft> nfts_as_nfts{};
+    for (const BDDlikeNft& aut : nfts) {
+        nfts_as_nfts.push_back(aut.to_nft_copy());
+    }
+    mata::nft::Nft result_as_nft = mata::ext::relational_product_length_preserving_dont_care(nfts_as_nfts);
 
     std::vector<size_t> alphabet_sizes;
     std::vector<std::shared_ptr<VecAlphabetPrinter>> alphabets;

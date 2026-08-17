@@ -4,6 +4,9 @@
 #include <abstracton/abstracton.hpp>
 #include <abstracton/utils/utils.hpp>
 #include <abstracton/mata_extensions.hpp>
+#include <abstracton/bddlike/bddlike_nft.hpp>
+#include <abstracton/bddlike/abstracton.hpp>
+#include <abstracton/bddlike/interpretations.hpp>
 #include <chrono>
 
 #define TICK() if (measure_time) { begin = std::chrono::steady_clock::now(); }
@@ -19,6 +22,13 @@ if (no_dot_printing) { \
     logexp(VerbosityLevel::VERBOSE, [&]() { return std::format("{} states", aut.num_of_states()); }, verbosityLevel); \
 } else { \
     logexp(VerbosityLevel::VERBOSE, [&]() { return aut.print_to_dot(); }, verbosityLevel); \
+}
+#define PRINT_AUT_USING_ALPHABETS(name, aut) \
+log(VerbosityLevel::VERBOSE, std::format("automaton {}:", name), verbosityLevel); \
+if (no_dot_printing) { \
+    logexp(VerbosityLevel::VERBOSE, [&]() { return std::format("{} states", aut.num_of_states()); }, verbosityLevel); \
+} else { \
+    logexp(VerbosityLevel::VERBOSE, [&]() { return aut.print_to_dot_using_alphabets(); }, verbosityLevel); \
 }
 
 void print_help() {
@@ -355,43 +365,46 @@ int main(int argc, char** argv) {
         DodoParserResult dpr = parseDodoJSON(filename, verbosityLevel, no_dot_printing);
         TOCK("parsing json file");
 
-        throw std::runtime_error("ERROR: Not implemented yet");
+        TICK();
+        BDDlikeDodoParserResult dpr_bdd = convertToBDDlike(dpr);
+        TOCK("converting parser result to bddlike nft type");
 
         log(VerbosityLevel::VERBOSE, "parsed file " + filename + ".", verbosityLevel);
-        log(VerbosityLevel::DEBUGV, "alphabet: " + stream_to_string(dpr.string_alphabet->get_alphabet_symbols()), verbosityLevel);
-        log(VerbosityLevel::NORMAL, std::format("alphabet size: {}", dpr.string_alphabet->get_alphabet_symbols().size()), verbosityLevel);
-        assert(dpr.string_alphabet->is_equal(dpr.transitionRelation.alphabet));
-        PRINT_AUT("initial configurations", dpr.initialConfig);
-        PRINT_AUT("transition relation", dpr.transitionRelation);
-        assert(dpr.properties.size() == dpr.propertyNames.size());
+        log(VerbosityLevel::DEBUGV, "alphabet: " + stream_to_string(dpr_bdd.string_alphabet.get_base_alphabet()->get_alphabet_symbols()), verbosityLevel);
+        log(VerbosityLevel::NORMAL, std::format("alphabet size: {}", dpr_bdd.string_alphabet.get_base_alphabet()->get_alphabet_symbols().size()), verbosityLevel);
+
+        PRINT_AUT_USING_ALPHABETS("initial configurations", dpr_bdd.initialConfig);
+        PRINT_AUT_USING_ALPHABETS("transition relation", dpr_bdd.transitionRelation);
+        assert(dpr_bdd.properties.size() == dpr_bdd.propertyNames.size());
         log(VerbosityLevel::DEBUGV, "properties:", verbosityLevel);
-        for (int i{ 0 }; i < dpr.properties.size(); ++i) {
-            PRINT_AUT(dpr.propertyNames[i], dpr.properties[i]);
+        for (int i{ 0 }; i < dpr_bdd.properties.size(); ++i) {
+            PRINT_AUT_USING_ALPHABETS(dpr_bdd.propertyNames[i], dpr_bdd.properties[i]);
         }
+
 
         // TODO only minimize relevant input, e.g. don't minimize properties that should not be checked
         if (minimize_input) {
             log(VerbosityLevel::VERBOSE, "minimizing input...", verbosityLevel);
 
-            log(VerbosityLevel::VERBOSE, std::format("automaton for initialConfig has {} states.", dpr.initialConfig.num_of_states()), verbosityLevel);
+            log(VerbosityLevel::VERBOSE, std::format("automaton for initialConfig has {} states.", dpr_bdd.initialConfig.num_of_states()), verbosityLevel);
             TICK();
-            dpr.initialConfig = minimize_nfa(dpr.initialConfig);
+            dpr_bdd.initialConfig = mata::ext::bddlike::minimize(dpr_bdd.initialConfig);
             TOCK("minimizing initial configs");
-            log(VerbosityLevel::VERBOSE, std::format("minimized automaton for initialConfig has {} states.", dpr.initialConfig.num_of_states()), verbosityLevel);
+            log(VerbosityLevel::VERBOSE, std::format("minimized automaton for initialConfig has {} states.", dpr_bdd.initialConfig.num_of_states()), verbosityLevel);
 
-            log(VerbosityLevel::VERBOSE, std::format("automaton for transitionRelation has {} states (0-level: {}).", dpr.transitionRelation.num_of_states(), dpr.transitionRelation.num_of_states_with_level(0)), verbosityLevel);
+            log(VerbosityLevel::VERBOSE, std::format("automaton for transitionRelation has {} states (0-level: {}).", dpr_bdd.transitionRelation.num_of_states(), dpr_bdd.transitionRelation.num_of_states_with_level(0)), verbosityLevel);
             TICK();
-            dpr.transitionRelation = mata::ext::minimize(dpr.transitionRelation);
+            dpr_bdd.transitionRelation = mata::ext::bddlike::minimize(dpr_bdd.transitionRelation);
             TOCK("minimizing transition relation");
-            log(VerbosityLevel::VERBOSE, std::format("minimized automaton for transitionRelation has {} states (0-level: {}).", dpr.transitionRelation.num_of_states(), dpr.transitionRelation.num_of_states_with_level(0)), verbosityLevel);
+            log(VerbosityLevel::VERBOSE, std::format("minimized automaton for transitionRelation has {} states (0-level: {}).", dpr_bdd.transitionRelation.num_of_states(), dpr_bdd.transitionRelation.num_of_states_with_level(0)), verbosityLevel);
 
-            for (int i{ 0 }; i < dpr.properties.size(); ++i) {
-                if (!property.has_value() || property.value() == dpr.propertyNames[i]) {
-                    log(VerbosityLevel::VERBOSE, std::format("automaton for property {} has {} states.", dpr.propertyNames[i], dpr.properties[i].num_of_states()), verbosityLevel);
+            for (int i{ 0 }; i < dpr_bdd.properties.size(); ++i) {
+                if (!property.has_value() || property.value() == dpr_bdd.propertyNames[i]) {
+                    log(VerbosityLevel::VERBOSE, std::format("automaton for property {} has {} states.", dpr_bdd.propertyNames[i], dpr_bdd.properties[i].num_of_states()), verbosityLevel);
                     TICK();
-                    dpr.properties[i] = minimize_nfa(dpr.properties[i]);
-                    TOCK(std::format("minimizing property {}", dpr.propertyNames[i]));
-                    log(VerbosityLevel::VERBOSE, std::format("minimized automaton for property {} has {} states.", dpr.propertyNames[i], dpr.properties[i].num_of_states()), verbosityLevel);
+                    dpr_bdd.properties[i] = mata::ext::bddlike::minimize(dpr_bdd.properties[i]);
+                    TOCK(std::format("minimizing property {}", dpr_bdd.propertyNames[i]));
+                    log(VerbosityLevel::VERBOSE, std::format("minimized automaton for property {} has {} states.", dpr_bdd.propertyNames[i], dpr_bdd.properties[i].num_of_states()), verbosityLevel);
                 }
             }
         }
@@ -400,31 +413,33 @@ int main(int argc, char** argv) {
             log(VerbosityLevel::QUIET, "using " + to_string(itype) + " interpretation", verbosityLevel);
             // build interpretation
             TICK();
+            mata::ext::bddlike::BDDlikeNft interpretation = mata::ext::bddlike::trapInterpretation(std::static_pointer_cast<mata::OnTheFlyAlphabet>(dpr_bdd.string_alphabet.get_base_alphabet()), itype);
             std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> ipa = trapInterpretation(dpr.string_alphabet, itype);
             TOCK("constructing " + to_string(itype) + " interpretation transducer");
-            mata::nft::Nft interpretation = ipa.first;
-            std::shared_ptr<mata::OnTheFlyAlphabet> powerset_alphabet_ptr = ipa.second;
             PRINT_AUT("interpretation of type " + to_string(itype), interpretation);
 
             // compute ind
             log(VerbosityLevel::NORMAL, "computing ind...", verbosityLevel);
 
             TICK();
-            mata::nfa::Nfa ind;
+            mata::ext::bddlike::BDDlikeNft ind;
             if (ind_alg == "project") {
-                ind = compute_ind_new(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
+                ind = compute_ind_new(interpretation, dpr_bdd.transitionRelation, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
             } else if (ind_alg == "id-intersection") {
-                ind = compute_ind_old(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
+                throw std::runtime_error("ERROR: Not implemented yet");
+                // ind = compute_ind_old(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
             } else {
-                ind = compute_ind(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
+                throw std::runtime_error("ERROR: Not implemented yet");
+                // ind = compute_ind(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
             }
             TOCK("computing ind (total)");
 
             log(VerbosityLevel::NORMAL, std::format("automaton for ind has {} states.", ind.num_of_states()), verbosityLevel);
+            log(VerbosityLevel::NORMAL, std::format("...of which, {} are at level 0.", ind.num_of_states_with_level(0)), verbosityLevel);
 
-            // now done in abstracton.cpp
+            // should be done in abstracton.cpp
             // TICK();
-            // ind = mata::nfa::minimize(ind);
+            // ind = mata::ext::bddlike::minimize(ind);
             // TOCK("minimizing ind");
             // log(VerbosityLevel::NORMAL, std::format("minimized automaton for ind has {} states.", ind.num_of_states()), verbosityLevel);
 
@@ -432,18 +447,30 @@ int main(int argc, char** argv) {
             PRINT_AUT("ind", ind);
 
             // already construct properties that need to be checked (needed in both branches of if)
-            std::vector<mata::nfa::Nfa> properties_to_check{};
+            std::vector<mata::ext::bddlike::BDDlikeNft> properties_to_check{};
             if (property.has_value()) {
-                for (int i{ 0 }; i < dpr.propertyNames.size(); ++i) {
-                    if (dpr.propertyNames[i] == property.value()) {
-                        properties_to_check.push_back(dpr.properties[i]);
-                        propertyNames.push_back(dpr.propertyNames[i]);
+                for (int i{ 0 }; i < dpr_bdd.propertyNames.size(); ++i) {
+                    if (dpr_bdd.propertyNames[i] == property.value()) {
+                        properties_to_check.push_back(dpr_bdd.properties[i]);
+                        propertyNames.push_back(dpr_bdd.propertyNames[i]);
                     }
                 }
             } else {
-                properties_to_check = dpr.properties;
-                propertyNames = dpr.propertyNames;
+                properties_to_check = dpr_bdd.properties;
+                propertyNames = dpr_bdd.propertyNames;
             }
+
+
+            log(VerbosityLevel::NORMAL, "computing complement of preach...", verbosityLevel);
+
+            TICK();
+            auto ind_opt = std::make_optional<mata::ext::bddlike::BDDlikeNft>(ind);
+            mata::ext::bddlike::BDDlikeNft preach_comp {compute_preach_complement(interpretation, dpr_bdd.transitionRelation, ind_opt, verbosityLevel, measure_time, no_dot_printing)};
+            TOCK("computing complement of preach");
+
+            log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
+            log(VerbosityLevel::NORMAL, std::format("automaton for complement of preach has {} states.", preach_comp.num_of_states()), verbosityLevel);
+            log(VerbosityLevel::NORMAL, std::format("...of which, {} states are at level 0.", preach_comp.num_of_states_with_level(0)), verbosityLevel);
 
             std::vector<bool> result;
             if (universality_alg == "explicit") {
@@ -451,7 +478,7 @@ int main(int argc, char** argv) {
                 log(VerbosityLevel::NORMAL, "computing preach...", verbosityLevel);
 
                 TICK();
-                mata::nft::Nft preach {compute_preach(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind))};
+                mata::ext::bddlike::BDDlikeNft preach = mata::ext::bddlike::complement(preach_comp, false);
                 TOCK("computing preach");
 
                 log(VerbosityLevel::NORMAL, std::format("automaton for preach has {} states.", preach.num_of_states()), verbosityLevel);
@@ -460,28 +487,21 @@ int main(int argc, char** argv) {
                 preach = preach.trim();
                 TOCK("trimming preach");
                 TICK();
-                preach = mata::ext::minimize(preach);
+                preach = mata::ext::bddlike::minimize(preach);
                 TOCK("minimizing preach");
 
                 log(VerbosityLevel::NORMAL, std::format("minimized automaton for preach has {} states.", preach.num_of_states()), verbosityLevel);
+                log(VerbosityLevel::NORMAL, std::format("...of which, {} states are at level 0.", preach.num_of_states_with_level(0)), verbosityLevel);
                 log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
                 PRINT_AUT("preach", preach);
 
                 // check whether safety can be proven, i.e. whether abstract safety holds
                 log(VerbosityLevel::NORMAL, "trying to prove abstract safety...", verbosityLevel);
                 TICK();
-                result = check_abstract_safety_explicit(dpr.initialConfig, preach, properties_to_check, verbosityLevel, measure_time, no_dot_printing);
+                result = check_abstract_safety_explicit(dpr_bdd.initialConfig, preach, properties_to_check, verbosityLevel, measure_time, no_dot_printing);
                 TOCK("checking abstract safety");
             } else {
                 // lazily check intersection of preach using complement of preach
-                log(VerbosityLevel::NORMAL, "computing complement of preach...", verbosityLevel);
-
-                TICK();
-                mata::nft::Nft preach_comp {compute_preach_complement(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind), verbosityLevel, measure_time, no_dot_printing)};
-                TOCK("computing complement of preach");
-
-                log(VerbosityLevel::NORMAL, std::format("automaton for complement of preach has {} states.", preach_comp.num_of_states()), verbosityLevel);
-                log(VerbosityLevel::NORMAL, std::format("...of which, {} states are at level 0.", preach_comp.num_of_states_with_level(0)), verbosityLevel);
 
                 TICK();
                 preach_comp = preach_comp.trim();
@@ -492,13 +512,12 @@ int main(int argc, char** argv) {
                 // TOCK("minimizing complement of preach");
 
                 // log(VerbosityLevel::NORMAL, std::format("minimized automaton for complement of preach has {} states.", preach_comp.num_of_states()), verbosityLevel);
-                log(VerbosityLevel::NORMAL, "...done.", verbosityLevel);
                 PRINT_AUT("complement(preach)", preach_comp);
 
                 // check whether safety can be proven, i.e. whether abstract safety holds
                 log(VerbosityLevel::NORMAL, "trying to prove abstract safety...", verbosityLevel);
                 TICK();
-                result = check_abstract_safety_lazy(dpr.initialConfig, preach_comp, properties_to_check, *dpr.string_alphabet, universality_alg, verbosityLevel, measure_time, no_dot_printing);
+                result = check_abstract_safety_lazy(dpr_bdd.initialConfig, preach_comp, properties_to_check, universality_alg, verbosityLevel, measure_time, no_dot_printing);
                 TOCK("checking abstract safety");
             }
 

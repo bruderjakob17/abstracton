@@ -145,6 +145,10 @@ public:
     mata::nft::Nft alphabet_nft() override {
         return alphabet_nft(base_alphabet->get_alphabet_symbols().size());
     }
+
+    std::shared_ptr<Alphabet> get_base_alphabet() {
+        return base_alphabet;
+    }
 };
 
 /**
@@ -584,6 +588,12 @@ public:
             }
         }
         return mata::AlphabetLevels(alphabet_ptrs, mata::AlphabetLevels::Mode::MultiLevel);
+    }
+
+    BDDlikeNft trim() {
+        mata::nft::Nft result_as_nft{super::trim()};
+        BDDlikeNft result{result_as_nft, alphabet_sizes, alphabets};
+        return result;
     }
 };
 

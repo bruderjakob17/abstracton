@@ -295,7 +295,7 @@ BDDlikeDodoParserResult convertToBDDlike(DodoParserResult& dpr) {
     BDDlikeNft initialConfig(mata::nft::Nft{dpr.initialConfig}, std::vector<size_t>{1}, std::vector<std::shared_ptr<VecAlphabetPrinter>>{std::make_shared<SimpleVecAlphabet>(string_alphabet)});
 
     std::vector<BDDlikeNft> properties{};
-    for (mata::nfa::Nfa& property : properties) {
+    for (mata::nfa::Nfa& property : dpr.properties) {
         BDDlikeNft property_bddlike(mata::nft::Nft{property}, std::vector<size_t>{1}, std::vector<std::shared_ptr<VecAlphabetPrinter>>{std::make_shared<SimpleVecAlphabet>(string_alphabet)});
         properties.push_back(property_bddlike);
     }
