@@ -491,10 +491,26 @@ public:
      * Creates a new BDDlikeNft with one tape of dimension 1.
      * The created alphabet is a SimpleVecAlphabet on the given alphabet (and can be cast back to it).
      */
-    static BDDlikeNft from_nfa_with_alphabet(mata::nfa::Nfa aut, std::shared_ptr<Alphabet> alphabet) {
+    static BDDlikeNft from_nfa_with_alphabet(mata::nfa::Nfa& aut, std::shared_ptr<Alphabet> alphabet) {
         SimpleVecAlphabet alph(alphabet);
         std::shared_ptr<VecAlphabetPrinter> alph_ptr{std::make_shared<SimpleVecAlphabet>(alph)};
         return BDDlikeNft{Nft{aut}, std::vector<size_t>{1}, std::vector<std::shared_ptr<VecAlphabetPrinter>>{alph_ptr}};
+    }
+
+    /**
+     * Creates a new BDDlikeNft from a mata Nft that has its @c AlphabetLevels alphabets member set.
+     * Each level is interpreted as a high-level, and each tape alphabet converted to a SimpleVecAlphabet.
+     */
+    static BDDlikeNft from_nft_with_alphabet_levels(mata::nft::Nft& aut) {
+        assert(aut.alphabets != nullptr);
+        std::vector<std::shared_ptr<VecAlphabetPrinter>> alphabets;
+        for (int i{ 0 }; i < aut.levels.num_of_levels; ++i) {
+            Alphabet& alph_i = aut.alphabets->for_level(i);
+            std::shared_ptr<Alphabet> alph_i_ptr(&alph_i, [](Alphabet*){});
+            SimpleVecAlphabet vec_alph_i(alph_i_ptr);
+            alphabets.push_back(std::make_shared<SimpleVecAlphabet>(vec_alph_i));
+        }
+        return BDDlikeNft{aut, std::vector<size_t>(aut.levels.num_of_levels, 1), alphabets};
     }
 
     /**
