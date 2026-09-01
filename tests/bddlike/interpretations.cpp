@@ -45,6 +45,21 @@ TEST_CASE("Trap interpretation (BDDlike)", "[interpretation]") {
         CHECK(interpretation.is_deterministic());
     }
 
+    SECTION("Big Trap") {
+        vector<string> letters{};
+        for (int i{ 0 }; i < 50; ++i) {
+            letters.push_back(to_string(i));
+        }
+        OnTheFlyAlphabet msa{letters};
+        BDDlikeNft interpretation = trapInterpretation(make_shared<OnTheFlyAlphabet>(msa), SetInterpretation::Trap);
+
+        std::cout << "internal representation:\n";
+        std::cout << interpretation.num_of_states() << std::endl;
+
+        // only requirement: test does not overflow memory
+        REQUIRE(true);
+    }
+
     SECTION("Siphon") {
         BDDlikeNft interpretation = trapInterpretation(make_shared<OnTheFlyAlphabet>(mata_string_alphabet), SetInterpretation::Siphon);
 
