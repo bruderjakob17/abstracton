@@ -139,7 +139,7 @@ public:
     }
 
     mata::AlphabetLevels construct_alphabet_levels() override {
-        return mata::AlphabetLevels(base_alphabet.get());
+        return mata::AlphabetLevels(base_alphabet);
     }
 
     mata::nft::Nft alphabet_nft() override {
@@ -177,7 +177,7 @@ public:
     }
 
     mata::AlphabetLevels construct_alphabet_levels() override {
-        return mata::AlphabetLevels(new IntAlphabet());
+        return mata::AlphabetLevels(std::make_shared<IntAlphabet>());
     }
 
     mata::nft::Nft alphabet_nft() override {
@@ -206,7 +206,7 @@ public:
     explicit BoundedDefaultVecAlphabet(size_t alphabet_size, size_t dimension) : DefaultVecAlphabet(dimension), alphabet_size(alphabet_size) {}
 
     mata::AlphabetLevels construct_alphabet_levels() override {
-        EnumAlphabet* alph = new EnumAlphabet();
+        std::shared_ptr<EnumAlphabet> alph = std::make_shared<EnumAlphabet>();
         for (Symbol i{ 0 }; i < alphabet_size; ++i) {
             alph->add_new_symbol(i);
         }
@@ -261,7 +261,7 @@ public:
     }
 
     mata::AlphabetLevels construct_alphabet_levels() override {
-        return mata::AlphabetLevels(base_alphabet.get());
+        return mata::AlphabetLevels(base_alphabet);
     }
 
     mata::nft::Nft alphabet_nft() override {
@@ -307,7 +307,7 @@ public:
     }
 
     mata::AlphabetLevels construct_alphabet_levels() override {
-        return mata::AlphabetLevels(new EnumAlphabet({0, 1}));
+        return mata::AlphabetLevels(std::make_shared<EnumAlphabet>(mata::utils::OrdVector<Symbol>{0, 1}));
     }
 
     mata::nft::Nft alphabet_nft() override {
@@ -509,9 +509,8 @@ public:
         assert(aut.alphabets != nullptr);
         std::vector<std::shared_ptr<VecAlphabetPrinter>> alphabets;
         for (int i{ 0 }; i < aut.levels.num_of_levels; ++i) {
-            Alphabet& alph_i = aut.alphabets->for_level(i);
-            std::shared_ptr<Alphabet> alph_i_ptr(&alph_i, [](Alphabet*){});
-            SimpleVecAlphabet vec_alph_i(alph_i_ptr);
+            std::shared_ptr<Alphabet> alph_i = aut.alphabets->for_level(i);
+            SimpleVecAlphabet vec_alph_i(alph_i);
             alphabets.push_back(std::make_shared<SimpleVecAlphabet>(vec_alph_i));
         }
         return BDDlikeNft{aut, std::vector<size_t>(aut.levels.num_of_levels, 1), alphabets};
@@ -580,11 +579,14 @@ public:
     }
 
     mata::AlphabetLevels construct_alphabet_levels() {
-        std::vector<Alphabet*> alphabet_ptrs{};
+        std::vector<std::shared_ptr<Alphabet>> alphabet_ptrs{};
         for (int i{ 0 }; i < alphabet_sizes.size(); ++i) {
             mata::AlphabetLevels high_level_alphabet = alphabets[i]->construct_alphabet_levels();
             for (int j{ 0 }; j < alphabet_sizes[i]; ++j) {
-                alphabet_ptrs.push_back(&high_level_alphabet.for_level(j));
+                if (high_level_alphabet.mode() == mata::AlphabetLevels::Mode::Global)
+                    alphabet_ptrs.push_back(high_level_alphabet.alphabets_[0]);
+                else
+                    alphabet_ptrs.push_back(high_level_alphabet.alphabets_[j]);
             }
         }
         return mata::AlphabetLevels(alphabet_ptrs, mata::AlphabetLevels::Mode::MultiLevel);

@@ -7,7 +7,7 @@ TEST_CASE("Trap interpretation") {
 
     mata::OnTheFlyAlphabet string_alphabet{std::vector<std::string>{std::string("a"), std::string("b")}};
 
-    std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> ipa = trapInterpretation(&string_alphabet, SetInterpretation::Trap);
+    std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> ipa = trapInterpretation(std::make_shared<OnTheFlyAlphabet>(string_alphabet), SetInterpretation::Trap);
     mata::nft::Nft interpretation = ipa.first;
     std::shared_ptr<mata::OnTheFlyAlphabet> powerset_alphabet_ptr = ipa.second;
     std::cout << "trap interpretation:\n";
@@ -40,7 +40,7 @@ TEST_CASE("Siphon interpretation") {
 
     mata::OnTheFlyAlphabet string_alphabet{std::vector<std::string>{std::string("a"), std::string("b")}};
 
-    std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> ipa = trapInterpretation(&string_alphabet, SetInterpretation::Siphon);
+    std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> ipa = trapInterpretation(std::make_shared<OnTheFlyAlphabet>(string_alphabet), SetInterpretation::Siphon);
     mata::nft::Nft interpretation = ipa.first;
     std::shared_ptr<mata::OnTheFlyAlphabet> powerset_alphabet_ptr = ipa.second;
     std::cout << "siphon interpretation:\n";
@@ -73,7 +73,7 @@ TEST_CASE("Flow interpretation") {
 
     OnTheFlyAlphabet string_alphabet{std::vector<std::string>{std::string("a"), std::string("b")}};
 
-    std::pair<mata::nft::Nft, std::shared_ptr<OnTheFlyAlphabet>> ipa = trapInterpretation(&string_alphabet, SetInterpretation::Flow);
+    std::pair<mata::nft::Nft, std::shared_ptr<OnTheFlyAlphabet>> ipa = trapInterpretation(std::make_shared<OnTheFlyAlphabet>(string_alphabet), SetInterpretation::Flow);
     mata::nft::Nft interpretation = ipa.first;
     std::shared_ptr<OnTheFlyAlphabet> powerset_alphabet_ptr = ipa.second;
     std::cout << "flow interpretation:\n";

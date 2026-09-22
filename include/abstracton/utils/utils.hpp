@@ -9,6 +9,43 @@
 #include <unordered_set>
 #include <string>
 #include <algorithm>
+#include <functional>
+
+struct PairHash {
+    template <typename T1, typename T2>
+    std::size_t operator()(const std::pair<T1, T2>& p) const {
+        auto h1 = std::hash<T1>{}(p.first);
+        auto h2 = std::hash<T2>{}(p.second);
+        return h1 ^ (h2 + 0x9e3779b9 + (h1 << 6) + (h1 >> 2));
+    }
+};
+
+struct UlongVectorHash {
+    std::size_t operator()(const std::vector<unsigned long>& v) const {
+        std::hash<unsigned long> hasher;
+        std::size_t seed = 0;
+        for (unsigned long i : v) {
+            // Combine the hash of each element
+            seed ^= hasher(i) + 0x9e3779b9 + (seed << 6) + (seed >> 2);
+        }
+        return seed;
+    }
+};
+
+struct IntVectorHash {
+    std::size_t operator()(const std::vector<int>& v) const noexcept {
+        std::size_t seed = 0;
+
+        for (int x : v) {
+            seed ^= std::hash<int>{}(x)
+                  + 0x9e3779b9
+                  + (seed << 6)
+                  + (seed >> 2);
+        }
+
+        return seed;
+    }
+};
 
 template <typename T>
 std::string stream_to_string(const T& value)

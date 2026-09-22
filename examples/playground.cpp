@@ -15,8 +15,8 @@ int main() {
     Nft transition_relation {Nft::with_levels(2)};
     State initial {transition_relation.add_state()};
     transition_relation.initial.insert(initial);
-    transition_relation.add_transition(initial, {'0', '1'}, initial);
-    transition_relation.add_transition(initial, {'1', '0'}, initial);
+    transition_relation.add_transition_by_levels(initial, {'0', '1'}, initial);
+    transition_relation.add_transition_by_levels(initial, {'1', '0'}, initial);
     transition_relation.final.insert(initial);
     
     // length-preserving abstraction framework:
@@ -26,13 +26,13 @@ int main() {
     Nft af {Nft::with_levels(2)};
     State af_init {af.add_state() };
     af.initial.insert(af_init);
-    State af_1 {af.add_transition(af_init, {'a', '0'})};
-    af.add_transition(af_init, {'b', '0'}, af_1);
-    State af_2 {af.add_transition(af_init, {'a', '1'})};
-    State af_1x {af.add_transition(af_1, {'#', '0'})};
-    State af_e {af.add_transition(af_1x, {'#', '0'})};
-    State af_2x {af.add_transition(af_2, {'#', '1'})};
-    af.add_transition(af_2x, {'#', '1'}, af_e);
+    State af_1 {af.add_transition_by_levels(af_init, {'a', '0'})};
+    af.add_transition_by_levels(af_init, {'b', '0'}, af_1);
+    State af_2 {af.add_transition_by_levels(af_init, {'a', '1'})};
+    State af_1x {af.add_transition_by_levels(af_1, {'#', '0'})};
+    State af_e {af.add_transition_by_levels(af_1x, {'#', '0'})};
+    State af_2x {af.add_transition_by_levels(af_2, {'#', '1'})};
+    af.add_transition_by_levels(af_2x, {'#', '1'}, af_e);
     af.final.insert(af_e);
     std::cout << af.print_to_dot(true) << std::endl;
     Nft daf {mata::ext::determinize(af)}; // TODO report bug: levels get stripped
@@ -41,7 +41,7 @@ int main() {
 
     std::cout << "computing ind" << std::endl;
     EnumAlphabet alphabet{'0', '1', 'a', 'b', '#'};
-    Nfa ind {compute_ind(daf, transition_relation, alphabet, alphabet, true)};
+    Nfa ind {compute_ind(daf, transition_relation, std::make_shared<EnumAlphabet>(alphabet), std::make_shared<EnumAlphabet>(alphabet), true)};
     ind = mata::nfa::minimize(ind);
     std::cout << "done" << std::endl;
     std::cout << ind.print_to_dot(true) << std::endl;

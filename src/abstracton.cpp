@@ -24,7 +24,7 @@ using namespace mata::nfa;
 using namespace mata::nft;
 
 /// uses the fact that pi(Id cap (V delta V_comp_inv)) = pi_1((V delta) cap V_comp)
-Nfa compute_ind_new(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time, bool no_dot_printing) {
+Nfa compute_ind_new(const Nft& abstraction_framework, const Nft& transition_relation, std::shared_ptr<Alphabet> concrete_alphabet, std::shared_ptr<Alphabet> abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     INIT_CLOCKS();
 
     using namespace std;
@@ -40,10 +40,10 @@ Nfa compute_ind_new(const Nft& abstraction_framework, const Nft& transition_rela
     TOCK("reducing V o ->");
     PRINT_AUT("reduce(V o ->)", v_delta);
 
-    std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
+    std::vector<std::shared_ptr<Alphabet>> alphabets {&abstract_alphabet, &concrete_alphabet};
     AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
     TICK();
-    Nft v_complement {mata::ext::complement(abstraction_framework, &alphabet_levels, true)};
+    Nft v_complement {mata::ext::complement(abstraction_framework, std::make_shared<AlphabetLevels>(alphabet_levels), true)};
     TOCK("computing complement v_complement of abstraction framework");
     PRINT_AUT("complement(V)", v_complement);
 
@@ -68,7 +68,7 @@ Nfa compute_ind_new(const Nft& abstraction_framework, const Nft& transition_rela
     PRINT_AUT("min(projection)", projection);
 
     TICK();
-    Nfa ind{ mata::nfa::complement(projection, abstract_alphabet) };
+    Nfa ind{ mata::nfa::complement(projection, *abstract_alphabet) };
     TOCK("computing ind");
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("ind has {} states", ind.num_of_states()), verbosityLevel);
     TICK();
@@ -95,7 +95,7 @@ Nfa compute_ind_new(const Nft& abstraction_framework, const Nft& transition_rela
 
 /// previous function: compute_ind_old
 /// this function improves upon the old implementation by explicitly constructing the product, instead of constructing a sequence of products
-Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time, bool no_dot_printing) {
+Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation, std::shared_ptr<Alphabet> concrete_alphabet, std::shared_ptr<Alphabet> abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     INIT_CLOCKS();
 
     using namespace std;
@@ -103,9 +103,9 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
 
     TICK();
     Nfa result{};
-    result.alphabet = &abstract_alphabet;
+    result.alphabet = abstract_alphabet;
 
-    unordered_map<vector<State>, State> product_state_to_state{};
+    unordered_map<vector<State>, State, UlongVectorHash> product_state_to_state{};
     queue<vector<State>> worklist{};
     // initialize worklist by initial states of abstraction framework and transition relation
     for (const State& state0 : abstraction_framework.initial) {
@@ -131,7 +131,7 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
         State current_state_transition = current_state[1];
         State current_state_v_after = current_state[2];
 
-        for (const Symbol& abstract_symb : abstract_alphabet.get_alphabet_symbols()) {
+        for (const Symbol& abstract_symb : abstract_alphabet->get_alphabet_symbols()) {
             for (const SymbolPost& sp_0 : transition_relation.delta[current_state_transition]) {
                 Symbol transition_letter_before = sp_0.symbol;
                 for (const State& intermediate_state_transition : sp_0.targets) {
@@ -195,7 +195,7 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("complement of ind has {} states", result.num_of_states()), verbosityLevel);
 
     TICK();
-    Nfa ind{ mata::nfa::complement(result, abstract_alphabet) };
+    Nfa ind{ mata::nfa::complement(result, *abstract_alphabet) };
     TOCK("computing ind");
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("ind has {} states", ind.num_of_states()), verbosityLevel);
     TICK();
@@ -225,7 +225,7 @@ Nfa compute_ind(const Nft& abstraction_framework, const Nft& transition_relation
 // input: DETERMINISTIC abstraction framework!
 // TODO convert output to debug output
 // TODO exclude all a where V(a) = emptyset (optional, but nicer...)
-Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time, bool no_dot_printing) {
+Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_relation, std::shared_ptr<Alphabet> concrete_alphabet, std::shared_ptr<Alphabet> abstract_alphabet, bool exclude_empty_abstractions, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     // project_1(Id intersect (V delta complement(inverse(V)))), then complement
     INIT_CLOCKS();
     TICK();
@@ -238,10 +238,10 @@ Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_rela
     TOCK("reducing v_delta");
     PRINT_AUT("reduce(v_delta)", v_delta);
 
-    std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
+    std::vector<std::shared_ptr<Alphabet>> alphabets {&abstract_alphabet, &concrete_alphabet};
     AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
     TICK();
-    Nft v_complement {mata::ext::complement(abstraction_framework, &alphabet_levels, true)};
+    Nft v_complement {mata::ext::complement(abstraction_framework, std::make_shared<AlphabetLevels>(alphabet_levels), true)};
     TOCK("computing complement v_complement of abstraction framework");
     PRINT_AUT("v_complement", v_complement);
 
@@ -255,7 +255,7 @@ Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_rela
     TOCK("computing product product1 of v_delta with v_complement");
     PRINT_AUT("product1", product1);
 
-    product1.alphabet = &abstract_alphabet;
+    product1.alphabets = std::make_shared<AlphabetLevels>(abstract_alphabet);
     TICK();
     Nft preprojection {mata::nft::intersection(create_identity(abstract_alphabet), product1)};
     TOCK("computing identity on complement of ind (preprojection)");
@@ -272,7 +272,7 @@ Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_rela
     PRINT_AUT("min(projection)", projection);
 
     TICK();
-    Nfa ind{ mata::nfa::complement(projection, abstract_alphabet) };
+    Nfa ind{ mata::nfa::complement(projection, *abstract_alphabet) };
     TOCK("computing ind");
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("ind has {} states", ind.num_of_states()), verbosityLevel);
     TICK();
@@ -296,7 +296,7 @@ Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_rela
         return ind;
     }
 }
-Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, std::optional<const Nfa> ind, int verbosityLevel, bool measure_time, bool no_dot_printing) {
+Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& transition_relation, std::shared_ptr<Alphabet> concrete_alphabet, std::shared_ptr<Alphabet> abstract_alphabet, std::optional<const Nfa> ind, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     INIT_CLOCKS();
 
     // inverse(V) id_Ind complement(V), then complement
@@ -308,9 +308,9 @@ Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& trans
         ind_result = ind.value();
     }
 
-    std::vector<Alphabet*> alphabets {&abstract_alphabet, &concrete_alphabet};
+    std::vector<std::shared_ptr<Alphabet>> alphabets {&abstract_alphabet, &concrete_alphabet};
     AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
-    Nft v_complement {mata::ext::complement(abstraction_framework, &alphabet_levels, true)}; // TODO only calculate once (not in ind and preach)
+    Nft v_complement {mata::ext::complement(abstraction_framework, std::make_shared<AlphabetLevels>(alphabet_levels), true)}; // TODO only calculate once (not in ind and preach)
 
     // TODO creating identity on ind is not necessary. instead, can just compose without projecting out. Test if this improves performance.
     TICK();
@@ -330,7 +330,7 @@ Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& trans
     Nft product {compose(v_id, v_complement)};
     TOCK("computing product of v_id with complement of abstraction framework");
     logging::log(logging::VerbosityLevel::VERBOSE, std::format("product has {} states", product.num_of_states()), verbosityLevel);
-    product.alphabet = &concrete_alphabet;
+    product.alphabets = std::make_shared<AlphabetLevels>(concrete_alphabet);
     if (product.levels.num_of_levels != 2) {
         std::cout << "nft result of composition does not have 2 levels, need to handle.";
         throw 2;
@@ -339,10 +339,10 @@ Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& trans
     return product;
 }
 
-Nft compute_preach(const Nft& abstraction_framework, const Nft& transition_relation, Alphabet& concrete_alphabet, Alphabet& abstract_alphabet, std::optional<const Nfa> ind, int verbosityLevel) {
+Nft compute_preach(const Nft& abstraction_framework, const Nft& transition_relation, std::shared_ptr<Alphabet> concrete_alphabet, std::shared_ptr<Alphabet> abstract_alphabet, std::optional<const Nfa> ind, int verbosityLevel) {
     auto preach_comp = compute_preach_complement(abstraction_framework, transition_relation, concrete_alphabet, abstract_alphabet, ind, verbosityLevel);
-    AlphabetLevels concrete_alphabet_levels({&concrete_alphabet}, AlphabetLevels::Mode::Global);
-    return mata::ext::complement(preach_comp, &concrete_alphabet_levels);
+    AlphabetLevels concrete_alphabet_levels(concrete_alphabet);
+    return mata::ext::complement(preach_comp, std::make_shared<AlphabetLevels>(concrete_alphabet_levels));
 }
 
 std::vector<bool> check_abstract_safety_explicit(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach, std::vector<mata::nfa::Nfa> unsafe_properties, int verbosityLevel, bool measure_time, bool no_dot_printing) {
@@ -359,10 +359,10 @@ std::vector<bool> check_abstract_safety_explicit(const mata::nfa::Nfa& initial_c
     return result;
 }
 
-std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach_complement, std::vector<mata::nfa::Nfa> unsafe_properties, Alphabet& concrete_alphabet, std::string universality_alg, int verbosityLevel, bool measure_time, bool no_dot_printing) {
+std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_configurations, const mata::nft::Nft& preach_complement, std::vector<mata::nfa::Nfa> unsafe_properties, std::shared_ptr<Alphabet> concrete_alphabet, std::string universality_alg, int verbosityLevel, bool measure_time, bool no_dot_printing) {
     INIT_CLOCKS();
 
-    AlphabetLevels concrete_alphabet_levels(&concrete_alphabet);
+    AlphabetLevels concrete_alphabet_levels(concrete_alphabet);
 
     mata::nft::Nft initial_nft = mata::nft::builder::from_nfa_with_levels_advancing(initial_configurations, 1);
     std::vector<bool> result{};
@@ -378,7 +378,7 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
         PRINT_AUT("(initial, unsafe) pairs", initial_unsafe_pairs);
 
         TICK();
-        mata::nft::Nft initial_unsafe_complement = mata::ext::complement(initial_unsafe_pairs, &concrete_alphabet_levels, true);
+        mata::nft::Nft initial_unsafe_complement = mata::ext::complement(initial_unsafe_pairs, std::make_shared<AlphabetLevels>(concrete_alphabet_levels), true);
         TOCK("constructing transducer for complement of (initial, unsafe) pairs");
         PRINT_AUT("complement((initial, unsafe) pairs)", initial_unsafe_complement);
 
@@ -389,16 +389,16 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
         // TODO select best algorithm here...
         if (universality_alg == "lazy") {
             TICK();
-            result.push_back(mata::ext::is_universal_lazy(union2, &concrete_alphabet_levels, &cex, verbosityLevel, true));
+            result.push_back(mata::ext::is_universal_lazy(union2, std::make_shared<AlphabetLevels>(concrete_alphabet_levels), &cex, verbosityLevel, true));
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "lazy-bfs") {
             TICK();
-            result.push_back(mata::ext::is_universal_lazy(union2, &concrete_alphabet_levels, &cex, verbosityLevel, false));
+            result.push_back(mata::ext::is_universal_lazy(union2, std::make_shared<AlphabetLevels>(concrete_alphabet_levels), &cex, verbosityLevel, false));
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "antichains-inclusion") {
             TICK();
             //TODO need not construct union2 and complement of initial-unsafe-pairs here
-            result.push_back(mata::nft::is_included(initial_unsafe_pairs, preach_complement, &cex, &concrete_alphabet));
+            result.push_back(mata::nft::is_included(initial_unsafe_pairs, preach_complement, &cex, concrete_alphabet.get()));
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "lazy-inclusion") {
             TICK();
@@ -412,14 +412,14 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else if (universality_alg == "antichains-bfs") {
             TICK();
-            result.push_back(mata::ext::is_universal_antichains(union2, &concrete_alphabet_levels, &cex, verbosityLevel, false));
+            result.push_back(mata::ext::is_universal_antichains(union2, std::make_shared<AlphabetLevels>(concrete_alphabet_levels), &cex, verbosityLevel, false));
             TOCK("checking universality using " + universality_alg + " algorithm");
         } else {
             if (universality_alg != "antichains") {
                 logging::log(logging::VerbosityLevel::VERBOSE, "WARNING: unknown universality algorithm \"" + universality_alg + "\", defaulting to antichains.", verbosityLevel);
             }
             TICK();
-            result.push_back(mata::ext::is_universal_antichains(union2, &concrete_alphabet_levels, &cex, verbosityLevel, true));
+            result.push_back(mata::ext::is_universal_antichains(union2, std::make_shared<AlphabetLevels>(concrete_alphabet_levels), &cex, verbosityLevel, true));
             TOCK("checking universality using " + universality_alg + " algorithm");
         }
 
@@ -429,7 +429,7 @@ std::vector<bool> check_abstract_safety_lazy(const mata::nfa::Nfa& initial_confi
                 std::vector<std::string> cex_symbols;
                 cex_symbols.reserve(cex.word.size());
                 for (const Symbol& x : cex.word) {
-                    cex_symbols.push_back(concrete_alphabet.reverse_translate_symbol(x));
+                    cex_symbols.push_back(concrete_alphabet->reverse_translate_symbol(x));
                 }
                 return vec_to_string(cex_symbols);
             }, verbosityLevel);

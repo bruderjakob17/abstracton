@@ -248,11 +248,11 @@ int main(int argc, char** argv) {
             TICK();
             mata::nfa::Nfa ind;
             if (ind_alg == "project") {
-                ind = compute_ind_new(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
+                ind = compute_ind_new(interpretation, dpr.transitionRelation, dpr.string_alphabet, powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
             } else if (ind_alg == "id-intersection") {
-                ind = compute_ind_old(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
+                ind = compute_ind_old(interpretation, dpr.transitionRelation, dpr.string_alphabet, powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
             } else {
-                ind = compute_ind(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
+                ind = compute_ind(interpretation, dpr.transitionRelation, dpr.string_alphabet, powerset_alphabet_ptr, exclude_empty_abstractions, verbosityLevel, measure_time, no_dot_printing);
             }
             TOCK("computing ind (total)");
 
@@ -287,7 +287,7 @@ int main(int argc, char** argv) {
                 log(VerbosityLevel::NORMAL, "computing preach...", verbosityLevel);
 
                 TICK();
-                mata::nft::Nft preach {compute_preach(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind))};
+                mata::nft::Nft preach {compute_preach(interpretation, dpr.transitionRelation, dpr.string_alphabet, powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind))};
                 TOCK("computing preach");
 
                 log(VerbosityLevel::NORMAL, std::format("automaton for preach has {} states.", preach.num_of_states()), verbosityLevel);
@@ -313,7 +313,7 @@ int main(int argc, char** argv) {
                 log(VerbosityLevel::NORMAL, "computing complement of preach...", verbosityLevel);
 
                 TICK();
-                mata::nft::Nft preach_comp {compute_preach_complement(interpretation, dpr.transitionRelation, *dpr.string_alphabet, *powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind), verbosityLevel, measure_time, no_dot_printing)};
+                mata::nft::Nft preach_comp {compute_preach_complement(interpretation, dpr.transitionRelation, dpr.string_alphabet, powerset_alphabet_ptr, std::make_optional<const mata::nfa::Nfa>(ind), verbosityLevel, measure_time, no_dot_printing)};
                 TOCK("computing complement of preach");
 
                 log(VerbosityLevel::NORMAL, std::format("automaton for complement of preach has {} states.", preach_comp.num_of_states()), verbosityLevel);
@@ -334,7 +334,7 @@ int main(int argc, char** argv) {
                 // check whether safety can be proven, i.e. whether abstract safety holds
                 log(VerbosityLevel::NORMAL, "trying to prove abstract safety...", verbosityLevel);
                 TICK();
-                result = check_abstract_safety_lazy(dpr.initialConfig, preach_comp, properties_to_check, *dpr.string_alphabet, universality_alg, verbosityLevel, measure_time, no_dot_printing);
+                result = check_abstract_safety_lazy(dpr.initialConfig, preach_comp, properties_to_check, dpr.string_alphabet, universality_alg, verbosityLevel, measure_time, no_dot_printing);
                 TOCK("checking abstract safety");
             }
 

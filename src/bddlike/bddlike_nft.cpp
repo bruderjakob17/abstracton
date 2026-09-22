@@ -26,7 +26,7 @@ void mata::ext::bddlike::BDDlikeNft::print_to_dot_using_alphabets(std::ostream &
         }
     }
     // build high-level transitions (i.e. transition sequences from level 0 to level 0)
-    unordered_map<pair<State, State>, unordered_set<string>> labels;
+    unordered_map<pair<State, State>, unordered_set<string>, PairHash> labels;
     for (State source : states_at_level_0) {
         // build all reachable targets (first entry: how to get there, second entry: to which state)
         list<pair<vector<Symbol>, State>> worklist{};
@@ -115,12 +115,12 @@ namespace mata::ext::bddlike {
 
 void make_complete(BDDlikeNft& aut) {
     AlphabetLevels alphabet_levels = aut.construct_alphabet_levels();
-    mata::ext::make_complete(aut, &alphabet_levels);
+    mata::ext::make_complete(aut, std::make_shared<AlphabetLevels>(alphabet_levels));
 }
 
 BDDlikeNft complement(BDDlikeNft& aut, bool minimize_during_determinization) {
     AlphabetLevels alphabet_levels = aut.construct_alphabet_levels();
-    mata::nft::Nft result_as_nft = mata::ext::complement(aut, &alphabet_levels, minimize_during_determinization); // TODO the DefaultVecAlphabet produces IntAlphabet pointers, which can not be used to make the automaton complete. Make an adequate check and use used_symbols in that case instead.
+    mata::nft::Nft result_as_nft = mata::ext::complement(aut, std::make_shared<AlphabetLevels>(alphabet_levels), minimize_during_determinization); // TODO the DefaultVecAlphabet produces IntAlphabet pointers, which can not be used to make the automaton complete. Make an adequate check and use used_symbols in that case instead.
 
     BDDlikeNft result{result_as_nft, aut.alphabet_sizes, aut.alphabets};
     return result;
@@ -256,14 +256,14 @@ bool is_included_antichains(BDDlikeNft smaller, BDDlikeNft bigger, mata::nft::Ru
 bool is_universal_lazy(BDDlikeNft aut, mata::nft::Run* cex, int verbosityLevel, bool dfs){
     mata::AlphabetLevels alphabet_levels = aut.construct_alphabet_levels();
 
-    bool result = mata::ext::is_universal_lazy(aut, &alphabet_levels, cex, verbosityLevel, dfs);
+    bool result = mata::ext::is_universal_lazy(aut, std::make_shared<AlphabetLevels>(alphabet_levels), cex, verbosityLevel, dfs);
 
     return result;
 }
 bool is_universal_antichains(BDDlikeNft aut, mata::nft::Run* cex, int verbosityLevel, bool dfs){
     mata::AlphabetLevels alphabet_levels = aut.construct_alphabet_levels();
 
-    bool result = mata::ext::is_universal_antichains(aut, &alphabet_levels, cex, verbosityLevel, dfs);
+    bool result = mata::ext::is_universal_antichains(aut, std::make_shared<AlphabetLevels>(alphabet_levels), cex, verbosityLevel, dfs);
 
     return result;
 }

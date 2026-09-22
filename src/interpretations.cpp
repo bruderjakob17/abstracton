@@ -4,7 +4,7 @@
 #include <abstracton/interpretations.hpp>
 #include <abstracton/mata_extensions.hpp>
 
-std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> trapInterpretation(mata::OnTheFlyAlphabet* string_alphabet, enum SetInterpretation type) {
+std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> trapInterpretation(std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet, enum SetInterpretation type) {
     using namespace mata;
 
     mata::utils::OrdVector<mata::Symbol> alphabet = string_alphabet->get_alphabet_symbols();
@@ -25,8 +25,8 @@ std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> trapInterpret
 
     std::shared_ptr<mata::OnTheFlyAlphabet> powerset_OnTheFlyAlphabet = std::make_shared<mata::OnTheFlyAlphabet>(mata::OnTheFlyAlphabet(powerset_alphabet));
 
-    std::vector<mata::Alphabet*> alphabets {powerset_OnTheFlyAlphabet.get(), string_alphabet};
-    AlphabetLevels* alphabet_levels = new AlphabetLevels(alphabets, AlphabetLevels::Mode::MultiLevel);
+    std::vector<std::shared_ptr<mata::Alphabet>> alphabets {powerset_OnTheFlyAlphabet, string_alphabet};
+    std::shared_ptr<AlphabetLevels> alphabet_levels = std::make_shared<AlphabetLevels>(alphabets, AlphabetLevels::Mode::MultiLevel);
 
     mata::nft::Nft result = mata::nft::Nft::with_levels(2, 0, {}, {}, alphabet_levels);
 
@@ -47,10 +47,10 @@ std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> trapInterpret
         // add q0 -H-> q1
         for (int i = 0; i < powerset.size(); ++i) {
             for (std::string x : powerset[i]) {
-                result.add_transition(states[0], {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, states[1]);
+                result.add_transition_by_levels(states[0], {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, states[1]);
                 // add q1 -H-> q1 if trap interpretation
                 if (type == Trap) {
-                    result.add_transition(states[1], {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, states[1]);
+                    result.add_transition_by_levels(states[1], {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, states[1]);
                 }
             }
         }
@@ -61,7 +61,7 @@ std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> trapInterpret
             // compute complement of powerset[i]
             std::vector<std::string> subset_complement = vec_complement(powerset[i], string_alphabet_vector);
             for (std::string x : subset_complement) {
-                result.add_transition(q, {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, q);
+                result.add_transition_by_levels(q, {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, q);
             }
         }
     }

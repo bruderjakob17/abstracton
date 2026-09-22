@@ -34,7 +34,7 @@ std::vector<int> topo_sort(std::vector<std::vector<int>> const& adjacency_list) 
 }
 
 // mata::nfa::Nfa parseDodoNfa(Json::Value dfa, alphabet_encoding alphabet_enc);
-mata::nfa::Nfa parseDodoNfa(Json::Value nfa, mata::OnTheFlyAlphabet* string_alphabet, int verbosityLevel) {
+mata::nfa::Nfa parseDodoNfa(Json::Value nfa, std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet, int verbosityLevel) {
     // std::vector<char> alphabet = alphabet_enc.alphabet;
     // std::unordered_map<char, std::string> decode_alphabet = alphabet_enc.decoding;
     // std::unordered_map<std::string, char> encode_alphabet = alphabet_enc.encoding;
@@ -110,7 +110,7 @@ std::pair<std::string, std::string> parsePair(std::string p, int verbosityLevel)
     return std::make_pair(p.substr(0, sep_index), p.substr(sep_index + 1, p.size() - sep_index - 1));
 }
 
-mata::nft::Nft parseTransducer(Json::Value t, mata::OnTheFlyAlphabet* string_alphabet, int verbosityLevel) {
+mata::nft::Nft parseTransducer(Json::Value t, std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet, int verbosityLevel) {
     /*std::vector<char> alphabet = alphabet_enc.alphabet;
     std::unordered_map<char, std::string> decode_alphabet = alphabet_enc.decoding;
     std::unordered_map<std::string, char> encode_alphabet = alphabet_enc.encoding;
@@ -188,7 +188,7 @@ mata::nft::Nft parseTransducer(Json::Value t, mata::OnTheFlyAlphabet* string_alp
 
     // build mata nft (dodo benchmarks ALL have exactly 2 levels)
     mata::nft::Nft result = mata::nft::Nft::with_levels(
-            2, states.size(), initial_state_indices, final_state_indices, new mata::AlphabetLevels(string_alphabet));
+            2, states.size(), initial_state_indices, final_state_indices, std::make_shared<mata::AlphabetLevels>(string_alphabet));
 
     for (auto d : transitions) {
         // TODO add "add" function of signature (State, string, State) to delta in mata if OnTheFlyAlphabet specified
@@ -252,7 +252,7 @@ DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel, bool no
     for (auto x : obj["alphabet"]) {
         string_alphabet_vec.push_back(x.asString());
     }
-    mata::OnTheFlyAlphabet* string_alphabet_ptr = new mata::OnTheFlyAlphabet(string_alphabet_vec);
+    std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet_ptr = std::make_shared<mata::OnTheFlyAlphabet>(string_alphabet_vec);
 
     // // convert to char alphabet
     // alphabet_encoding alphabet_enc = alphabetToCharAlphabet(string_alphabet);

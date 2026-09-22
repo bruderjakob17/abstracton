@@ -136,11 +136,11 @@ TEST_CASE( "Subsequence Iterator correct", "[SubsequenceVectors(std::vector<T>)]
     test_vecs[2].push_back(3);
     test_vecs[2].push_back(7);
 
-    std::vector<std::unordered_set<std::vector<int>>> results {};
+    std::vector<std::unordered_set<std::vector<int>, IntVectorHash>> results {};
 
     for (int i = 0; i < test_vecs.size(); ++i) {
         SubsequenceVectors s(test_vecs[i]);
-        std::unordered_set<std::vector<int>> power_set(s.begin(), s.end());
+        std::unordered_set<std::vector<int>, IntVectorHash> power_set(s.begin(), s.end());
         REQUIRE((1 << test_vecs[i].size()) == power_set.size());
         results.push_back(power_set);
         std::cout << "power set of " << vec_to_string(test_vecs[i]) << ":\n";

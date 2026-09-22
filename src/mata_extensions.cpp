@@ -78,13 +78,13 @@ void insert_nft_between(Nft& aut, nft::State source, nft::State target, Nft inse
     }
 }
 
-Nft create_identity(Alphabet& alphabet) {
+Nft create_identity(std::shared_ptr<Alphabet> alphabet) {
     Nft result {};
     State initial {result.add_state()};
     result.initial.insert(initial);
     result.final.insert(initial);
-    result.insert_identity(initial, &alphabet);
-    result.alphabet = &alphabet;
+    result.insert_identity(initial, alphabet.get());
+    result.alphabets = std::make_shared<AlphabetLevels>(AlphabetLevels::global_mode(alphabet));
     return result;
 }
 
@@ -134,7 +134,6 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         Nfa aut {nft.to_nfa_copy()};
         Nfa aut_det {determinize(aut)};
         Nft result =  mata::nft::builder::from_nfa_with_levels_advancing(aut_det, levels);
-        result.alphabet = nft.alphabet;
         result.alphabets = nft.alphabets;
         return result;
     }
@@ -147,23 +146,22 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         aut_det = aut_det.trim();
         Nfa aut_min {mata::nfa::algorithms::minimize_hopcroft(aut_det)};
         Nft result = mata::nft::builder::from_nfa_with_levels_advancing(aut_min, levels);
-        result.alphabet = nft.alphabet;
         result.alphabets = nft.alphabets;
         return result;
     }
 
-    AlphabetLevels* get_tape_symbols_to_work_with(const mata::nft::Nft& nft, AlphabetLevels* alphabets) {
+    std::shared_ptr<AlphabetLevels> get_tape_symbols_to_work_with(const mata::nft::Nft& nft, std::shared_ptr<AlphabetLevels> alphabets) {
         mata::utils::OrdVector<Symbol> default_alphabet;
         if (alphabets != nullptr) {
             return alphabets;
         }
         mata::utils::OrdVector<Symbol> symbols = nft.delta.get_used_symbols();
-        EnumAlphabet* symbols_alphabet = new EnumAlphabet(symbols.begin(), symbols.end());
-        AlphabetLevels* alphabet_levels = new AlphabetLevels(symbols_alphabet);
+        std::shared_ptr<EnumAlphabet> symbols_alphabet = std::make_shared<EnumAlphabet>(symbols.begin(), symbols.end());
+        std::shared_ptr<AlphabetLevels> alphabet_levels = std::make_shared<AlphabetLevels>(symbols_alphabet);
         return alphabet_levels;
     }
 
-    void make_complete(mata::nft::Nft& nft, AlphabetLevels* alphabets) {
+    void make_complete(mata::nft::Nft& nft, std::shared_ptr<AlphabetLevels> alphabets) {
         int levels = nft.levels.num_of_levels;
 
         if (alphabets == nullptr)
@@ -190,7 +188,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
             for (const SymbolPost& symbol_post : nft.delta[state]) {
                 used_symbols.insert(symbol_post.symbol);
             }
-            const mata::utils::OrdVector<Symbol> unused_symbols{ alphabets->for_level(nft.levels[state]).get_alphabet_symbols().difference(used_symbols) };
+            const mata::utils::OrdVector<Symbol> unused_symbols{ alphabets->for_level(nft.levels[state])->get_alphabet_symbols().difference(used_symbols) };
             const unsigned int state_level{ nft.levels[state] };
             const unsigned int next_level{ (state_level + 1) % levels };
             for (const Symbol symbol : unused_symbols) {
@@ -200,7 +198,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         }
     }
 
-    Nft complement(const Nft& aut, AlphabetLevels* alphabets, bool minimize_during_determinization) {
+    Nft complement(const Nft& aut, std::shared_ptr<AlphabetLevels> alphabets, bool minimize_during_determinization) {
         Nft result;
 
         if (aut.initial.empty()) {
@@ -228,7 +226,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         return result;
     }
 
-    mata::nft::Nft create_sigma_star_nft(int number_of_levels, AlphabetLevels* alphabets) {
+    mata::nft::Nft create_sigma_star_nft(int number_of_levels, std::shared_ptr<AlphabetLevels> alphabets) {
         if (number_of_levels == 0) {
             return mata::nft::Nft::with_levels(0, 1, {0}, {0}, alphabets);
         }
@@ -251,7 +249,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
     /// universality check using Antichains
     bool is_universal_antichains (
         const Nft&                      aut,
-        AlphabetLevels*                 alphabets,
+        std::shared_ptr<AlphabetLevels> alphabets,
         Run*                            cex,
         int                             verbosityLevel,
         bool                            dfs
@@ -337,7 +335,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
             // state is guaranteed to have at least one state (empty sets have empty intersection with final states and are never added to worklist)
             int state_level = aut.levels[state_as_vector[0]];
             if (state_level == 0) --worklist_num_of_states_with_level_0;
-            mata::utils::OrdVector<Symbol> possible_symbols{alphabets->for_level(state_level).get_alphabet_symbols()};
+            mata::utils::OrdVector<Symbol> possible_symbols{alphabets->for_level(state_level)->get_alphabet_symbols()};
 
             auto check_all_same_level = [&] (std::vector<State> state_vec) -> bool {
                 if (state_vec.size() <= 1) {
@@ -481,13 +479,13 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         return true;
     }
 
-    bool is_universal_antichains_by_inclusion(const Nft& aut, AlphabetLevels* alphabets, Run* cex) {
+    bool is_universal_antichains_by_inclusion(const Nft& aut, std::shared_ptr<AlphabetLevels> alphabets, Run* cex) {
         Nft univ = create_sigma_star_nft(aut.levels.num_of_levels, alphabets);
 
         return mata::nft::algorithms::is_included_antichains(univ, aut, nullptr, cex);
     }
 
-    bool is_universal_lazy(const Nft& aut, AlphabetLevels* alphabets, Run* cex, int verbosityLevel, bool dfs) {
+    bool is_universal_lazy(const Nft& aut, std::shared_ptr<AlphabetLevels> alphabets, Run* cex, int verbosityLevel, bool dfs) {
         using WorklistType = std::list<StateSet>;
 
         // check initial states
@@ -556,7 +554,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
             // state is guaranteed to have at least one state (empty sets have empty intersection with final states and are never added to worklist)
             int state_level = aut.levels[state_as_vector[0]];
             if (state_level == 0) --worklist_num_of_states_with_level_0;
-            mata::utils::OrdVector<Symbol> possible_symbols{alphabets->for_level(state_level).get_alphabet_symbols()};
+            mata::utils::OrdVector<Symbol> possible_symbols{alphabets->for_level(state_level)->get_alphabet_symbols()};
 
             auto check_all_same_level = [&] (std::vector<State> state_vec) -> bool {
                 if (state_vec.size() <= 1) {
@@ -799,7 +797,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         return true;
     }
 
-    Nft insert_tapes(const Nft& aut, const std::vector<int> inserted_tape_indices, const std::vector<Alphabet*> inserted_tape_alphabets) {
+    Nft insert_tapes(const Nft& aut, const std::vector<int> inserted_tape_indices, const std::vector<std::shared_ptr<Alphabet>> inserted_tape_alphabets) {
         assert(inserted_tape_indices.size() == inserted_tape_alphabets.size());
         for (int i{ 0 }; i < inserted_tape_indices.size(); ++i) {
             assert(inserted_tape_indices[i] < aut.levels.num_of_levels + inserted_tape_indices.size());
@@ -809,7 +807,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         }
 
         Nft result = Nft::with_levels(aut.levels.num_of_levels + inserted_tape_indices.size(), aut.num_of_states(), {}, {});
-        std::vector<Alphabet*> new_alphabets(result.levels.num_of_levels, nullptr);
+        std::vector<std::shared_ptr<Alphabet>> new_alphabets(result.levels.num_of_levels, nullptr);
 
         std::vector<int> old_to_new_levels{};
         {
@@ -824,17 +822,18 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
                     // i + j is the next old level
                     old_to_new_levels.push_back(i + j);
                     if (aut.alphabets != nullptr) {
-                        if (aut.alphabets->mode == AlphabetLevels::Mode::Global)
-                            new_alphabets[i + j] = aut.alphabets->alphabets[0];
+                        // TODO refactor to just aut.alphabets->for_level(i)
+                        if (aut.alphabets->mode() == AlphabetLevels::Mode::Global)
+                            new_alphabets[i + j] = aut.alphabets->alphabets_[0];
                         else
-                            new_alphabets[i + j] = aut.alphabets->alphabets[i];
+                            new_alphabets[i + j] = aut.alphabets->alphabets_[i];
                     }
                     i++;
                 }
             }
         }
 
-        AlphabetLevels* alphabetLevelsNew = new AlphabetLevels(new_alphabets, AlphabetLevels::Mode::MultiLevel);
+        std::shared_ptr<AlphabetLevels> alphabetLevelsNew = std::make_shared<AlphabetLevels>(new_alphabets, AlphabetLevels::Mode::MultiLevel);
         result.alphabets = alphabetLevelsNew;
 
         // insert old states, keeping their indices (e.g. State 0 will remain State 0), updating their level
@@ -952,11 +951,14 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         start_indices.push_back(total_number_of_tapes); // so that start_indices[i], start_indices[i + 1] can be used as range for all tapes i
 
         // create alphabets (TODO: replace with DONT_CARE?)
-        std::vector<Alphabet*> alphabets(total_number_of_tapes, nullptr);
+        std::vector<std::shared_ptr<Alphabet>> alphabets(total_number_of_tapes, nullptr);
         for (int i = 0; i < nfts.size(); ++i) {
             for (int j = 0; j < nfts[i].levels.num_of_levels; ++j) {
                 if (nfts[i].alphabets != nullptr) {
-                    alphabets[start_indices[i] + j] = &nfts[i].alphabets->for_level(j);
+                    if (nfts[i].alphabets->mode() == AlphabetLevels::Mode::Global)
+                        alphabets[start_indices[i] + j] = nfts[i].alphabets->alphabets_[j];
+                    else
+                        alphabets[start_indices[i] + j] = nfts[i].alphabets->alphabets_[j];
                 } else {
                     // alphabets[start_indices[i] + j] = new Alphabet{nfts[i].delta.get_used_symbols()};
                 }
@@ -967,7 +969,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
         for (int i = 0; i < nfts.size(); ++i) {
             // set nft levels to false (do not insert new tapes here)
             std::vector<int> inserted_tape_indices{};
-            std::vector<Alphabet*> inserted_tape_alphabets{};
+            std::vector<std::shared_ptr<Alphabet>> inserted_tape_alphabets{};
             for (int j = 0; j < total_number_of_tapes; ++j) {
                 if (!(j >= start_indices[i] && j < start_indices[i + 1])) {
                     inserted_tape_indices.push_back(j);
@@ -982,7 +984,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
                 result = mata::nft::intersection(result, padded_nft);
             }
         }
-        result.alphabets = new AlphabetLevels(alphabets, AlphabetLevels::Mode::MultiLevel);
+        result.alphabets = std::make_shared<AlphabetLevels>(AlphabetLevels(alphabets, AlphabetLevels::Mode::MultiLevel));
 
         return result;
     }
@@ -1154,7 +1156,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
             for (size_t i = 0; i < num_of_transitions_per_symbol; ++i) {
                 const State source{ one_dimensional_transition_matrix[i] / num_of_states };
                 const State target{ one_dimensional_transition_matrix[i] % num_of_states };
-                nft.add_transition(source, symbol_vec, target);
+                nft.add_transition_by_levels(source, symbol_vec, target);
             }
         }
         return nft;

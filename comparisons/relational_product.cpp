@@ -29,9 +29,9 @@ int main() {
 
         mata::EnumAlphabet alph0 = {0, 1};
         mata::EnumAlphabet alph1 = {0, 1, 2};
-        mata::AlphabetLevels alphabets({&alph0, &alph1});
-        aut1.alphabets = &alphabets;
-        aut2.alphabets = &alphabets;
+        mata::AlphabetLevels alphabets({std::make_shared<mata::EnumAlphabet>(alph0), std::make_shared<mata::EnumAlphabet>(alph1)});
+        aut1.alphabets = std::make_shared<mata::AlphabetLevels>(alphabets);
+        aut2.alphabets = std::make_shared<mata::AlphabetLevels>(alphabets);
 
         std::cout << "Seed: " << seed.value() << std::endl;
 

@@ -19,7 +19,7 @@ TEST_CASE("Trap interpretation (BDDlike)", "[interpretation]") {
     OnTheFlyAlphabet mata_string_alphabet{vector<string>{string("a"), string("b")}};
 
     SECTION("Trap") {
-        BDDlikeNft interpretation = trapInterpretation(make_shared<OnTheFlyAlphabet>(mata_string_alphabet), SetInterpretation::Trap);
+        BDDlikeNft interpretation = mata::ext::bddlike::trapInterpretation(make_shared<OnTheFlyAlphabet>(mata_string_alphabet), SetInterpretation::Trap);
 
         shared_ptr<SimpleVecAlphabet> string_alphabet = static_pointer_cast<SimpleVecAlphabet>(interpretation.alphabets[0]);
         shared_ptr<PowersetVecAlphabet> powerset_alphabet = static_pointer_cast<PowersetVecAlphabet>(interpretation.alphabets[1]);
@@ -51,7 +51,7 @@ TEST_CASE("Trap interpretation (BDDlike)", "[interpretation]") {
             letters.push_back(to_string(i));
         }
         OnTheFlyAlphabet msa{letters};
-        BDDlikeNft interpretation = trapInterpretation(make_shared<OnTheFlyAlphabet>(msa), SetInterpretation::Trap);
+        BDDlikeNft interpretation = mata::ext::bddlike::trapInterpretation(make_shared<OnTheFlyAlphabet>(msa), SetInterpretation::Trap);
 
         std::cout << "internal representation:\n";
         std::cout << interpretation.num_of_states() << std::endl;
@@ -61,7 +61,7 @@ TEST_CASE("Trap interpretation (BDDlike)", "[interpretation]") {
     }
 
     SECTION("Siphon") {
-        BDDlikeNft interpretation = trapInterpretation(make_shared<OnTheFlyAlphabet>(mata_string_alphabet), SetInterpretation::Siphon);
+        BDDlikeNft interpretation = mata::ext::bddlike::trapInterpretation(make_shared<OnTheFlyAlphabet>(mata_string_alphabet), SetInterpretation::Siphon);
 
         shared_ptr<SimpleVecAlphabet> string_alphabet = static_pointer_cast<SimpleVecAlphabet>(interpretation.alphabets[0]);
         shared_ptr<PowersetVecAlphabet> powerset_alphabet = static_pointer_cast<PowersetVecAlphabet>(interpretation.alphabets[1]);
@@ -88,7 +88,7 @@ TEST_CASE("Trap interpretation (BDDlike)", "[interpretation]") {
     }
 
     SECTION("Flow") {
-        BDDlikeNft interpretation = trapInterpretation(make_shared<OnTheFlyAlphabet>(mata_string_alphabet), SetInterpretation::Flow);
+        BDDlikeNft interpretation = mata::ext::bddlike::trapInterpretation(make_shared<OnTheFlyAlphabet>(mata_string_alphabet), SetInterpretation::Flow);
 
         shared_ptr<SimpleVecAlphabet> string_alphabet = static_pointer_cast<SimpleVecAlphabet>(interpretation.alphabets[0]);
         shared_ptr<PowersetVecAlphabet> powerset_alphabet = static_pointer_cast<PowersetVecAlphabet>(interpretation.alphabets[1]);

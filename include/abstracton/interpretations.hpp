@@ -42,4 +42,4 @@ inline std::string to_string(SetInterpretation i) {
  * TODO: also allow other alphabets (e.g. IntAlphabet)
  * TODO: add to documentation siphon/flow capabilities of this function, rename function
  */
-std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> trapInterpretation(mata::OnTheFlyAlphabet* string_alphabet, enum SetInterpretation type);
+std::pair<mata::nft::Nft, std::shared_ptr<mata::OnTheFlyAlphabet>> trapInterpretation(std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet, enum SetInterpretation type);
