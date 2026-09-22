@@ -308,7 +308,7 @@ Nft compute_preach_complement(const Nft& abstraction_framework, const Nft& trans
         ind_result = ind.value();
     }
 
-    std::vector<std::shared_ptr<Alphabet>> alphabets {&abstract_alphabet, &concrete_alphabet};
+    std::vector<std::shared_ptr<Alphabet>> alphabets {abstract_alphabet, concrete_alphabet};
     AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
     Nft v_complement {mata::ext::complement(abstraction_framework, std::make_shared<AlphabetLevels>(alphabet_levels), true)}; // TODO only calculate once (not in ind and preach)
 
