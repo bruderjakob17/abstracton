@@ -27,6 +27,8 @@ TEST_CASE( "PReach is correct", "[compute_preach]" ) {
     Nft daf {mata::ext::determinize(af)};
     std::cout << daf.print_to_dot(true) << std::endl;
 
+    std::cout << "creating transducer" << std::endl;
+
     // transducer: flip 0s and 1s
     Nft t {Nft::with_levels(2)};
     State t_init {t.add_state()};
@@ -37,20 +39,28 @@ TEST_CASE( "PReach is correct", "[compute_preach]" ) {
 
     std::cout << t.print_to_dot(true) << std::endl;
 
+    std::cout << "creating alphabets" << std::endl;
+
     mata::EnumAlphabet concrete_alphabet = {'0', '1'};
     mata::EnumAlphabet abstract_alphabet = {'#', 'a', 'b'};
     auto concrete_alphabet_ptr = std::make_shared<mata::EnumAlphabet>(concrete_alphabet);
     auto abstract_alphabet_ptr = std::make_shared<mata::EnumAlphabet>(abstract_alphabet);
+
+    std::cout << "computing inductive sets" << std::endl;
 
     Nfa ind {compute_ind(daf, t, concrete_alphabet_ptr, abstract_alphabet_ptr, true, logging::VerbosityLevel::DEBUGV)};
     ind = minimize_nfa(ind);
 
     std::cout << ind.print_to_dot(true) << std::endl;
 
+    std::cout << "computing preach (cached ind)" << std::endl;
+
     Nft preach1 {compute_preach(daf, t, concrete_alphabet_ptr, abstract_alphabet_ptr, ind, logging::VerbosityLevel::DEBUGV)};
 
     std::cout << "preach using separately calculated ind:" << std::endl;
     std::cout << preach1.print_to_dot(true) << std::endl;
+
+    std::cout << "computing preach (no cached ind)" << std::endl;
 
     Nft preach2 {compute_preach(daf, t, concrete_alphabet_ptr, abstract_alphabet_ptr, std::nullopt, logging::VerbosityLevel::DEBUGV)};
 
