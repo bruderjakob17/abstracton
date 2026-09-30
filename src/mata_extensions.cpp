@@ -814,7 +814,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
             int i = 0;
             int j = 0;
             while (i + j < result.levels.num_of_levels) {
-                if (i + j == inserted_tape_indices[j]) {
+                if (j < inserted_tape_indices.size() && i + j == inserted_tape_indices[j]) {
                     // i + j is an inserted level
                     new_alphabets[i + j] = inserted_tape_alphabets[j];
                     j++;
@@ -956,7 +956,7 @@ mata::nft::StateSet traverse_symbol_by_levels(const mata::nft::Nft& aut, mata::n
             for (int j = 0; j < nfts[i].levels.num_of_levels; ++j) {
                 if (nfts[i].alphabets != nullptr) {
                     if (nfts[i].alphabets->mode() == AlphabetLevels::Mode::Global)
-                        alphabets[start_indices[i] + j] = nfts[i].alphabets->alphabets_[j];
+                        alphabets[start_indices[i] + j] = nfts[i].alphabets->alphabets_[0];
                     else
                         alphabets[start_indices[i] + j] = nfts[i].alphabets->alphabets_[j];
                 } else {

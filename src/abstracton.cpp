@@ -40,7 +40,7 @@ Nfa compute_ind_new(const Nft& abstraction_framework, const Nft& transition_rela
     TOCK("reducing V o ->");
     PRINT_AUT("reduce(V o ->)", v_delta);
 
-    std::vector<std::shared_ptr<Alphabet>> alphabets {&abstract_alphabet, &concrete_alphabet};
+    std::vector<std::shared_ptr<Alphabet>> alphabets {abstract_alphabet, concrete_alphabet};
     AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
     TICK();
     Nft v_complement {mata::ext::complement(abstraction_framework, std::make_shared<AlphabetLevels>(alphabet_levels), true)};
@@ -238,7 +238,7 @@ Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_rela
     TOCK("reducing v_delta");
     PRINT_AUT("reduce(v_delta)", v_delta);
 
-    std::vector<std::shared_ptr<Alphabet>> alphabets {&abstract_alphabet, &concrete_alphabet};
+    std::vector<std::shared_ptr<Alphabet>> alphabets {abstract_alphabet, concrete_alphabet};
     AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
     TICK();
     Nft v_complement {mata::ext::complement(abstraction_framework, std::make_shared<AlphabetLevels>(alphabet_levels), true)};
