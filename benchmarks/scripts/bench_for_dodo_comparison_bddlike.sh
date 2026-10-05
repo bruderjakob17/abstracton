@@ -92,7 +92,7 @@ do
         SOLVE=(systemd-run --user --scope \
               -p MemoryMax=32G \
               -p MemorySwapMax=7G \
-              timeout $TIMEOUT "${parentdir}/../build_release/benchmarks/solve_dodo" -i $MODE -p $PROPERTY $FILE --measure-time --no-dot-printing --universality-alg antichains-inclusion --ind-alg project)
+              timeout $TIMEOUT "${parentdir}/../build_release/benchmarks/solve_dodo" -i $MODE -p $PROPERTY $FILE --measure-time --no-dot-printing --universality-alg antichains-inclusion --ind-alg project --bddlike)
         echo "${SOLVE[@]}"
         time "${SOLVE[@]}"
 		echo "********************"
