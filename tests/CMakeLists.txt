@@ -3,6 +3,7 @@ add_executable(tests
     preach.cpp
     mata_extensions.cpp
     interpretations.cpp
+    dodo_parser.cpp
     utils/utils.cpp
     bddlike/bddlike_nft.cpp
     bddlike/interpretations.cpp
@@ -10,6 +11,7 @@ add_executable(tests
     bddlike/preach.cpp
 )
 
-target_link_libraries(tests PRIVATE abstracton Catch2::Catch2WithMain)
+target_link_libraries(tests PRIVATE abstracton parsers Catch2::Catch2WithMain)
+target_compile_definitions(tests PRIVATE ABSTRACTON_BENCHMARKS_DIR="${PROJECT_SOURCE_DIR}/benchmarks")
 
 catch_discover_tests(tests)

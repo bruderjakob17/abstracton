@@ -100,10 +100,10 @@ mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::trapInterpretation(std::share
             // compute complement of powerset[i]
             std::vector<std::string> subset_complement = vec_complement(powerset[i], string_alphabet_vector);
             for (std::string x : subset_complement) {
-                result.add_transition(states[0], {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, states[1]);
+                result.add_transition_by_levels(states[0], {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, states[1]);
                 // add q1 -H-> q1 if trap interpretation
                 if (type == Trap) {
-                    result.add_transition(states[1], {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, states[1]);
+                    result.add_transition_by_levels(states[1], {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, states[1]);
                 }
             }
         }
@@ -112,7 +112,7 @@ mata::ext::bddlike::BDDlikeNft mata::ext::bddlike::trapInterpretation(std::share
     for (mata::nft::State q : states) {
         for (int i = 0; i < powerset.size(); ++i) {
             for (std::string x : powerset[i]) {
-                result.add_transition(q, {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, q);
+                result.add_transition_by_levels(q, {powerset_OnTheFlyAlphabet->translate_symb(powerset_alphabet[i]), string_alphabet->translate_symb(x)}, q);
             }
         }
     }

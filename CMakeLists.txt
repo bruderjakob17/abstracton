@@ -24,7 +24,7 @@ endif()
 find_library(LIBMATA mata REQUIRED)
 
 add_subdirectory(src)
-add_subdirectory(tests)
 add_subdirectory(examples)
 add_subdirectory(benchmarks)
+add_subdirectory(tests)
 add_subdirectory(comparisons)

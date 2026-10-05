@@ -191,8 +191,7 @@ mata::nft::Nft parseTransducer(Json::Value t, std::shared_ptr<mata::OnTheFlyAlph
             2, states.size(), initial_state_indices, final_state_indices, std::make_shared<mata::AlphabetLevels>(string_alphabet));
 
     for (auto d : transitions) {
-        // TODO add "add" function of signature (State, string, State) to delta in mata if OnTheFlyAlphabet specified
-        result.add_transition(std::get<0>(d), {string_alphabet->translate_symb(std::get<1>(d)), string_alphabet->translate_symb(std::get<2>(d))}, std::get<3>(d));
+        result.add_transition_by_levels(std::get<0>(d), {string_alphabet->translate_symb(std::get<1>(d)), string_alphabet->translate_symb(std::get<2>(d))}, std::get<3>(d));
     }
 
     return result;
