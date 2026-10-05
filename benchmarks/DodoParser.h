@@ -28,7 +28,7 @@ mata::nfa::Nfa parseDodoNfa(Json::Value nfa, std::shared_ptr<mata::OnTheFlyAlpha
 
 std::pair<std::string, std::string> parsePair(std::string p, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL);
 
-mata::nft::Nft parseTransducer(Json::Value t, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL);
+mata::nft::Nft parseTransducer(Json::Value t, std::shared_ptr<mata::OnTheFlyAlphabet> string_alphabet, int verbosityLevel = logging::DEFAULT_VERBOSITY_LEVEL);
 
 // alphabet_encoding alphabetToCharAlphabet(std::vector<std::string> string_alphabet);
 
