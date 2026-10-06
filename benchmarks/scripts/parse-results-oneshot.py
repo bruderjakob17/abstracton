@@ -6,8 +6,8 @@ benchmarks_folder = "benchmarks/dodo"
 benchmarks_suffix = "json"
 results_folder = pathlib.Path(__file__).parent / "results"
 
-mata_infile = results_folder / "raw" / "results_for_dodo_comparison_lazy_inclusion_bfs.log"
-csv_output_path = results_folder / "oneshot_comparison_mata_lazy_inclusion_bfs.csv"
+mata_infile = results_folder / "raw" / "results_for_dodo_comparison_antichains_inclusion_project.log"
+csv_output_path = results_folder / (re.search(r"(\S+)\.log", mata_infile.name).group(1) + ".csv")
 
 def line_to_min_sec(s):
     s1 = s.split("m")
@@ -32,7 +32,7 @@ def parse_raw_bench(f):
     lines = [l.strip() for l in f.readlines()]
 
     for i in range(len(lines)):
-        if benchmarks_folder in lines[i] and ("." + benchmarks_suffix) in lines[i]:
+        if lines[i].endswith("." + benchmarks_suffix) and benchmarks_folder in lines[i] and not lines[i].startswith("systemd-run"):
             # read result
             instance = {}
             instance["name"] = re.search(r"dodo/([\S]*)\.json", lines[i]).group(1)

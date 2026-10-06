@@ -2,7 +2,7 @@ library(tidyverse)
 
 source("utils.R")
 
-alphabet_sizes <- read_csv("metadata/alphabet-sizes.csv", col_names = c("name", "alphabet_size"))
+alphabet_sizes <- read_csv("results/metadata/alphabet-sizes.csv")
 
 # TODO OOMs sometimes still have time, replace with NA...
 results_mata <- read_csv("results/oneshot_comparison_mata.csv")
@@ -15,6 +15,8 @@ results_dodo <- read_csv("results/oneshot_comparison_dodo.csv")
 results_leduy <- read_csv("results/leduy_lazytree.csv")
 results_mata_lazy_inclusion_bfs <- read_csv("results/oneshot_comparison_mata_lazy_inclusion_bfs.csv")
 results_mata_antichains_inclusion_new <- read_csv("results/oneshot_comparison_mata_antichains_inclusion_new.csv")
+results_mata_antichains_inclusion_project <- read_csv("results/results_for_dodo_comparison_antichains_inclusion_project.csv")
+results_mata_antichains_inclusion_project_bddlike <- read_csv("results/results_for_dodo_comparison_antichains_inclusion_project_bddlike.csv")
 
 compare_processed_data(results_dodo, results_mata_lazy_bfs_worklist_fix, color = interpretation)
 # for debugging purposes
