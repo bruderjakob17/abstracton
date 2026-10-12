@@ -7,6 +7,10 @@ library(patchwork)
 # small improvements over the original:
 #   * every axis carries exactly one label (the original showed each axis label
 #     twice, because the marginal panels also set x/y labels),
+#   * the `widths` are set on the two rows (the original applied them to the
+#     outer vertical stack, where they had no effect, so the right column ended
+#     up as wide as the main plot); the chosen ratio makes the right column about
+#     as wide as the top row is high,
 #   * OOM/timeout runs are treated as missing runtimes, and a runtime of 0.000 s
 #     (i.e. below the millisecond resolution) is lifted to 0.001 s so that it can
 #     be displayed on the log scale.
@@ -56,10 +60,13 @@ compare_programs <- function(df, ...) {
     geom_jitter(alpha = 0.7) +
     labs(x = NULL, y = NULL)
 
-  ((p_top + p_empty) /
-    (p_main + p_right)) +
+  # widths belong to the individual rows; the ratio makes the right column
+  # roughly as wide as the top row is high (i.e. the corner panel is square)
+  top_row <- p_top + p_empty + plot_layout(widths = c(3.5, 1))
+  bottom_row <- p_main + p_right + plot_layout(widths = c(3.5, 1))
+
+  (top_row / bottom_row) +
     plot_layout(
-      widths = c(5, 1),
       heights = c(1, 5),
       guides = "collect",
       axis_titles = "collect"
