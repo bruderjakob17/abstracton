@@ -273,7 +273,7 @@ DodoParserResult parseDodoJSON(std::string filepath, int verbosityLevel, bool no
     for (auto p : obj["properties"].getMemberNames()) {
         properties.push_back(parseDodoNfa(obj["properties"][p], string_alphabet_ptr));
         propertyNames.push_back(p);
-        PRINT_AUT("property \"" + p + "\" (parsed)", properties[properties.size() - 1]);
+        PRINT_AUT("property " + p + " (parsed)", properties[properties.size() - 1]);
     }
 
     return DodoParserResult {
