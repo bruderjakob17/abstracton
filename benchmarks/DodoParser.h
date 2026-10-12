@@ -3,7 +3,7 @@
 #include <cassert>
 #include <iostream>
 #include <fstream>
-#include <jsoncpp/json/json.h>
+#include <json/json.h>
 #include <stdexcept>
 #include <mata/nfa/nfa.hh>
 #include <mata/nft/nft.hh>

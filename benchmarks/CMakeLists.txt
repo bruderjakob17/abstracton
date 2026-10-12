@@ -8,7 +8,7 @@ target_include_directories(parsers PUBLIC mata)
 target_include_directories(parsers PUBLIC ${PROJECT_SOURCE_DIR}/benchmarks)
 target_include_directories(parsers PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(parsers abstracton)
-target_link_libraries(parsers jsoncpp)
+target_link_libraries(parsers JsonCpp::JsonCpp)
 
 add_executable(solve_dodo solve_dodo.cpp)
 target_link_libraries(solve_dodo parsers)
