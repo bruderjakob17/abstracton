@@ -68,4 +68,5 @@ def gen_permutation_benchmark(n):
         json.dump(benchmark, f, indent=2)
 
 if __name__ == "__main__":
-    gen_permutation_benchmark(3)
+    for n in range(2, 21):
+        gen_permutation_benchmark(n)
