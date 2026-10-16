@@ -35,10 +35,10 @@ Nfa compute_ind_new(const Nft& abstraction_framework, const Nft& transition_rela
     TOCK("computing composition v_delta of abstraction framework and transition relation");
     PRINT_AUT("V o ->", v_delta);
 
-    TICK();
-    v_delta = mata::nft::reduce(v_delta);
-    TOCK("reducing V o ->");
-    PRINT_AUT("reduce(V o ->)", v_delta);
+    // TICK();
+    // v_delta = mata::nft::reduce(v_delta);
+    // TOCK("reducing V o ->");
+    // PRINT_AUT("reduce(V o ->)", v_delta);
 
     std::vector<std::shared_ptr<Alphabet>> alphabets {abstract_alphabet, concrete_alphabet};
     AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
@@ -233,10 +233,10 @@ Nfa compute_ind_old(const Nft& abstraction_framework, const Nft& transition_rela
     TOCK("computing composition v_delta of abstraction framework and transition relation");
     PRINT_AUT("v_delta", v_delta);
 
-    TICK();
-    v_delta = mata::nft::reduce(v_delta);
-    TOCK("reducing v_delta");
-    PRINT_AUT("reduce(v_delta)", v_delta);
+    // TICK();
+    // v_delta = mata::nft::reduce(v_delta);
+    // TOCK("reducing v_delta");
+    // PRINT_AUT("reduce(v_delta)", v_delta);
 
     std::vector<std::shared_ptr<Alphabet>> alphabets {abstract_alphabet, concrete_alphabet};
     AlphabetLevels alphabet_levels(alphabets, AlphabetLevels::Mode::MultiLevel);
